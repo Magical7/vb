@@ -1,0 +1,7 @@
+// Some test
+var something: integer;
+var darkside: integer;
+darkSide := -10;
+something := 7;
+something := something + something + something + darkside;
+print(something);
