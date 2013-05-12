@@ -33,17 +33,32 @@ declaration
     ;
 
 statement 
-    :   ^(BECOMES id=IDENTIFIER v=expr)
+    :   ^(BECOMES id=IDENTIFIER v=expr1)
             { store.put($id.text, v);       }
-    |   ^(PRINT v=expr)
+    |   ^(PRINT v=expr1)
             { System.out.println("" + v);   }
+    |	^(SWAP id1=IDENTIFIER id2=IDENTIFIER)
+    		{ 	int val = store.get($id1.text);
+    			store.put($id1.text, store.get($id2.text));
+    			store.put($id2.text, val);
+    		}
     ;
     
-expr returns [int val = 0;] 
-    :   z=operand               { val = z;      }
-    |   ^(PLUS x=expr y=expr)   { val = x + y;  }
-    |   ^(MINUS x=expr y=expr)  { val = x - y;  }
+expr1 returns [int val = 0;] 
+    :   z=expr2               { val = z;      }
+    |   ^(PLUS x=expr1 y=expr1)   { val = x + y;  }
+    |   ^(MINUS x=expr1 y=expr1)  { val = x - y;  }
     ;
+    
+expr2 returns [int val = 0;]
+	:	z=operand					{ val = z;		}
+	|	^(TIMES x=expr2 y=expr2)	{ val = x * y; 	}
+	|	^(QUOTIENT x=expr2 y=expr2) { if (y == 0) { 
+			CalcException e = new CalcException("Divide by zero");
+			e.input = input;
+			throw e;
+ 			} else { val = x / y; }	}
+	;
     
 operand returns [int val = 0]
     :   id=IDENTIFIER   { val = store.get($id.text);       } 

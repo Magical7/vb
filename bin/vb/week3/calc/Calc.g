@@ -11,17 +11,21 @@ tokens {
     SEMICOLON   =   ';'     ;
     LPAREN      =   '('     ;
     RPAREN      =   ')'     ;
+    COMMA		=	','		;
 
     // operators
     BECOMES     =   ':='    ;
     PLUS        =   '+'     ;
     MINUS       =   '-'     ;
+    TIMES		=	'*'		;
+    QUOTIENT	=	'%'		;
 
     // keywords
     PROGRAM     =   'program'   ;
     VAR         =   'var'       ;
     PRINT       =   'print'     ;
     INTEGER     =   'integer'   ;
+    SWAP		= 	'swap'		;
 }
 
 @lexer::header {
@@ -54,28 +58,38 @@ declaration
 statement
     :   assignment
     |   print_stat
+    |	swap_stat
     ;
 
 assignment
-    :   lvalue BECOMES^ expr
+    :   lvalue BECOMES^ expr1
     ;
 
 print_stat
-    :   PRINT^ LPAREN! expr RPAREN!
+    :   PRINT^ LPAREN! expr1 RPAREN!
     ;
+    
+swap_stat
+	:	SWAP^ LPAREN! IDENTIFIER COMMA! IDENTIFIER RPAREN!
+	;
 
 lvalue
     :   IDENTIFIER
     ;
     
-expr
-    :   operand ((PLUS^ | MINUS^) operand )*
+expr1
+    :   expr2 ((PLUS^ | MINUS^) expr2 )*
     ;
+    
+expr2
+	:	operand ((TIMES^ | QUOTIENT^) operand )*
+	;
+	
 
 operand
     :   IDENTIFIER
     |   NUMBER
-    |   LPAREN! expr RPAREN!
+    |   LPAREN! expr1 RPAREN!
     ;
 
 type

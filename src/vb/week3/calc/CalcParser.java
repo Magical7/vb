@@ -1,4 +1,4 @@
-// $ANTLR 3.5 src/vb/week3/calc/Calc.g 2013-05-12 20:18:05
+// $ANTLR 3.5 Calc.g 2013-05-12 23:00:52
 
 package vb.week3.calc;
 
@@ -14,31 +14,35 @@ import org.antlr.runtime.tree.*;
 @SuppressWarnings("all")
 public class CalcParser extends Parser {
 	public static final String[] tokenNames = new String[] {
-		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "BECOMES", "COLON", "COMMENT", 
+		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "BECOMES", "COLON", "COMMA", "COMMENT", 
 		"DIGIT", "IDENTIFIER", "INTEGER", "LETTER", "LOWER", "LPAREN", "MINUS", 
-		"NUMBER", "PLUS", "PRINT", "PROGRAM", "RPAREN", "SEMICOLON", "UPPER", 
-		"VAR", "WS"
+		"NUMBER", "PLUS", "PRINT", "PROGRAM", "QUOTIENT", "RPAREN", "SEMICOLON", 
+		"SWAP", "TIMES", "UPPER", "VAR", "WS"
 	};
 	public static final int EOF=-1;
 	public static final int BECOMES=4;
 	public static final int COLON=5;
-	public static final int COMMENT=6;
-	public static final int DIGIT=7;
-	public static final int IDENTIFIER=8;
-	public static final int INTEGER=9;
-	public static final int LETTER=10;
-	public static final int LOWER=11;
-	public static final int LPAREN=12;
-	public static final int MINUS=13;
-	public static final int NUMBER=14;
-	public static final int PLUS=15;
-	public static final int PRINT=16;
-	public static final int PROGRAM=17;
-	public static final int RPAREN=18;
-	public static final int SEMICOLON=19;
-	public static final int UPPER=20;
-	public static final int VAR=21;
-	public static final int WS=22;
+	public static final int COMMA=6;
+	public static final int COMMENT=7;
+	public static final int DIGIT=8;
+	public static final int IDENTIFIER=9;
+	public static final int INTEGER=10;
+	public static final int LETTER=11;
+	public static final int LOWER=12;
+	public static final int LPAREN=13;
+	public static final int MINUS=14;
+	public static final int NUMBER=15;
+	public static final int PLUS=16;
+	public static final int PRINT=17;
+	public static final int PROGRAM=18;
+	public static final int QUOTIENT=19;
+	public static final int RPAREN=20;
+	public static final int SEMICOLON=21;
+	public static final int SWAP=22;
+	public static final int TIMES=23;
+	public static final int UPPER=24;
+	public static final int VAR=25;
+	public static final int WS=26;
 
 	// delegates
 	public Parser[] getDelegates() {
@@ -64,7 +68,7 @@ public class CalcParser extends Parser {
 		return adaptor;
 	}
 	@Override public String[] getTokenNames() { return CalcParser.tokenNames; }
-	@Override public String getGrammarFileName() { return "src/vb/week3/calc/Calc.g"; }
+	@Override public String getGrammarFileName() { return "Calc.g"; }
 
 
 	public static class program_return extends ParserRuleReturnScope {
@@ -75,7 +79,7 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "program"
-	// src/vb/week3/calc/Calc.g:37:1: program : declarations statements EOF -> ^( PROGRAM ( declarations )? statements ) ;
+	// Calc.g:41:1: program : declarations statements EOF -> ^( PROGRAM ( declarations )? statements ) ;
 	public final CalcParser.program_return program() throws RecognitionException {
 		CalcParser.program_return retval = new CalcParser.program_return();
 		retval.start = input.LT(1);
@@ -92,24 +96,24 @@ public class CalcParser extends Parser {
 		RewriteRuleSubtreeStream stream_declarations=new RewriteRuleSubtreeStream(adaptor,"rule declarations");
 
 		try {
-			// src/vb/week3/calc/Calc.g:38:5: ( declarations statements EOF -> ^( PROGRAM ( declarations )? statements ) )
-			// src/vb/week3/calc/Calc.g:38:9: declarations statements EOF
+			// Calc.g:42:5: ( declarations statements EOF -> ^( PROGRAM ( declarations )? statements ) )
+			// Calc.g:42:9: declarations statements EOF
 			{
-			pushFollow(FOLLOW_declarations_in_program413);
+			pushFollow(FOLLOW_declarations_in_program469);
 			declarations1=declarations();
 			state._fsp--;
 
 			stream_declarations.add(declarations1.getTree());
-			pushFollow(FOLLOW_statements_in_program415);
+			pushFollow(FOLLOW_statements_in_program471);
 			statements2=statements();
 			state._fsp--;
 
 			stream_statements.add(statements2.getTree());
-			EOF3=(Token)match(input,EOF,FOLLOW_EOF_in_program417);  
+			EOF3=(Token)match(input,EOF,FOLLOW_EOF_in_program473);  
 			stream_EOF.add(EOF3);
 
 			// AST REWRITE
-			// elements: declarations, statements
+			// elements: statements, declarations
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -119,13 +123,13 @@ public class CalcParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 39:13: -> ^( PROGRAM ( declarations )? statements )
+			// 43:13: -> ^( PROGRAM ( declarations )? statements )
 			{
-				// src/vb/week3/calc/Calc.g:39:17: ^( PROGRAM ( declarations )? statements )
+				// Calc.g:43:17: ^( PROGRAM ( declarations )? statements )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PROGRAM, "PROGRAM"), root_1);
-				// src/vb/week3/calc/Calc.g:39:27: ( declarations )?
+				// Calc.g:43:27: ( declarations )?
 				if ( stream_declarations.hasNext() ) {
 					adaptor.addChild(root_1, stream_declarations.nextTree());
 				}
@@ -169,7 +173,7 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "declarations"
-	// src/vb/week3/calc/Calc.g:42:1: declarations : ( declaration SEMICOLON !)* ;
+	// Calc.g:46:1: declarations : ( declaration SEMICOLON !)* ;
 	public final CalcParser.declarations_return declarations() throws RecognitionException {
 		CalcParser.declarations_return retval = new CalcParser.declarations_return();
 		retval.start = input.LT(1);
@@ -182,13 +186,13 @@ public class CalcParser extends Parser {
 		Object SEMICOLON5_tree=null;
 
 		try {
-			// src/vb/week3/calc/Calc.g:43:5: ( ( declaration SEMICOLON !)* )
-			// src/vb/week3/calc/Calc.g:43:9: ( declaration SEMICOLON !)*
+			// Calc.g:47:5: ( ( declaration SEMICOLON !)* )
+			// Calc.g:47:9: ( declaration SEMICOLON !)*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			// src/vb/week3/calc/Calc.g:43:9: ( declaration SEMICOLON !)*
+			// Calc.g:47:9: ( declaration SEMICOLON !)*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -199,15 +203,15 @@ public class CalcParser extends Parser {
 
 				switch (alt1) {
 				case 1 :
-					// src/vb/week3/calc/Calc.g:43:10: declaration SEMICOLON !
+					// Calc.g:47:10: declaration SEMICOLON !
 					{
-					pushFollow(FOLLOW_declaration_in_declarations465);
+					pushFollow(FOLLOW_declaration_in_declarations521);
 					declaration4=declaration();
 					state._fsp--;
 
 					adaptor.addChild(root_0, declaration4.getTree());
 
-					SEMICOLON5=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_declarations467); 
+					SEMICOLON5=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_declarations523); 
 					}
 					break;
 
@@ -245,7 +249,7 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "statements"
-	// src/vb/week3/calc/Calc.g:46:1: statements : ( statement SEMICOLON !)+ ;
+	// Calc.g:50:1: statements : ( statement SEMICOLON !)+ ;
 	public final CalcParser.statements_return statements() throws RecognitionException {
 		CalcParser.statements_return retval = new CalcParser.statements_return();
 		retval.start = input.LT(1);
@@ -258,33 +262,33 @@ public class CalcParser extends Parser {
 		Object SEMICOLON7_tree=null;
 
 		try {
-			// src/vb/week3/calc/Calc.g:47:5: ( ( statement SEMICOLON !)+ )
-			// src/vb/week3/calc/Calc.g:47:9: ( statement SEMICOLON !)+
+			// Calc.g:51:5: ( ( statement SEMICOLON !)+ )
+			// Calc.g:51:9: ( statement SEMICOLON !)+
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			// src/vb/week3/calc/Calc.g:47:9: ( statement SEMICOLON !)+
+			// Calc.g:51:9: ( statement SEMICOLON !)+
 			int cnt2=0;
 			loop2:
 			while (true) {
 				int alt2=2;
 				int LA2_0 = input.LA(1);
-				if ( (LA2_0==IDENTIFIER||LA2_0==PRINT) ) {
+				if ( (LA2_0==IDENTIFIER||LA2_0==PRINT||LA2_0==SWAP) ) {
 					alt2=1;
 				}
 
 				switch (alt2) {
 				case 1 :
-					// src/vb/week3/calc/Calc.g:47:10: statement SEMICOLON !
+					// Calc.g:51:10: statement SEMICOLON !
 					{
-					pushFollow(FOLLOW_statement_in_statements494);
+					pushFollow(FOLLOW_statement_in_statements550);
 					statement6=statement();
 					state._fsp--;
 
 					adaptor.addChild(root_0, statement6.getTree());
 
-					SEMICOLON7=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_statements496); 
+					SEMICOLON7=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_statements552); 
 					}
 					break;
 
@@ -325,7 +329,7 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "declaration"
-	// src/vb/week3/calc/Calc.g:50:1: declaration : VAR ^ IDENTIFIER COLON ! type ;
+	// Calc.g:54:1: declaration : VAR ^ IDENTIFIER COLON ! type ;
 	public final CalcParser.declaration_return declaration() throws RecognitionException {
 		CalcParser.declaration_return retval = new CalcParser.declaration_return();
 		retval.start = input.LT(1);
@@ -342,22 +346,22 @@ public class CalcParser extends Parser {
 		Object COLON10_tree=null;
 
 		try {
-			// src/vb/week3/calc/Calc.g:51:5: ( VAR ^ IDENTIFIER COLON ! type )
-			// src/vb/week3/calc/Calc.g:51:9: VAR ^ IDENTIFIER COLON ! type
+			// Calc.g:55:5: ( VAR ^ IDENTIFIER COLON ! type )
+			// Calc.g:55:9: VAR ^ IDENTIFIER COLON ! type
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			VAR8=(Token)match(input,VAR,FOLLOW_VAR_in_declaration518); 
+			VAR8=(Token)match(input,VAR,FOLLOW_VAR_in_declaration574); 
 			VAR8_tree = (Object)adaptor.create(VAR8);
 			root_0 = (Object)adaptor.becomeRoot(VAR8_tree, root_0);
 
-			IDENTIFIER9=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_declaration521); 
+			IDENTIFIER9=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_declaration577); 
 			IDENTIFIER9_tree = (Object)adaptor.create(IDENTIFIER9);
 			adaptor.addChild(root_0, IDENTIFIER9_tree);
 
-			COLON10=(Token)match(input,COLON,FOLLOW_COLON_in_declaration523); 
-			pushFollow(FOLLOW_type_in_declaration526);
+			COLON10=(Token)match(input,COLON,FOLLOW_COLON_in_declaration579); 
+			pushFollow(FOLLOW_type_in_declaration582);
 			type11=type();
 			state._fsp--;
 
@@ -392,7 +396,7 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "statement"
-	// src/vb/week3/calc/Calc.g:54:1: statement : ( assignment | print_stat );
+	// Calc.g:58:1: statement : ( assignment | print_stat | swap_stat );
 	public final CalcParser.statement_return statement() throws RecognitionException {
 		CalcParser.statement_return retval = new CalcParser.statement_return();
 		retval.start = input.LT(1);
@@ -401,33 +405,41 @@ public class CalcParser extends Parser {
 
 		ParserRuleReturnScope assignment12 =null;
 		ParserRuleReturnScope print_stat13 =null;
+		ParserRuleReturnScope swap_stat14 =null;
 
 
 		try {
-			// src/vb/week3/calc/Calc.g:55:5: ( assignment | print_stat )
-			int alt3=2;
-			int LA3_0 = input.LA(1);
-			if ( (LA3_0==IDENTIFIER) ) {
+			// Calc.g:59:5: ( assignment | print_stat | swap_stat )
+			int alt3=3;
+			switch ( input.LA(1) ) {
+			case IDENTIFIER:
+				{
 				alt3=1;
-			}
-			else if ( (LA3_0==PRINT) ) {
+				}
+				break;
+			case PRINT:
+				{
 				alt3=2;
-			}
-
-			else {
+				}
+				break;
+			case SWAP:
+				{
+				alt3=3;
+				}
+				break;
+			default:
 				NoViableAltException nvae =
 					new NoViableAltException("", 3, 0, input);
 				throw nvae;
 			}
-
 			switch (alt3) {
 				case 1 :
-					// src/vb/week3/calc/Calc.g:55:9: assignment
+					// Calc.g:59:9: assignment
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_assignment_in_statement549);
+					pushFollow(FOLLOW_assignment_in_statement605);
 					assignment12=assignment();
 					state._fsp--;
 
@@ -436,16 +448,30 @@ public class CalcParser extends Parser {
 					}
 					break;
 				case 2 :
-					// src/vb/week3/calc/Calc.g:56:9: print_stat
+					// Calc.g:60:9: print_stat
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_print_stat_in_statement559);
+					pushFollow(FOLLOW_print_stat_in_statement615);
 					print_stat13=print_stat();
 					state._fsp--;
 
 					adaptor.addChild(root_0, print_stat13.getTree());
+
+					}
+					break;
+				case 3 :
+					// Calc.g:61:7: swap_stat
+					{
+					root_0 = (Object)adaptor.nil();
+
+
+					pushFollow(FOLLOW_swap_stat_in_statement623);
+					swap_stat14=swap_stat();
+					state._fsp--;
+
+					adaptor.addChild(root_0, swap_stat14.getTree());
 
 					}
 					break;
@@ -478,41 +504,41 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "assignment"
-	// src/vb/week3/calc/Calc.g:59:1: assignment : lvalue BECOMES ^ expr ;
+	// Calc.g:64:1: assignment : lvalue BECOMES ^ expr1 ;
 	public final CalcParser.assignment_return assignment() throws RecognitionException {
 		CalcParser.assignment_return retval = new CalcParser.assignment_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token BECOMES15=null;
-		ParserRuleReturnScope lvalue14 =null;
-		ParserRuleReturnScope expr16 =null;
+		Token BECOMES16=null;
+		ParserRuleReturnScope lvalue15 =null;
+		ParserRuleReturnScope expr117 =null;
 
-		Object BECOMES15_tree=null;
+		Object BECOMES16_tree=null;
 
 		try {
-			// src/vb/week3/calc/Calc.g:60:5: ( lvalue BECOMES ^ expr )
-			// src/vb/week3/calc/Calc.g:60:9: lvalue BECOMES ^ expr
+			// Calc.g:65:5: ( lvalue BECOMES ^ expr1 )
+			// Calc.g:65:9: lvalue BECOMES ^ expr1
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_lvalue_in_assignment578);
-			lvalue14=lvalue();
+			pushFollow(FOLLOW_lvalue_in_assignment642);
+			lvalue15=lvalue();
 			state._fsp--;
 
-			adaptor.addChild(root_0, lvalue14.getTree());
+			adaptor.addChild(root_0, lvalue15.getTree());
 
-			BECOMES15=(Token)match(input,BECOMES,FOLLOW_BECOMES_in_assignment580); 
-			BECOMES15_tree = (Object)adaptor.create(BECOMES15);
-			root_0 = (Object)adaptor.becomeRoot(BECOMES15_tree, root_0);
+			BECOMES16=(Token)match(input,BECOMES,FOLLOW_BECOMES_in_assignment644); 
+			BECOMES16_tree = (Object)adaptor.create(BECOMES16);
+			root_0 = (Object)adaptor.becomeRoot(BECOMES16_tree, root_0);
 
-			pushFollow(FOLLOW_expr_in_assignment583);
-			expr16=expr();
+			pushFollow(FOLLOW_expr1_in_assignment647);
+			expr117=expr1();
 			state._fsp--;
 
-			adaptor.addChild(root_0, expr16.getTree());
+			adaptor.addChild(root_0, expr117.getTree());
 
 			}
 
@@ -543,41 +569,41 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "print_stat"
-	// src/vb/week3/calc/Calc.g:63:1: print_stat : PRINT ^ LPAREN ! expr RPAREN !;
+	// Calc.g:68:1: print_stat : PRINT ^ LPAREN ! expr1 RPAREN !;
 	public final CalcParser.print_stat_return print_stat() throws RecognitionException {
 		CalcParser.print_stat_return retval = new CalcParser.print_stat_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token PRINT17=null;
-		Token LPAREN18=null;
-		Token RPAREN20=null;
-		ParserRuleReturnScope expr19 =null;
+		Token PRINT18=null;
+		Token LPAREN19=null;
+		Token RPAREN21=null;
+		ParserRuleReturnScope expr120 =null;
 
-		Object PRINT17_tree=null;
-		Object LPAREN18_tree=null;
-		Object RPAREN20_tree=null;
+		Object PRINT18_tree=null;
+		Object LPAREN19_tree=null;
+		Object RPAREN21_tree=null;
 
 		try {
-			// src/vb/week3/calc/Calc.g:64:5: ( PRINT ^ LPAREN ! expr RPAREN !)
-			// src/vb/week3/calc/Calc.g:64:9: PRINT ^ LPAREN ! expr RPAREN !
+			// Calc.g:69:5: ( PRINT ^ LPAREN ! expr1 RPAREN !)
+			// Calc.g:69:9: PRINT ^ LPAREN ! expr1 RPAREN !
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			PRINT17=(Token)match(input,PRINT,FOLLOW_PRINT_in_print_stat602); 
-			PRINT17_tree = (Object)adaptor.create(PRINT17);
-			root_0 = (Object)adaptor.becomeRoot(PRINT17_tree, root_0);
+			PRINT18=(Token)match(input,PRINT,FOLLOW_PRINT_in_print_stat666); 
+			PRINT18_tree = (Object)adaptor.create(PRINT18);
+			root_0 = (Object)adaptor.becomeRoot(PRINT18_tree, root_0);
 
-			LPAREN18=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_print_stat605); 
-			pushFollow(FOLLOW_expr_in_print_stat608);
-			expr19=expr();
+			LPAREN19=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_print_stat669); 
+			pushFollow(FOLLOW_expr1_in_print_stat672);
+			expr120=expr1();
 			state._fsp--;
 
-			adaptor.addChild(root_0, expr19.getTree());
+			adaptor.addChild(root_0, expr120.getTree());
 
-			RPAREN20=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_print_stat610); 
+			RPAREN21=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_print_stat674); 
 			}
 
 			retval.stop = input.LT(-1);
@@ -599,6 +625,78 @@ public class CalcParser extends Parser {
 	// $ANTLR end "print_stat"
 
 
+	public static class swap_stat_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
+
+	// $ANTLR start "swap_stat"
+	// Calc.g:72:1: swap_stat : SWAP ^ LPAREN ! IDENTIFIER COMMA ! IDENTIFIER RPAREN !;
+	public final CalcParser.swap_stat_return swap_stat() throws RecognitionException {
+		CalcParser.swap_stat_return retval = new CalcParser.swap_stat_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token SWAP22=null;
+		Token LPAREN23=null;
+		Token IDENTIFIER24=null;
+		Token COMMA25=null;
+		Token IDENTIFIER26=null;
+		Token RPAREN27=null;
+
+		Object SWAP22_tree=null;
+		Object LPAREN23_tree=null;
+		Object IDENTIFIER24_tree=null;
+		Object COMMA25_tree=null;
+		Object IDENTIFIER26_tree=null;
+		Object RPAREN27_tree=null;
+
+		try {
+			// Calc.g:73:2: ( SWAP ^ LPAREN ! IDENTIFIER COMMA ! IDENTIFIER RPAREN !)
+			// Calc.g:73:4: SWAP ^ LPAREN ! IDENTIFIER COMMA ! IDENTIFIER RPAREN !
+			{
+			root_0 = (Object)adaptor.nil();
+
+
+			SWAP22=(Token)match(input,SWAP,FOLLOW_SWAP_in_swap_stat693); 
+			SWAP22_tree = (Object)adaptor.create(SWAP22);
+			root_0 = (Object)adaptor.becomeRoot(SWAP22_tree, root_0);
+
+			LPAREN23=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_swap_stat696); 
+			IDENTIFIER24=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_swap_stat699); 
+			IDENTIFIER24_tree = (Object)adaptor.create(IDENTIFIER24);
+			adaptor.addChild(root_0, IDENTIFIER24_tree);
+
+			COMMA25=(Token)match(input,COMMA,FOLLOW_COMMA_in_swap_stat701); 
+			IDENTIFIER26=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_swap_stat704); 
+			IDENTIFIER26_tree = (Object)adaptor.create(IDENTIFIER26);
+			adaptor.addChild(root_0, IDENTIFIER26_tree);
+
+			RPAREN27=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_swap_stat706); 
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return retval;
+	}
+	// $ANTLR end "swap_stat"
+
+
 	public static class lvalue_return extends ParserRuleReturnScope {
 		Object tree;
 		@Override
@@ -607,27 +705,27 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "lvalue"
-	// src/vb/week3/calc/Calc.g:67:1: lvalue : IDENTIFIER ;
+	// Calc.g:76:1: lvalue : IDENTIFIER ;
 	public final CalcParser.lvalue_return lvalue() throws RecognitionException {
 		CalcParser.lvalue_return retval = new CalcParser.lvalue_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token IDENTIFIER21=null;
+		Token IDENTIFIER28=null;
 
-		Object IDENTIFIER21_tree=null;
+		Object IDENTIFIER28_tree=null;
 
 		try {
-			// src/vb/week3/calc/Calc.g:68:5: ( IDENTIFIER )
-			// src/vb/week3/calc/Calc.g:68:9: IDENTIFIER
+			// Calc.g:77:5: ( IDENTIFIER )
+			// Calc.g:77:9: IDENTIFIER
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			IDENTIFIER21=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_lvalue630); 
-			IDENTIFIER21_tree = (Object)adaptor.create(IDENTIFIER21);
-			adaptor.addChild(root_0, IDENTIFIER21_tree);
+			IDENTIFIER28=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_lvalue723); 
+			IDENTIFIER28_tree = (Object)adaptor.create(IDENTIFIER28);
+			adaptor.addChild(root_0, IDENTIFIER28_tree);
 
 			}
 
@@ -650,43 +748,43 @@ public class CalcParser extends Parser {
 	// $ANTLR end "lvalue"
 
 
-	public static class expr_return extends ParserRuleReturnScope {
+	public static class expr1_return extends ParserRuleReturnScope {
 		Object tree;
 		@Override
 		public Object getTree() { return tree; }
 	};
 
 
-	// $ANTLR start "expr"
-	// src/vb/week3/calc/Calc.g:71:1: expr : operand ( ( PLUS ^| MINUS ^) operand )* ;
-	public final CalcParser.expr_return expr() throws RecognitionException {
-		CalcParser.expr_return retval = new CalcParser.expr_return();
+	// $ANTLR start "expr1"
+	// Calc.g:80:1: expr1 : expr2 ( ( PLUS ^| MINUS ^) expr2 )* ;
+	public final CalcParser.expr1_return expr1() throws RecognitionException {
+		CalcParser.expr1_return retval = new CalcParser.expr1_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token PLUS23=null;
-		Token MINUS24=null;
-		ParserRuleReturnScope operand22 =null;
-		ParserRuleReturnScope operand25 =null;
+		Token PLUS30=null;
+		Token MINUS31=null;
+		ParserRuleReturnScope expr229 =null;
+		ParserRuleReturnScope expr232 =null;
 
-		Object PLUS23_tree=null;
-		Object MINUS24_tree=null;
+		Object PLUS30_tree=null;
+		Object MINUS31_tree=null;
 
 		try {
-			// src/vb/week3/calc/Calc.g:72:5: ( operand ( ( PLUS ^| MINUS ^) operand )* )
-			// src/vb/week3/calc/Calc.g:72:9: operand ( ( PLUS ^| MINUS ^) operand )*
+			// Calc.g:81:5: ( expr2 ( ( PLUS ^| MINUS ^) expr2 )* )
+			// Calc.g:81:9: expr2 ( ( PLUS ^| MINUS ^) expr2 )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_operand_in_expr653);
-			operand22=operand();
+			pushFollow(FOLLOW_expr2_in_expr1746);
+			expr229=expr2();
 			state._fsp--;
 
-			adaptor.addChild(root_0, operand22.getTree());
+			adaptor.addChild(root_0, expr229.getTree());
 
-			// src/vb/week3/calc/Calc.g:72:17: ( ( PLUS ^| MINUS ^) operand )*
+			// Calc.g:81:15: ( ( PLUS ^| MINUS ^) expr2 )*
 			loop5:
 			while (true) {
 				int alt5=2;
@@ -697,9 +795,9 @@ public class CalcParser extends Parser {
 
 				switch (alt5) {
 				case 1 :
-					// src/vb/week3/calc/Calc.g:72:18: ( PLUS ^| MINUS ^) operand
+					// Calc.g:81:16: ( PLUS ^| MINUS ^) expr2
 					{
-					// src/vb/week3/calc/Calc.g:72:18: ( PLUS ^| MINUS ^)
+					// Calc.g:81:16: ( PLUS ^| MINUS ^)
 					int alt4=2;
 					int LA4_0 = input.LA(1);
 					if ( (LA4_0==PLUS) ) {
@@ -717,31 +815,31 @@ public class CalcParser extends Parser {
 
 					switch (alt4) {
 						case 1 :
-							// src/vb/week3/calc/Calc.g:72:19: PLUS ^
+							// Calc.g:81:17: PLUS ^
 							{
-							PLUS23=(Token)match(input,PLUS,FOLLOW_PLUS_in_expr657); 
-							PLUS23_tree = (Object)adaptor.create(PLUS23);
-							root_0 = (Object)adaptor.becomeRoot(PLUS23_tree, root_0);
+							PLUS30=(Token)match(input,PLUS,FOLLOW_PLUS_in_expr1750); 
+							PLUS30_tree = (Object)adaptor.create(PLUS30);
+							root_0 = (Object)adaptor.becomeRoot(PLUS30_tree, root_0);
 
 							}
 							break;
 						case 2 :
-							// src/vb/week3/calc/Calc.g:72:27: MINUS ^
+							// Calc.g:81:25: MINUS ^
 							{
-							MINUS24=(Token)match(input,MINUS,FOLLOW_MINUS_in_expr662); 
-							MINUS24_tree = (Object)adaptor.create(MINUS24);
-							root_0 = (Object)adaptor.becomeRoot(MINUS24_tree, root_0);
+							MINUS31=(Token)match(input,MINUS,FOLLOW_MINUS_in_expr1755); 
+							MINUS31_tree = (Object)adaptor.create(MINUS31);
+							root_0 = (Object)adaptor.becomeRoot(MINUS31_tree, root_0);
 
 							}
 							break;
 
 					}
 
-					pushFollow(FOLLOW_operand_in_expr666);
-					operand25=operand();
+					pushFollow(FOLLOW_expr2_in_expr1759);
+					expr232=expr2();
 					state._fsp--;
 
-					adaptor.addChild(root_0, operand25.getTree());
+					adaptor.addChild(root_0, expr232.getTree());
 
 					}
 					break;
@@ -769,7 +867,129 @@ public class CalcParser extends Parser {
 		}
 		return retval;
 	}
-	// $ANTLR end "expr"
+	// $ANTLR end "expr1"
+
+
+	public static class expr2_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
+
+	// $ANTLR start "expr2"
+	// Calc.g:84:1: expr2 : operand ( ( TIMES ^| QUOTIENT ^) operand )* ;
+	public final CalcParser.expr2_return expr2() throws RecognitionException {
+		CalcParser.expr2_return retval = new CalcParser.expr2_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token TIMES34=null;
+		Token QUOTIENT35=null;
+		ParserRuleReturnScope operand33 =null;
+		ParserRuleReturnScope operand36 =null;
+
+		Object TIMES34_tree=null;
+		Object QUOTIENT35_tree=null;
+
+		try {
+			// Calc.g:85:2: ( operand ( ( TIMES ^| QUOTIENT ^) operand )* )
+			// Calc.g:85:4: operand ( ( TIMES ^| QUOTIENT ^) operand )*
+			{
+			root_0 = (Object)adaptor.nil();
+
+
+			pushFollow(FOLLOW_operand_in_expr2780);
+			operand33=operand();
+			state._fsp--;
+
+			adaptor.addChild(root_0, operand33.getTree());
+
+			// Calc.g:85:12: ( ( TIMES ^| QUOTIENT ^) operand )*
+			loop7:
+			while (true) {
+				int alt7=2;
+				int LA7_0 = input.LA(1);
+				if ( (LA7_0==QUOTIENT||LA7_0==TIMES) ) {
+					alt7=1;
+				}
+
+				switch (alt7) {
+				case 1 :
+					// Calc.g:85:13: ( TIMES ^| QUOTIENT ^) operand
+					{
+					// Calc.g:85:13: ( TIMES ^| QUOTIENT ^)
+					int alt6=2;
+					int LA6_0 = input.LA(1);
+					if ( (LA6_0==TIMES) ) {
+						alt6=1;
+					}
+					else if ( (LA6_0==QUOTIENT) ) {
+						alt6=2;
+					}
+
+					else {
+						NoViableAltException nvae =
+							new NoViableAltException("", 6, 0, input);
+						throw nvae;
+					}
+
+					switch (alt6) {
+						case 1 :
+							// Calc.g:85:14: TIMES ^
+							{
+							TIMES34=(Token)match(input,TIMES,FOLLOW_TIMES_in_expr2784); 
+							TIMES34_tree = (Object)adaptor.create(TIMES34);
+							root_0 = (Object)adaptor.becomeRoot(TIMES34_tree, root_0);
+
+							}
+							break;
+						case 2 :
+							// Calc.g:85:23: QUOTIENT ^
+							{
+							QUOTIENT35=(Token)match(input,QUOTIENT,FOLLOW_QUOTIENT_in_expr2789); 
+							QUOTIENT35_tree = (Object)adaptor.create(QUOTIENT35);
+							root_0 = (Object)adaptor.becomeRoot(QUOTIENT35_tree, root_0);
+
+							}
+							break;
+
+					}
+
+					pushFollow(FOLLOW_operand_in_expr2793);
+					operand36=operand();
+					state._fsp--;
+
+					adaptor.addChild(root_0, operand36.getTree());
+
+					}
+					break;
+
+				default :
+					break loop7;
+				}
+			}
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return retval;
+	}
+	// $ANTLR end "expr2"
 
 
 	public static class operand_return extends ParserRuleReturnScope {
@@ -780,87 +1000,87 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "operand"
-	// src/vb/week3/calc/Calc.g:75:1: operand : ( IDENTIFIER | NUMBER | LPAREN ! expr RPAREN !);
+	// Calc.g:89:1: operand : ( IDENTIFIER | NUMBER | LPAREN ! expr1 RPAREN !);
 	public final CalcParser.operand_return operand() throws RecognitionException {
 		CalcParser.operand_return retval = new CalcParser.operand_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token IDENTIFIER26=null;
-		Token NUMBER27=null;
-		Token LPAREN28=null;
-		Token RPAREN30=null;
-		ParserRuleReturnScope expr29 =null;
+		Token IDENTIFIER37=null;
+		Token NUMBER38=null;
+		Token LPAREN39=null;
+		Token RPAREN41=null;
+		ParserRuleReturnScope expr140 =null;
 
-		Object IDENTIFIER26_tree=null;
-		Object NUMBER27_tree=null;
-		Object LPAREN28_tree=null;
-		Object RPAREN30_tree=null;
+		Object IDENTIFIER37_tree=null;
+		Object NUMBER38_tree=null;
+		Object LPAREN39_tree=null;
+		Object RPAREN41_tree=null;
 
 		try {
-			// src/vb/week3/calc/Calc.g:76:5: ( IDENTIFIER | NUMBER | LPAREN ! expr RPAREN !)
-			int alt6=3;
+			// Calc.g:90:5: ( IDENTIFIER | NUMBER | LPAREN ! expr1 RPAREN !)
+			int alt8=3;
 			switch ( input.LA(1) ) {
 			case IDENTIFIER:
 				{
-				alt6=1;
+				alt8=1;
 				}
 				break;
 			case NUMBER:
 				{
-				alt6=2;
+				alt8=2;
 				}
 				break;
 			case LPAREN:
 				{
-				alt6=3;
+				alt8=3;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 6, 0, input);
+					new NoViableAltException("", 8, 0, input);
 				throw nvae;
 			}
-			switch (alt6) {
+			switch (alt8) {
 				case 1 :
-					// src/vb/week3/calc/Calc.g:76:9: IDENTIFIER
+					// Calc.g:90:9: IDENTIFIER
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					IDENTIFIER26=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_operand688); 
-					IDENTIFIER26_tree = (Object)adaptor.create(IDENTIFIER26);
-					adaptor.addChild(root_0, IDENTIFIER26_tree);
+					IDENTIFIER37=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_operand814); 
+					IDENTIFIER37_tree = (Object)adaptor.create(IDENTIFIER37);
+					adaptor.addChild(root_0, IDENTIFIER37_tree);
 
 					}
 					break;
 				case 2 :
-					// src/vb/week3/calc/Calc.g:77:9: NUMBER
+					// Calc.g:91:9: NUMBER
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					NUMBER27=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_operand698); 
-					NUMBER27_tree = (Object)adaptor.create(NUMBER27);
-					adaptor.addChild(root_0, NUMBER27_tree);
+					NUMBER38=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_operand824); 
+					NUMBER38_tree = (Object)adaptor.create(NUMBER38);
+					adaptor.addChild(root_0, NUMBER38_tree);
 
 					}
 					break;
 				case 3 :
-					// src/vb/week3/calc/Calc.g:78:9: LPAREN ! expr RPAREN !
+					// Calc.g:92:9: LPAREN ! expr1 RPAREN !
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					LPAREN28=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_operand708); 
-					pushFollow(FOLLOW_expr_in_operand711);
-					expr29=expr();
+					LPAREN39=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_operand834); 
+					pushFollow(FOLLOW_expr1_in_operand837);
+					expr140=expr1();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr29.getTree());
+					adaptor.addChild(root_0, expr140.getTree());
 
-					RPAREN30=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_operand713); 
+					RPAREN41=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_operand839); 
 					}
 					break;
 
@@ -892,27 +1112,27 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "type"
-	// src/vb/week3/calc/Calc.g:81:1: type : INTEGER ;
+	// Calc.g:95:1: type : INTEGER ;
 	public final CalcParser.type_return type() throws RecognitionException {
 		CalcParser.type_return retval = new CalcParser.type_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token INTEGER31=null;
+		Token INTEGER42=null;
 
-		Object INTEGER31_tree=null;
+		Object INTEGER42_tree=null;
 
 		try {
-			// src/vb/week3/calc/Calc.g:82:5: ( INTEGER )
-			// src/vb/week3/calc/Calc.g:82:9: INTEGER
+			// Calc.g:96:5: ( INTEGER )
+			// Calc.g:96:9: INTEGER
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			INTEGER31=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_type733); 
-			INTEGER31_tree = (Object)adaptor.create(INTEGER31);
-			adaptor.addChild(root_0, INTEGER31_tree);
+			INTEGER42=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_type859); 
+			INTEGER42_tree = (Object)adaptor.create(INTEGER42);
+			adaptor.addChild(root_0, INTEGER42_tree);
 
 			}
 
@@ -938,35 +1158,46 @@ public class CalcParser extends Parser {
 
 
 
-	public static final BitSet FOLLOW_declarations_in_program413 = new BitSet(new long[]{0x0000000000010100L});
-	public static final BitSet FOLLOW_statements_in_program415 = new BitSet(new long[]{0x0000000000000000L});
-	public static final BitSet FOLLOW_EOF_in_program417 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_declaration_in_declarations465 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_SEMICOLON_in_declarations467 = new BitSet(new long[]{0x0000000000200002L});
-	public static final BitSet FOLLOW_statement_in_statements494 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_SEMICOLON_in_statements496 = new BitSet(new long[]{0x0000000000010102L});
-	public static final BitSet FOLLOW_VAR_in_declaration518 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_declaration521 = new BitSet(new long[]{0x0000000000000020L});
-	public static final BitSet FOLLOW_COLON_in_declaration523 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_type_in_declaration526 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignment_in_statement549 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_print_stat_in_statement559 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_lvalue_in_assignment578 = new BitSet(new long[]{0x0000000000000010L});
-	public static final BitSet FOLLOW_BECOMES_in_assignment580 = new BitSet(new long[]{0x0000000000005100L});
-	public static final BitSet FOLLOW_expr_in_assignment583 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PRINT_in_print_stat602 = new BitSet(new long[]{0x0000000000001000L});
-	public static final BitSet FOLLOW_LPAREN_in_print_stat605 = new BitSet(new long[]{0x0000000000005100L});
-	public static final BitSet FOLLOW_expr_in_print_stat608 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_RPAREN_in_print_stat610 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_lvalue630 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_operand_in_expr653 = new BitSet(new long[]{0x000000000000A002L});
-	public static final BitSet FOLLOW_PLUS_in_expr657 = new BitSet(new long[]{0x0000000000005100L});
-	public static final BitSet FOLLOW_MINUS_in_expr662 = new BitSet(new long[]{0x0000000000005100L});
-	public static final BitSet FOLLOW_operand_in_expr666 = new BitSet(new long[]{0x000000000000A002L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_operand688 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_NUMBER_in_operand698 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAREN_in_operand708 = new BitSet(new long[]{0x0000000000005100L});
-	public static final BitSet FOLLOW_expr_in_operand711 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_RPAREN_in_operand713 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INTEGER_in_type733 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_declarations_in_program469 = new BitSet(new long[]{0x0000000000420200L});
+	public static final BitSet FOLLOW_statements_in_program471 = new BitSet(new long[]{0x0000000000000000L});
+	public static final BitSet FOLLOW_EOF_in_program473 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_declaration_in_declarations521 = new BitSet(new long[]{0x0000000000200000L});
+	public static final BitSet FOLLOW_SEMICOLON_in_declarations523 = new BitSet(new long[]{0x0000000002000002L});
+	public static final BitSet FOLLOW_statement_in_statements550 = new BitSet(new long[]{0x0000000000200000L});
+	public static final BitSet FOLLOW_SEMICOLON_in_statements552 = new BitSet(new long[]{0x0000000000420202L});
+	public static final BitSet FOLLOW_VAR_in_declaration574 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_declaration577 = new BitSet(new long[]{0x0000000000000020L});
+	public static final BitSet FOLLOW_COLON_in_declaration579 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_type_in_declaration582 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignment_in_statement605 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_print_stat_in_statement615 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_swap_stat_in_statement623 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_lvalue_in_assignment642 = new BitSet(new long[]{0x0000000000000010L});
+	public static final BitSet FOLLOW_BECOMES_in_assignment644 = new BitSet(new long[]{0x000000000000A200L});
+	public static final BitSet FOLLOW_expr1_in_assignment647 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PRINT_in_print_stat666 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_LPAREN_in_print_stat669 = new BitSet(new long[]{0x000000000000A200L});
+	public static final BitSet FOLLOW_expr1_in_print_stat672 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_RPAREN_in_print_stat674 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_SWAP_in_swap_stat693 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_LPAREN_in_swap_stat696 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_swap_stat699 = new BitSet(new long[]{0x0000000000000040L});
+	public static final BitSet FOLLOW_COMMA_in_swap_stat701 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_swap_stat704 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_RPAREN_in_swap_stat706 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_lvalue723 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr2_in_expr1746 = new BitSet(new long[]{0x0000000000014002L});
+	public static final BitSet FOLLOW_PLUS_in_expr1750 = new BitSet(new long[]{0x000000000000A200L});
+	public static final BitSet FOLLOW_MINUS_in_expr1755 = new BitSet(new long[]{0x000000000000A200L});
+	public static final BitSet FOLLOW_expr2_in_expr1759 = new BitSet(new long[]{0x0000000000014002L});
+	public static final BitSet FOLLOW_operand_in_expr2780 = new BitSet(new long[]{0x0000000000880002L});
+	public static final BitSet FOLLOW_TIMES_in_expr2784 = new BitSet(new long[]{0x000000000000A200L});
+	public static final BitSet FOLLOW_QUOTIENT_in_expr2789 = new BitSet(new long[]{0x000000000000A200L});
+	public static final BitSet FOLLOW_operand_in_expr2793 = new BitSet(new long[]{0x0000000000880002L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_operand814 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_NUMBER_in_operand824 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAREN_in_operand834 = new BitSet(new long[]{0x000000000000A200L});
+	public static final BitSet FOLLOW_expr1_in_operand837 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_RPAREN_in_operand839 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INTEGER_in_type859 = new BitSet(new long[]{0x0000000000000002L});
 }

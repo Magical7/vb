@@ -60,6 +60,7 @@ public class Calc {
 
             CalcParser.program_return result = parser.program();
             CommonTree tree = (CommonTree) result.getTree();
+            System.out.println(tree);
 
             if (!options.contains(Option.NO_CHECKER)) {      // check the AST
                 CommonTreeNodeStream nodes = new CommonTreeNodeStream(tree);
@@ -95,6 +96,8 @@ public class Calc {
             System.err.print("ERROR: recognition exception thrown by compiler: ");
             System.err.println(e.getMessage());
             e.printStackTrace();
+            System.out.println("index " + e.index);
+            System.out.println("line " + e.line);
         } catch (Exception e) {
             System.err.print("ERROR: uncaught exception thrown by compiler: ");
             System.err.println(e.getMessage());

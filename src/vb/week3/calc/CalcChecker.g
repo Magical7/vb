@@ -41,18 +41,31 @@ declaration
     ;
  
 statement 
-    :   ^(BECOMES id=IDENTIFIER expr)
+    :   ^(BECOMES id=IDENTIFIER expr1)
         {   if (!isDeclared($id.text))
                 throw new CalcException($id, "is not declared");
         }
-    |   ^(PRINT expr)
+    |   ^(PRINT expr1)
+    |	^(SWAP id1=IDENTIFIER id2=IDENTIFIER)
+    	{	if (!isDeclared($id1.text)) {
+                throw new CalcException($id1, "is not declared");
+            } else if(!isDeclared($id2.text)) {
+                throw new CalcException($id2, "is not declared");
+            }
+        }
     ;
     
-expr 
-    :   operand
-    |   ^(PLUS expr expr)
-    |   ^(MINUS expr expr)
+expr1 
+    :   expr2
+    |   ^(PLUS expr1 expr1)
+    |   ^(MINUS expr1 expr1)
     ;
+    
+expr2
+	:	operand
+	|	^(TIMES expr2 expr2)
+	|	^(QUOTIENT expr2 expr2)
+	;
     
 operand
     :   id=IDENTIFIER 
