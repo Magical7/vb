@@ -1,0 +1,7 @@
+//bla bla hoi Ronald, ik had niet gedacht dat je dit daadwerkelijk wilde zien
+var l: integer;
+var d: integer;
+l := 4 + 3 - 2;
+d := 4 - l + 3;
+print(l);
+print(d);
