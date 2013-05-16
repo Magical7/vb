@@ -52,11 +52,7 @@ declaration
     ;
  
 statement 
-    :   ^(BECOMES id=IDENTIFIER expr_if)
-        {   if (!isDeclared($id.text))
-                throw new CalcException($id, "is not declared");
-            setStat();
-        }
+    :   assignment
     |   ^(PRINT expr_if)
     	{
     		setStat();
@@ -67,6 +63,23 @@ statement
             } else if(!isDeclared($id2.text)) {
                 throw new CalcException($id2, "is not declared");
             }
+            setStat();
+        }
+    ;
+    
+assignment
+	:	^(BECOMES id=IDENTIFIER assignment_mul)
+        {   if (!isDeclared($id.text))
+                throw new CalcException($id, "is not declared");
+            setStat();
+        }
+    ;
+
+assignment_mul
+	:	expr_if
+	|	^(BECOMES id=IDENTIFIER assignment_mul)
+        {   if (!isDeclared($id.text))
+                throw new CalcException($id, "is not declared");
             setStat();
         }
     ;

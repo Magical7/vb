@@ -1,4 +1,4 @@
-// $ANTLR 3.5 Calc.g 2013-05-16 12:31:10
+// $ANTLR 3.5 Calc.g 2013-05-16 14:06:55
 
 package vb.week3.calc;
 
@@ -458,7 +458,7 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "assignment"
-	// Calc.g:70:1: assignment : lvalue BECOMES ^ expr_if ;
+	// Calc.g:70:1: assignment : lvalue BECOMES ^ assignment_mul ;
 	public final CalcParser.assignment_return assignment() throws RecognitionException {
 		CalcParser.assignment_return retval = new CalcParser.assignment_return();
 		retval.start = input.LT(1);
@@ -467,13 +467,13 @@ public class CalcParser extends Parser {
 
 		Token BECOMES14=null;
 		ParserRuleReturnScope lvalue13 =null;
-		ParserRuleReturnScope expr_if15 =null;
+		ParserRuleReturnScope assignment_mul15 =null;
 
 		Object BECOMES14_tree=null;
 
 		try {
-			// Calc.g:71:5: ( lvalue BECOMES ^ expr_if )
-			// Calc.g:71:9: lvalue BECOMES ^ expr_if
+			// Calc.g:71:5: ( lvalue BECOMES ^ assignment_mul )
+			// Calc.g:71:9: lvalue BECOMES ^ assignment_mul
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -488,11 +488,11 @@ public class CalcParser extends Parser {
 			BECOMES14_tree = (Object)adaptor.create(BECOMES14);
 			root_0 = (Object)adaptor.becomeRoot(BECOMES14_tree, root_0);
 
-			pushFollow(FOLLOW_expr_if_in_assignment736);
-			expr_if15=expr_if();
+			pushFollow(FOLLOW_assignment_mul_in_assignment736);
+			assignment_mul15=assignment_mul();
 			state._fsp--;
 
-			adaptor.addChild(root_0, expr_if15.getTree());
+			adaptor.addChild(root_0, assignment_mul15.getTree());
 
 			}
 
@@ -515,6 +515,124 @@ public class CalcParser extends Parser {
 	// $ANTLR end "assignment"
 
 
+	public static class assignment_mul_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
+
+	// $ANTLR start "assignment_mul"
+	// Calc.g:74:1: assignment_mul : ( expr_if | lvalue BECOMES ^ assignment_mul );
+	public final CalcParser.assignment_mul_return assignment_mul() throws RecognitionException {
+		CalcParser.assignment_mul_return retval = new CalcParser.assignment_mul_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token BECOMES18=null;
+		ParserRuleReturnScope expr_if16 =null;
+		ParserRuleReturnScope lvalue17 =null;
+		ParserRuleReturnScope assignment_mul19 =null;
+
+		Object BECOMES18_tree=null;
+
+		try {
+			// Calc.g:75:2: ( expr_if | lvalue BECOMES ^ assignment_mul )
+			int alt4=2;
+			int LA4_0 = input.LA(1);
+			if ( (LA4_0==IF||LA4_0==LPAREN||LA4_0==NUMBER) ) {
+				alt4=1;
+			}
+			else if ( (LA4_0==IDENTIFIER) ) {
+				int LA4_2 = input.LA(2);
+				if ( ((LA4_2 >= EQUALS && LA4_2 <= GREATEREQ)||(LA4_2 >= MINUS && LA4_2 <= NOTEQUALS)||LA4_2==PLUS||LA4_2==QUOTIENT||(LA4_2 >= SEMICOLON && LA4_2 <= SMALLEREQ)||LA4_2==TIMES) ) {
+					alt4=1;
+				}
+				else if ( (LA4_2==BECOMES) ) {
+					alt4=2;
+				}
+
+				else {
+					int nvaeMark = input.mark();
+					try {
+						input.consume();
+						NoViableAltException nvae =
+							new NoViableAltException("", 4, 2, input);
+						throw nvae;
+					} finally {
+						input.rewind(nvaeMark);
+					}
+				}
+
+			}
+
+			else {
+				NoViableAltException nvae =
+					new NoViableAltException("", 4, 0, input);
+				throw nvae;
+			}
+
+			switch (alt4) {
+				case 1 :
+					// Calc.g:75:4: expr_if
+					{
+					root_0 = (Object)adaptor.nil();
+
+
+					pushFollow(FOLLOW_expr_if_in_assignment_mul754);
+					expr_if16=expr_if();
+					state._fsp--;
+
+					adaptor.addChild(root_0, expr_if16.getTree());
+
+					}
+					break;
+				case 2 :
+					// Calc.g:76:4: lvalue BECOMES ^ assignment_mul
+					{
+					root_0 = (Object)adaptor.nil();
+
+
+					pushFollow(FOLLOW_lvalue_in_assignment_mul759);
+					lvalue17=lvalue();
+					state._fsp--;
+
+					adaptor.addChild(root_0, lvalue17.getTree());
+
+					BECOMES18=(Token)match(input,BECOMES,FOLLOW_BECOMES_in_assignment_mul761); 
+					BECOMES18_tree = (Object)adaptor.create(BECOMES18);
+					root_0 = (Object)adaptor.becomeRoot(BECOMES18_tree, root_0);
+
+					pushFollow(FOLLOW_assignment_mul_in_assignment_mul764);
+					assignment_mul19=assignment_mul();
+					state._fsp--;
+
+					adaptor.addChild(root_0, assignment_mul19.getTree());
+
+					}
+					break;
+
+			}
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return retval;
+	}
+	// $ANTLR end "assignment_mul"
+
+
 	public static class print_stat_return extends ParserRuleReturnScope {
 		Object tree;
 		@Override
@@ -523,41 +641,41 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "print_stat"
-	// Calc.g:74:1: print_stat : PRINT ^ LPAREN ! expr_if RPAREN !;
+	// Calc.g:79:1: print_stat : PRINT ^ LPAREN ! expr_if RPAREN !;
 	public final CalcParser.print_stat_return print_stat() throws RecognitionException {
 		CalcParser.print_stat_return retval = new CalcParser.print_stat_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token PRINT16=null;
-		Token LPAREN17=null;
-		Token RPAREN19=null;
-		ParserRuleReturnScope expr_if18 =null;
+		Token PRINT20=null;
+		Token LPAREN21=null;
+		Token RPAREN23=null;
+		ParserRuleReturnScope expr_if22 =null;
 
-		Object PRINT16_tree=null;
-		Object LPAREN17_tree=null;
-		Object RPAREN19_tree=null;
+		Object PRINT20_tree=null;
+		Object LPAREN21_tree=null;
+		Object RPAREN23_tree=null;
 
 		try {
-			// Calc.g:75:5: ( PRINT ^ LPAREN ! expr_if RPAREN !)
-			// Calc.g:75:9: PRINT ^ LPAREN ! expr_if RPAREN !
+			// Calc.g:80:5: ( PRINT ^ LPAREN ! expr_if RPAREN !)
+			// Calc.g:80:9: PRINT ^ LPAREN ! expr_if RPAREN !
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			PRINT16=(Token)match(input,PRINT,FOLLOW_PRINT_in_print_stat755); 
-			PRINT16_tree = (Object)adaptor.create(PRINT16);
-			root_0 = (Object)adaptor.becomeRoot(PRINT16_tree, root_0);
+			PRINT20=(Token)match(input,PRINT,FOLLOW_PRINT_in_print_stat783); 
+			PRINT20_tree = (Object)adaptor.create(PRINT20);
+			root_0 = (Object)adaptor.becomeRoot(PRINT20_tree, root_0);
 
-			LPAREN17=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_print_stat758); 
-			pushFollow(FOLLOW_expr_if_in_print_stat761);
-			expr_if18=expr_if();
+			LPAREN21=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_print_stat786); 
+			pushFollow(FOLLOW_expr_if_in_print_stat789);
+			expr_if22=expr_if();
 			state._fsp--;
 
-			adaptor.addChild(root_0, expr_if18.getTree());
+			adaptor.addChild(root_0, expr_if22.getTree());
 
-			RPAREN19=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_print_stat763); 
+			RPAREN23=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_print_stat791); 
 			}
 
 			retval.stop = input.LT(-1);
@@ -587,49 +705,49 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "swap_stat"
-	// Calc.g:78:1: swap_stat : SWAP ^ LPAREN ! IDENTIFIER COMMA ! IDENTIFIER RPAREN !;
+	// Calc.g:83:1: swap_stat : SWAP ^ LPAREN ! IDENTIFIER COMMA ! IDENTIFIER RPAREN !;
 	public final CalcParser.swap_stat_return swap_stat() throws RecognitionException {
 		CalcParser.swap_stat_return retval = new CalcParser.swap_stat_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token SWAP20=null;
-		Token LPAREN21=null;
-		Token IDENTIFIER22=null;
-		Token COMMA23=null;
-		Token IDENTIFIER24=null;
-		Token RPAREN25=null;
+		Token SWAP24=null;
+		Token LPAREN25=null;
+		Token IDENTIFIER26=null;
+		Token COMMA27=null;
+		Token IDENTIFIER28=null;
+		Token RPAREN29=null;
 
-		Object SWAP20_tree=null;
-		Object LPAREN21_tree=null;
-		Object IDENTIFIER22_tree=null;
-		Object COMMA23_tree=null;
-		Object IDENTIFIER24_tree=null;
-		Object RPAREN25_tree=null;
+		Object SWAP24_tree=null;
+		Object LPAREN25_tree=null;
+		Object IDENTIFIER26_tree=null;
+		Object COMMA27_tree=null;
+		Object IDENTIFIER28_tree=null;
+		Object RPAREN29_tree=null;
 
 		try {
-			// Calc.g:79:2: ( SWAP ^ LPAREN ! IDENTIFIER COMMA ! IDENTIFIER RPAREN !)
-			// Calc.g:79:4: SWAP ^ LPAREN ! IDENTIFIER COMMA ! IDENTIFIER RPAREN !
+			// Calc.g:84:2: ( SWAP ^ LPAREN ! IDENTIFIER COMMA ! IDENTIFIER RPAREN !)
+			// Calc.g:84:4: SWAP ^ LPAREN ! IDENTIFIER COMMA ! IDENTIFIER RPAREN !
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			SWAP20=(Token)match(input,SWAP,FOLLOW_SWAP_in_swap_stat782); 
-			SWAP20_tree = (Object)adaptor.create(SWAP20);
-			root_0 = (Object)adaptor.becomeRoot(SWAP20_tree, root_0);
+			SWAP24=(Token)match(input,SWAP,FOLLOW_SWAP_in_swap_stat810); 
+			SWAP24_tree = (Object)adaptor.create(SWAP24);
+			root_0 = (Object)adaptor.becomeRoot(SWAP24_tree, root_0);
 
-			LPAREN21=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_swap_stat785); 
-			IDENTIFIER22=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_swap_stat788); 
-			IDENTIFIER22_tree = (Object)adaptor.create(IDENTIFIER22);
-			adaptor.addChild(root_0, IDENTIFIER22_tree);
+			LPAREN25=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_swap_stat813); 
+			IDENTIFIER26=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_swap_stat816); 
+			IDENTIFIER26_tree = (Object)adaptor.create(IDENTIFIER26);
+			adaptor.addChild(root_0, IDENTIFIER26_tree);
 
-			COMMA23=(Token)match(input,COMMA,FOLLOW_COMMA_in_swap_stat790); 
-			IDENTIFIER24=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_swap_stat793); 
-			IDENTIFIER24_tree = (Object)adaptor.create(IDENTIFIER24);
-			adaptor.addChild(root_0, IDENTIFIER24_tree);
+			COMMA27=(Token)match(input,COMMA,FOLLOW_COMMA_in_swap_stat818); 
+			IDENTIFIER28=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_swap_stat821); 
+			IDENTIFIER28_tree = (Object)adaptor.create(IDENTIFIER28);
+			adaptor.addChild(root_0, IDENTIFIER28_tree);
 
-			RPAREN25=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_swap_stat795); 
+			RPAREN29=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_swap_stat823); 
 			}
 
 			retval.stop = input.LT(-1);
@@ -659,27 +777,27 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "lvalue"
-	// Calc.g:82:1: lvalue : IDENTIFIER ;
+	// Calc.g:87:1: lvalue : IDENTIFIER ;
 	public final CalcParser.lvalue_return lvalue() throws RecognitionException {
 		CalcParser.lvalue_return retval = new CalcParser.lvalue_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token IDENTIFIER26=null;
+		Token IDENTIFIER30=null;
 
-		Object IDENTIFIER26_tree=null;
+		Object IDENTIFIER30_tree=null;
 
 		try {
-			// Calc.g:83:5: ( IDENTIFIER )
-			// Calc.g:83:9: IDENTIFIER
+			// Calc.g:88:5: ( IDENTIFIER )
+			// Calc.g:88:9: IDENTIFIER
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			IDENTIFIER26=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_lvalue812); 
-			IDENTIFIER26_tree = (Object)adaptor.create(IDENTIFIER26);
-			adaptor.addChild(root_0, IDENTIFIER26_tree);
+			IDENTIFIER30=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_lvalue840); 
+			IDENTIFIER30_tree = (Object)adaptor.create(IDENTIFIER30);
+			adaptor.addChild(root_0, IDENTIFIER30_tree);
 
 			}
 
@@ -710,86 +828,86 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "expr_if"
-	// Calc.g:86:1: expr_if : ( IF ^ expr_if THEN ! expr_if ELSE ! expr_if | expr_rel );
+	// Calc.g:91:1: expr_if : ( IF ^ expr_if THEN ! expr_if ELSE ! expr_if | expr_rel );
 	public final CalcParser.expr_if_return expr_if() throws RecognitionException {
 		CalcParser.expr_if_return retval = new CalcParser.expr_if_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token IF27=null;
-		Token THEN29=null;
-		Token ELSE31=null;
-		ParserRuleReturnScope expr_if28 =null;
-		ParserRuleReturnScope expr_if30 =null;
+		Token IF31=null;
+		Token THEN33=null;
+		Token ELSE35=null;
 		ParserRuleReturnScope expr_if32 =null;
-		ParserRuleReturnScope expr_rel33 =null;
+		ParserRuleReturnScope expr_if34 =null;
+		ParserRuleReturnScope expr_if36 =null;
+		ParserRuleReturnScope expr_rel37 =null;
 
-		Object IF27_tree=null;
-		Object THEN29_tree=null;
-		Object ELSE31_tree=null;
+		Object IF31_tree=null;
+		Object THEN33_tree=null;
+		Object ELSE35_tree=null;
 
 		try {
-			// Calc.g:87:2: ( IF ^ expr_if THEN ! expr_if ELSE ! expr_if | expr_rel )
-			int alt4=2;
-			int LA4_0 = input.LA(1);
-			if ( (LA4_0==IF) ) {
-				alt4=1;
+			// Calc.g:92:2: ( IF ^ expr_if THEN ! expr_if ELSE ! expr_if | expr_rel )
+			int alt5=2;
+			int LA5_0 = input.LA(1);
+			if ( (LA5_0==IF) ) {
+				alt5=1;
 			}
-			else if ( (LA4_0==IDENTIFIER||LA4_0==LPAREN||LA4_0==NUMBER) ) {
-				alt4=2;
+			else if ( (LA5_0==IDENTIFIER||LA5_0==LPAREN||LA5_0==NUMBER) ) {
+				alt5=2;
 			}
 
 			else {
 				NoViableAltException nvae =
-					new NoViableAltException("", 4, 0, input);
+					new NoViableAltException("", 5, 0, input);
 				throw nvae;
 			}
 
-			switch (alt4) {
+			switch (alt5) {
 				case 1 :
-					// Calc.g:87:4: IF ^ expr_if THEN ! expr_if ELSE ! expr_if
+					// Calc.g:92:4: IF ^ expr_if THEN ! expr_if ELSE ! expr_if
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					IF27=(Token)match(input,IF,FOLLOW_IF_in_expr_if830); 
-					IF27_tree = (Object)adaptor.create(IF27);
-					root_0 = (Object)adaptor.becomeRoot(IF27_tree, root_0);
+					IF31=(Token)match(input,IF,FOLLOW_IF_in_expr_if858); 
+					IF31_tree = (Object)adaptor.create(IF31);
+					root_0 = (Object)adaptor.becomeRoot(IF31_tree, root_0);
 
-					pushFollow(FOLLOW_expr_if_in_expr_if833);
-					expr_if28=expr_if();
-					state._fsp--;
-
-					adaptor.addChild(root_0, expr_if28.getTree());
-
-					THEN29=(Token)match(input,THEN,FOLLOW_THEN_in_expr_if835); 
-					pushFollow(FOLLOW_expr_if_in_expr_if838);
-					expr_if30=expr_if();
-					state._fsp--;
-
-					adaptor.addChild(root_0, expr_if30.getTree());
-
-					ELSE31=(Token)match(input,ELSE,FOLLOW_ELSE_in_expr_if840); 
-					pushFollow(FOLLOW_expr_if_in_expr_if843);
+					pushFollow(FOLLOW_expr_if_in_expr_if861);
 					expr_if32=expr_if();
 					state._fsp--;
 
 					adaptor.addChild(root_0, expr_if32.getTree());
 
+					THEN33=(Token)match(input,THEN,FOLLOW_THEN_in_expr_if863); 
+					pushFollow(FOLLOW_expr_if_in_expr_if866);
+					expr_if34=expr_if();
+					state._fsp--;
+
+					adaptor.addChild(root_0, expr_if34.getTree());
+
+					ELSE35=(Token)match(input,ELSE,FOLLOW_ELSE_in_expr_if868); 
+					pushFollow(FOLLOW_expr_if_in_expr_if871);
+					expr_if36=expr_if();
+					state._fsp--;
+
+					adaptor.addChild(root_0, expr_if36.getTree());
+
 					}
 					break;
 				case 2 :
-					// Calc.g:88:4: expr_rel
+					// Calc.g:93:4: expr_rel
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_expr_rel_in_expr_if848);
-					expr_rel33=expr_rel();
+					pushFollow(FOLLOW_expr_rel_in_expr_if876);
+					expr_rel37=expr_rel();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr_rel33.getTree());
+					adaptor.addChild(root_0, expr_rel37.getTree());
 
 					}
 					break;
@@ -822,162 +940,162 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "expr_rel"
-	// Calc.g:91:1: expr_rel : expr_plus ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_plus )* ;
+	// Calc.g:96:1: expr_rel : expr_plus ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_plus )* ;
 	public final CalcParser.expr_rel_return expr_rel() throws RecognitionException {
 		CalcParser.expr_rel_return retval = new CalcParser.expr_rel_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token GREATER35=null;
-		Token SMALLER36=null;
-		Token GREATEREQ37=null;
-		Token SMALLEREQ38=null;
-		Token EQUALS39=null;
-		Token NOTEQUALS40=null;
-		ParserRuleReturnScope expr_plus34 =null;
-		ParserRuleReturnScope expr_plus41 =null;
+		Token GREATER39=null;
+		Token SMALLER40=null;
+		Token GREATEREQ41=null;
+		Token SMALLEREQ42=null;
+		Token EQUALS43=null;
+		Token NOTEQUALS44=null;
+		ParserRuleReturnScope expr_plus38 =null;
+		ParserRuleReturnScope expr_plus45 =null;
 
-		Object GREATER35_tree=null;
-		Object SMALLER36_tree=null;
-		Object GREATEREQ37_tree=null;
-		Object SMALLEREQ38_tree=null;
-		Object EQUALS39_tree=null;
-		Object NOTEQUALS40_tree=null;
+		Object GREATER39_tree=null;
+		Object SMALLER40_tree=null;
+		Object GREATEREQ41_tree=null;
+		Object SMALLEREQ42_tree=null;
+		Object EQUALS43_tree=null;
+		Object NOTEQUALS44_tree=null;
 
 		try {
-			// Calc.g:92:2: ( expr_plus ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_plus )* )
-			// Calc.g:92:4: expr_plus ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_plus )*
+			// Calc.g:97:2: ( expr_plus ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_plus )* )
+			// Calc.g:97:4: expr_plus ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_plus )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_expr_plus_in_expr_rel863);
-			expr_plus34=expr_plus();
+			pushFollow(FOLLOW_expr_plus_in_expr_rel891);
+			expr_plus38=expr_plus();
 			state._fsp--;
 
-			adaptor.addChild(root_0, expr_plus34.getTree());
+			adaptor.addChild(root_0, expr_plus38.getTree());
 
-			// Calc.g:92:14: ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_plus )*
-			loop6:
+			// Calc.g:97:14: ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_plus )*
+			loop7:
 			while (true) {
-				int alt6=2;
-				int LA6_0 = input.LA(1);
-				if ( ((LA6_0 >= EQUALS && LA6_0 <= GREATEREQ)||LA6_0==NOTEQUALS||(LA6_0 >= SMALLER && LA6_0 <= SMALLEREQ)) ) {
-					alt6=1;
+				int alt7=2;
+				int LA7_0 = input.LA(1);
+				if ( ((LA7_0 >= EQUALS && LA7_0 <= GREATEREQ)||LA7_0==NOTEQUALS||(LA7_0 >= SMALLER && LA7_0 <= SMALLEREQ)) ) {
+					alt7=1;
 				}
 
-				switch (alt6) {
+				switch (alt7) {
 				case 1 :
-					// Calc.g:92:15: ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_plus
+					// Calc.g:97:15: ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_plus
 					{
-					// Calc.g:92:15: ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^)
-					int alt5=6;
+					// Calc.g:97:15: ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^)
+					int alt6=6;
 					switch ( input.LA(1) ) {
 					case GREATER:
 						{
-						alt5=1;
+						alt6=1;
 						}
 						break;
 					case SMALLER:
 						{
-						alt5=2;
+						alt6=2;
 						}
 						break;
 					case GREATEREQ:
 						{
-						alt5=3;
+						alt6=3;
 						}
 						break;
 					case SMALLEREQ:
 						{
-						alt5=4;
+						alt6=4;
 						}
 						break;
 					case EQUALS:
 						{
-						alt5=5;
+						alt6=5;
 						}
 						break;
 					case NOTEQUALS:
 						{
-						alt5=6;
+						alt6=6;
 						}
 						break;
 					default:
 						NoViableAltException nvae =
-							new NoViableAltException("", 5, 0, input);
+							new NoViableAltException("", 6, 0, input);
 						throw nvae;
 					}
-					switch (alt5) {
+					switch (alt6) {
 						case 1 :
-							// Calc.g:92:16: GREATER ^
+							// Calc.g:97:16: GREATER ^
 							{
-							GREATER35=(Token)match(input,GREATER,FOLLOW_GREATER_in_expr_rel867); 
-							GREATER35_tree = (Object)adaptor.create(GREATER35);
-							root_0 = (Object)adaptor.becomeRoot(GREATER35_tree, root_0);
+							GREATER39=(Token)match(input,GREATER,FOLLOW_GREATER_in_expr_rel895); 
+							GREATER39_tree = (Object)adaptor.create(GREATER39);
+							root_0 = (Object)adaptor.becomeRoot(GREATER39_tree, root_0);
 
 							}
 							break;
 						case 2 :
-							// Calc.g:92:27: SMALLER ^
+							// Calc.g:97:27: SMALLER ^
 							{
-							SMALLER36=(Token)match(input,SMALLER,FOLLOW_SMALLER_in_expr_rel872); 
-							SMALLER36_tree = (Object)adaptor.create(SMALLER36);
-							root_0 = (Object)adaptor.becomeRoot(SMALLER36_tree, root_0);
+							SMALLER40=(Token)match(input,SMALLER,FOLLOW_SMALLER_in_expr_rel900); 
+							SMALLER40_tree = (Object)adaptor.create(SMALLER40);
+							root_0 = (Object)adaptor.becomeRoot(SMALLER40_tree, root_0);
 
 							}
 							break;
 						case 3 :
-							// Calc.g:92:38: GREATEREQ ^
+							// Calc.g:97:38: GREATEREQ ^
 							{
-							GREATEREQ37=(Token)match(input,GREATEREQ,FOLLOW_GREATEREQ_in_expr_rel877); 
-							GREATEREQ37_tree = (Object)adaptor.create(GREATEREQ37);
-							root_0 = (Object)adaptor.becomeRoot(GREATEREQ37_tree, root_0);
+							GREATEREQ41=(Token)match(input,GREATEREQ,FOLLOW_GREATEREQ_in_expr_rel905); 
+							GREATEREQ41_tree = (Object)adaptor.create(GREATEREQ41);
+							root_0 = (Object)adaptor.becomeRoot(GREATEREQ41_tree, root_0);
 
 							}
 							break;
 						case 4 :
-							// Calc.g:92:51: SMALLEREQ ^
+							// Calc.g:97:51: SMALLEREQ ^
 							{
-							SMALLEREQ38=(Token)match(input,SMALLEREQ,FOLLOW_SMALLEREQ_in_expr_rel882); 
-							SMALLEREQ38_tree = (Object)adaptor.create(SMALLEREQ38);
-							root_0 = (Object)adaptor.becomeRoot(SMALLEREQ38_tree, root_0);
+							SMALLEREQ42=(Token)match(input,SMALLEREQ,FOLLOW_SMALLEREQ_in_expr_rel910); 
+							SMALLEREQ42_tree = (Object)adaptor.create(SMALLEREQ42);
+							root_0 = (Object)adaptor.becomeRoot(SMALLEREQ42_tree, root_0);
 
 							}
 							break;
 						case 5 :
-							// Calc.g:92:64: EQUALS ^
+							// Calc.g:97:64: EQUALS ^
 							{
-							EQUALS39=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_expr_rel887); 
-							EQUALS39_tree = (Object)adaptor.create(EQUALS39);
-							root_0 = (Object)adaptor.becomeRoot(EQUALS39_tree, root_0);
+							EQUALS43=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_expr_rel915); 
+							EQUALS43_tree = (Object)adaptor.create(EQUALS43);
+							root_0 = (Object)adaptor.becomeRoot(EQUALS43_tree, root_0);
 
 							}
 							break;
 						case 6 :
-							// Calc.g:92:74: NOTEQUALS ^
+							// Calc.g:97:74: NOTEQUALS ^
 							{
-							NOTEQUALS40=(Token)match(input,NOTEQUALS,FOLLOW_NOTEQUALS_in_expr_rel892); 
-							NOTEQUALS40_tree = (Object)adaptor.create(NOTEQUALS40);
-							root_0 = (Object)adaptor.becomeRoot(NOTEQUALS40_tree, root_0);
+							NOTEQUALS44=(Token)match(input,NOTEQUALS,FOLLOW_NOTEQUALS_in_expr_rel920); 
+							NOTEQUALS44_tree = (Object)adaptor.create(NOTEQUALS44);
+							root_0 = (Object)adaptor.becomeRoot(NOTEQUALS44_tree, root_0);
 
 							}
 							break;
 
 					}
 
-					pushFollow(FOLLOW_expr_plus_in_expr_rel897);
-					expr_plus41=expr_plus();
+					pushFollow(FOLLOW_expr_plus_in_expr_rel925);
+					expr_plus45=expr_plus();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr_plus41.getTree());
+					adaptor.addChild(root_0, expr_plus45.getTree());
 
 					}
 					break;
 
 				default :
-					break loop6;
+					break loop7;
 				}
 			}
 
@@ -1010,96 +1128,96 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "expr_plus"
-	// Calc.g:95:1: expr_plus : expr_times ( ( PLUS ^| MINUS ^) expr_times )* ;
+	// Calc.g:100:1: expr_plus : expr_times ( ( PLUS ^| MINUS ^) expr_times )* ;
 	public final CalcParser.expr_plus_return expr_plus() throws RecognitionException {
 		CalcParser.expr_plus_return retval = new CalcParser.expr_plus_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token PLUS43=null;
-		Token MINUS44=null;
-		ParserRuleReturnScope expr_times42 =null;
-		ParserRuleReturnScope expr_times45 =null;
+		Token PLUS47=null;
+		Token MINUS48=null;
+		ParserRuleReturnScope expr_times46 =null;
+		ParserRuleReturnScope expr_times49 =null;
 
-		Object PLUS43_tree=null;
-		Object MINUS44_tree=null;
+		Object PLUS47_tree=null;
+		Object MINUS48_tree=null;
 
 		try {
-			// Calc.g:96:5: ( expr_times ( ( PLUS ^| MINUS ^) expr_times )* )
-			// Calc.g:96:9: expr_times ( ( PLUS ^| MINUS ^) expr_times )*
+			// Calc.g:101:5: ( expr_times ( ( PLUS ^| MINUS ^) expr_times )* )
+			// Calc.g:101:9: expr_times ( ( PLUS ^| MINUS ^) expr_times )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_expr_times_in_expr_plus919);
-			expr_times42=expr_times();
+			pushFollow(FOLLOW_expr_times_in_expr_plus947);
+			expr_times46=expr_times();
 			state._fsp--;
 
-			adaptor.addChild(root_0, expr_times42.getTree());
+			adaptor.addChild(root_0, expr_times46.getTree());
 
-			// Calc.g:96:20: ( ( PLUS ^| MINUS ^) expr_times )*
-			loop8:
+			// Calc.g:101:20: ( ( PLUS ^| MINUS ^) expr_times )*
+			loop9:
 			while (true) {
-				int alt8=2;
-				int LA8_0 = input.LA(1);
-				if ( (LA8_0==MINUS||LA8_0==PLUS) ) {
-					alt8=1;
+				int alt9=2;
+				int LA9_0 = input.LA(1);
+				if ( (LA9_0==MINUS||LA9_0==PLUS) ) {
+					alt9=1;
 				}
 
-				switch (alt8) {
+				switch (alt9) {
 				case 1 :
-					// Calc.g:96:21: ( PLUS ^| MINUS ^) expr_times
+					// Calc.g:101:21: ( PLUS ^| MINUS ^) expr_times
 					{
-					// Calc.g:96:21: ( PLUS ^| MINUS ^)
-					int alt7=2;
-					int LA7_0 = input.LA(1);
-					if ( (LA7_0==PLUS) ) {
-						alt7=1;
+					// Calc.g:101:21: ( PLUS ^| MINUS ^)
+					int alt8=2;
+					int LA8_0 = input.LA(1);
+					if ( (LA8_0==PLUS) ) {
+						alt8=1;
 					}
-					else if ( (LA7_0==MINUS) ) {
-						alt7=2;
+					else if ( (LA8_0==MINUS) ) {
+						alt8=2;
 					}
 
 					else {
 						NoViableAltException nvae =
-							new NoViableAltException("", 7, 0, input);
+							new NoViableAltException("", 8, 0, input);
 						throw nvae;
 					}
 
-					switch (alt7) {
+					switch (alt8) {
 						case 1 :
-							// Calc.g:96:22: PLUS ^
+							// Calc.g:101:22: PLUS ^
 							{
-							PLUS43=(Token)match(input,PLUS,FOLLOW_PLUS_in_expr_plus923); 
-							PLUS43_tree = (Object)adaptor.create(PLUS43);
-							root_0 = (Object)adaptor.becomeRoot(PLUS43_tree, root_0);
+							PLUS47=(Token)match(input,PLUS,FOLLOW_PLUS_in_expr_plus951); 
+							PLUS47_tree = (Object)adaptor.create(PLUS47);
+							root_0 = (Object)adaptor.becomeRoot(PLUS47_tree, root_0);
 
 							}
 							break;
 						case 2 :
-							// Calc.g:96:30: MINUS ^
+							// Calc.g:101:30: MINUS ^
 							{
-							MINUS44=(Token)match(input,MINUS,FOLLOW_MINUS_in_expr_plus928); 
-							MINUS44_tree = (Object)adaptor.create(MINUS44);
-							root_0 = (Object)adaptor.becomeRoot(MINUS44_tree, root_0);
+							MINUS48=(Token)match(input,MINUS,FOLLOW_MINUS_in_expr_plus956); 
+							MINUS48_tree = (Object)adaptor.create(MINUS48);
+							root_0 = (Object)adaptor.becomeRoot(MINUS48_tree, root_0);
 
 							}
 							break;
 
 					}
 
-					pushFollow(FOLLOW_expr_times_in_expr_plus932);
-					expr_times45=expr_times();
+					pushFollow(FOLLOW_expr_times_in_expr_plus960);
+					expr_times49=expr_times();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr_times45.getTree());
+					adaptor.addChild(root_0, expr_times49.getTree());
 
 					}
 					break;
 
 				default :
-					break loop8;
+					break loop9;
 				}
 			}
 
@@ -1132,96 +1250,96 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "expr_times"
-	// Calc.g:99:1: expr_times : operand ( ( TIMES ^| QUOTIENT ^) operand )* ;
+	// Calc.g:104:1: expr_times : operand ( ( TIMES ^| QUOTIENT ^) operand )* ;
 	public final CalcParser.expr_times_return expr_times() throws RecognitionException {
 		CalcParser.expr_times_return retval = new CalcParser.expr_times_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token TIMES47=null;
-		Token QUOTIENT48=null;
-		ParserRuleReturnScope operand46 =null;
-		ParserRuleReturnScope operand49 =null;
+		Token TIMES51=null;
+		Token QUOTIENT52=null;
+		ParserRuleReturnScope operand50 =null;
+		ParserRuleReturnScope operand53 =null;
 
-		Object TIMES47_tree=null;
-		Object QUOTIENT48_tree=null;
+		Object TIMES51_tree=null;
+		Object QUOTIENT52_tree=null;
 
 		try {
-			// Calc.g:100:2: ( operand ( ( TIMES ^| QUOTIENT ^) operand )* )
-			// Calc.g:100:4: operand ( ( TIMES ^| QUOTIENT ^) operand )*
+			// Calc.g:105:2: ( operand ( ( TIMES ^| QUOTIENT ^) operand )* )
+			// Calc.g:105:4: operand ( ( TIMES ^| QUOTIENT ^) operand )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_operand_in_expr_times953);
-			operand46=operand();
+			pushFollow(FOLLOW_operand_in_expr_times981);
+			operand50=operand();
 			state._fsp--;
 
-			adaptor.addChild(root_0, operand46.getTree());
+			adaptor.addChild(root_0, operand50.getTree());
 
-			// Calc.g:100:12: ( ( TIMES ^| QUOTIENT ^) operand )*
-			loop10:
+			// Calc.g:105:12: ( ( TIMES ^| QUOTIENT ^) operand )*
+			loop11:
 			while (true) {
-				int alt10=2;
-				int LA10_0 = input.LA(1);
-				if ( (LA10_0==QUOTIENT||LA10_0==TIMES) ) {
-					alt10=1;
+				int alt11=2;
+				int LA11_0 = input.LA(1);
+				if ( (LA11_0==QUOTIENT||LA11_0==TIMES) ) {
+					alt11=1;
 				}
 
-				switch (alt10) {
+				switch (alt11) {
 				case 1 :
-					// Calc.g:100:13: ( TIMES ^| QUOTIENT ^) operand
+					// Calc.g:105:13: ( TIMES ^| QUOTIENT ^) operand
 					{
-					// Calc.g:100:13: ( TIMES ^| QUOTIENT ^)
-					int alt9=2;
-					int LA9_0 = input.LA(1);
-					if ( (LA9_0==TIMES) ) {
-						alt9=1;
+					// Calc.g:105:13: ( TIMES ^| QUOTIENT ^)
+					int alt10=2;
+					int LA10_0 = input.LA(1);
+					if ( (LA10_0==TIMES) ) {
+						alt10=1;
 					}
-					else if ( (LA9_0==QUOTIENT) ) {
-						alt9=2;
+					else if ( (LA10_0==QUOTIENT) ) {
+						alt10=2;
 					}
 
 					else {
 						NoViableAltException nvae =
-							new NoViableAltException("", 9, 0, input);
+							new NoViableAltException("", 10, 0, input);
 						throw nvae;
 					}
 
-					switch (alt9) {
+					switch (alt10) {
 						case 1 :
-							// Calc.g:100:14: TIMES ^
+							// Calc.g:105:14: TIMES ^
 							{
-							TIMES47=(Token)match(input,TIMES,FOLLOW_TIMES_in_expr_times957); 
-							TIMES47_tree = (Object)adaptor.create(TIMES47);
-							root_0 = (Object)adaptor.becomeRoot(TIMES47_tree, root_0);
+							TIMES51=(Token)match(input,TIMES,FOLLOW_TIMES_in_expr_times985); 
+							TIMES51_tree = (Object)adaptor.create(TIMES51);
+							root_0 = (Object)adaptor.becomeRoot(TIMES51_tree, root_0);
 
 							}
 							break;
 						case 2 :
-							// Calc.g:100:23: QUOTIENT ^
+							// Calc.g:105:23: QUOTIENT ^
 							{
-							QUOTIENT48=(Token)match(input,QUOTIENT,FOLLOW_QUOTIENT_in_expr_times962); 
-							QUOTIENT48_tree = (Object)adaptor.create(QUOTIENT48);
-							root_0 = (Object)adaptor.becomeRoot(QUOTIENT48_tree, root_0);
+							QUOTIENT52=(Token)match(input,QUOTIENT,FOLLOW_QUOTIENT_in_expr_times990); 
+							QUOTIENT52_tree = (Object)adaptor.create(QUOTIENT52);
+							root_0 = (Object)adaptor.becomeRoot(QUOTIENT52_tree, root_0);
 
 							}
 							break;
 
 					}
 
-					pushFollow(FOLLOW_operand_in_expr_times966);
-					operand49=operand();
+					pushFollow(FOLLOW_operand_in_expr_times994);
+					operand53=operand();
 					state._fsp--;
 
-					adaptor.addChild(root_0, operand49.getTree());
+					adaptor.addChild(root_0, operand53.getTree());
 
 					}
 					break;
 
 				default :
-					break loop10;
+					break loop11;
 				}
 			}
 
@@ -1254,87 +1372,87 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "operand"
-	// Calc.g:103:1: operand : ( IDENTIFIER | NUMBER | LPAREN ! expr_plus RPAREN !);
+	// Calc.g:108:1: operand : ( IDENTIFIER | NUMBER | LPAREN ! expr_plus RPAREN !);
 	public final CalcParser.operand_return operand() throws RecognitionException {
 		CalcParser.operand_return retval = new CalcParser.operand_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token IDENTIFIER50=null;
-		Token NUMBER51=null;
-		Token LPAREN52=null;
-		Token RPAREN54=null;
-		ParserRuleReturnScope expr_plus53 =null;
+		Token IDENTIFIER54=null;
+		Token NUMBER55=null;
+		Token LPAREN56=null;
+		Token RPAREN58=null;
+		ParserRuleReturnScope expr_plus57 =null;
 
-		Object IDENTIFIER50_tree=null;
-		Object NUMBER51_tree=null;
-		Object LPAREN52_tree=null;
-		Object RPAREN54_tree=null;
+		Object IDENTIFIER54_tree=null;
+		Object NUMBER55_tree=null;
+		Object LPAREN56_tree=null;
+		Object RPAREN58_tree=null;
 
 		try {
-			// Calc.g:104:5: ( IDENTIFIER | NUMBER | LPAREN ! expr_plus RPAREN !)
-			int alt11=3;
+			// Calc.g:109:5: ( IDENTIFIER | NUMBER | LPAREN ! expr_plus RPAREN !)
+			int alt12=3;
 			switch ( input.LA(1) ) {
 			case IDENTIFIER:
 				{
-				alt11=1;
+				alt12=1;
 				}
 				break;
 			case NUMBER:
 				{
-				alt11=2;
+				alt12=2;
 				}
 				break;
 			case LPAREN:
 				{
-				alt11=3;
+				alt12=3;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 11, 0, input);
+					new NoViableAltException("", 12, 0, input);
 				throw nvae;
 			}
-			switch (alt11) {
+			switch (alt12) {
 				case 1 :
-					// Calc.g:104:9: IDENTIFIER
+					// Calc.g:109:9: IDENTIFIER
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					IDENTIFIER50=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_operand985); 
-					IDENTIFIER50_tree = (Object)adaptor.create(IDENTIFIER50);
-					adaptor.addChild(root_0, IDENTIFIER50_tree);
+					IDENTIFIER54=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_operand1013); 
+					IDENTIFIER54_tree = (Object)adaptor.create(IDENTIFIER54);
+					adaptor.addChild(root_0, IDENTIFIER54_tree);
 
 					}
 					break;
 				case 2 :
-					// Calc.g:105:9: NUMBER
+					// Calc.g:110:9: NUMBER
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					NUMBER51=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_operand995); 
-					NUMBER51_tree = (Object)adaptor.create(NUMBER51);
-					adaptor.addChild(root_0, NUMBER51_tree);
+					NUMBER55=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_operand1023); 
+					NUMBER55_tree = (Object)adaptor.create(NUMBER55);
+					adaptor.addChild(root_0, NUMBER55_tree);
 
 					}
 					break;
 				case 3 :
-					// Calc.g:106:9: LPAREN ! expr_plus RPAREN !
+					// Calc.g:111:9: LPAREN ! expr_plus RPAREN !
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					LPAREN52=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_operand1005); 
-					pushFollow(FOLLOW_expr_plus_in_operand1008);
-					expr_plus53=expr_plus();
+					LPAREN56=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_operand1033); 
+					pushFollow(FOLLOW_expr_plus_in_operand1036);
+					expr_plus57=expr_plus();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr_plus53.getTree());
+					adaptor.addChild(root_0, expr_plus57.getTree());
 
-					RPAREN54=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_operand1010); 
+					RPAREN58=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_operand1038); 
 					}
 					break;
 
@@ -1366,27 +1484,27 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "type"
-	// Calc.g:109:1: type : INTEGER ;
+	// Calc.g:114:1: type : INTEGER ;
 	public final CalcParser.type_return type() throws RecognitionException {
 		CalcParser.type_return retval = new CalcParser.type_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token INTEGER55=null;
+		Token INTEGER59=null;
 
-		Object INTEGER55_tree=null;
+		Object INTEGER59_tree=null;
 
 		try {
-			// Calc.g:110:5: ( INTEGER )
-			// Calc.g:110:9: INTEGER
+			// Calc.g:115:5: ( INTEGER )
+			// Calc.g:115:9: INTEGER
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			INTEGER55=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_type1030); 
-			INTEGER55_tree = (Object)adaptor.create(INTEGER55);
-			adaptor.addChild(root_0, INTEGER55_tree);
+			INTEGER59=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_type1058); 
+			INTEGER59_tree = (Object)adaptor.create(INTEGER59);
+			adaptor.addChild(root_0, INTEGER59_tree);
 
 			}
 
@@ -1426,45 +1544,49 @@ public class CalcParser extends Parser {
 	public static final BitSet FOLLOW_swap_stat_in_statement712 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_lvalue_in_assignment731 = new BitSet(new long[]{0x0000000000000010L});
 	public static final BitSet FOLLOW_BECOMES_in_assignment733 = new BitSet(new long[]{0x0000000000246000L});
-	public static final BitSet FOLLOW_expr_if_in_assignment736 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PRINT_in_print_stat755 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_LPAREN_in_print_stat758 = new BitSet(new long[]{0x0000000000246000L});
-	public static final BitSet FOLLOW_expr_if_in_print_stat761 = new BitSet(new long[]{0x0000000004000000L});
-	public static final BitSet FOLLOW_RPAREN_in_print_stat763 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_SWAP_in_swap_stat782 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_LPAREN_in_swap_stat785 = new BitSet(new long[]{0x0000000000002000L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_swap_stat788 = new BitSet(new long[]{0x0000000000000040L});
-	public static final BitSet FOLLOW_COMMA_in_swap_stat790 = new BitSet(new long[]{0x0000000000002000L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_swap_stat793 = new BitSet(new long[]{0x0000000004000000L});
-	public static final BitSet FOLLOW_RPAREN_in_swap_stat795 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_lvalue812 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IF_in_expr_if830 = new BitSet(new long[]{0x0000000000246000L});
-	public static final BitSet FOLLOW_expr_if_in_expr_if833 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_THEN_in_expr_if835 = new BitSet(new long[]{0x0000000000246000L});
-	public static final BitSet FOLLOW_expr_if_in_expr_if838 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_ELSE_in_expr_if840 = new BitSet(new long[]{0x0000000000246000L});
-	public static final BitSet FOLLOW_expr_if_in_expr_if843 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_if848 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_plus_in_expr_rel863 = new BitSet(new long[]{0x0000000030101C02L});
-	public static final BitSet FOLLOW_GREATER_in_expr_rel867 = new BitSet(new long[]{0x0000000000242000L});
-	public static final BitSet FOLLOW_SMALLER_in_expr_rel872 = new BitSet(new long[]{0x0000000000242000L});
-	public static final BitSet FOLLOW_GREATEREQ_in_expr_rel877 = new BitSet(new long[]{0x0000000000242000L});
-	public static final BitSet FOLLOW_SMALLEREQ_in_expr_rel882 = new BitSet(new long[]{0x0000000000242000L});
-	public static final BitSet FOLLOW_EQUALS_in_expr_rel887 = new BitSet(new long[]{0x0000000000242000L});
-	public static final BitSet FOLLOW_NOTEQUALS_in_expr_rel892 = new BitSet(new long[]{0x0000000000242000L});
-	public static final BitSet FOLLOW_expr_plus_in_expr_rel897 = new BitSet(new long[]{0x0000000030101C02L});
-	public static final BitSet FOLLOW_expr_times_in_expr_plus919 = new BitSet(new long[]{0x0000000000480002L});
-	public static final BitSet FOLLOW_PLUS_in_expr_plus923 = new BitSet(new long[]{0x0000000000242000L});
-	public static final BitSet FOLLOW_MINUS_in_expr_plus928 = new BitSet(new long[]{0x0000000000242000L});
-	public static final BitSet FOLLOW_expr_times_in_expr_plus932 = new BitSet(new long[]{0x0000000000480002L});
-	public static final BitSet FOLLOW_operand_in_expr_times953 = new BitSet(new long[]{0x0000000102000002L});
-	public static final BitSet FOLLOW_TIMES_in_expr_times957 = new BitSet(new long[]{0x0000000000242000L});
-	public static final BitSet FOLLOW_QUOTIENT_in_expr_times962 = new BitSet(new long[]{0x0000000000242000L});
-	public static final BitSet FOLLOW_operand_in_expr_times966 = new BitSet(new long[]{0x0000000102000002L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_operand985 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_NUMBER_in_operand995 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAREN_in_operand1005 = new BitSet(new long[]{0x0000000000242000L});
-	public static final BitSet FOLLOW_expr_plus_in_operand1008 = new BitSet(new long[]{0x0000000004000000L});
-	public static final BitSet FOLLOW_RPAREN_in_operand1010 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INTEGER_in_type1030 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignment_mul_in_assignment736 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_if_in_assignment_mul754 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_lvalue_in_assignment_mul759 = new BitSet(new long[]{0x0000000000000010L});
+	public static final BitSet FOLLOW_BECOMES_in_assignment_mul761 = new BitSet(new long[]{0x0000000000246000L});
+	public static final BitSet FOLLOW_assignment_mul_in_assignment_mul764 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PRINT_in_print_stat783 = new BitSet(new long[]{0x0000000000040000L});
+	public static final BitSet FOLLOW_LPAREN_in_print_stat786 = new BitSet(new long[]{0x0000000000246000L});
+	public static final BitSet FOLLOW_expr_if_in_print_stat789 = new BitSet(new long[]{0x0000000004000000L});
+	public static final BitSet FOLLOW_RPAREN_in_print_stat791 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_SWAP_in_swap_stat810 = new BitSet(new long[]{0x0000000000040000L});
+	public static final BitSet FOLLOW_LPAREN_in_swap_stat813 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_swap_stat816 = new BitSet(new long[]{0x0000000000000040L});
+	public static final BitSet FOLLOW_COMMA_in_swap_stat818 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_swap_stat821 = new BitSet(new long[]{0x0000000004000000L});
+	public static final BitSet FOLLOW_RPAREN_in_swap_stat823 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_lvalue840 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IF_in_expr_if858 = new BitSet(new long[]{0x0000000000246000L});
+	public static final BitSet FOLLOW_expr_if_in_expr_if861 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_THEN_in_expr_if863 = new BitSet(new long[]{0x0000000000246000L});
+	public static final BitSet FOLLOW_expr_if_in_expr_if866 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_ELSE_in_expr_if868 = new BitSet(new long[]{0x0000000000246000L});
+	public static final BitSet FOLLOW_expr_if_in_expr_if871 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_if876 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_plus_in_expr_rel891 = new BitSet(new long[]{0x0000000030101C02L});
+	public static final BitSet FOLLOW_GREATER_in_expr_rel895 = new BitSet(new long[]{0x0000000000242000L});
+	public static final BitSet FOLLOW_SMALLER_in_expr_rel900 = new BitSet(new long[]{0x0000000000242000L});
+	public static final BitSet FOLLOW_GREATEREQ_in_expr_rel905 = new BitSet(new long[]{0x0000000000242000L});
+	public static final BitSet FOLLOW_SMALLEREQ_in_expr_rel910 = new BitSet(new long[]{0x0000000000242000L});
+	public static final BitSet FOLLOW_EQUALS_in_expr_rel915 = new BitSet(new long[]{0x0000000000242000L});
+	public static final BitSet FOLLOW_NOTEQUALS_in_expr_rel920 = new BitSet(new long[]{0x0000000000242000L});
+	public static final BitSet FOLLOW_expr_plus_in_expr_rel925 = new BitSet(new long[]{0x0000000030101C02L});
+	public static final BitSet FOLLOW_expr_times_in_expr_plus947 = new BitSet(new long[]{0x0000000000480002L});
+	public static final BitSet FOLLOW_PLUS_in_expr_plus951 = new BitSet(new long[]{0x0000000000242000L});
+	public static final BitSet FOLLOW_MINUS_in_expr_plus956 = new BitSet(new long[]{0x0000000000242000L});
+	public static final BitSet FOLLOW_expr_times_in_expr_plus960 = new BitSet(new long[]{0x0000000000480002L});
+	public static final BitSet FOLLOW_operand_in_expr_times981 = new BitSet(new long[]{0x0000000102000002L});
+	public static final BitSet FOLLOW_TIMES_in_expr_times985 = new BitSet(new long[]{0x0000000000242000L});
+	public static final BitSet FOLLOW_QUOTIENT_in_expr_times990 = new BitSet(new long[]{0x0000000000242000L});
+	public static final BitSet FOLLOW_operand_in_expr_times994 = new BitSet(new long[]{0x0000000102000002L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_operand1013 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_NUMBER_in_operand1023 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAREN_in_operand1033 = new BitSet(new long[]{0x0000000000242000L});
+	public static final BitSet FOLLOW_expr_plus_in_operand1036 = new BitSet(new long[]{0x0000000004000000L});
+	public static final BitSet FOLLOW_RPAREN_in_operand1038 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INTEGER_in_type1058 = new BitSet(new long[]{0x0000000000000002L});
 }

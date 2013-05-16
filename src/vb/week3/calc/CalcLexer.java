@@ -1,4 +1,4 @@
-// $ANTLR 3.5 Calc.g 2013-05-16 12:31:10
+// $ANTLR 3.5 Calc.g 2013-05-16 14:06:55
 
 package vb.week3.calc;
 
@@ -557,12 +557,12 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = IDENTIFIER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:117:5: ( LETTER ( LETTER | DIGIT )* )
-			// Calc.g:117:9: LETTER ( LETTER | DIGIT )*
+			// Calc.g:122:5: ( LETTER ( LETTER | DIGIT )* )
+			// Calc.g:122:9: LETTER ( LETTER | DIGIT )*
 			{
 			mLETTER(); 
 
-			// Calc.g:117:16: ( LETTER | DIGIT )*
+			// Calc.g:122:16: ( LETTER | DIGIT )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -607,10 +607,10 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = NUMBER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:121:5: ( ( DIGIT )+ )
-			// Calc.g:121:9: ( DIGIT )+
+			// Calc.g:126:5: ( ( DIGIT )+ )
+			// Calc.g:126:9: ( DIGIT )+
 			{
-			// Calc.g:121:9: ( DIGIT )+
+			// Calc.g:126:9: ( DIGIT )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -659,12 +659,12 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:126:5: ( '//' ( . )* '\\n' )
-			// Calc.g:126:9: '//' ( . )* '\\n'
+			// Calc.g:131:5: ( '//' ( . )* '\\n' )
+			// Calc.g:131:9: '//' ( . )* '\\n'
 			{
 			match("//"); 
 
-			// Calc.g:126:14: ( . )*
+			// Calc.g:131:14: ( . )*
 			loop3:
 			while (true) {
 				int alt3=2;
@@ -678,7 +678,7 @@ public class CalcLexer extends Lexer {
 
 				switch (alt3) {
 				case 1 :
-					// Calc.g:126:14: .
+					// Calc.g:131:14: .
 					{
 					matchAny(); 
 					}
@@ -707,10 +707,10 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:131:5: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
-			// Calc.g:131:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+			// Calc.g:136:5: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
+			// Calc.g:136:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
 			{
-			// Calc.g:131:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+			// Calc.g:136:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
 			int cnt4=0;
 			loop4:
 			while (true) {
@@ -758,7 +758,7 @@ public class CalcLexer extends Lexer {
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
-			// Calc.g:135:17: ( ( '0' .. '9' ) )
+			// Calc.g:140:17: ( ( '0' .. '9' ) )
 			// Calc.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -781,7 +781,7 @@ public class CalcLexer extends Lexer {
 	// $ANTLR start "LOWER"
 	public final void mLOWER() throws RecognitionException {
 		try {
-			// Calc.g:136:17: ( ( 'a' .. 'z' ) )
+			// Calc.g:141:17: ( ( 'a' .. 'z' ) )
 			// Calc.g:
 			{
 			if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -804,7 +804,7 @@ public class CalcLexer extends Lexer {
 	// $ANTLR start "UPPER"
 	public final void mUPPER() throws RecognitionException {
 		try {
-			// Calc.g:137:17: ( ( 'A' .. 'Z' ) )
+			// Calc.g:142:17: ( ( 'A' .. 'Z' ) )
 			// Calc.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
@@ -827,7 +827,7 @@ public class CalcLexer extends Lexer {
 	// $ANTLR start "LETTER"
 	public final void mLETTER() throws RecognitionException {
 		try {
-			// Calc.g:138:17: ( LOWER | UPPER )
+			// Calc.g:143:17: ( LOWER | UPPER )
 			// Calc.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {

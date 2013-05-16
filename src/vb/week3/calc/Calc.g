@@ -68,8 +68,13 @@ statement
     ;
 
 assignment
-    :   lvalue BECOMES^ expr_if
+    :   lvalue BECOMES^ assignment_mul
     ;
+    
+assignment_mul
+	:	expr_if
+	|	lvalue BECOMES^ assignment_mul
+	;   
 
 print_stat
     :   PRINT^ LPAREN! expr_if RPAREN!
@@ -103,7 +108,7 @@ expr_times
 operand
     :   IDENTIFIER
     |   NUMBER
-    |   LPAREN! expr_plus RPAREN!
+    |   LPAREN! expr_if RPAREN!
     ;
 
 type

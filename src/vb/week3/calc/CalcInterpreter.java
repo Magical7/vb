@@ -1,4 +1,4 @@
-// $ANTLR 3.5 CalcInterpreter.g 2013-05-16 12:31:10
+// $ANTLR 3.5 CalcInterpreter.g 2013-05-16 14:06:55
 
 package vb.week3.calc;
 import java.util.Map;
@@ -179,15 +179,14 @@ public class CalcInterpreter extends TreeParser {
 
 
 	// $ANTLR start "statement"
-	// CalcInterpreter.g:35:1: statement : ( ^( BECOMES id= IDENTIFIER v= expr_if ) | ^( PRINT v= expr_if ) | ^( SWAP id1= IDENTIFIER id2= IDENTIFIER ) );
+	// CalcInterpreter.g:35:1: statement : ( assignment | ^( PRINT v= expr_if ) | ^( SWAP id1= IDENTIFIER id2= IDENTIFIER ) );
 	public final void statement() throws RecognitionException {
-		CommonTree id=null;
 		CommonTree id1=null;
 		CommonTree id2=null;
 		int v =0;
 
 		try {
-			// CalcInterpreter.g:36:5: ( ^( BECOMES id= IDENTIFIER v= expr_if ) | ^( PRINT v= expr_if ) | ^( SWAP id1= IDENTIFIER id2= IDENTIFIER ) )
+			// CalcInterpreter.g:36:5: ( assignment | ^( PRINT v= expr_if ) | ^( SWAP id1= IDENTIFIER id2= IDENTIFIER ) )
 			int alt2=3;
 			switch ( input.LA(1) ) {
 			case BECOMES:
@@ -212,26 +211,20 @@ public class CalcInterpreter extends TreeParser {
 			}
 			switch (alt2) {
 				case 1 :
-					// CalcInterpreter.g:36:9: ^( BECOMES id= IDENTIFIER v= expr_if )
+					// CalcInterpreter.g:36:9: assignment
 					{
-					match(input,BECOMES,FOLLOW_BECOMES_in_statement171); 
-					match(input, Token.DOWN, null); 
-					id=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement175); 
-					pushFollow(FOLLOW_expr_if_in_statement179);
-					v=expr_if();
+					pushFollow(FOLLOW_assignment_in_statement170);
+					assignment();
 					state._fsp--;
 
-					match(input, Token.UP, null); 
-
-					 store.put((id!=null?id.getText():null), v);       
 					}
 					break;
 				case 2 :
-					// CalcInterpreter.g:38:9: ^( PRINT v= expr_if )
+					// CalcInterpreter.g:37:9: ^( PRINT v= expr_if )
 					{
-					match(input,PRINT,FOLLOW_PRINT_in_statement205); 
+					match(input,PRINT,FOLLOW_PRINT_in_statement181); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_if_in_statement209);
+					pushFollow(FOLLOW_expr_if_in_statement185);
 					v=expr_if();
 					state._fsp--;
 
@@ -241,12 +234,12 @@ public class CalcInterpreter extends TreeParser {
 					}
 					break;
 				case 3 :
-					// CalcInterpreter.g:40:7: ^( SWAP id1= IDENTIFIER id2= IDENTIFIER )
+					// CalcInterpreter.g:39:7: ^( SWAP id1= IDENTIFIER id2= IDENTIFIER )
 					{
-					match(input,SWAP,FOLLOW_SWAP_in_statement233); 
+					match(input,SWAP,FOLLOW_SWAP_in_statement209); 
 					match(input, Token.DOWN, null); 
-					id1=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement237); 
-					id2=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement241); 
+					id1=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement213); 
+					id2=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement217); 
 					match(input, Token.UP, null); 
 
 					 	int val = store.get((id1!=null?id1.getText():null));
@@ -270,24 +263,58 @@ public class CalcInterpreter extends TreeParser {
 
 
 
-	// $ANTLR start "expr_if"
-	// CalcInterpreter.g:47:1: expr_if returns [int val = 0;] : ( ^( IF x= expr_if y= expr_if z= expr_if ) |x= expr_rel );
-	public final int expr_if() throws RecognitionException {
+	// $ANTLR start "assignment"
+	// CalcInterpreter.g:46:1: assignment : ^( BECOMES id= IDENTIFIER v= assignment_mul ) ;
+	public final void assignment() throws RecognitionException {
+		CommonTree id=null;
+		int v =0;
+
+		try {
+			// CalcInterpreter.g:47:2: ( ^( BECOMES id= IDENTIFIER v= assignment_mul ) )
+			// CalcInterpreter.g:47:4: ^( BECOMES id= IDENTIFIER v= assignment_mul )
+			{
+			match(input,BECOMES,FOLLOW_BECOMES_in_assignment241); 
+			match(input, Token.DOWN, null); 
+			id=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_assignment245); 
+			pushFollow(FOLLOW_assignment_mul_in_assignment249);
+			v=assignment_mul();
+			state._fsp--;
+
+			match(input, Token.UP, null); 
+
+			 store.put((id!=null?id.getText():null), v);       
+			}
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "assignment"
+
+
+
+	// $ANTLR start "assignment_mul"
+	// CalcInterpreter.g:51:1: assignment_mul returns [int val = 0;] : ( ^( BECOMES id= IDENTIFIER ret= assignment_mul ) |ret= expr_if );
+	public final int assignment_mul() throws RecognitionException {
 		int val =  0;;
 
 
-		int x =0;
-		int y =0;
-		int z =0;
+		CommonTree id=null;
+		int ret =0;
 
 		try {
-			// CalcInterpreter.g:48:5: ( ^( IF x= expr_if y= expr_if z= expr_if ) |x= expr_rel )
+			// CalcInterpreter.g:52:2: ( ^( BECOMES id= IDENTIFIER ret= assignment_mul ) |ret= expr_if )
 			int alt3=2;
 			int LA3_0 = input.LA(1);
-			if ( (LA3_0==IF) ) {
+			if ( (LA3_0==BECOMES) ) {
 				alt3=1;
 			}
-			else if ( ((LA3_0 >= EQUALS && LA3_0 <= IDENTIFIER)||(LA3_0 >= MINUS && LA3_0 <= PLUS)||LA3_0==QUOTIENT||(LA3_0 >= SMALLER && LA3_0 <= SMALLEREQ)||LA3_0==TIMES) ) {
+			else if ( ((LA3_0 >= EQUALS && LA3_0 <= IF)||(LA3_0 >= MINUS && LA3_0 <= PLUS)||LA3_0==QUOTIENT||(LA3_0 >= SMALLER && LA3_0 <= SMALLEREQ)||LA3_0==TIMES) ) {
 				alt3=2;
 			}
 
@@ -299,19 +326,91 @@ public class CalcInterpreter extends TreeParser {
 
 			switch (alt3) {
 				case 1 :
-					// CalcInterpreter.g:48:7: ^( IF x= expr_if y= expr_if z= expr_if )
+					// CalcInterpreter.g:52:4: ^( BECOMES id= IDENTIFIER ret= assignment_mul )
 					{
-					match(input,IF,FOLLOW_IF_in_expr_if276); 
+					match(input,BECOMES,FOLLOW_BECOMES_in_assignment_mul295); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_if_in_expr_if280);
+					id=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_assignment_mul299); 
+					pushFollow(FOLLOW_assignment_mul_in_assignment_mul303);
+					ret=assignment_mul();
+					state._fsp--;
+
+					match(input, Token.UP, null); 
+
+					 
+								store.put((id!=null?id.getText():null), ret);
+								val = ret; 
+							
+					}
+					break;
+				case 2 :
+					// CalcInterpreter.g:57:4: ret= expr_if
+					{
+					pushFollow(FOLLOW_expr_if_in_assignment_mul316);
+					ret=expr_if();
+					state._fsp--;
+
+					 val = ret; 
+					}
+					break;
+
+			}
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return val;
+	}
+	// $ANTLR end "assignment_mul"
+
+
+
+	// $ANTLR start "expr_if"
+	// CalcInterpreter.g:60:1: expr_if returns [int val = 0;] : ( ^( IF x= expr_if y= expr_if z= expr_if ) |x= expr_rel );
+	public final int expr_if() throws RecognitionException {
+		int val =  0;;
+
+
+		int x =0;
+		int y =0;
+		int z =0;
+
+		try {
+			// CalcInterpreter.g:61:5: ( ^( IF x= expr_if y= expr_if z= expr_if ) |x= expr_rel )
+			int alt4=2;
+			int LA4_0 = input.LA(1);
+			if ( (LA4_0==IF) ) {
+				alt4=1;
+			}
+			else if ( ((LA4_0 >= EQUALS && LA4_0 <= IDENTIFIER)||(LA4_0 >= MINUS && LA4_0 <= PLUS)||LA4_0==QUOTIENT||(LA4_0 >= SMALLER && LA4_0 <= SMALLEREQ)||LA4_0==TIMES) ) {
+				alt4=2;
+			}
+
+			else {
+				NoViableAltException nvae =
+					new NoViableAltException("", 4, 0, input);
+				throw nvae;
+			}
+
+			switch (alt4) {
+				case 1 :
+					// CalcInterpreter.g:61:7: ^( IF x= expr_if y= expr_if z= expr_if )
+					{
+					match(input,IF,FOLLOW_IF_in_expr_if343); 
+					match(input, Token.DOWN, null); 
+					pushFollow(FOLLOW_expr_if_in_expr_if347);
 					x=expr_if();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_if_in_expr_if284);
+					pushFollow(FOLLOW_expr_if_in_expr_if351);
 					y=expr_if();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_if_in_expr_if288);
+					pushFollow(FOLLOW_expr_if_in_expr_if355);
 					z=expr_if();
 					state._fsp--;
 
@@ -327,9 +426,9 @@ public class CalcInterpreter extends TreeParser {
 					}
 					break;
 				case 2 :
-					// CalcInterpreter.g:56:7: x= expr_rel
+					// CalcInterpreter.g:69:7: x= expr_rel
 					{
-					pushFollow(FOLLOW_expr_rel_in_expr_if306);
+					pushFollow(FOLLOW_expr_rel_in_expr_if373);
 					x=expr_rel();
 					state._fsp--;
 
@@ -353,7 +452,7 @@ public class CalcInterpreter extends TreeParser {
 
 
 	// $ANTLR start "expr_rel"
-	// CalcInterpreter.g:59:1: expr_rel returns [int val = 0;] : (z= expr_plus | ^( GREATER x= expr_rel y= expr_rel ) | ^( SMALLER x= expr_rel y= expr_rel ) | ^( GREATEREQ x= expr_rel y= expr_rel ) | ^( SMALLEREQ x= expr_rel y= expr_rel ) | ^( EQUALS x= expr_rel y= expr_rel ) | ^( NOTEQUALS x= expr_rel y= expr_rel ) );
+	// CalcInterpreter.g:72:1: expr_rel returns [int val = 0;] : (z= expr_plus | ^( GREATER x= expr_rel y= expr_rel ) | ^( SMALLER x= expr_rel y= expr_rel ) | ^( GREATEREQ x= expr_rel y= expr_rel ) | ^( SMALLEREQ x= expr_rel y= expr_rel ) | ^( EQUALS x= expr_rel y= expr_rel ) | ^( NOTEQUALS x= expr_rel y= expr_rel ) );
 	public final int expr_rel() throws RecognitionException {
 		int val =  0;;
 
@@ -363,8 +462,8 @@ public class CalcInterpreter extends TreeParser {
 		int y =0;
 
 		try {
-			// CalcInterpreter.g:60:5: (z= expr_plus | ^( GREATER x= expr_rel y= expr_rel ) | ^( SMALLER x= expr_rel y= expr_rel ) | ^( GREATEREQ x= expr_rel y= expr_rel ) | ^( SMALLEREQ x= expr_rel y= expr_rel ) | ^( EQUALS x= expr_rel y= expr_rel ) | ^( NOTEQUALS x= expr_rel y= expr_rel ) )
-			int alt4=7;
+			// CalcInterpreter.g:73:5: (z= expr_plus | ^( GREATER x= expr_rel y= expr_rel ) | ^( SMALLER x= expr_rel y= expr_rel ) | ^( GREATEREQ x= expr_rel y= expr_rel ) | ^( SMALLEREQ x= expr_rel y= expr_rel ) | ^( EQUALS x= expr_rel y= expr_rel ) | ^( NOTEQUALS x= expr_rel y= expr_rel ) )
+			int alt5=7;
 			switch ( input.LA(1) ) {
 			case IDENTIFIER:
 			case MINUS:
@@ -373,49 +472,49 @@ public class CalcInterpreter extends TreeParser {
 			case QUOTIENT:
 			case TIMES:
 				{
-				alt4=1;
+				alt5=1;
 				}
 				break;
 			case GREATER:
 				{
-				alt4=2;
+				alt5=2;
 				}
 				break;
 			case SMALLER:
 				{
-				alt4=3;
+				alt5=3;
 				}
 				break;
 			case GREATEREQ:
 				{
-				alt4=4;
+				alt5=4;
 				}
 				break;
 			case SMALLEREQ:
 				{
-				alt4=5;
+				alt5=5;
 				}
 				break;
 			case EQUALS:
 				{
-				alt4=6;
+				alt5=6;
 				}
 				break;
 			case NOTEQUALS:
 				{
-				alt4=7;
+				alt5=7;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 4, 0, input);
+					new NoViableAltException("", 5, 0, input);
 				throw nvae;
 			}
-			switch (alt4) {
+			switch (alt5) {
 				case 1 :
-					// CalcInterpreter.g:60:9: z= expr_plus
+					// CalcInterpreter.g:73:9: z= expr_plus
 					{
-					pushFollow(FOLLOW_expr_plus_in_expr_rel339);
+					pushFollow(FOLLOW_expr_plus_in_expr_rel406);
 					z=expr_plus();
 					state._fsp--;
 
@@ -423,15 +522,15 @@ public class CalcInterpreter extends TreeParser {
 					}
 					break;
 				case 2 :
-					// CalcInterpreter.g:61:9: ^( GREATER x= expr_rel y= expr_rel )
+					// CalcInterpreter.g:74:9: ^( GREATER x= expr_rel y= expr_rel )
 					{
-					match(input,GREATER,FOLLOW_GREATER_in_expr_rel366); 
+					match(input,GREATER,FOLLOW_GREATER_in_expr_rel433); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_rel_in_expr_rel370);
+					pushFollow(FOLLOW_expr_rel_in_expr_rel437);
 					x=expr_rel();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_rel_in_expr_rel374);
+					pushFollow(FOLLOW_expr_rel_in_expr_rel441);
 					y=expr_rel();
 					state._fsp--;
 
@@ -441,15 +540,15 @@ public class CalcInterpreter extends TreeParser {
 					}
 					break;
 				case 3 :
-					// CalcInterpreter.g:62:9: ^( SMALLER x= expr_rel y= expr_rel )
+					// CalcInterpreter.g:75:9: ^( SMALLER x= expr_rel y= expr_rel )
 					{
-					match(input,SMALLER,FOLLOW_SMALLER_in_expr_rel391); 
+					match(input,SMALLER,FOLLOW_SMALLER_in_expr_rel458); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_rel_in_expr_rel395);
+					pushFollow(FOLLOW_expr_rel_in_expr_rel462);
 					x=expr_rel();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_rel_in_expr_rel399);
+					pushFollow(FOLLOW_expr_rel_in_expr_rel466);
 					y=expr_rel();
 					state._fsp--;
 
@@ -459,15 +558,15 @@ public class CalcInterpreter extends TreeParser {
 					}
 					break;
 				case 4 :
-					// CalcInterpreter.g:63:9: ^( GREATEREQ x= expr_rel y= expr_rel )
+					// CalcInterpreter.g:76:9: ^( GREATEREQ x= expr_rel y= expr_rel )
 					{
-					match(input,GREATEREQ,FOLLOW_GREATEREQ_in_expr_rel416); 
+					match(input,GREATEREQ,FOLLOW_GREATEREQ_in_expr_rel483); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_rel_in_expr_rel420);
+					pushFollow(FOLLOW_expr_rel_in_expr_rel487);
 					x=expr_rel();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_rel_in_expr_rel424);
+					pushFollow(FOLLOW_expr_rel_in_expr_rel491);
 					y=expr_rel();
 					state._fsp--;
 
@@ -477,15 +576,15 @@ public class CalcInterpreter extends TreeParser {
 					}
 					break;
 				case 5 :
-					// CalcInterpreter.g:64:9: ^( SMALLEREQ x= expr_rel y= expr_rel )
+					// CalcInterpreter.g:77:9: ^( SMALLEREQ x= expr_rel y= expr_rel )
 					{
-					match(input,SMALLEREQ,FOLLOW_SMALLEREQ_in_expr_rel441); 
+					match(input,SMALLEREQ,FOLLOW_SMALLEREQ_in_expr_rel508); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_rel_in_expr_rel445);
+					pushFollow(FOLLOW_expr_rel_in_expr_rel512);
 					x=expr_rel();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_rel_in_expr_rel449);
+					pushFollow(FOLLOW_expr_rel_in_expr_rel516);
 					y=expr_rel();
 					state._fsp--;
 
@@ -495,15 +594,15 @@ public class CalcInterpreter extends TreeParser {
 					}
 					break;
 				case 6 :
-					// CalcInterpreter.g:65:9: ^( EQUALS x= expr_rel y= expr_rel )
+					// CalcInterpreter.g:78:9: ^( EQUALS x= expr_rel y= expr_rel )
 					{
-					match(input,EQUALS,FOLLOW_EQUALS_in_expr_rel466); 
+					match(input,EQUALS,FOLLOW_EQUALS_in_expr_rel533); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_rel_in_expr_rel470);
+					pushFollow(FOLLOW_expr_rel_in_expr_rel537);
 					x=expr_rel();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_rel_in_expr_rel474);
+					pushFollow(FOLLOW_expr_rel_in_expr_rel541);
 					y=expr_rel();
 					state._fsp--;
 
@@ -513,15 +612,15 @@ public class CalcInterpreter extends TreeParser {
 					}
 					break;
 				case 7 :
-					// CalcInterpreter.g:66:9: ^( NOTEQUALS x= expr_rel y= expr_rel )
+					// CalcInterpreter.g:79:9: ^( NOTEQUALS x= expr_rel y= expr_rel )
 					{
-					match(input,NOTEQUALS,FOLLOW_NOTEQUALS_in_expr_rel491); 
+					match(input,NOTEQUALS,FOLLOW_NOTEQUALS_in_expr_rel558); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_rel_in_expr_rel495);
+					pushFollow(FOLLOW_expr_rel_in_expr_rel562);
 					x=expr_rel();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_rel_in_expr_rel499);
+					pushFollow(FOLLOW_expr_rel_in_expr_rel566);
 					y=expr_rel();
 					state._fsp--;
 
@@ -547,7 +646,7 @@ public class CalcInterpreter extends TreeParser {
 
 
 	// $ANTLR start "expr_plus"
-	// CalcInterpreter.g:69:1: expr_plus returns [int val = 0;] : (z= expr_times | ^( PLUS x= expr_plus y= expr_plus ) | ^( MINUS x= expr_plus y= expr_plus ) );
+	// CalcInterpreter.g:82:1: expr_plus returns [int val = 0;] : (z= expr_times | ^( PLUS x= expr_plus y= expr_plus ) | ^( MINUS x= expr_plus y= expr_plus ) );
 	public final int expr_plus() throws RecognitionException {
 		int val =  0;;
 
@@ -557,37 +656,37 @@ public class CalcInterpreter extends TreeParser {
 		int y =0;
 
 		try {
-			// CalcInterpreter.g:70:5: (z= expr_times | ^( PLUS x= expr_plus y= expr_plus ) | ^( MINUS x= expr_plus y= expr_plus ) )
-			int alt5=3;
+			// CalcInterpreter.g:83:5: (z= expr_times | ^( PLUS x= expr_plus y= expr_plus ) | ^( MINUS x= expr_plus y= expr_plus ) )
+			int alt6=3;
 			switch ( input.LA(1) ) {
 			case IDENTIFIER:
 			case NUMBER:
 			case QUOTIENT:
 			case TIMES:
 				{
-				alt5=1;
+				alt6=1;
 				}
 				break;
 			case PLUS:
 				{
-				alt5=2;
+				alt6=2;
 				}
 				break;
 			case MINUS:
 				{
-				alt5=3;
+				alt6=3;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 5, 0, input);
+					new NoViableAltException("", 6, 0, input);
 				throw nvae;
 			}
-			switch (alt5) {
+			switch (alt6) {
 				case 1 :
-					// CalcInterpreter.g:70:9: z= expr_times
+					// CalcInterpreter.g:83:9: z= expr_times
 					{
-					pushFollow(FOLLOW_expr_times_in_expr_plus535);
+					pushFollow(FOLLOW_expr_times_in_expr_plus602);
 					z=expr_times();
 					state._fsp--;
 
@@ -595,15 +694,15 @@ public class CalcInterpreter extends TreeParser {
 					}
 					break;
 				case 2 :
-					// CalcInterpreter.g:71:9: ^( PLUS x= expr_plus y= expr_plus )
+					// CalcInterpreter.g:84:9: ^( PLUS x= expr_plus y= expr_plus )
 					{
-					match(input,PLUS,FOLLOW_PLUS_in_expr_plus562); 
+					match(input,PLUS,FOLLOW_PLUS_in_expr_plus629); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_plus_in_expr_plus566);
+					pushFollow(FOLLOW_expr_plus_in_expr_plus633);
 					x=expr_plus();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_plus_in_expr_plus570);
+					pushFollow(FOLLOW_expr_plus_in_expr_plus637);
 					y=expr_plus();
 					state._fsp--;
 
@@ -613,15 +712,15 @@ public class CalcInterpreter extends TreeParser {
 					}
 					break;
 				case 3 :
-					// CalcInterpreter.g:72:9: ^( MINUS x= expr_plus y= expr_plus )
+					// CalcInterpreter.g:85:9: ^( MINUS x= expr_plus y= expr_plus )
 					{
-					match(input,MINUS,FOLLOW_MINUS_in_expr_plus587); 
+					match(input,MINUS,FOLLOW_MINUS_in_expr_plus654); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_plus_in_expr_plus591);
+					pushFollow(FOLLOW_expr_plus_in_expr_plus658);
 					x=expr_plus();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_plus_in_expr_plus595);
+					pushFollow(FOLLOW_expr_plus_in_expr_plus662);
 					y=expr_plus();
 					state._fsp--;
 
@@ -647,7 +746,7 @@ public class CalcInterpreter extends TreeParser {
 
 
 	// $ANTLR start "expr_times"
-	// CalcInterpreter.g:75:1: expr_times returns [int val = 0;] : (z= operand | ^( TIMES x= expr_times y= expr_times ) | ^( QUOTIENT x= expr_times y= expr_times ) );
+	// CalcInterpreter.g:88:1: expr_times returns [int val = 0;] : (z= operand | ^( TIMES x= expr_times y= expr_times ) | ^( QUOTIENT x= expr_times y= expr_times ) );
 	public final int expr_times() throws RecognitionException {
 		int val =  0;;
 
@@ -657,35 +756,35 @@ public class CalcInterpreter extends TreeParser {
 		int y =0;
 
 		try {
-			// CalcInterpreter.g:76:2: (z= operand | ^( TIMES x= expr_times y= expr_times ) | ^( QUOTIENT x= expr_times y= expr_times ) )
-			int alt6=3;
+			// CalcInterpreter.g:89:2: (z= operand | ^( TIMES x= expr_times y= expr_times ) | ^( QUOTIENT x= expr_times y= expr_times ) )
+			int alt7=3;
 			switch ( input.LA(1) ) {
 			case IDENTIFIER:
 			case NUMBER:
 				{
-				alt6=1;
+				alt7=1;
 				}
 				break;
 			case TIMES:
 				{
-				alt6=2;
+				alt7=2;
 				}
 				break;
 			case QUOTIENT:
 				{
-				alt6=3;
+				alt7=3;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 6, 0, input);
+					new NoViableAltException("", 7, 0, input);
 				throw nvae;
 			}
-			switch (alt6) {
+			switch (alt7) {
 				case 1 :
-					// CalcInterpreter.g:76:4: z= operand
+					// CalcInterpreter.g:89:4: z= operand
 					{
-					pushFollow(FOLLOW_operand_in_expr_times625);
+					pushFollow(FOLLOW_operand_in_expr_times692);
 					z=operand();
 					state._fsp--;
 
@@ -693,15 +792,15 @@ public class CalcInterpreter extends TreeParser {
 					}
 					break;
 				case 2 :
-					// CalcInterpreter.g:77:4: ^( TIMES x= expr_times y= expr_times )
+					// CalcInterpreter.g:90:4: ^( TIMES x= expr_times y= expr_times )
 					{
-					match(input,TIMES,FOLLOW_TIMES_in_expr_times637); 
+					match(input,TIMES,FOLLOW_TIMES_in_expr_times704); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_times_in_expr_times641);
+					pushFollow(FOLLOW_expr_times_in_expr_times708);
 					x=expr_times();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_times_in_expr_times645);
+					pushFollow(FOLLOW_expr_times_in_expr_times712);
 					y=expr_times();
 					state._fsp--;
 
@@ -711,15 +810,15 @@ public class CalcInterpreter extends TreeParser {
 					}
 					break;
 				case 3 :
-					// CalcInterpreter.g:78:4: ^( QUOTIENT x= expr_times y= expr_times )
+					// CalcInterpreter.g:91:4: ^( QUOTIENT x= expr_times y= expr_times )
 					{
-					match(input,QUOTIENT,FOLLOW_QUOTIENT_in_expr_times654); 
+					match(input,QUOTIENT,FOLLOW_QUOTIENT_in_expr_times721); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_times_in_expr_times658);
+					pushFollow(FOLLOW_expr_times_in_expr_times725);
 					x=expr_times();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_times_in_expr_times662);
+					pushFollow(FOLLOW_expr_times_in_expr_times729);
 					y=expr_times();
 					state._fsp--;
 
@@ -749,7 +848,7 @@ public class CalcInterpreter extends TreeParser {
 
 
 	// $ANTLR start "operand"
-	// CalcInterpreter.g:85:1: operand returns [int val = 0] : (id= IDENTIFIER |n= NUMBER );
+	// CalcInterpreter.g:98:1: operand returns [int val = 0] : (id= IDENTIFIER |n= NUMBER );
 	public final int operand() throws RecognitionException {
 		int val =  0;
 
@@ -758,34 +857,34 @@ public class CalcInterpreter extends TreeParser {
 		CommonTree n=null;
 
 		try {
-			// CalcInterpreter.g:86:5: (id= IDENTIFIER |n= NUMBER )
-			int alt7=2;
-			int LA7_0 = input.LA(1);
-			if ( (LA7_0==IDENTIFIER) ) {
-				alt7=1;
+			// CalcInterpreter.g:99:5: (id= IDENTIFIER |n= NUMBER )
+			int alt8=2;
+			int LA8_0 = input.LA(1);
+			if ( (LA8_0==IDENTIFIER) ) {
+				alt8=1;
 			}
-			else if ( (LA7_0==NUMBER) ) {
-				alt7=2;
+			else if ( (LA8_0==NUMBER) ) {
+				alt8=2;
 			}
 
 			else {
 				NoViableAltException nvae =
-					new NoViableAltException("", 7, 0, input);
+					new NoViableAltException("", 8, 0, input);
 				throw nvae;
 			}
 
-			switch (alt7) {
+			switch (alt8) {
 				case 1 :
-					// CalcInterpreter.g:86:9: id= IDENTIFIER
+					// CalcInterpreter.g:99:9: id= IDENTIFIER
 					{
-					id=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_operand691); 
+					id=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_operand758); 
 					 val = store.get((id!=null?id.getText():null));       
 					}
 					break;
 				case 2 :
-					// CalcInterpreter.g:87:9: n= NUMBER
+					// CalcInterpreter.g:100:9: n= NUMBER
 					{
-					n=(CommonTree)match(input,NUMBER,FOLLOW_NUMBER_in_operand708); 
+					n=(CommonTree)match(input,NUMBER,FOLLOW_NUMBER_in_operand775); 
 					 val = Integer.parseInt((n!=null?n.getText():null)); 
 					}
 					break;
@@ -806,13 +905,13 @@ public class CalcInterpreter extends TreeParser {
 
 
 	// $ANTLR start "type"
-	// CalcInterpreter.g:90:1: type : INTEGER ;
+	// CalcInterpreter.g:103:1: type : INTEGER ;
 	public final void type() throws RecognitionException {
 		try {
-			// CalcInterpreter.g:91:5: ( INTEGER )
-			// CalcInterpreter.g:91:9: INTEGER
+			// CalcInterpreter.g:104:5: ( INTEGER )
+			// CalcInterpreter.g:104:9: INTEGER
 			{
-			match(input,INTEGER,FOLLOW_INTEGER_in_type740); 
+			match(input,INTEGER,FOLLOW_INTEGER_in_type807); 
 			}
 
 		}
@@ -836,53 +935,58 @@ public class CalcInterpreter extends TreeParser {
 	public static final BitSet FOLLOW_VAR_in_declaration128 = new BitSet(new long[]{0x0000000000000004L});
 	public static final BitSet FOLLOW_IDENTIFIER_in_declaration132 = new BitSet(new long[]{0x0000000000008000L});
 	public static final BitSet FOLLOW_type_in_declaration134 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_BECOMES_in_statement171 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_statement175 = new BitSet(new long[]{0x0000000132787C00L});
-	public static final BitSet FOLLOW_expr_if_in_statement179 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_PRINT_in_statement205 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_if_in_statement209 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_SWAP_in_statement233 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_statement237 = new BitSet(new long[]{0x0000000000002000L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_statement241 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_IF_in_expr_if276 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_if_in_expr_if280 = new BitSet(new long[]{0x0000000132787C00L});
-	public static final BitSet FOLLOW_expr_if_in_expr_if284 = new BitSet(new long[]{0x0000000132787C00L});
-	public static final BitSet FOLLOW_expr_if_in_expr_if288 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_if306 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_plus_in_expr_rel339 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_GREATER_in_expr_rel366 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_rel370 = new BitSet(new long[]{0x0000000132783C00L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_rel374 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_SMALLER_in_expr_rel391 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_rel395 = new BitSet(new long[]{0x0000000132783C00L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_rel399 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_GREATEREQ_in_expr_rel416 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_rel420 = new BitSet(new long[]{0x0000000132783C00L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_rel424 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_SMALLEREQ_in_expr_rel441 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_rel445 = new BitSet(new long[]{0x0000000132783C00L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_rel449 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_EQUALS_in_expr_rel466 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_rel470 = new BitSet(new long[]{0x0000000132783C00L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_rel474 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_NOTEQUALS_in_expr_rel491 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_rel495 = new BitSet(new long[]{0x0000000132783C00L});
-	public static final BitSet FOLLOW_expr_rel_in_expr_rel499 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_expr_times_in_expr_plus535 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PLUS_in_expr_plus562 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_plus_in_expr_plus566 = new BitSet(new long[]{0x0000000102682000L});
-	public static final BitSet FOLLOW_expr_plus_in_expr_plus570 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_MINUS_in_expr_plus587 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_plus_in_expr_plus591 = new BitSet(new long[]{0x0000000102682000L});
-	public static final BitSet FOLLOW_expr_plus_in_expr_plus595 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_operand_in_expr_times625 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TIMES_in_expr_times637 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_times_in_expr_times641 = new BitSet(new long[]{0x0000000102202000L});
-	public static final BitSet FOLLOW_expr_times_in_expr_times645 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_QUOTIENT_in_expr_times654 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_times_in_expr_times658 = new BitSet(new long[]{0x0000000102202000L});
-	public static final BitSet FOLLOW_expr_times_in_expr_times662 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_operand691 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_NUMBER_in_operand708 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INTEGER_in_type740 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignment_in_statement170 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PRINT_in_statement181 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_if_in_statement185 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_SWAP_in_statement209 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_statement213 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_statement217 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_BECOMES_in_assignment241 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_assignment245 = new BitSet(new long[]{0x0000000132787C10L});
+	public static final BitSet FOLLOW_assignment_mul_in_assignment249 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_BECOMES_in_assignment_mul295 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_assignment_mul299 = new BitSet(new long[]{0x0000000132787C10L});
+	public static final BitSet FOLLOW_assignment_mul_in_assignment_mul303 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_expr_if_in_assignment_mul316 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IF_in_expr_if343 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_if_in_expr_if347 = new BitSet(new long[]{0x0000000132787C00L});
+	public static final BitSet FOLLOW_expr_if_in_expr_if351 = new BitSet(new long[]{0x0000000132787C00L});
+	public static final BitSet FOLLOW_expr_if_in_expr_if355 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_if373 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_plus_in_expr_rel406 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_GREATER_in_expr_rel433 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_rel437 = new BitSet(new long[]{0x0000000132783C00L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_rel441 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_SMALLER_in_expr_rel458 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_rel462 = new BitSet(new long[]{0x0000000132783C00L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_rel466 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_GREATEREQ_in_expr_rel483 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_rel487 = new BitSet(new long[]{0x0000000132783C00L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_rel491 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_SMALLEREQ_in_expr_rel508 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_rel512 = new BitSet(new long[]{0x0000000132783C00L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_rel516 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_EQUALS_in_expr_rel533 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_rel537 = new BitSet(new long[]{0x0000000132783C00L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_rel541 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_NOTEQUALS_in_expr_rel558 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_rel562 = new BitSet(new long[]{0x0000000132783C00L});
+	public static final BitSet FOLLOW_expr_rel_in_expr_rel566 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_expr_times_in_expr_plus602 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PLUS_in_expr_plus629 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_plus_in_expr_plus633 = new BitSet(new long[]{0x0000000102682000L});
+	public static final BitSet FOLLOW_expr_plus_in_expr_plus637 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_MINUS_in_expr_plus654 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_plus_in_expr_plus658 = new BitSet(new long[]{0x0000000102682000L});
+	public static final BitSet FOLLOW_expr_plus_in_expr_plus662 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_operand_in_expr_times692 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_TIMES_in_expr_times704 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_times_in_expr_times708 = new BitSet(new long[]{0x0000000102202000L});
+	public static final BitSet FOLLOW_expr_times_in_expr_times712 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_QUOTIENT_in_expr_times721 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_times_in_expr_times725 = new BitSet(new long[]{0x0000000102202000L});
+	public static final BitSet FOLLOW_expr_times_in_expr_times729 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_operand758 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_NUMBER_in_operand775 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INTEGER_in_type807 = new BitSet(new long[]{0x0000000000000002L});
 }

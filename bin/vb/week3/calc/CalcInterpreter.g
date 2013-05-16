@@ -33,8 +33,7 @@ declaration
     ;
 
 statement 
-    :   ^(BECOMES id=IDENTIFIER v=expr_if)
-            { store.put($id.text, v);       }
+    :   assignment
     |   ^(PRINT v=expr_if)
             { System.out.println("" + v);   }
     |	^(SWAP id1=IDENTIFIER id2=IDENTIFIER)
@@ -43,6 +42,20 @@ statement
     			store.put($id2.text, val);
     		}
     ;
+
+assignment
+	:	^(BECOMES id=IDENTIFIER v=assignment_mul)
+            { store.put($id.text, v);       }
+    ;
+            
+assignment_mul returns [int val = 0;]
+	:	^(BECOMES id=IDENTIFIER ret=assignment_mul)	
+		{ 
+			store.put($id.text, ret);
+			val = ret; 
+		}
+	|	ret=expr_if	{ val = ret; }
+	;  
     
 expr_if returns [int val = 0;]
     :	^(IF x=expr_if y=expr_if z=expr_if)

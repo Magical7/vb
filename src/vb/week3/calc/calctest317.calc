@@ -1,0 +1,10 @@
+var a : integer;
+var b : integer;
+var c : integer;
+var d : integer;
+a := b := c := 20;
+d := 3;
+print(a);
+print(b);
+print(c);
+print(d);
