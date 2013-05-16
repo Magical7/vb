@@ -1,4 +1,4 @@
-// $ANTLR 3.5 Calc.g 2013-05-16 11:22:02
+// $ANTLR 3.5 Calc.g 2013-05-16 11:30:27
 
 package vb.week3.calc;
 
@@ -759,7 +759,7 @@ public class CalcParser extends Parser {
 
 
 	// $ANTLR start "expr1"
-	// Calc.g:83:1: expr1 : ( expr2 ( ( PLUS ^| MINUS ^) expr2 )* | ( if_expr ) );
+	// Calc.g:83:1: expr1 : ( expr2 ( ( PLUS ^| MINUS ^) expr2 )* | if_expr );
 	public final CalcParser.expr1_return expr1() throws RecognitionException {
 		CalcParser.expr1_return retval = new CalcParser.expr1_return();
 		retval.start = input.LT(1);
@@ -776,7 +776,7 @@ public class CalcParser extends Parser {
 		Object MINUS31_tree=null;
 
 		try {
-			// Calc.g:84:5: ( expr2 ( ( PLUS ^| MINUS ^) expr2 )* | ( if_expr ) )
+			// Calc.g:84:5: ( expr2 ( ( PLUS ^| MINUS ^) expr2 )* | if_expr )
 			int alt6=2;
 			int LA6_0 = input.LA(1);
 			if ( (LA6_0==IDENTIFIER||LA6_0==LPAREN||LA6_0==NUMBER) ) {
@@ -873,21 +873,16 @@ public class CalcParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Calc.g:85:7: ( if_expr )
+					// Calc.g:85:7: if_expr
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					// Calc.g:85:7: ( if_expr )
-					// Calc.g:85:8: if_expr
-					{
-					pushFollow(FOLLOW_if_expr_in_expr1814);
+					pushFollow(FOLLOW_if_expr_in_expr1813);
 					if_expr33=if_expr();
 					state._fsp--;
 
 					adaptor.addChild(root_0, if_expr33.getTree());
-
-					}
 
 					}
 					break;
@@ -942,7 +937,7 @@ public class CalcParser extends Parser {
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_operand_in_expr2833);
+			pushFollow(FOLLOW_operand_in_expr2831);
 			operand34=operand();
 			state._fsp--;
 
@@ -981,7 +976,7 @@ public class CalcParser extends Parser {
 						case 1 :
 							// Calc.g:89:14: TIMES ^
 							{
-							TIMES35=(Token)match(input,TIMES,FOLLOW_TIMES_in_expr2837); 
+							TIMES35=(Token)match(input,TIMES,FOLLOW_TIMES_in_expr2835); 
 							TIMES35_tree = (Object)adaptor.create(TIMES35);
 							root_0 = (Object)adaptor.becomeRoot(TIMES35_tree, root_0);
 
@@ -990,7 +985,7 @@ public class CalcParser extends Parser {
 						case 2 :
 							// Calc.g:89:23: QUOTIENT ^
 							{
-							QUOTIENT36=(Token)match(input,QUOTIENT,FOLLOW_QUOTIENT_in_expr2842); 
+							QUOTIENT36=(Token)match(input,QUOTIENT,FOLLOW_QUOTIENT_in_expr2840); 
 							QUOTIENT36_tree = (Object)adaptor.create(QUOTIENT36);
 							root_0 = (Object)adaptor.becomeRoot(QUOTIENT36_tree, root_0);
 
@@ -999,7 +994,7 @@ public class CalcParser extends Parser {
 
 					}
 
-					pushFollow(FOLLOW_operand_in_expr2846);
+					pushFollow(FOLLOW_operand_in_expr2844);
 					operand37=operand();
 					state._fsp--;
 
@@ -1067,25 +1062,25 @@ public class CalcParser extends Parser {
 			root_0 = (Object)adaptor.nil();
 
 
-			IF38=(Token)match(input,IF,FOLLOW_IF_in_if_expr861); 
+			IF38=(Token)match(input,IF,FOLLOW_IF_in_if_expr859); 
 			IF38_tree = (Object)adaptor.create(IF38);
 			root_0 = (Object)adaptor.becomeRoot(IF38_tree, root_0);
 
-			pushFollow(FOLLOW_expr1_in_if_expr864);
+			pushFollow(FOLLOW_expr1_in_if_expr862);
 			expr139=expr1();
 			state._fsp--;
 
 			adaptor.addChild(root_0, expr139.getTree());
 
-			THEN40=(Token)match(input,THEN,FOLLOW_THEN_in_if_expr866); 
-			pushFollow(FOLLOW_expr1_in_if_expr869);
+			THEN40=(Token)match(input,THEN,FOLLOW_THEN_in_if_expr864); 
+			pushFollow(FOLLOW_expr1_in_if_expr867);
 			expr141=expr1();
 			state._fsp--;
 
 			adaptor.addChild(root_0, expr141.getTree());
 
-			ELSE42=(Token)match(input,ELSE,FOLLOW_ELSE_in_if_expr871); 
-			pushFollow(FOLLOW_expr1_in_if_expr874);
+			ELSE42=(Token)match(input,ELSE,FOLLOW_ELSE_in_if_expr869); 
+			pushFollow(FOLLOW_expr1_in_if_expr872);
 			expr143=expr1();
 			state._fsp--;
 
@@ -1169,7 +1164,7 @@ public class CalcParser extends Parser {
 					root_0 = (Object)adaptor.nil();
 
 
-					IDENTIFIER44=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_operand892); 
+					IDENTIFIER44=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_operand890); 
 					IDENTIFIER44_tree = (Object)adaptor.create(IDENTIFIER44);
 					adaptor.addChild(root_0, IDENTIFIER44_tree);
 
@@ -1181,7 +1176,7 @@ public class CalcParser extends Parser {
 					root_0 = (Object)adaptor.nil();
 
 
-					NUMBER45=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_operand902); 
+					NUMBER45=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_operand900); 
 					NUMBER45_tree = (Object)adaptor.create(NUMBER45);
 					adaptor.addChild(root_0, NUMBER45_tree);
 
@@ -1193,14 +1188,14 @@ public class CalcParser extends Parser {
 					root_0 = (Object)adaptor.nil();
 
 
-					LPAREN46=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_operand912); 
-					pushFollow(FOLLOW_expr1_in_operand915);
+					LPAREN46=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_operand910); 
+					pushFollow(FOLLOW_expr1_in_operand913);
 					expr147=expr1();
 					state._fsp--;
 
 					adaptor.addChild(root_0, expr147.getTree());
 
-					RPAREN48=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_operand917); 
+					RPAREN48=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_operand915); 
 					}
 					break;
 
@@ -1250,7 +1245,7 @@ public class CalcParser extends Parser {
 			root_0 = (Object)adaptor.nil();
 
 
-			INTEGER49=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_type937); 
+			INTEGER49=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_type935); 
 			INTEGER49_tree = (Object)adaptor.create(INTEGER49);
 			adaptor.addChild(root_0, INTEGER49_tree);
 
@@ -1310,21 +1305,21 @@ public class CalcParser extends Parser {
 	public static final BitSet FOLLOW_PLUS_in_expr1793 = new BitSet(new long[]{0x0000000000028400L});
 	public static final BitSet FOLLOW_MINUS_in_expr1798 = new BitSet(new long[]{0x0000000000028400L});
 	public static final BitSet FOLLOW_expr2_in_expr1802 = new BitSet(new long[]{0x0000000000050002L});
-	public static final BitSet FOLLOW_if_expr_in_expr1814 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_operand_in_expr2833 = new BitSet(new long[]{0x0000000004200002L});
-	public static final BitSet FOLLOW_TIMES_in_expr2837 = new BitSet(new long[]{0x0000000000028400L});
-	public static final BitSet FOLLOW_QUOTIENT_in_expr2842 = new BitSet(new long[]{0x0000000000028400L});
-	public static final BitSet FOLLOW_operand_in_expr2846 = new BitSet(new long[]{0x0000000004200002L});
-	public static final BitSet FOLLOW_IF_in_if_expr861 = new BitSet(new long[]{0x0000000000028C00L});
-	public static final BitSet FOLLOW_expr1_in_if_expr864 = new BitSet(new long[]{0x0000000002000000L});
-	public static final BitSet FOLLOW_THEN_in_if_expr866 = new BitSet(new long[]{0x0000000000028C00L});
-	public static final BitSet FOLLOW_expr1_in_if_expr869 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_ELSE_in_if_expr871 = new BitSet(new long[]{0x0000000000028C00L});
-	public static final BitSet FOLLOW_expr1_in_if_expr874 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_operand892 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_NUMBER_in_operand902 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAREN_in_operand912 = new BitSet(new long[]{0x0000000000028C00L});
-	public static final BitSet FOLLOW_expr1_in_operand915 = new BitSet(new long[]{0x0000000000400000L});
-	public static final BitSet FOLLOW_RPAREN_in_operand917 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INTEGER_in_type937 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_if_expr_in_expr1813 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_operand_in_expr2831 = new BitSet(new long[]{0x0000000004200002L});
+	public static final BitSet FOLLOW_TIMES_in_expr2835 = new BitSet(new long[]{0x0000000000028400L});
+	public static final BitSet FOLLOW_QUOTIENT_in_expr2840 = new BitSet(new long[]{0x0000000000028400L});
+	public static final BitSet FOLLOW_operand_in_expr2844 = new BitSet(new long[]{0x0000000004200002L});
+	public static final BitSet FOLLOW_IF_in_if_expr859 = new BitSet(new long[]{0x0000000000028C00L});
+	public static final BitSet FOLLOW_expr1_in_if_expr862 = new BitSet(new long[]{0x0000000002000000L});
+	public static final BitSet FOLLOW_THEN_in_if_expr864 = new BitSet(new long[]{0x0000000000028C00L});
+	public static final BitSet FOLLOW_expr1_in_if_expr867 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_ELSE_in_if_expr869 = new BitSet(new long[]{0x0000000000028C00L});
+	public static final BitSet FOLLOW_expr1_in_if_expr872 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_operand890 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_NUMBER_in_operand900 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAREN_in_operand910 = new BitSet(new long[]{0x0000000000028C00L});
+	public static final BitSet FOLLOW_expr1_in_operand913 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_RPAREN_in_operand915 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INTEGER_in_type935 = new BitSet(new long[]{0x0000000000000002L});
 }
