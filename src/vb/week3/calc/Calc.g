@@ -1,7 +1,7 @@
 grammar Calc;
 
 options {
-    k=1;                                // LL(1) - do not use LL(*)
+    k=2;                                // LL(1) - do not use LL(*)
     language=Java;                      // target language is Java (= default)
     output=AST;                         // build an AST
 }
@@ -72,12 +72,12 @@ assignment
     ;
     
 assignment_mul
-	:	expr_if
+	:	expr
 	|	lvalue BECOMES^ assignment_mul
 	;   
 
 print_stat
-    :   PRINT^ LPAREN! expr_if RPAREN!
+    :   PRINT^ LPAREN! expr RPAREN!
     ;
     
 swap_stat
@@ -87,6 +87,10 @@ swap_stat
 lvalue
     :   IDENTIFIER
     ;
+    
+expr
+	:	expr_if
+	;
     
 expr_if
 	:	IF^ expr_if THEN! expr_if ELSE! expr_if
@@ -108,7 +112,7 @@ expr_times
 operand
     :   IDENTIFIER
     |   NUMBER
-    |   LPAREN! expr_if RPAREN!
+    |   LPAREN! expr RPAREN!
     ;
 
 type
