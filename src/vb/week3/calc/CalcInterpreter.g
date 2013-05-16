@@ -46,8 +46,16 @@ statement
     
 expr1 returns [int val = 0;] 
     :   z=expr2               { val = z;      }
-    |   ^(PLUS x=expr1 y=expr1)   { val = x + y;  }
-    |   ^(MINUS x=expr1 y=expr1)  { val = x - y;  }
+    |   ^(PLUS x=expr1 y=expr1)  		{ val = x + y;  }
+    |   ^(MINUS x=expr1 y=expr1)  		{ val = x - y;  }
+    |	^(IF x=expr1 y=expr1 z=expr1)
+    	{
+    		if (x != 0) {
+    			val = y;
+    		} else {
+    			val = z;
+    		}
+    	}
     ;
     
 expr2 returns [int val = 0;]

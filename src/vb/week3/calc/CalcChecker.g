@@ -59,6 +59,7 @@ expr1
     :   expr2
     |   ^(PLUS expr1 expr1)
     |   ^(MINUS expr1 expr1)
+    |	^(IF expr1 expr1 expr1)
     ;
     
 expr2

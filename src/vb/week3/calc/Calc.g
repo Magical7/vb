@@ -26,6 +26,9 @@ tokens {
     PRINT       =   'print'     ;
     INTEGER     =   'integer'   ;
     SWAP		= 	'swap'		;
+    IF			=	'if'		;
+    THEN		=	'then'		;
+    ELSE		=	'else'		;
 }
 
 @lexer::header {
@@ -79,10 +82,15 @@ lvalue
     
 expr1
     :   expr2 ((PLUS^ | MINUS^) expr2 )*
+    |	if_expr
     ;
     
 expr2
 	:	operand ((TIMES^ | QUOTIENT^) operand )*
+	;
+	
+if_expr
+	:	IF^ expr1 THEN! expr1 ELSE! expr1
 	;
 	
 

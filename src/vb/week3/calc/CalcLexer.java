@@ -1,4 +1,4 @@
-// $ANTLR 3.5 Calc.g 2013-05-12 23:00:52
+// $ANTLR 3.5 Calc.g 2013-05-16 11:22:02
 
 package vb.week3.calc;
 
@@ -16,24 +16,27 @@ public class CalcLexer extends Lexer {
 	public static final int COMMA=6;
 	public static final int COMMENT=7;
 	public static final int DIGIT=8;
-	public static final int IDENTIFIER=9;
-	public static final int INTEGER=10;
-	public static final int LETTER=11;
-	public static final int LOWER=12;
-	public static final int LPAREN=13;
-	public static final int MINUS=14;
-	public static final int NUMBER=15;
-	public static final int PLUS=16;
-	public static final int PRINT=17;
-	public static final int PROGRAM=18;
-	public static final int QUOTIENT=19;
-	public static final int RPAREN=20;
-	public static final int SEMICOLON=21;
-	public static final int SWAP=22;
-	public static final int TIMES=23;
-	public static final int UPPER=24;
-	public static final int VAR=25;
-	public static final int WS=26;
+	public static final int ELSE=9;
+	public static final int IDENTIFIER=10;
+	public static final int IF=11;
+	public static final int INTEGER=12;
+	public static final int LETTER=13;
+	public static final int LOWER=14;
+	public static final int LPAREN=15;
+	public static final int MINUS=16;
+	public static final int NUMBER=17;
+	public static final int PLUS=18;
+	public static final int PRINT=19;
+	public static final int PROGRAM=20;
+	public static final int QUOTIENT=21;
+	public static final int RPAREN=22;
+	public static final int SEMICOLON=23;
+	public static final int SWAP=24;
+	public static final int THEN=25;
+	public static final int TIMES=26;
+	public static final int UPPER=27;
+	public static final int VAR=28;
+	public static final int WS=29;
 
 	// delegates
 	// delegators
@@ -111,13 +114,55 @@ public class CalcLexer extends Lexer {
 	}
 	// $ANTLR end "COMMA"
 
+	// $ANTLR start "ELSE"
+	public final void mELSE() throws RecognitionException {
+		try {
+			int _type = ELSE;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// Calc.g:14:6: ( 'else' )
+			// Calc.g:14:8: 'else'
+			{
+			match("else"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "ELSE"
+
+	// $ANTLR start "IF"
+	public final void mIF() throws RecognitionException {
+		try {
+			int _type = IF;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// Calc.g:15:4: ( 'if' )
+			// Calc.g:15:6: 'if'
+			{
+			match("if"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "IF"
+
 	// $ANTLR start "INTEGER"
 	public final void mINTEGER() throws RecognitionException {
 		try {
 			int _type = INTEGER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:14:9: ( 'integer' )
-			// Calc.g:14:11: 'integer'
+			// Calc.g:16:9: ( 'integer' )
+			// Calc.g:16:11: 'integer'
 			{
 			match("integer"); 
 
@@ -137,8 +182,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = LPAREN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:15:8: ( '(' )
-			// Calc.g:15:10: '('
+			// Calc.g:17:8: ( '(' )
+			// Calc.g:17:10: '('
 			{
 			match('('); 
 			}
@@ -157,8 +202,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = MINUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:16:7: ( '-' )
-			// Calc.g:16:9: '-'
+			// Calc.g:18:7: ( '-' )
+			// Calc.g:18:9: '-'
 			{
 			match('-'); 
 			}
@@ -177,8 +222,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = PLUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:17:6: ( '+' )
-			// Calc.g:17:8: '+'
+			// Calc.g:19:6: ( '+' )
+			// Calc.g:19:8: '+'
 			{
 			match('+'); 
 			}
@@ -197,8 +242,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = PRINT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:18:7: ( 'print' )
-			// Calc.g:18:9: 'print'
+			// Calc.g:20:7: ( 'print' )
+			// Calc.g:20:9: 'print'
 			{
 			match("print"); 
 
@@ -218,8 +263,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = PROGRAM;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:19:9: ( 'program' )
-			// Calc.g:19:11: 'program'
+			// Calc.g:21:9: ( 'program' )
+			// Calc.g:21:11: 'program'
 			{
 			match("program"); 
 
@@ -239,8 +284,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = QUOTIENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:20:10: ( '%' )
-			// Calc.g:20:12: '%'
+			// Calc.g:22:10: ( '%' )
+			// Calc.g:22:12: '%'
 			{
 			match('%'); 
 			}
@@ -259,8 +304,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = RPAREN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:21:8: ( ')' )
-			// Calc.g:21:10: ')'
+			// Calc.g:23:8: ( ')' )
+			// Calc.g:23:10: ')'
 			{
 			match(')'); 
 			}
@@ -279,8 +324,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = SEMICOLON;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:22:11: ( ';' )
-			// Calc.g:22:13: ';'
+			// Calc.g:24:11: ( ';' )
+			// Calc.g:24:13: ';'
 			{
 			match(';'); 
 			}
@@ -299,8 +344,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = SWAP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:23:6: ( 'swap' )
-			// Calc.g:23:8: 'swap'
+			// Calc.g:25:6: ( 'swap' )
+			// Calc.g:25:8: 'swap'
 			{
 			match("swap"); 
 
@@ -315,13 +360,34 @@ public class CalcLexer extends Lexer {
 	}
 	// $ANTLR end "SWAP"
 
+	// $ANTLR start "THEN"
+	public final void mTHEN() throws RecognitionException {
+		try {
+			int _type = THEN;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// Calc.g:26:6: ( 'then' )
+			// Calc.g:26:8: 'then'
+			{
+			match("then"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "THEN"
+
 	// $ANTLR start "TIMES"
 	public final void mTIMES() throws RecognitionException {
 		try {
 			int _type = TIMES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:24:7: ( '*' )
-			// Calc.g:24:9: '*'
+			// Calc.g:27:7: ( '*' )
+			// Calc.g:27:9: '*'
 			{
 			match('*'); 
 			}
@@ -340,8 +406,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = VAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:25:5: ( 'var' )
-			// Calc.g:25:7: 'var'
+			// Calc.g:28:5: ( 'var' )
+			// Calc.g:28:7: 'var'
 			{
 			match("var"); 
 
@@ -361,12 +427,12 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = IDENTIFIER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:103:5: ( LETTER ( LETTER | DIGIT )* )
-			// Calc.g:103:9: LETTER ( LETTER | DIGIT )*
+			// Calc.g:111:5: ( LETTER ( LETTER | DIGIT )* )
+			// Calc.g:111:9: LETTER ( LETTER | DIGIT )*
 			{
 			mLETTER(); 
 
-			// Calc.g:103:16: ( LETTER | DIGIT )*
+			// Calc.g:111:16: ( LETTER | DIGIT )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -411,10 +477,10 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = NUMBER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:107:5: ( ( DIGIT )+ )
-			// Calc.g:107:9: ( DIGIT )+
+			// Calc.g:115:5: ( ( DIGIT )+ )
+			// Calc.g:115:9: ( DIGIT )+
 			{
-			// Calc.g:107:9: ( DIGIT )+
+			// Calc.g:115:9: ( DIGIT )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -463,12 +529,12 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:112:5: ( '//' ( . )* '\\n' )
-			// Calc.g:112:9: '//' ( . )* '\\n'
+			// Calc.g:120:5: ( '//' ( . )* '\\n' )
+			// Calc.g:120:9: '//' ( . )* '\\n'
 			{
 			match("//"); 
 
-			// Calc.g:112:14: ( . )*
+			// Calc.g:120:14: ( . )*
 			loop3:
 			while (true) {
 				int alt3=2;
@@ -482,7 +548,7 @@ public class CalcLexer extends Lexer {
 
 				switch (alt3) {
 				case 1 :
-					// Calc.g:112:14: .
+					// Calc.g:120:14: .
 					{
 					matchAny(); 
 					}
@@ -511,10 +577,10 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:117:5: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
-			// Calc.g:117:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+			// Calc.g:125:5: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
+			// Calc.g:125:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
 			{
-			// Calc.g:117:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+			// Calc.g:125:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
 			int cnt4=0;
 			loop4:
 			while (true) {
@@ -562,7 +628,7 @@ public class CalcLexer extends Lexer {
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
-			// Calc.g:121:17: ( ( '0' .. '9' ) )
+			// Calc.g:129:17: ( ( '0' .. '9' ) )
 			// Calc.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -585,7 +651,7 @@ public class CalcLexer extends Lexer {
 	// $ANTLR start "LOWER"
 	public final void mLOWER() throws RecognitionException {
 		try {
-			// Calc.g:122:17: ( ( 'a' .. 'z' ) )
+			// Calc.g:130:17: ( ( 'a' .. 'z' ) )
 			// Calc.g:
 			{
 			if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -608,7 +674,7 @@ public class CalcLexer extends Lexer {
 	// $ANTLR start "UPPER"
 	public final void mUPPER() throws RecognitionException {
 		try {
-			// Calc.g:123:17: ( ( 'A' .. 'Z' ) )
+			// Calc.g:131:17: ( ( 'A' .. 'Z' ) )
 			// Calc.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
@@ -631,7 +697,7 @@ public class CalcLexer extends Lexer {
 	// $ANTLR start "LETTER"
 	public final void mLETTER() throws RecognitionException {
 		try {
-			// Calc.g:124:17: ( LOWER | UPPER )
+			// Calc.g:132:17: ( LOWER | UPPER )
 			// Calc.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -653,8 +719,8 @@ public class CalcLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// Calc.g:1:8: ( BECOMES | COLON | COMMA | INTEGER | LPAREN | MINUS | PLUS | PRINT | PROGRAM | QUOTIENT | RPAREN | SEMICOLON | SWAP | TIMES | VAR | IDENTIFIER | NUMBER | COMMENT | WS )
-		int alt5=19;
+		// Calc.g:1:8: ( BECOMES | COLON | COMMA | ELSE | IF | INTEGER | LPAREN | MINUS | PLUS | PRINT | PROGRAM | QUOTIENT | RPAREN | SEMICOLON | SWAP | THEN | TIMES | VAR | IDENTIFIER | NUMBER | COMMENT | WS )
+		int alt5=22;
 		switch ( input.LA(1) ) {
 		case ':':
 			{
@@ -674,254 +740,341 @@ public class CalcLexer extends Lexer {
 			alt5=3;
 			}
 			break;
-		case 'i':
+		case 'e':
 			{
 			int LA5_3 = input.LA(2);
-			if ( (LA5_3=='n') ) {
-				int LA5_20 = input.LA(3);
-				if ( (LA5_20=='t') ) {
-					int LA5_24 = input.LA(4);
-					if ( (LA5_24=='e') ) {
-						int LA5_29 = input.LA(5);
-						if ( (LA5_29=='g') ) {
-							int LA5_34 = input.LA(6);
-							if ( (LA5_34=='e') ) {
-								int LA5_38 = input.LA(7);
-								if ( (LA5_38=='r') ) {
-									int LA5_41 = input.LA(8);
-									if ( ((LA5_41 >= '0' && LA5_41 <= '9')||(LA5_41 >= 'A' && LA5_41 <= 'Z')||(LA5_41 >= 'a' && LA5_41 <= 'z')) ) {
-										alt5=16;
-									}
-
-									else {
-										alt5=4;
-									}
-
-								}
-
-								else {
-									alt5=16;
-								}
-
-							}
-
-							else {
-								alt5=16;
-							}
-
+			if ( (LA5_3=='l') ) {
+				int LA5_22 = input.LA(3);
+				if ( (LA5_22=='s') ) {
+					int LA5_29 = input.LA(4);
+					if ( (LA5_29=='e') ) {
+						int LA5_37 = input.LA(5);
+						if ( ((LA5_37 >= '0' && LA5_37 <= '9')||(LA5_37 >= 'A' && LA5_37 <= 'Z')||(LA5_37 >= 'a' && LA5_37 <= 'z')) ) {
+							alt5=19;
 						}
 
 						else {
-							alt5=16;
+							alt5=4;
 						}
 
 					}
 
 					else {
-						alt5=16;
+						alt5=19;
 					}
 
 				}
 
 				else {
-					alt5=16;
+					alt5=19;
 				}
 
 			}
 
 			else {
-				alt5=16;
+				alt5=19;
 			}
 
 			}
 			break;
-		case '(':
+		case 'i':
 			{
-			alt5=5;
-			}
-			break;
-		case '-':
-			{
-			alt5=6;
-			}
-			break;
-		case '+':
-			{
-			alt5=7;
-			}
-			break;
-		case 'p':
-			{
-			int LA5_7 = input.LA(2);
-			if ( (LA5_7=='r') ) {
-				switch ( input.LA(3) ) {
-				case 'i':
-					{
-					int LA5_25 = input.LA(4);
-					if ( (LA5_25=='n') ) {
-						int LA5_30 = input.LA(5);
-						if ( (LA5_30=='t') ) {
-							int LA5_35 = input.LA(6);
-							if ( ((LA5_35 >= '0' && LA5_35 <= '9')||(LA5_35 >= 'A' && LA5_35 <= 'Z')||(LA5_35 >= 'a' && LA5_35 <= 'z')) ) {
-								alt5=16;
+			switch ( input.LA(2) ) {
+			case 'f':
+				{
+				int LA5_23 = input.LA(3);
+				if ( ((LA5_23 >= '0' && LA5_23 <= '9')||(LA5_23 >= 'A' && LA5_23 <= 'Z')||(LA5_23 >= 'a' && LA5_23 <= 'z')) ) {
+					alt5=19;
+				}
+
+				else {
+					alt5=5;
+				}
+
+				}
+				break;
+			case 'n':
+				{
+				int LA5_24 = input.LA(3);
+				if ( (LA5_24=='t') ) {
+					int LA5_31 = input.LA(4);
+					if ( (LA5_31=='e') ) {
+						int LA5_38 = input.LA(5);
+						if ( (LA5_38=='g') ) {
+							int LA5_45 = input.LA(6);
+							if ( (LA5_45=='e') ) {
+								int LA5_50 = input.LA(7);
+								if ( (LA5_50=='r') ) {
+									int LA5_53 = input.LA(8);
+									if ( ((LA5_53 >= '0' && LA5_53 <= '9')||(LA5_53 >= 'A' && LA5_53 <= 'Z')||(LA5_53 >= 'a' && LA5_53 <= 'z')) ) {
+										alt5=19;
+									}
+
+									else {
+										alt5=6;
+									}
+
+								}
+
+								else {
+									alt5=19;
+								}
+
 							}
 
 							else {
-								alt5=8;
+								alt5=19;
 							}
 
 						}
 
 						else {
-							alt5=16;
+							alt5=19;
 						}
 
 					}
 
 					else {
-						alt5=16;
+						alt5=19;
+					}
+
+				}
+
+				else {
+					alt5=19;
+				}
+
+				}
+				break;
+			default:
+				alt5=19;
+			}
+			}
+			break;
+		case '(':
+			{
+			alt5=7;
+			}
+			break;
+		case '-':
+			{
+			alt5=8;
+			}
+			break;
+		case '+':
+			{
+			alt5=9;
+			}
+			break;
+		case 'p':
+			{
+			int LA5_8 = input.LA(2);
+			if ( (LA5_8=='r') ) {
+				switch ( input.LA(3) ) {
+				case 'i':
+					{
+					int LA5_32 = input.LA(4);
+					if ( (LA5_32=='n') ) {
+						int LA5_39 = input.LA(5);
+						if ( (LA5_39=='t') ) {
+							int LA5_46 = input.LA(6);
+							if ( ((LA5_46 >= '0' && LA5_46 <= '9')||(LA5_46 >= 'A' && LA5_46 <= 'Z')||(LA5_46 >= 'a' && LA5_46 <= 'z')) ) {
+								alt5=19;
+							}
+
+							else {
+								alt5=10;
+							}
+
+						}
+
+						else {
+							alt5=19;
+						}
+
+					}
+
+					else {
+						alt5=19;
 					}
 
 					}
 					break;
 				case 'o':
 					{
-					int LA5_26 = input.LA(4);
-					if ( (LA5_26=='g') ) {
-						int LA5_31 = input.LA(5);
-						if ( (LA5_31=='r') ) {
-							int LA5_36 = input.LA(6);
-							if ( (LA5_36=='a') ) {
-								int LA5_40 = input.LA(7);
-								if ( (LA5_40=='m') ) {
-									int LA5_42 = input.LA(8);
-									if ( ((LA5_42 >= '0' && LA5_42 <= '9')||(LA5_42 >= 'A' && LA5_42 <= 'Z')||(LA5_42 >= 'a' && LA5_42 <= 'z')) ) {
-										alt5=16;
+					int LA5_33 = input.LA(4);
+					if ( (LA5_33=='g') ) {
+						int LA5_40 = input.LA(5);
+						if ( (LA5_40=='r') ) {
+							int LA5_47 = input.LA(6);
+							if ( (LA5_47=='a') ) {
+								int LA5_52 = input.LA(7);
+								if ( (LA5_52=='m') ) {
+									int LA5_54 = input.LA(8);
+									if ( ((LA5_54 >= '0' && LA5_54 <= '9')||(LA5_54 >= 'A' && LA5_54 <= 'Z')||(LA5_54 >= 'a' && LA5_54 <= 'z')) ) {
+										alt5=19;
 									}
 
 									else {
-										alt5=9;
+										alt5=11;
 									}
 
 								}
 
 								else {
-									alt5=16;
+									alt5=19;
 								}
 
 							}
 
 							else {
-								alt5=16;
+								alt5=19;
 							}
 
 						}
 
 						else {
-							alt5=16;
+							alt5=19;
 						}
 
 					}
 
 					else {
-						alt5=16;
+						alt5=19;
 					}
 
 					}
 					break;
 				default:
-					alt5=16;
+					alt5=19;
 				}
 			}
 
 			else {
-				alt5=16;
+				alt5=19;
 			}
 
 			}
 			break;
 		case '%':
 			{
-			alt5=10;
+			alt5=12;
 			}
 			break;
 		case ')':
 			{
-			alt5=11;
+			alt5=13;
 			}
 			break;
 		case ';':
 			{
-			alt5=12;
+			alt5=14;
 			}
 			break;
 		case 's':
 			{
-			int LA5_11 = input.LA(2);
-			if ( (LA5_11=='w') ) {
-				int LA5_22 = input.LA(3);
-				if ( (LA5_22=='a') ) {
-					int LA5_27 = input.LA(4);
-					if ( (LA5_27=='p') ) {
-						int LA5_32 = input.LA(5);
-						if ( ((LA5_32 >= '0' && LA5_32 <= '9')||(LA5_32 >= 'A' && LA5_32 <= 'Z')||(LA5_32 >= 'a' && LA5_32 <= 'z')) ) {
-							alt5=16;
+			int LA5_12 = input.LA(2);
+			if ( (LA5_12=='w') ) {
+				int LA5_26 = input.LA(3);
+				if ( (LA5_26=='a') ) {
+					int LA5_34 = input.LA(4);
+					if ( (LA5_34=='p') ) {
+						int LA5_41 = input.LA(5);
+						if ( ((LA5_41 >= '0' && LA5_41 <= '9')||(LA5_41 >= 'A' && LA5_41 <= 'Z')||(LA5_41 >= 'a' && LA5_41 <= 'z')) ) {
+							alt5=19;
 						}
 
 						else {
-							alt5=13;
+							alt5=15;
 						}
 
 					}
 
 					else {
-						alt5=16;
+						alt5=19;
 					}
 
 				}
 
 				else {
-					alt5=16;
+					alt5=19;
 				}
 
 			}
 
 			else {
-				alt5=16;
+				alt5=19;
+			}
+
+			}
+			break;
+		case 't':
+			{
+			int LA5_13 = input.LA(2);
+			if ( (LA5_13=='h') ) {
+				int LA5_27 = input.LA(3);
+				if ( (LA5_27=='e') ) {
+					int LA5_35 = input.LA(4);
+					if ( (LA5_35=='n') ) {
+						int LA5_42 = input.LA(5);
+						if ( ((LA5_42 >= '0' && LA5_42 <= '9')||(LA5_42 >= 'A' && LA5_42 <= 'Z')||(LA5_42 >= 'a' && LA5_42 <= 'z')) ) {
+							alt5=19;
+						}
+
+						else {
+							alt5=16;
+						}
+
+					}
+
+					else {
+						alt5=19;
+					}
+
+				}
+
+				else {
+					alt5=19;
+				}
+
+			}
+
+			else {
+				alt5=19;
 			}
 
 			}
 			break;
 		case '*':
 			{
-			alt5=14;
+			alt5=17;
 			}
 			break;
 		case 'v':
 			{
-			int LA5_13 = input.LA(2);
-			if ( (LA5_13=='a') ) {
-				int LA5_23 = input.LA(3);
-				if ( (LA5_23=='r') ) {
-					int LA5_28 = input.LA(4);
-					if ( ((LA5_28 >= '0' && LA5_28 <= '9')||(LA5_28 >= 'A' && LA5_28 <= 'Z')||(LA5_28 >= 'a' && LA5_28 <= 'z')) ) {
-						alt5=16;
+			int LA5_15 = input.LA(2);
+			if ( (LA5_15=='a') ) {
+				int LA5_28 = input.LA(3);
+				if ( (LA5_28=='r') ) {
+					int LA5_36 = input.LA(4);
+					if ( ((LA5_36 >= '0' && LA5_36 <= '9')||(LA5_36 >= 'A' && LA5_36 <= 'Z')||(LA5_36 >= 'a' && LA5_36 <= 'z')) ) {
+						alt5=19;
 					}
 
 					else {
-						alt5=15;
+						alt5=18;
 					}
 
 				}
 
 				else {
-					alt5=16;
+					alt5=19;
 				}
 
 			}
 
 			else {
-				alt5=16;
+				alt5=19;
 			}
 
 			}
@@ -956,7 +1109,6 @@ public class CalcLexer extends Lexer {
 		case 'b':
 		case 'c':
 		case 'd':
-		case 'e':
 		case 'f':
 		case 'g':
 		case 'h':
@@ -968,14 +1120,13 @@ public class CalcLexer extends Lexer {
 		case 'o':
 		case 'q':
 		case 'r':
-		case 't':
 		case 'u':
 		case 'w':
 		case 'x':
 		case 'y':
 		case 'z':
 			{
-			alt5=16;
+			alt5=19;
 			}
 			break;
 		case '0':
@@ -989,12 +1140,12 @@ public class CalcLexer extends Lexer {
 		case '8':
 		case '9':
 			{
-			alt5=17;
+			alt5=20;
 			}
 			break;
 		case '/':
 			{
-			alt5=18;
+			alt5=21;
 			}
 			break;
 		case '\t':
@@ -1003,7 +1154,7 @@ public class CalcLexer extends Lexer {
 		case '\r':
 		case ' ':
 			{
-			alt5=19;
+			alt5=22;
 			}
 			break;
 		default:
@@ -1034,112 +1185,133 @@ public class CalcLexer extends Lexer {
 				}
 				break;
 			case 4 :
-				// Calc.g:1:30: INTEGER
+				// Calc.g:1:30: ELSE
+				{
+				mELSE(); 
+
+				}
+				break;
+			case 5 :
+				// Calc.g:1:35: IF
+				{
+				mIF(); 
+
+				}
+				break;
+			case 6 :
+				// Calc.g:1:38: INTEGER
 				{
 				mINTEGER(); 
 
 				}
 				break;
-			case 5 :
-				// Calc.g:1:38: LPAREN
+			case 7 :
+				// Calc.g:1:46: LPAREN
 				{
 				mLPAREN(); 
 
 				}
 				break;
-			case 6 :
-				// Calc.g:1:45: MINUS
+			case 8 :
+				// Calc.g:1:53: MINUS
 				{
 				mMINUS(); 
 
 				}
 				break;
-			case 7 :
-				// Calc.g:1:51: PLUS
+			case 9 :
+				// Calc.g:1:59: PLUS
 				{
 				mPLUS(); 
 
 				}
 				break;
-			case 8 :
-				// Calc.g:1:56: PRINT
+			case 10 :
+				// Calc.g:1:64: PRINT
 				{
 				mPRINT(); 
 
 				}
 				break;
-			case 9 :
-				// Calc.g:1:62: PROGRAM
+			case 11 :
+				// Calc.g:1:70: PROGRAM
 				{
 				mPROGRAM(); 
 
 				}
 				break;
-			case 10 :
-				// Calc.g:1:70: QUOTIENT
+			case 12 :
+				// Calc.g:1:78: QUOTIENT
 				{
 				mQUOTIENT(); 
 
 				}
 				break;
-			case 11 :
-				// Calc.g:1:79: RPAREN
+			case 13 :
+				// Calc.g:1:87: RPAREN
 				{
 				mRPAREN(); 
 
 				}
 				break;
-			case 12 :
-				// Calc.g:1:86: SEMICOLON
+			case 14 :
+				// Calc.g:1:94: SEMICOLON
 				{
 				mSEMICOLON(); 
 
 				}
 				break;
-			case 13 :
-				// Calc.g:1:96: SWAP
+			case 15 :
+				// Calc.g:1:104: SWAP
 				{
 				mSWAP(); 
 
 				}
 				break;
-			case 14 :
-				// Calc.g:1:101: TIMES
+			case 16 :
+				// Calc.g:1:109: THEN
+				{
+				mTHEN(); 
+
+				}
+				break;
+			case 17 :
+				// Calc.g:1:114: TIMES
 				{
 				mTIMES(); 
 
 				}
 				break;
-			case 15 :
-				// Calc.g:1:107: VAR
+			case 18 :
+				// Calc.g:1:120: VAR
 				{
 				mVAR(); 
 
 				}
 				break;
-			case 16 :
-				// Calc.g:1:111: IDENTIFIER
+			case 19 :
+				// Calc.g:1:124: IDENTIFIER
 				{
 				mIDENTIFIER(); 
 
 				}
 				break;
-			case 17 :
-				// Calc.g:1:122: NUMBER
+			case 20 :
+				// Calc.g:1:135: NUMBER
 				{
 				mNUMBER(); 
 
 				}
 				break;
-			case 18 :
-				// Calc.g:1:129: COMMENT
+			case 21 :
+				// Calc.g:1:142: COMMENT
 				{
 				mCOMMENT(); 
 
 				}
 				break;
-			case 19 :
-				// Calc.g:1:137: WS
+			case 22 :
+				// Calc.g:1:150: WS
 				{
 				mWS(); 
 
