@@ -1,7 +1,7 @@
 grammar Calc;
 
 options {
-    k=2;                                // LL(1) - do not use LL(*)
+    k=1;                                // LL(1) - do not use LL(*)
     language=Java;                      // target language is Java (= default)
     output=AST;                         // build an AST
 }
@@ -68,13 +68,8 @@ statement
     ;
 
 assignment
-    :   lvalue BECOMES^ assignment_mul
+    :   lvalue BECOMES^ expr
     ;
-    
-assignment_mul
-	:	expr
-	|	lvalue BECOMES^ assignment_mul
-	;   
 
 print_stat
     :   PRINT^ LPAREN! expr RPAREN!
@@ -89,7 +84,11 @@ lvalue
     ;
     
 expr
-	:	expr_if
+	:	expr_assign
+	;
+	
+expr_assign
+	:	expr_if (BECOMES^ expr_assign)?
 	;
     
 expr_if

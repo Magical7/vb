@@ -34,7 +34,7 @@ declaration
 
 statement 
     :   assignment
-    |   ^(PRINT v=expr_if)
+    |   ^(PRINT v=expr)
             { System.out.println("" + v);   }
     |	^(SWAP id1=IDENTIFIER id2=IDENTIFIER)
     		{ 	int val = store.get($id1.text);
@@ -44,21 +44,25 @@ statement
     ;
 
 assignment
-	:	^(BECOMES id=IDENTIFIER v=assignment_mul)
+	:	^(BECOMES id=IDENTIFIER v=expr)
             { store.put($id.text, v);       }
     ;
-            
-assignment_mul returns [int val = 0;]
-	:	^(BECOMES id=IDENTIFIER ret=assignment_mul)	
+    
+expr returns [int val = 0; ]
+	:	v=expr_assign {val = v; }
+	;
+	
+expr_assign returns [int val = 0; ]
+	:	^(BECOMES id=IDENTIFIER ret=expr)	
 		{ 
 			store.put($id.text, ret);
 			val = ret; 
 		}
 	|	ret=expr_if	{ val = ret; }
-	;  
+	;
     
 expr_if returns [int val = 0;]
-    :	^(IF x=expr_if y=expr_if z=expr_if)
+    :	^(IF x=expr y=expr z=expr)
     	{
     		if (x != 0) {
     			val = y;
@@ -71,24 +75,24 @@ expr_if returns [int val = 0;]
     
 expr_rel returns [int val = 0;] 
     :   z=expr_plus               { val = z;      }
-    |   ^(GREATER x=expr_rel y=expr_rel)  		{ val = x > y ? 1 : 0;  }
-    |   ^(SMALLER x=expr_rel y=expr_rel)  		{ val = x < y ? 1 : 0;  }
-    |   ^(GREATEREQ x=expr_rel y=expr_rel)  		{ val = x >= y ? 1 : 0;  }
-    |   ^(SMALLEREQ x=expr_rel y=expr_rel)  		{ val = x <= y ? 1 : 0;  }
-    |   ^(EQUALS x=expr_rel y=expr_rel)  		{ val = x == y ? 1 : 0;  }
-    |   ^(NOTEQUALS x=expr_rel y=expr_rel)  		{ val = x != y ? 1 : 0;  }
+    |   ^(GREATER x=expr y=expr)  		{ val = x > y ? 1 : 0;  }
+    |   ^(SMALLER x=expr y=expr)  		{ val = x < y ? 1 : 0;  }
+    |   ^(GREATEREQ x=expr y=expr)  		{ val = x >= y ? 1 : 0;  }
+    |   ^(SMALLEREQ x=expr y=expr)  		{ val = x <= y ? 1 : 0;  }
+    |   ^(EQUALS x=expr y=expr)  		{ val = x == y ? 1 : 0;  }
+    |   ^(NOTEQUALS x=expr y=expr)  		{ val = x != y ? 1 : 0;  }
     ;
     
 expr_plus returns [int val = 0;] 
     :   z=expr_times               { val = z;      }
-    |   ^(PLUS x=expr_plus y=expr_plus)  		{ val = x + y;  }
-    |   ^(MINUS x=expr_plus y=expr_plus)  		{ val = x - y;  }
+    |   ^(PLUS x=expr y=expr)  		{ val = x + y;  }
+    |   ^(MINUS x=expr y=expr)  		{ val = x - y;  }
     ;
     
 expr_times returns [int val = 0;]
 	:	z=operand					{ val = z;		}
-	|	^(TIMES x=expr_times y=expr_times)	{ val = x * y; 	}
-	|	^(QUOTIENT x=expr_times y=expr_times) { if (y == 0) { 
+	|	^(TIMES x=expr y=expr)	{ val = x * y; 	}
+	|	^(QUOTIENT x=expr y=expr) { if (y == 0) { 
 			CalcException e = new CalcException("Divide by zero");
 			e.input = input;
 			throw e;

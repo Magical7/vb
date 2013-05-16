@@ -53,7 +53,7 @@ declaration
  
 statement 
     :   assignment
-    |   ^(PRINT expr_if)
+    |   ^(PRINT expr)
     	{
     		setStat();
     	}
@@ -68,47 +68,47 @@ statement
     ;
     
 assignment
-	:	^(BECOMES id=IDENTIFIER assignment_mul)
-        {   if (!isDeclared($id.text))
-                throw new CalcException($id, "is not declared");
-            setStat();
-        }
-    ;
-
-assignment_mul
-	:	expr_if
-	|	^(BECOMES id=IDENTIFIER assignment_mul)
+	:	^(BECOMES id=IDENTIFIER expr)
         {   if (!isDeclared($id.text))
                 throw new CalcException($id, "is not declared");
             setStat();
         }
     ;
     
+expr
+	:	expr_assign
+	;
+
+expr_assign
+	:	^(BECOMES expr_if expr)
+	|	expr_if
+	;
+    
 expr_if
-	:	^(IF expr_if expr_if expr_if)
+	:	^(IF expr expr expr)
 	|	expr_rel
 	;
     
 expr_rel
     :   expr_plus
-    |   ^(GREATER expr_rel expr_rel)
-    |   ^(SMALLER expr_rel expr_rel)
-    |   ^(GREATEREQ expr_rel expr_rel)
-    |   ^(SMALLEREQ expr_rel expr_rel)
-    |   ^(EQUALS expr_rel expr_rel)
-    |   ^(NOTEQUALS expr_rel expr_rel)
+    |   ^(GREATER expr expr)
+    |   ^(SMALLER expr expr)
+    |   ^(GREATEREQ expr expr)
+    |   ^(SMALLEREQ expr expr)
+    |   ^(EQUALS expr expr)
+    |   ^(NOTEQUALS expr expr)
     ;
     
 expr_plus
     :   expr_times
-    |   ^(PLUS expr_plus expr_plus)
-    |   ^(MINUS expr_plus expr_plus)
+    |   ^(PLUS expr expr)
+    |   ^(MINUS expr expr)
     ;
     
 expr_times
 	:	operand
-	|	^(TIMES expr_times expr_times)
-	|	^(QUOTIENT expr_times expr_times)
+	|	^(TIMES expr expr)
+	|	^(QUOTIENT expr expr)
 	;
     
 operand
@@ -116,7 +116,7 @@ operand
         {   if (!isDeclared($id.text))
                 throw new CalcException($id, "is not declared");
         }
-    |   n=NUMBER 
+    |   n=NUMBER
     ;
     
 type
