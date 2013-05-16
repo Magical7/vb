@@ -22,13 +22,23 @@ import java.util.HashSet;
 @members {
     // idset - a set of declared identifiers.
     private Set<String> idset = new HashSet<String>();   
+    private boolean lastLineDecl = false;
     
     public boolean  isDeclared(String s)     { return idset.contains(s); }
     public void     declare(String s)        { idset.add(s);             }
+    public void		setDecl()				{ lastLineDecl = true;				}
+    public void		setStat()				{ lastLineDecl = false;				}
+    public boolean	isLastLineDecl()				{ return lastLineDecl;				}
+    
 }
 
 program
     :   ^(PROGRAM (declaration | statement)+)
+    	{
+    		if (isLastLineDecl()) {
+    			throw new CalcException("Program may not end in a declaration");
+    		}
+    	}
     ;
     
 declaration
@@ -37,35 +47,55 @@ declaration
                 throw new CalcException($id, "is already declared");
             else 
                 declare($id.getText()); 
+            setDecl();
         }
     ;
  
 statement 
-    :   ^(BECOMES id=IDENTIFIER expr1)
+    :   ^(BECOMES id=IDENTIFIER expr_if)
         {   if (!isDeclared($id.text))
                 throw new CalcException($id, "is not declared");
+            setStat();
         }
-    |   ^(PRINT expr1)
+    |   ^(PRINT expr_if)
+    	{
+    		setStat();
+    	}
     |	^(SWAP id1=IDENTIFIER id2=IDENTIFIER)
     	{	if (!isDeclared($id1.text)) {
                 throw new CalcException($id1, "is not declared");
             } else if(!isDeclared($id2.text)) {
                 throw new CalcException($id2, "is not declared");
             }
+            setStat();
         }
     ;
     
-expr1 
-    :   expr2
-    |   ^(PLUS expr1 expr1)
-    |   ^(MINUS expr1 expr1)
-    |	^(IF expr1 expr1 expr1)
+expr_if
+	:	^(IF expr_if expr_if expr_if)
+	|	expr_rel
+	;
+    
+expr_rel
+    :   expr_plus
+    |   ^(GREATER expr_rel expr_rel)
+    |   ^(SMALLER expr_rel expr_rel)
+    |   ^(GREATEREQ expr_rel expr_rel)
+    |   ^(SMALLEREQ expr_rel expr_rel)
+    |   ^(EQUALS expr_rel expr_rel)
+    |   ^(NOTEQUALS expr_rel expr_rel)
     ;
     
-expr2
+expr_plus
+    :   expr_times
+    |   ^(PLUS expr_plus expr_plus)
+    |   ^(MINUS expr_plus expr_plus)
+    ;
+    
+expr_times
 	:	operand
-	|	^(TIMES expr2 expr2)
-	|	^(QUOTIENT expr2 expr2)
+	|	^(TIMES expr_times expr_times)
+	|	^(QUOTIENT expr_times expr_times)
 	;
     
 operand

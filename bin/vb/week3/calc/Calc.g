@@ -19,6 +19,13 @@ tokens {
     MINUS       =   '-'     ;
     TIMES		=	'*'		;
     QUOTIENT	=	'%'		;
+    // relational operators
+    GREATER		=	'>'		;
+    SMALLER		=	'<'		;
+    GREATEREQ	=	'>='	;
+    SMALLEREQ	=	'<='	;
+    EQUALS		=	'=='	;
+    NOTEQUALS	=	'!='	;
 
     // keywords
     PROGRAM     =   'program'   ;
@@ -42,17 +49,13 @@ package vb.week3.calc;
 // Parser rules
 
 program
-    :   declarations statements EOF
-            ->  ^(PROGRAM declarations? statements)
+    :   program_lines EOF
+            ->  ^(PROGRAM program_lines)
     ;
     
-declarations
-    :   (declaration SEMICOLON!)*
-    ;
-    
-statements
-    :   (statement SEMICOLON!)+
-    ;
+program_lines
+	:	((statement | declaration) SEMICOLON!)*
+	;
 
 declaration
     :   VAR^ IDENTIFIER COLON! type
@@ -65,11 +68,11 @@ statement
     ;
 
 assignment
-    :   lvalue BECOMES^ expr1
+    :   lvalue BECOMES^ expr_if
     ;
 
 print_stat
-    :   PRINT^ LPAREN! expr1 RPAREN!
+    :   PRINT^ LPAREN! expr_if RPAREN!
     ;
     
 swap_stat
@@ -80,24 +83,27 @@ lvalue
     :   IDENTIFIER
     ;
     
-expr1
-    :   expr2 ((PLUS^ | MINUS^) expr2 )*
-    |	if_expr
+expr_if
+	:	IF^ expr_if THEN! expr_if ELSE! expr_if
+	|	expr_rel
+	;
+    
+expr_rel
+	:	expr_plus ((GREATER^ | SMALLER^ | GREATEREQ^ | SMALLEREQ^ | EQUALS^ | NOTEQUALS^ ) expr_plus)*
+	;
+    
+expr_plus
+    :   expr_times ((PLUS^ | MINUS^) expr_times )*
     ;
     
-expr2
+expr_times
 	:	operand ((TIMES^ | QUOTIENT^) operand )*
 	;
-	
-if_expr
-	:	IF^ expr1 THEN! expr1 ELSE! expr1
-	;
-	
 
 operand
     :   IDENTIFIER
     |   NUMBER
-    |   LPAREN! expr1 RPAREN!
+    |   LPAREN! expr_plus RPAREN!
     ;
 
 type

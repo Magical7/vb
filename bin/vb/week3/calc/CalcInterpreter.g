@@ -33,9 +33,9 @@ declaration
     ;
 
 statement 
-    :   ^(BECOMES id=IDENTIFIER v=expr1)
+    :   ^(BECOMES id=IDENTIFIER v=expr_if)
             { store.put($id.text, v);       }
-    |   ^(PRINT v=expr1)
+    |   ^(PRINT v=expr_if)
             { System.out.println("" + v);   }
     |	^(SWAP id1=IDENTIFIER id2=IDENTIFIER)
     		{ 	int val = store.get($id1.text);
@@ -44,11 +44,8 @@ statement
     		}
     ;
     
-expr1 returns [int val = 0;] 
-    :   z=expr2               { val = z;      }
-    |   ^(PLUS x=expr1 y=expr1)  		{ val = x + y;  }
-    |   ^(MINUS x=expr1 y=expr1)  		{ val = x - y;  }
-    |	^(IF x=expr1 y=expr1 z=expr1)
+expr_if returns [int val = 0;]
+    :	^(IF x=expr_if y=expr_if z=expr_if)
     	{
     		if (x != 0) {
     			val = y;
@@ -56,12 +53,29 @@ expr1 returns [int val = 0;]
     			val = z;
     		}
     	}
+    |	x=expr_rel		{ val = x;	}
     ;
     
-expr2 returns [int val = 0;]
+expr_rel returns [int val = 0;] 
+    :   z=expr_plus               { val = z;      }
+    |   ^(GREATER x=expr_rel y=expr_rel)  		{ val = x > y ? 1 : 0;  }
+    |   ^(SMALLER x=expr_rel y=expr_rel)  		{ val = x < y ? 1 : 0;  }
+    |   ^(GREATEREQ x=expr_rel y=expr_rel)  		{ val = x >= y ? 1 : 0;  }
+    |   ^(SMALLEREQ x=expr_rel y=expr_rel)  		{ val = x <= y ? 1 : 0;  }
+    |   ^(EQUALS x=expr_rel y=expr_rel)  		{ val = x == y ? 1 : 0;  }
+    |   ^(NOTEQUALS x=expr_rel y=expr_rel)  		{ val = x != y ? 1 : 0;  }
+    ;
+    
+expr_plus returns [int val = 0;] 
+    :   z=expr_times               { val = z;      }
+    |   ^(PLUS x=expr_plus y=expr_plus)  		{ val = x + y;  }
+    |   ^(MINUS x=expr_plus y=expr_plus)  		{ val = x - y;  }
+    ;
+    
+expr_times returns [int val = 0;]
 	:	z=operand					{ val = z;		}
-	|	^(TIMES x=expr2 y=expr2)	{ val = x * y; 	}
-	|	^(QUOTIENT x=expr2 y=expr2) { if (y == 0) { 
+	|	^(TIMES x=expr_times y=expr_times)	{ val = x * y; 	}
+	|	^(QUOTIENT x=expr_times y=expr_times) { if (y == 0) { 
 			CalcException e = new CalcException("Divide by zero");
 			e.input = input;
 			throw e;
