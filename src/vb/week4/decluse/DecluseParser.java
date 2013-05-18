@@ -1,4 +1,4 @@
-// $ANTLR 3.5 Decluse.g 2013-05-18 13:50:26
+// $ANTLR 3.5 Decluse.g 2013-05-18 14:23:06
 
 package vb.week4.decluse;
 
@@ -15,7 +15,7 @@ import org.antlr.runtime.tree.*;
 public class DecluseParser extends Parser {
 	public static final String[] tokenNames = new String[] {
 		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "COMMENT", "DECLTOKEN", "ID", 
-		"LETTER", "LOWER", "LPAREN", "RPAREN", "UPPER", "USETOKEN", "WS"
+		"LETTER", "LOWER", "LPAREN", "RPAREN", "SERIE", "UPPER", "USETOKEN", "WS"
 	};
 	public static final int EOF=-1;
 	public static final int COMMENT=4;
@@ -25,9 +25,10 @@ public class DecluseParser extends Parser {
 	public static final int LOWER=8;
 	public static final int LPAREN=9;
 	public static final int RPAREN=10;
-	public static final int UPPER=11;
-	public static final int USETOKEN=12;
-	public static final int WS=13;
+	public static final int SERIE=11;
+	public static final int UPPER=12;
+	public static final int USETOKEN=13;
+	public static final int WS=14;
 
 	// delegates
 	public Parser[] getDelegates() {
@@ -64,7 +65,7 @@ public class DecluseParser extends Parser {
 
 
 	// $ANTLR start "decluse"
-	// Decluse.g:27:1: decluse : LPAREN ! serie RPAREN ! EOF ;
+	// Decluse.g:28:1: decluse : LPAREN ! serie RPAREN ! EOF ;
 	public final DecluseParser.decluse_return decluse() throws RecognitionException {
 		DecluseParser.decluse_return retval = new DecluseParser.decluse_return();
 		retval.start = input.LT(1);
@@ -81,21 +82,21 @@ public class DecluseParser extends Parser {
 		Object EOF4_tree=null;
 
 		try {
-			// Decluse.g:28:5: ( LPAREN ! serie RPAREN ! EOF )
-			// Decluse.g:28:9: LPAREN ! serie RPAREN ! EOF
+			// Decluse.g:29:5: ( LPAREN ! serie RPAREN ! EOF )
+			// Decluse.g:29:9: LPAREN ! serie RPAREN ! EOF
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			LPAREN1=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_decluse192); 
-			pushFollow(FOLLOW_serie_in_decluse195);
+			LPAREN1=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_decluse202); 
+			pushFollow(FOLLOW_serie_in_decluse205);
 			serie2=serie();
 			state._fsp--;
 
 			adaptor.addChild(root_0, serie2.getTree());
 
-			RPAREN3=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_decluse197); 
-			EOF4=(Token)match(input,EOF,FOLLOW_EOF_in_decluse200); 
+			RPAREN3=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_decluse207); 
+			EOF4=(Token)match(input,EOF,FOLLOW_EOF_in_decluse210); 
 			EOF4_tree = (Object)adaptor.create(EOF4);
 			adaptor.addChild(root_0, EOF4_tree);
 
@@ -128,7 +129,7 @@ public class DecluseParser extends Parser {
 
 
 	// $ANTLR start "serie"
-	// Decluse.g:31:1: serie : ( unit )* ;
+	// Decluse.g:32:1: serie : ( unit )* -> ^( SERIE ( unit )* ) ;
 	public final DecluseParser.serie_return serie() throws RecognitionException {
 		DecluseParser.serie_return retval = new DecluseParser.serie_return();
 		retval.start = input.LT(1);
@@ -137,15 +138,13 @@ public class DecluseParser extends Parser {
 
 		ParserRuleReturnScope unit5 =null;
 
+		RewriteRuleSubtreeStream stream_unit=new RewriteRuleSubtreeStream(adaptor,"rule unit");
 
 		try {
-			// Decluse.g:32:2: ( ( unit )* )
-			// Decluse.g:32:4: ( unit )*
+			// Decluse.g:33:2: ( ( unit )* -> ^( SERIE ( unit )* ) )
+			// Decluse.g:33:4: ( unit )*
 			{
-			root_0 = (Object)adaptor.nil();
-
-
-			// Decluse.g:32:4: ( unit )*
+			// Decluse.g:33:4: ( unit )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -156,14 +155,13 @@ public class DecluseParser extends Parser {
 
 				switch (alt1) {
 				case 1 :
-					// Decluse.g:32:4: unit
+					// Decluse.g:33:4: unit
 					{
-					pushFollow(FOLLOW_unit_in_serie218);
+					pushFollow(FOLLOW_unit_in_serie228);
 					unit5=unit();
 					state._fsp--;
 
-					adaptor.addChild(root_0, unit5.getTree());
-
+					stream_unit.add(unit5.getTree());
 					}
 					break;
 
@@ -171,6 +169,37 @@ public class DecluseParser extends Parser {
 					break loop1;
 				}
 			}
+
+			// AST REWRITE
+			// elements: unit
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 34:13: -> ^( SERIE ( unit )* )
+			{
+				// Decluse.g:34:17: ^( SERIE ( unit )* )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(SERIE, "SERIE"), root_1);
+				// Decluse.g:34:25: ( unit )*
+				while ( stream_unit.hasNext() ) {
+					adaptor.addChild(root_1, stream_unit.nextTree());
+				}
+				stream_unit.reset();
+
+				adaptor.addChild(root_0, root_1);
+				}
+
+			}
+
+
+			retval.tree = root_0;
 
 			}
 
@@ -201,7 +230,7 @@ public class DecluseParser extends Parser {
 
 
 	// $ANTLR start "unit"
-	// Decluse.g:35:1: unit : ( decl | use | LPAREN ! serie RPAREN !);
+	// Decluse.g:37:1: unit : ( decl | use | LPAREN ! serie RPAREN !);
 	public final DecluseParser.unit_return unit() throws RecognitionException {
 		DecluseParser.unit_return retval = new DecluseParser.unit_return();
 		retval.start = input.LT(1);
@@ -218,7 +247,7 @@ public class DecluseParser extends Parser {
 		Object RPAREN10_tree=null;
 
 		try {
-			// Decluse.g:36:2: ( decl | use | LPAREN ! serie RPAREN !)
+			// Decluse.g:38:2: ( decl | use | LPAREN ! serie RPAREN !)
 			int alt2=3;
 			switch ( input.LA(1) ) {
 			case DECLTOKEN:
@@ -243,12 +272,12 @@ public class DecluseParser extends Parser {
 			}
 			switch (alt2) {
 				case 1 :
-					// Decluse.g:36:4: decl
+					// Decluse.g:38:4: decl
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_decl_in_unit231);
+					pushFollow(FOLLOW_decl_in_unit263);
 					decl6=decl();
 					state._fsp--;
 
@@ -257,12 +286,12 @@ public class DecluseParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Decluse.g:37:5: use
+					// Decluse.g:39:5: use
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_use_in_unit237);
+					pushFollow(FOLLOW_use_in_unit269);
 					use7=use();
 					state._fsp--;
 
@@ -271,19 +300,19 @@ public class DecluseParser extends Parser {
 					}
 					break;
 				case 3 :
-					// Decluse.g:38:4: LPAREN ! serie RPAREN !
+					// Decluse.g:40:4: LPAREN ! serie RPAREN !
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					LPAREN8=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_unit242); 
-					pushFollow(FOLLOW_serie_in_unit245);
+					LPAREN8=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_unit274); 
+					pushFollow(FOLLOW_serie_in_unit277);
 					serie9=serie();
 					state._fsp--;
 
 					adaptor.addChild(root_0, serie9.getTree());
 
-					RPAREN10=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_unit247); 
+					RPAREN10=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_unit279); 
 					}
 					break;
 
@@ -315,7 +344,7 @@ public class DecluseParser extends Parser {
 
 
 	// $ANTLR start "decl"
-	// Decluse.g:41:1: decl : DECLTOKEN ^ ID ;
+	// Decluse.g:43:1: decl : DECLTOKEN ^ ID ;
 	public final DecluseParser.decl_return decl() throws RecognitionException {
 		DecluseParser.decl_return retval = new DecluseParser.decl_return();
 		retval.start = input.LT(1);
@@ -329,17 +358,17 @@ public class DecluseParser extends Parser {
 		Object ID12_tree=null;
 
 		try {
-			// Decluse.g:42:2: ( DECLTOKEN ^ ID )
-			// Decluse.g:42:4: DECLTOKEN ^ ID
+			// Decluse.g:44:2: ( DECLTOKEN ^ ID )
+			// Decluse.g:44:4: DECLTOKEN ^ ID
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			DECLTOKEN11=(Token)match(input,DECLTOKEN,FOLLOW_DECLTOKEN_in_decl260); 
+			DECLTOKEN11=(Token)match(input,DECLTOKEN,FOLLOW_DECLTOKEN_in_decl292); 
 			DECLTOKEN11_tree = (Object)adaptor.create(DECLTOKEN11);
 			root_0 = (Object)adaptor.becomeRoot(DECLTOKEN11_tree, root_0);
 
-			ID12=(Token)match(input,ID,FOLLOW_ID_in_decl263); 
+			ID12=(Token)match(input,ID,FOLLOW_ID_in_decl295); 
 			ID12_tree = (Object)adaptor.create(ID12);
 			adaptor.addChild(root_0, ID12_tree);
 
@@ -372,7 +401,7 @@ public class DecluseParser extends Parser {
 
 
 	// $ANTLR start "use"
-	// Decluse.g:45:1: use : USETOKEN ^ ID ;
+	// Decluse.g:47:1: use : USETOKEN ^ ID ;
 	public final DecluseParser.use_return use() throws RecognitionException {
 		DecluseParser.use_return retval = new DecluseParser.use_return();
 		retval.start = input.LT(1);
@@ -386,17 +415,17 @@ public class DecluseParser extends Parser {
 		Object ID14_tree=null;
 
 		try {
-			// Decluse.g:46:2: ( USETOKEN ^ ID )
-			// Decluse.g:46:4: USETOKEN ^ ID
+			// Decluse.g:48:2: ( USETOKEN ^ ID )
+			// Decluse.g:48:4: USETOKEN ^ ID
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			USETOKEN13=(Token)match(input,USETOKEN,FOLLOW_USETOKEN_in_use275); 
+			USETOKEN13=(Token)match(input,USETOKEN,FOLLOW_USETOKEN_in_use307); 
 			USETOKEN13_tree = (Object)adaptor.create(USETOKEN13);
 			root_0 = (Object)adaptor.becomeRoot(USETOKEN13_tree, root_0);
 
-			ID14=(Token)match(input,ID,FOLLOW_ID_in_use278); 
+			ID14=(Token)match(input,ID,FOLLOW_ID_in_use310); 
 			ID14_tree = (Object)adaptor.create(ID14);
 			adaptor.addChild(root_0, ID14_tree);
 
@@ -424,18 +453,18 @@ public class DecluseParser extends Parser {
 
 
 
-	public static final BitSet FOLLOW_LPAREN_in_decluse192 = new BitSet(new long[]{0x0000000000001620L});
-	public static final BitSet FOLLOW_serie_in_decluse195 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_RPAREN_in_decluse197 = new BitSet(new long[]{0x0000000000000000L});
-	public static final BitSet FOLLOW_EOF_in_decluse200 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_unit_in_serie218 = new BitSet(new long[]{0x0000000000001222L});
-	public static final BitSet FOLLOW_decl_in_unit231 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_use_in_unit237 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAREN_in_unit242 = new BitSet(new long[]{0x0000000000001620L});
-	public static final BitSet FOLLOW_serie_in_unit245 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_RPAREN_in_unit247 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_DECLTOKEN_in_decl260 = new BitSet(new long[]{0x0000000000000040L});
-	public static final BitSet FOLLOW_ID_in_decl263 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_USETOKEN_in_use275 = new BitSet(new long[]{0x0000000000000040L});
-	public static final BitSet FOLLOW_ID_in_use278 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAREN_in_decluse202 = new BitSet(new long[]{0x0000000000002620L});
+	public static final BitSet FOLLOW_serie_in_decluse205 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_RPAREN_in_decluse207 = new BitSet(new long[]{0x0000000000000000L});
+	public static final BitSet FOLLOW_EOF_in_decluse210 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_unit_in_serie228 = new BitSet(new long[]{0x0000000000002222L});
+	public static final BitSet FOLLOW_decl_in_unit263 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_use_in_unit269 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAREN_in_unit274 = new BitSet(new long[]{0x0000000000002620L});
+	public static final BitSet FOLLOW_serie_in_unit277 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_RPAREN_in_unit279 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_DECLTOKEN_in_decl292 = new BitSet(new long[]{0x0000000000000040L});
+	public static final BitSet FOLLOW_ID_in_decl295 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_USETOKEN_in_use307 = new BitSet(new long[]{0x0000000000000040L});
+	public static final BitSet FOLLOW_ID_in_use310 = new BitSet(new long[]{0x0000000000000002L});
 }

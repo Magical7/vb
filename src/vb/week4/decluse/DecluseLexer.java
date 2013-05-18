@@ -1,4 +1,4 @@
-// $ANTLR 3.5 Decluse.g 2013-05-18 13:50:26
+// $ANTLR 3.5 Decluse.g 2013-05-18 14:23:06
 
 package vb.week4.decluse;
 
@@ -18,9 +18,10 @@ public class DecluseLexer extends Lexer {
 	public static final int LOWER=8;
 	public static final int LPAREN=9;
 	public static final int RPAREN=10;
-	public static final int UPPER=11;
-	public static final int USETOKEN=12;
-	public static final int WS=13;
+	public static final int SERIE=11;
+	public static final int UPPER=12;
+	public static final int USETOKEN=13;
+	public static final int WS=14;
 
 	// delegates
 	// delegators
@@ -98,13 +99,34 @@ public class DecluseLexer extends Lexer {
 	}
 	// $ANTLR end "RPAREN"
 
+	// $ANTLR start "SERIE"
+	public final void mSERIE() throws RecognitionException {
+		try {
+			int _type = SERIE;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// Decluse.g:14:7: ( 'serie' )
+			// Decluse.g:14:9: 'serie'
+			{
+			match("serie"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "SERIE"
+
 	// $ANTLR start "USETOKEN"
 	public final void mUSETOKEN() throws RecognitionException {
 		try {
 			int _type = USETOKEN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Decluse.g:14:10: ( 'U:' )
-			// Decluse.g:14:12: 'U:'
+			// Decluse.g:15:10: ( 'U:' )
+			// Decluse.g:15:12: 'U:'
 			{
 			match("U:"); 
 
@@ -124,10 +146,10 @@ public class DecluseLexer extends Lexer {
 		try {
 			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Decluse.g:53:5: ( ( LETTER )+ )
-			// Decluse.g:53:9: ( LETTER )+
+			// Decluse.g:55:5: ( ( LETTER )+ )
+			// Decluse.g:55:9: ( LETTER )+
 			{
-			// Decluse.g:53:9: ( LETTER )+
+			// Decluse.g:55:9: ( LETTER )+
 			int cnt1=0;
 			loop1:
 			while (true) {
@@ -176,12 +198,12 @@ public class DecluseLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Decluse.g:59:5: ( '//' ( . )* '\\n' )
-			// Decluse.g:59:9: '//' ( . )* '\\n'
+			// Decluse.g:61:5: ( '//' ( . )* '\\n' )
+			// Decluse.g:61:9: '//' ( . )* '\\n'
 			{
 			match("//"); 
 
-			// Decluse.g:59:14: ( . )*
+			// Decluse.g:61:14: ( . )*
 			loop2:
 			while (true) {
 				int alt2=2;
@@ -195,7 +217,7 @@ public class DecluseLexer extends Lexer {
 
 				switch (alt2) {
 				case 1 :
-					// Decluse.g:59:14: .
+					// Decluse.g:61:14: .
 					{
 					matchAny(); 
 					}
@@ -224,10 +246,10 @@ public class DecluseLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Decluse.g:64:5: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
-			// Decluse.g:64:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+			// Decluse.g:66:5: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
+			// Decluse.g:66:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
 			{
-			// Decluse.g:64:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+			// Decluse.g:66:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
 			int cnt3=0;
 			loop3:
 			while (true) {
@@ -275,7 +297,7 @@ public class DecluseLexer extends Lexer {
 	// $ANTLR start "LOWER"
 	public final void mLOWER() throws RecognitionException {
 		try {
-			// Decluse.g:68:17: ( ( 'a' .. 'z' ) )
+			// Decluse.g:70:17: ( ( 'a' .. 'z' ) )
 			// Decluse.g:
 			{
 			if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -298,7 +320,7 @@ public class DecluseLexer extends Lexer {
 	// $ANTLR start "UPPER"
 	public final void mUPPER() throws RecognitionException {
 		try {
-			// Decluse.g:69:17: ( ( 'A' .. 'Z' ) )
+			// Decluse.g:71:17: ( ( 'A' .. 'Z' ) )
 			// Decluse.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
@@ -321,7 +343,7 @@ public class DecluseLexer extends Lexer {
 	// $ANTLR start "LETTER"
 	public final void mLETTER() throws RecognitionException {
 		try {
-			// Decluse.g:70:17: ( LOWER | UPPER )
+			// Decluse.g:72:17: ( LOWER | UPPER )
 			// Decluse.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -343,8 +365,8 @@ public class DecluseLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// Decluse.g:1:8: ( DECLTOKEN | LPAREN | RPAREN | USETOKEN | ID | COMMENT | WS )
-		int alt4=7;
+		// Decluse.g:1:8: ( DECLTOKEN | LPAREN | RPAREN | SERIE | USETOKEN | ID | COMMENT | WS )
+		int alt4=8;
 		switch ( input.LA(1) ) {
 		case 'D':
 			{
@@ -354,7 +376,7 @@ public class DecluseLexer extends Lexer {
 			}
 
 			else {
-				alt4=5;
+				alt4=6;
 			}
 
 			}
@@ -369,15 +391,60 @@ public class DecluseLexer extends Lexer {
 			alt4=3;
 			}
 			break;
-		case 'U':
+		case 's':
 			{
 			int LA4_4 = input.LA(2);
-			if ( (LA4_4==':') ) {
-				alt4=4;
+			if ( (LA4_4=='e') ) {
+				int LA4_10 = input.LA(3);
+				if ( (LA4_10=='r') ) {
+					int LA4_12 = input.LA(4);
+					if ( (LA4_12=='i') ) {
+						int LA4_13 = input.LA(5);
+						if ( (LA4_13=='e') ) {
+							int LA4_14 = input.LA(6);
+							if ( ((LA4_14 >= 'A' && LA4_14 <= 'Z')||(LA4_14 >= 'a' && LA4_14 <= 'z')) ) {
+								alt4=6;
+							}
+
+							else {
+								alt4=4;
+							}
+
+						}
+
+						else {
+							alt4=6;
+						}
+
+					}
+
+					else {
+						alt4=6;
+					}
+
+				}
+
+				else {
+					alt4=6;
+				}
+
 			}
 
 			else {
+				alt4=6;
+			}
+
+			}
+			break;
+		case 'U':
+			{
+			int LA4_5 = input.LA(2);
+			if ( (LA4_5==':') ) {
 				alt4=5;
+			}
+
+			else {
+				alt4=6;
 			}
 
 			}
@@ -424,7 +491,6 @@ public class DecluseLexer extends Lexer {
 		case 'p':
 		case 'q':
 		case 'r':
-		case 's':
 		case 't':
 		case 'u':
 		case 'v':
@@ -433,12 +499,12 @@ public class DecluseLexer extends Lexer {
 		case 'y':
 		case 'z':
 			{
-			alt4=5;
+			alt4=6;
 			}
 			break;
 		case '/':
 			{
-			alt4=6;
+			alt4=7;
 			}
 			break;
 		case '\t':
@@ -447,7 +513,7 @@ public class DecluseLexer extends Lexer {
 		case '\r':
 		case ' ':
 			{
-			alt4=7;
+			alt4=8;
 			}
 			break;
 		default:
@@ -478,28 +544,35 @@ public class DecluseLexer extends Lexer {
 				}
 				break;
 			case 4 :
-				// Decluse.g:1:34: USETOKEN
+				// Decluse.g:1:34: SERIE
+				{
+				mSERIE(); 
+
+				}
+				break;
+			case 5 :
+				// Decluse.g:1:40: USETOKEN
 				{
 				mUSETOKEN(); 
 
 				}
 				break;
-			case 5 :
-				// Decluse.g:1:43: ID
+			case 6 :
+				// Decluse.g:1:49: ID
 				{
 				mID(); 
 
 				}
 				break;
-			case 6 :
-				// Decluse.g:1:46: COMMENT
+			case 7 :
+				// Decluse.g:1:52: COMMENT
 				{
 				mCOMMENT(); 
 
 				}
 				break;
-			case 7 :
-				// Decluse.g:1:54: WS
+			case 8 :
+				// Decluse.g:1:60: WS
 				{
 				mWS(); 
 

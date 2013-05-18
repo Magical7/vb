@@ -11,7 +11,8 @@ tokens {
 	RPAREN		=	')'		;
 	DECLTOKEN	=	'D:'	;
 	USETOKEN	=	'U:'	;
-	
+
+	SERIE		=	'serie'	;	
 }
 
 @lexer::header {
@@ -30,6 +31,7 @@ decluse
     
 serie
 	:	unit*
+            ->  ^(SERIE unit*)
 	;
 	
 unit
