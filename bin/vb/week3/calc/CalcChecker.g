@@ -53,6 +53,7 @@ declaration
  
 statement 
     :   assignment
+    |	dowhileStatement
     |   ^(PRINT expr)
     	{
     		setStat();
@@ -66,6 +67,14 @@ statement
             setStat();
         }
     ;
+    
+dowhileStatement
+	:	^(DO statements WHILE expr_if)
+	;
+	
+statements
+	:	(statement)+
+	;
     
 assignment
 	:	^(BECOMES id=IDENTIFIER expr)

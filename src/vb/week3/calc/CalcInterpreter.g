@@ -34,6 +34,7 @@ declaration
 
 statement 
     :   assignment
+    |	dowhileStatement
     |   ^(PRINT v=expr)
             { System.out.println("" + v);   }
     |	^(SWAP id1=IDENTIFIER id2=IDENTIFIER)
@@ -42,6 +43,21 @@ statement
     			store.put($id2.text, val);
     		}
     ;
+    
+dowhileStatement
+@init { int ix = input.index(); }
+	:	^(DO statements WHILE v=expr_if)
+		{
+			if (v != 0) {
+				input.rewind(ix);
+				dowhileStatement();
+			}
+		}
+	;
+	
+statements
+	:	(statement)+
+	;
 
 assignment
 	:	^(BECOMES id=IDENTIFIER v=expr)

@@ -18,7 +18,7 @@ tokens {
     PLUS        =   '+'     ;
     MINUS       =   '-'     ;
     TIMES		=	'*'		;
-    QUOTIENT	=	'%'		;
+    QUOTIENT	=	'/'		;
     // relational operators
     GREATER		=	'>'		;
     SMALLER		=	'<'		;
@@ -35,6 +35,8 @@ tokens {
     SWAP		= 	'swap'		;
     IF			=	'if'		;
     THEN		=	'then'		;
+    DO			=	'do'		;
+    WHILE		=	'while'		;
     ELSE		=	'else'		;
 }
 
@@ -61,8 +63,12 @@ declaration
     :   VAR^ IDENTIFIER COLON! type
     ;
     
+dowhileStatement : DO^ statements WHILE expr_if ;
+statements : (statement SEMICOLON!)+ ;
+    
 statement
     :   assignment
+    |	dowhileStatement
     |   print_stat
     |	swap_stat
     ;

@@ -1,4 +1,4 @@
-// $ANTLR 3.5 Calc.g 2013-05-16 16:23:20
+// $ANTLR 3.5 Calc.g 2013-05-18 13:25:04
 
 package vb.week3.calc;
 
@@ -16,33 +16,35 @@ public class CalcLexer extends Lexer {
 	public static final int COMMA=6;
 	public static final int COMMENT=7;
 	public static final int DIGIT=8;
-	public static final int ELSE=9;
-	public static final int EQUALS=10;
-	public static final int GREATER=11;
-	public static final int GREATEREQ=12;
-	public static final int IDENTIFIER=13;
-	public static final int IF=14;
-	public static final int INTEGER=15;
-	public static final int LETTER=16;
-	public static final int LOWER=17;
-	public static final int LPAREN=18;
-	public static final int MINUS=19;
-	public static final int NOTEQUALS=20;
-	public static final int NUMBER=21;
-	public static final int PLUS=22;
-	public static final int PRINT=23;
-	public static final int PROGRAM=24;
-	public static final int QUOTIENT=25;
-	public static final int RPAREN=26;
-	public static final int SEMICOLON=27;
-	public static final int SMALLER=28;
-	public static final int SMALLEREQ=29;
-	public static final int SWAP=30;
-	public static final int THEN=31;
-	public static final int TIMES=32;
-	public static final int UPPER=33;
-	public static final int VAR=34;
-	public static final int WS=35;
+	public static final int DO=9;
+	public static final int ELSE=10;
+	public static final int EQUALS=11;
+	public static final int GREATER=12;
+	public static final int GREATEREQ=13;
+	public static final int IDENTIFIER=14;
+	public static final int IF=15;
+	public static final int INTEGER=16;
+	public static final int LETTER=17;
+	public static final int LOWER=18;
+	public static final int LPAREN=19;
+	public static final int MINUS=20;
+	public static final int NOTEQUALS=21;
+	public static final int NUMBER=22;
+	public static final int PLUS=23;
+	public static final int PRINT=24;
+	public static final int PROGRAM=25;
+	public static final int QUOTIENT=26;
+	public static final int RPAREN=27;
+	public static final int SEMICOLON=28;
+	public static final int SMALLER=29;
+	public static final int SMALLEREQ=30;
+	public static final int SWAP=31;
+	public static final int THEN=32;
+	public static final int TIMES=33;
+	public static final int UPPER=34;
+	public static final int VAR=35;
+	public static final int WHILE=36;
+	public static final int WS=37;
 
 	// delegates
 	// delegators
@@ -120,13 +122,34 @@ public class CalcLexer extends Lexer {
 	}
 	// $ANTLR end "COMMA"
 
+	// $ANTLR start "DO"
+	public final void mDO() throws RecognitionException {
+		try {
+			int _type = DO;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// Calc.g:14:4: ( 'do' )
+			// Calc.g:14:6: 'do'
+			{
+			match("do"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "DO"
+
 	// $ANTLR start "ELSE"
 	public final void mELSE() throws RecognitionException {
 		try {
 			int _type = ELSE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:14:6: ( 'else' )
-			// Calc.g:14:8: 'else'
+			// Calc.g:15:6: ( 'else' )
+			// Calc.g:15:8: 'else'
 			{
 			match("else"); 
 
@@ -146,8 +169,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = EQUALS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:15:8: ( '==' )
-			// Calc.g:15:10: '=='
+			// Calc.g:16:8: ( '==' )
+			// Calc.g:16:10: '=='
 			{
 			match("=="); 
 
@@ -167,8 +190,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = GREATER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:16:9: ( '>' )
-			// Calc.g:16:11: '>'
+			// Calc.g:17:9: ( '>' )
+			// Calc.g:17:11: '>'
 			{
 			match('>'); 
 			}
@@ -187,8 +210,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = GREATEREQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:17:11: ( '>=' )
-			// Calc.g:17:13: '>='
+			// Calc.g:18:11: ( '>=' )
+			// Calc.g:18:13: '>='
 			{
 			match(">="); 
 
@@ -208,8 +231,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = IF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:18:4: ( 'if' )
-			// Calc.g:18:6: 'if'
+			// Calc.g:19:4: ( 'if' )
+			// Calc.g:19:6: 'if'
 			{
 			match("if"); 
 
@@ -229,8 +252,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = INTEGER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:19:9: ( 'integer' )
-			// Calc.g:19:11: 'integer'
+			// Calc.g:20:9: ( 'integer' )
+			// Calc.g:20:11: 'integer'
 			{
 			match("integer"); 
 
@@ -250,8 +273,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = LPAREN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:20:8: ( '(' )
-			// Calc.g:20:10: '('
+			// Calc.g:21:8: ( '(' )
+			// Calc.g:21:10: '('
 			{
 			match('('); 
 			}
@@ -270,8 +293,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = MINUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:21:7: ( '-' )
-			// Calc.g:21:9: '-'
+			// Calc.g:22:7: ( '-' )
+			// Calc.g:22:9: '-'
 			{
 			match('-'); 
 			}
@@ -290,8 +313,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = NOTEQUALS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:22:11: ( '!=' )
-			// Calc.g:22:13: '!='
+			// Calc.g:23:11: ( '!=' )
+			// Calc.g:23:13: '!='
 			{
 			match("!="); 
 
@@ -311,8 +334,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = PLUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:23:6: ( '+' )
-			// Calc.g:23:8: '+'
+			// Calc.g:24:6: ( '+' )
+			// Calc.g:24:8: '+'
 			{
 			match('+'); 
 			}
@@ -331,8 +354,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = PRINT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:24:7: ( 'print' )
-			// Calc.g:24:9: 'print'
+			// Calc.g:25:7: ( 'print' )
+			// Calc.g:25:9: 'print'
 			{
 			match("print"); 
 
@@ -352,8 +375,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = PROGRAM;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:25:9: ( 'program' )
-			// Calc.g:25:11: 'program'
+			// Calc.g:26:9: ( 'program' )
+			// Calc.g:26:11: 'program'
 			{
 			match("program"); 
 
@@ -373,10 +396,10 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = QUOTIENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:26:10: ( '%' )
-			// Calc.g:26:12: '%'
+			// Calc.g:27:10: ( '/' )
+			// Calc.g:27:12: '/'
 			{
-			match('%'); 
+			match('/'); 
 			}
 
 			state.type = _type;
@@ -393,8 +416,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = RPAREN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:27:8: ( ')' )
-			// Calc.g:27:10: ')'
+			// Calc.g:28:8: ( ')' )
+			// Calc.g:28:10: ')'
 			{
 			match(')'); 
 			}
@@ -413,8 +436,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = SEMICOLON;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:28:11: ( ';' )
-			// Calc.g:28:13: ';'
+			// Calc.g:29:11: ( ';' )
+			// Calc.g:29:13: ';'
 			{
 			match(';'); 
 			}
@@ -433,8 +456,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = SMALLER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:29:9: ( '<' )
-			// Calc.g:29:11: '<'
+			// Calc.g:30:9: ( '<' )
+			// Calc.g:30:11: '<'
 			{
 			match('<'); 
 			}
@@ -453,8 +476,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = SMALLEREQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:30:11: ( '<=' )
-			// Calc.g:30:13: '<='
+			// Calc.g:31:11: ( '<=' )
+			// Calc.g:31:13: '<='
 			{
 			match("<="); 
 
@@ -474,8 +497,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = SWAP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:31:6: ( 'swap' )
-			// Calc.g:31:8: 'swap'
+			// Calc.g:32:6: ( 'swap' )
+			// Calc.g:32:8: 'swap'
 			{
 			match("swap"); 
 
@@ -495,8 +518,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = THEN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:32:6: ( 'then' )
-			// Calc.g:32:8: 'then'
+			// Calc.g:33:6: ( 'then' )
+			// Calc.g:33:8: 'then'
 			{
 			match("then"); 
 
@@ -516,8 +539,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = TIMES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:33:7: ( '*' )
-			// Calc.g:33:9: '*'
+			// Calc.g:34:7: ( '*' )
+			// Calc.g:34:9: '*'
 			{
 			match('*'); 
 			}
@@ -536,8 +559,8 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = VAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:34:5: ( 'var' )
-			// Calc.g:34:7: 'var'
+			// Calc.g:35:5: ( 'var' )
+			// Calc.g:35:7: 'var'
 			{
 			match("var"); 
 
@@ -552,17 +575,38 @@ public class CalcLexer extends Lexer {
 	}
 	// $ANTLR end "VAR"
 
+	// $ANTLR start "WHILE"
+	public final void mWHILE() throws RecognitionException {
+		try {
+			int _type = WHILE;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// Calc.g:36:7: ( 'while' )
+			// Calc.g:36:9: 'while'
+			{
+			match("while"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "WHILE"
+
 	// $ANTLR start "IDENTIFIER"
 	public final void mIDENTIFIER() throws RecognitionException {
 		try {
 			int _type = IDENTIFIER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:125:5: ( LETTER ( LETTER | DIGIT )* )
-			// Calc.g:125:9: LETTER ( LETTER | DIGIT )*
+			// Calc.g:131:5: ( LETTER ( LETTER | DIGIT )* )
+			// Calc.g:131:9: LETTER ( LETTER | DIGIT )*
 			{
 			mLETTER(); 
 
-			// Calc.g:125:16: ( LETTER | DIGIT )*
+			// Calc.g:131:16: ( LETTER | DIGIT )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -607,10 +651,10 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = NUMBER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:129:5: ( ( DIGIT )+ )
-			// Calc.g:129:9: ( DIGIT )+
+			// Calc.g:135:5: ( ( DIGIT )+ )
+			// Calc.g:135:9: ( DIGIT )+
 			{
-			// Calc.g:129:9: ( DIGIT )+
+			// Calc.g:135:9: ( DIGIT )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -659,12 +703,12 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:134:5: ( '//' ( . )* '\\n' )
-			// Calc.g:134:9: '//' ( . )* '\\n'
+			// Calc.g:140:5: ( '//' ( . )* '\\n' )
+			// Calc.g:140:9: '//' ( . )* '\\n'
 			{
 			match("//"); 
 
-			// Calc.g:134:14: ( . )*
+			// Calc.g:140:14: ( . )*
 			loop3:
 			while (true) {
 				int alt3=2;
@@ -678,7 +722,7 @@ public class CalcLexer extends Lexer {
 
 				switch (alt3) {
 				case 1 :
-					// Calc.g:134:14: .
+					// Calc.g:140:14: .
 					{
 					matchAny(); 
 					}
@@ -707,10 +751,10 @@ public class CalcLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Calc.g:139:5: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
-			// Calc.g:139:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+			// Calc.g:145:5: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
+			// Calc.g:145:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
 			{
-			// Calc.g:139:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+			// Calc.g:145:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
 			int cnt4=0;
 			loop4:
 			while (true) {
@@ -758,7 +802,7 @@ public class CalcLexer extends Lexer {
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
-			// Calc.g:143:17: ( ( '0' .. '9' ) )
+			// Calc.g:149:17: ( ( '0' .. '9' ) )
 			// Calc.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -781,7 +825,7 @@ public class CalcLexer extends Lexer {
 	// $ANTLR start "LOWER"
 	public final void mLOWER() throws RecognitionException {
 		try {
-			// Calc.g:144:17: ( ( 'a' .. 'z' ) )
+			// Calc.g:150:17: ( ( 'a' .. 'z' ) )
 			// Calc.g:
 			{
 			if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -804,7 +848,7 @@ public class CalcLexer extends Lexer {
 	// $ANTLR start "UPPER"
 	public final void mUPPER() throws RecognitionException {
 		try {
-			// Calc.g:145:17: ( ( 'A' .. 'Z' ) )
+			// Calc.g:151:17: ( ( 'A' .. 'Z' ) )
 			// Calc.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
@@ -827,7 +871,7 @@ public class CalcLexer extends Lexer {
 	// $ANTLR start "LETTER"
 	public final void mLETTER() throws RecognitionException {
 		try {
-			// Calc.g:146:17: ( LOWER | UPPER )
+			// Calc.g:152:17: ( LOWER | UPPER )
 			// Calc.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -849,8 +893,8 @@ public class CalcLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// Calc.g:1:8: ( BECOMES | COLON | COMMA | ELSE | EQUALS | GREATER | GREATEREQ | IF | INTEGER | LPAREN | MINUS | NOTEQUALS | PLUS | PRINT | PROGRAM | QUOTIENT | RPAREN | SEMICOLON | SMALLER | SMALLEREQ | SWAP | THEN | TIMES | VAR | IDENTIFIER | NUMBER | COMMENT | WS )
-		int alt5=28;
+		// Calc.g:1:8: ( BECOMES | COLON | COMMA | DO | ELSE | EQUALS | GREATER | GREATEREQ | IF | INTEGER | LPAREN | MINUS | NOTEQUALS | PLUS | PRINT | PROGRAM | QUOTIENT | RPAREN | SEMICOLON | SMALLER | SMALLEREQ | SWAP | THEN | TIMES | VAR | WHILE | IDENTIFIER | NUMBER | COMMENT | WS )
+		int alt5=30;
 		alt5 = dfa5.predict(input);
 		switch (alt5) {
 			case 1 :
@@ -875,175 +919,189 @@ public class CalcLexer extends Lexer {
 				}
 				break;
 			case 4 :
-				// Calc.g:1:30: ELSE
+				// Calc.g:1:30: DO
+				{
+				mDO(); 
+
+				}
+				break;
+			case 5 :
+				// Calc.g:1:33: ELSE
 				{
 				mELSE(); 
 
 				}
 				break;
-			case 5 :
-				// Calc.g:1:35: EQUALS
+			case 6 :
+				// Calc.g:1:38: EQUALS
 				{
 				mEQUALS(); 
 
 				}
 				break;
-			case 6 :
-				// Calc.g:1:42: GREATER
+			case 7 :
+				// Calc.g:1:45: GREATER
 				{
 				mGREATER(); 
 
 				}
 				break;
-			case 7 :
-				// Calc.g:1:50: GREATEREQ
+			case 8 :
+				// Calc.g:1:53: GREATEREQ
 				{
 				mGREATEREQ(); 
 
 				}
 				break;
-			case 8 :
-				// Calc.g:1:60: IF
+			case 9 :
+				// Calc.g:1:63: IF
 				{
 				mIF(); 
 
 				}
 				break;
-			case 9 :
-				// Calc.g:1:63: INTEGER
+			case 10 :
+				// Calc.g:1:66: INTEGER
 				{
 				mINTEGER(); 
 
 				}
 				break;
-			case 10 :
-				// Calc.g:1:71: LPAREN
+			case 11 :
+				// Calc.g:1:74: LPAREN
 				{
 				mLPAREN(); 
 
 				}
 				break;
-			case 11 :
-				// Calc.g:1:78: MINUS
+			case 12 :
+				// Calc.g:1:81: MINUS
 				{
 				mMINUS(); 
 
 				}
 				break;
-			case 12 :
-				// Calc.g:1:84: NOTEQUALS
+			case 13 :
+				// Calc.g:1:87: NOTEQUALS
 				{
 				mNOTEQUALS(); 
 
 				}
 				break;
-			case 13 :
-				// Calc.g:1:94: PLUS
+			case 14 :
+				// Calc.g:1:97: PLUS
 				{
 				mPLUS(); 
 
 				}
 				break;
-			case 14 :
-				// Calc.g:1:99: PRINT
+			case 15 :
+				// Calc.g:1:102: PRINT
 				{
 				mPRINT(); 
 
 				}
 				break;
-			case 15 :
-				// Calc.g:1:105: PROGRAM
+			case 16 :
+				// Calc.g:1:108: PROGRAM
 				{
 				mPROGRAM(); 
 
 				}
 				break;
-			case 16 :
-				// Calc.g:1:113: QUOTIENT
+			case 17 :
+				// Calc.g:1:116: QUOTIENT
 				{
 				mQUOTIENT(); 
 
 				}
 				break;
-			case 17 :
-				// Calc.g:1:122: RPAREN
+			case 18 :
+				// Calc.g:1:125: RPAREN
 				{
 				mRPAREN(); 
 
 				}
 				break;
-			case 18 :
-				// Calc.g:1:129: SEMICOLON
+			case 19 :
+				// Calc.g:1:132: SEMICOLON
 				{
 				mSEMICOLON(); 
 
 				}
 				break;
-			case 19 :
-				// Calc.g:1:139: SMALLER
+			case 20 :
+				// Calc.g:1:142: SMALLER
 				{
 				mSMALLER(); 
 
 				}
 				break;
-			case 20 :
-				// Calc.g:1:147: SMALLEREQ
+			case 21 :
+				// Calc.g:1:150: SMALLEREQ
 				{
 				mSMALLEREQ(); 
 
 				}
 				break;
-			case 21 :
-				// Calc.g:1:157: SWAP
+			case 22 :
+				// Calc.g:1:160: SWAP
 				{
 				mSWAP(); 
 
 				}
 				break;
-			case 22 :
-				// Calc.g:1:162: THEN
+			case 23 :
+				// Calc.g:1:165: THEN
 				{
 				mTHEN(); 
 
 				}
 				break;
-			case 23 :
-				// Calc.g:1:167: TIMES
+			case 24 :
+				// Calc.g:1:170: TIMES
 				{
 				mTIMES(); 
 
 				}
 				break;
-			case 24 :
-				// Calc.g:1:173: VAR
+			case 25 :
+				// Calc.g:1:176: VAR
 				{
 				mVAR(); 
 
 				}
 				break;
-			case 25 :
-				// Calc.g:1:177: IDENTIFIER
+			case 26 :
+				// Calc.g:1:180: WHILE
+				{
+				mWHILE(); 
+
+				}
+				break;
+			case 27 :
+				// Calc.g:1:186: IDENTIFIER
 				{
 				mIDENTIFIER(); 
 
 				}
 				break;
-			case 26 :
-				// Calc.g:1:188: NUMBER
+			case 28 :
+				// Calc.g:1:197: NUMBER
 				{
 				mNUMBER(); 
 
 				}
 				break;
-			case 27 :
-				// Calc.g:1:195: COMMENT
+			case 29 :
+				// Calc.g:1:204: COMMENT
 				{
 				mCOMMENT(); 
 
 				}
 				break;
-			case 28 :
-				// Calc.g:1:203: WS
+			case 30 :
+				// Calc.g:1:212: WS
 				{
 				mWS(); 
 
@@ -1056,97 +1114,110 @@ public class CalcLexer extends Lexer {
 
 	protected DFA5 dfa5 = new DFA5(this);
 	static final String DFA5_eotS =
-		"\1\uffff\1\31\1\uffff\1\24\1\uffff\1\34\1\24\4\uffff\1\24\3\uffff\1\41"+
-		"\2\24\1\uffff\1\24\6\uffff\1\24\2\uffff\1\46\2\24\2\uffff\4\24\1\uffff"+
-		"\5\24\1\63\1\64\3\24\1\70\1\71\2\uffff\1\24\1\73\1\24\2\uffff\1\24\1\uffff"+
-		"\1\24\1\77\1\100\2\uffff";
+		"\1\uffff\1\32\1\uffff\2\26\1\uffff\1\36\1\26\4\uffff\1\26\1\43\2\uffff"+
+		"\1\45\2\26\1\uffff\2\26\5\uffff\1\52\1\26\2\uffff\1\54\2\26\4\uffff\4"+
+		"\26\1\uffff\1\26\1\uffff\5\26\1\72\1\26\1\74\3\26\1\100\1\101\1\uffff"+
+		"\1\26\1\uffff\1\26\1\104\1\26\2\uffff\1\106\1\26\1\uffff\1\26\1\uffff"+
+		"\1\111\1\112\2\uffff";
 	static final String DFA5_eofS =
-		"\101\uffff";
+		"\113\uffff";
 	static final String DFA5_minS =
-		"\1\11\1\75\1\uffff\1\154\1\uffff\1\75\1\146\4\uffff\1\162\3\uffff\1\75"+
-		"\1\167\1\150\1\uffff\1\141\6\uffff\1\163\2\uffff\1\60\1\164\1\151\2\uffff"+
-		"\1\141\1\145\1\162\1\145\1\uffff\1\145\1\156\1\147\1\160\1\156\2\60\1"+
-		"\147\1\164\1\162\2\60\2\uffff\1\145\1\60\1\141\2\uffff\1\162\1\uffff\1"+
-		"\155\2\60\2\uffff";
+		"\1\11\1\75\1\uffff\1\157\1\154\1\uffff\1\75\1\146\4\uffff\1\162\1\57\2"+
+		"\uffff\1\75\1\167\1\150\1\uffff\1\141\1\150\5\uffff\1\60\1\163\2\uffff"+
+		"\1\60\1\164\1\151\4\uffff\1\141\1\145\1\162\1\151\1\uffff\1\145\1\uffff"+
+		"\1\145\1\156\1\147\1\160\1\156\1\60\1\154\1\60\1\147\1\164\1\162\2\60"+
+		"\1\uffff\1\145\1\uffff\1\145\1\60\1\141\2\uffff\1\60\1\162\1\uffff\1\155"+
+		"\1\uffff\2\60\2\uffff";
 	static final String DFA5_maxS =
-		"\1\172\1\75\1\uffff\1\154\1\uffff\1\75\1\156\4\uffff\1\162\3\uffff\1\75"+
-		"\1\167\1\150\1\uffff\1\141\6\uffff\1\163\2\uffff\1\172\1\164\1\157\2\uffff"+
-		"\1\141\1\145\1\162\1\145\1\uffff\1\145\1\156\1\147\1\160\1\156\2\172\1"+
-		"\147\1\164\1\162\2\172\2\uffff\1\145\1\172\1\141\2\uffff\1\162\1\uffff"+
-		"\1\155\2\172\2\uffff";
+		"\1\172\1\75\1\uffff\1\157\1\154\1\uffff\1\75\1\156\4\uffff\1\162\1\57"+
+		"\2\uffff\1\75\1\167\1\150\1\uffff\1\141\1\150\5\uffff\1\172\1\163\2\uffff"+
+		"\1\172\1\164\1\157\4\uffff\1\141\1\145\1\162\1\151\1\uffff\1\145\1\uffff"+
+		"\1\145\1\156\1\147\1\160\1\156\1\172\1\154\1\172\1\147\1\164\1\162\2\172"+
+		"\1\uffff\1\145\1\uffff\1\145\1\172\1\141\2\uffff\1\172\1\162\1\uffff\1"+
+		"\155\1\uffff\2\172\2\uffff";
 	static final String DFA5_acceptS =
-		"\2\uffff\1\3\1\uffff\1\5\2\uffff\1\12\1\13\1\14\1\15\1\uffff\1\20\1\21"+
-		"\1\22\3\uffff\1\27\1\uffff\1\31\1\32\1\33\1\34\1\1\1\2\1\uffff\1\7\1\6"+
-		"\3\uffff\1\24\1\23\4\uffff\1\10\14\uffff\1\30\1\4\3\uffff\1\25\1\26\1"+
-		"\uffff\1\16\3\uffff\1\11\1\17";
+		"\2\uffff\1\3\2\uffff\1\6\2\uffff\1\13\1\14\1\15\1\16\2\uffff\1\22\1\23"+
+		"\3\uffff\1\30\2\uffff\1\33\1\34\1\36\1\1\1\2\2\uffff\1\10\1\7\3\uffff"+
+		"\1\35\1\21\1\25\1\24\4\uffff\1\4\1\uffff\1\11\15\uffff\1\31\1\uffff\1"+
+		"\5\3\uffff\1\26\1\27\2\uffff\1\17\1\uffff\1\32\2\uffff\1\12\1\20";
 	static final String DFA5_specialS =
-		"\101\uffff}>";
+		"\113\uffff}>";
 	static final String[] DFA5_transitionS = {
-			"\2\27\1\uffff\2\27\22\uffff\1\27\1\11\3\uffff\1\14\2\uffff\1\7\1\15\1"+
-			"\22\1\12\1\2\1\10\1\uffff\1\26\12\25\1\1\1\16\1\17\1\4\1\5\2\uffff\32"+
-			"\24\6\uffff\4\24\1\3\3\24\1\6\6\24\1\13\2\24\1\20\1\21\1\24\1\23\4\24",
-			"\1\30",
-			"",
-			"\1\32",
+			"\2\30\1\uffff\2\30\22\uffff\1\30\1\12\6\uffff\1\10\1\16\1\23\1\13\1\2"+
+			"\1\11\1\uffff\1\15\12\27\1\1\1\17\1\20\1\5\1\6\2\uffff\32\26\6\uffff"+
+			"\3\26\1\3\1\4\3\26\1\7\6\26\1\14\2\26\1\21\1\22\1\26\1\24\1\25\3\26",
+			"\1\31",
 			"",
 			"\1\33",
-			"\1\35\7\uffff\1\36",
+			"\1\34",
+			"",
+			"\1\35",
+			"\1\37\7\uffff\1\40",
 			"",
 			"",
 			"",
 			"",
-			"\1\37",
-			"",
-			"",
-			"",
-			"\1\40",
+			"\1\41",
 			"\1\42",
-			"\1\43",
+			"",
 			"",
 			"\1\44",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"\1\45",
-			"",
-			"",
-			"\12\24\7\uffff\32\24\6\uffff\32\24",
+			"\1\46",
 			"\1\47",
-			"\1\50\5\uffff\1\51",
+			"",
+			"\1\50",
+			"\1\51",
 			"",
 			"",
-			"\1\52",
+			"",
+			"",
+			"",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
 			"\1\53",
-			"\1\54",
-			"\1\55",
 			"",
-			"\1\56",
-			"\1\57",
+			"",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\1\55",
+			"\1\56\5\uffff\1\57",
+			"",
+			"",
+			"",
+			"",
 			"\1\60",
 			"\1\61",
 			"\1\62",
-			"\12\24\7\uffff\32\24\6\uffff\32\24",
-			"\12\24\7\uffff\32\24\6\uffff\32\24",
+			"\1\63",
+			"",
+			"\1\64",
+			"",
 			"\1\65",
 			"\1\66",
 			"\1\67",
-			"\12\24\7\uffff\32\24\6\uffff\32\24",
-			"\12\24\7\uffff\32\24\6\uffff\32\24",
-			"",
-			"",
-			"\1\72",
-			"\12\24\7\uffff\32\24\6\uffff\32\24",
-			"\1\74",
-			"",
-			"",
+			"\1\70",
+			"\1\71",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\1\73",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
 			"\1\75",
-			"",
 			"\1\76",
-			"\12\24\7\uffff\32\24\6\uffff\32\24",
-			"\12\24\7\uffff\32\24\6\uffff\32\24",
+			"\1\77",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"",
+			"\1\102",
+			"",
+			"\1\103",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\1\105",
+			"",
+			"",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\1\107",
+			"",
+			"\1\110",
+			"",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
 			"",
 			""
 	};
@@ -1182,7 +1253,7 @@ public class CalcLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( BECOMES | COLON | COMMA | ELSE | EQUALS | GREATER | GREATEREQ | IF | INTEGER | LPAREN | MINUS | NOTEQUALS | PLUS | PRINT | PROGRAM | QUOTIENT | RPAREN | SEMICOLON | SMALLER | SMALLEREQ | SWAP | THEN | TIMES | VAR | IDENTIFIER | NUMBER | COMMENT | WS );";
+			return "1:1: Tokens : ( BECOMES | COLON | COMMA | DO | ELSE | EQUALS | GREATER | GREATEREQ | IF | INTEGER | LPAREN | MINUS | NOTEQUALS | PLUS | PRINT | PROGRAM | QUOTIENT | RPAREN | SEMICOLON | SMALLER | SMALLEREQ | SWAP | THEN | TIMES | VAR | WHILE | IDENTIFIER | NUMBER | COMMENT | WS );";
 		}
 	}
 
