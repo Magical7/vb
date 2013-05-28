@@ -272,7 +272,30 @@ public class Parser {
         commandAST = new WhileCommand(eAST, cAST, commandPos);
       }
       break;
-
+    case Token.REPEAT:
+      {
+    	  acceptIt();
+    	  Command cAST = parseSingleCommand();
+    	  accept(Token.UNTIL);
+    	  Expression eAST = parseExpression();
+    	  finish(commandPos);
+    	  commandAST = new RepeatCommand(cAST, eAST, commandPos);
+      }
+      break;
+    case Token.CASE:
+      {
+    	  acceptIt();
+    	  Expression eAST = parseExpression();
+    	  accept(Token.OF);
+    	  Case caAST = parseCase();
+    	  accept(Token.ELSE);
+    	  accept(Token.COLON);
+    	  Command coAST = parseSingleCommand();
+    	  finish(commandPos);
+    	  commandAST = new CaseCommand(eAST,caAST,coAST,commandPos);
+      }
+    break;
+      
     case Token.SEMICOLON:
     case Token.END:
     case Token.ELSE:
@@ -292,6 +315,44 @@ public class Parser {
 
     return commandAST;
   }
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+//CASE
+//
+///////////////////////////////////////////////////////////////////////////////
+  
+Case parseCase() throws SyntaxError {
+	 Case caseAST = null; // in case there's a syntactic error
+
+	 SourcePosition casePos = new SourcePosition();
+
+	 start(casePos);
+	 caseAST = parseSingleCase();
+	 accept(Token.SEMICOLON);
+	 while (currentToken.kind == Token.INTLITERAL) {
+	      Case c2AST = parseSingleCase();
+	      finish(casePos);
+	      caseAST = new SequentialCase(caseAST, c2AST, casePos);
+	      accept(Token.SEMICOLON);
+	 }
+	 return caseAST;
+}
+
+Case parseSingleCase() throws SyntaxError {
+	Case caseAST = null; // in case there's a syntactic error
+
+    SourcePosition casePos = new SourcePosition();
+    start(casePos);
+    IntegerLiteral ilAST = parseIntegerLiteral();
+    accept(Token.COLON);
+    Command cAST = parseSingleCommand();
+    finish(casePos);
+    caseAST = new SingleCase(ilAST, cAST, casePos);
+    
+    return caseAST;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //

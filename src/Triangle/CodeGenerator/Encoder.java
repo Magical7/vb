@@ -15,7 +15,6 @@
 package Triangle.CodeGenerator;
 
 import Triangle.AbstractSyntaxTrees.*;
-import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.Compiler;
 import Triangle.ErrorReporter;
 import Triangle.StdEnvironment;
@@ -90,6 +89,32 @@ public final class Encoder implements Visitor {
     ast.E.visit(this, frame);
     emit(Machine.JUMPIFop, Machine.trueRep, Machine.CBr, loopAddr);
     return null;
+  }
+  
+  public Object visitRepeatCommand(RepeatCommand ast, Object o) {
+	Frame frame = (Frame)o;  
+	int loopAddr = nextInstrAddr;
+	
+	ast.C.visit(this,frame);
+	ast.E.visit(this, frame);
+	emit(Machine.JUMPIFop, Machine.falseRep, Machine.CBr, loopAddr);
+  	return null;
+  }
+  
+  public Object visitCaseCommand(CaseCommand ast, Object o) {
+  	// TODO Auto-generated method stub
+  	return null;
+  }
+
+  //Case
+  public Object visitSequentialCase(SequentialCase ast, Object o) {
+  	// TODO Auto-generated method stub
+  	return null;
+  }
+
+  public Object visitSingleCase(SingleCase ast, Object o) {
+  	// TODO Auto-generated method stub
+  	return null;
   }
 
 
@@ -930,4 +955,5 @@ public final class Encoder implements Visitor {
       }
     }
   }
+
 }

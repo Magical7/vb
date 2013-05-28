@@ -15,7 +15,6 @@
 package Triangle.ContextualAnalyzer;
 
 import Triangle.AbstractSyntaxTrees.*;
-import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.SyntacticAnalyzer.SourcePosition;
 import Triangle.Compiler;
 import Triangle.ErrorReporter;
@@ -86,6 +85,31 @@ public final class Checker implements Visitor {
       reporter.reportError("Boolean expression expected here", "", ast.E.position);
     ast.C.visit(this, null);
     return null;
+  }
+  
+  public Object visitRepeatCommand(RepeatCommand ast, Object o) {
+	ast.C.visit(this, null);
+	TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
+    if (! eType.equals(StdEnvironment.booleanType)){
+      reporter.reportError("Boolean expression expected here", "", ast.E.position);
+    }
+  	return null;
+  }
+  
+  public Object visitCaseCommand(CaseCommand ast, Object o) {
+  	// TODO Auto-generated method stub
+  	return null;
+  }
+
+  //Case
+  public Object visitSequentialCase(SequentialCase ast, Object o) {
+  	// TODO Auto-generated method stub
+  	return null;
+  }
+
+  public Object visitSingleCase(SingleCase ast, Object o) {
+  	// TODO Auto-generated method stub
+  	return null;
   }
 
   // Expressions
@@ -872,4 +896,5 @@ public final class Checker implements Visitor {
     StdEnvironment.unequalDecl = declareStdBinaryOp("\\=", StdEnvironment.anyType, StdEnvironment.anyType, StdEnvironment.booleanType);
 
   }
+
 }

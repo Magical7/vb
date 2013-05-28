@@ -31,7 +31,7 @@ import Triangle.TreeDrawer.Drawer;
 public class Compiler {
 
     /** The filename for the object program, normally obj.tam. */
-    static String objectName = "obj.tam";
+    static String objectName = "src/TAM/obj.tam";
 
     private static Scanner scanner;
     private static Parser parser;
@@ -80,12 +80,12 @@ public class Compiler {
         encoder  = new Encoder(reporter);
         drawer   = new Drawer();
 
-        // scanner.enableDebugging();
+//         scanner.enableDebugging();
         theAST = parser.parseProgram();				// 1st pass
         if (reporter.numErrors == 0) {
-            //if (showingAST) {
-            //    drawer.draw(theAST);
-            //}
+//            if (showingAST) {
+//                drawer.draw(theAST);
+//            }
             System.out.println ("Contextual Analysis ...");
             checker.check(theAST);				// 2nd pass
             if (showingAST) {
@@ -122,6 +122,6 @@ public class Compiler {
         }
 
         String sourceName = args[0];
-        compiledOK = compileProgram(sourceName, objectName, false, false);
+        compiledOK = compileProgram(sourceName, objectName, true, false);
     }
 }
