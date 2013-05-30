@@ -14,6 +14,8 @@
 
 package Triangle.ContextualAnalyzer;
 
+import java.util.HashMap;
+
 import Triangle.AbstractSyntaxTrees.*;
 import Triangle.SyntacticAnalyzer.SourcePosition;
 import Triangle.Compiler;
@@ -97,18 +99,33 @@ public final class Checker implements Visitor {
   }
   
   public Object visitCaseCommand(CaseCommand ast, Object o) {
-  	// TODO Auto-generated method stub
+  	TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
+  	if(! eType.equals(StdEnvironment.integerType)){
+  		reporter.reportError("Integer expression expected here", "", ast.E.position);
+  	}
+  	HashMap<Integer,Object> integerLiterals = new HashMap<Integer,Object>();
+  	ast.CA.visit(this, integerLiterals);
+  	ast.CO.visit(this, null);
   	return null;
   }
 
   //Case
   public Object visitSequentialCase(SequentialCase ast, Object o) {
-  	// TODO Auto-generated method stub
+  	ast.C1.visit(this, o);
+  	ast.C2.visit(this, o);
   	return null;
   }
 
   public Object visitSingleCase(SingleCase ast, Object o) {
-  	// TODO Auto-generated method stub
+  	HashMap<Integer,Object> integerLiterals = (HashMap<Integer,Object>) o;
+	int literal = Integer.parseInt(ast.IL.spelling);
+  	if(!integerLiterals.containsKey(literal)){
+  		integerLiterals.put(literal, null);  
+  	} else {
+  		reporter.reportError("IntegerLiteral already in use", String.valueOf(literal), ast.IL.position);
+  	}
+	ast.IL.visit(this,null);
+  	ast.C.visit(this,null);
   	return null;
   }
 

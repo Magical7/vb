@@ -22,9 +22,10 @@ import TAM.Machine;
 import TAM.Instruction;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public final class Encoder implements Visitor {
-
+	private ArrayList<ArrayList<Integer>> caseAddrs = new ArrayList<ArrayList<Integer>>();
 
   // Commands
   public Object visitAssignCommand(AssignCommand ast, Object o) {
@@ -103,17 +104,42 @@ public final class Encoder implements Visitor {
   
   public Object visitCaseCommand(CaseCommand ast, Object o) {
   	// TODO Auto-generated method stub
+	caseAddrs.add(new ArrayList<Integer>());
+	Frame frame = (Frame)o;
+	ast.E.visit(this,frame);
+	ast.CA.visit(this, frame);
+	ast.CO.visit(this, frame);
+	ArrayList<Integer> temp = caseAddrs.get(caseAddrs.size() - 1 );
+	for(int i = 0; i < temp.size() ; i++){
+		patch(temp.get(i), nextInstrAddr);
+	}
+	emit(Machine.POPop, 0,0,1);
+	caseAddrs.remove(temp);
   	return null;
   }
 
   //Case
   public Object visitSequentialCase(SequentialCase ast, Object o) {
-  	// TODO Auto-generated method stub
+  	Frame frame = (Frame) o;
+	ast.C1.visit(this, frame);
+  	ast.C2.visit(this, frame);
   	return null;
   }
 
   public Object visitSingleCase(SingleCase ast, Object o) {
-  	// TODO Auto-generated method stub
+	Frame frame = (Frame)o;
+	emit(Machine.LOADop, 1, Machine.STr, -1);
+  	ast.IL.visit(this,frame);
+  	emit(Machine.LOADLop, 0, 0, Integer.parseInt(ast.IL.spelling));
+  	emit(Machine.LOADLop, 0, 0, 1);
+  	emit(Machine.CALLop, Machine.SBr, Machine.PBr, Machine.neDisplacement);
+  	int toaddr = nextInstrAddr;
+  	emit(Machine.JUMPIFop, 1, Machine.LBr, 0); //patch - gedaan
+  	ast.C.visit(this,frame);
+  	caseAddrs.get(caseAddrs.size() - 1).add(nextInstrAddr); //put in list
+  	emit(Machine.JUMPop,0, Machine.LBr, 0); //Patch - done (later)
+  	int jumpaddr = nextInstrAddr;
+  	patch(toaddr,jumpaddr);
   	return null;
   }
 
