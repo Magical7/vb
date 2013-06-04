@@ -1,3 +1,0 @@
-var n: integer;
-n := 3+4%0;
-print(n);
