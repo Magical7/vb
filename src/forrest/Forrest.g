@@ -1,4 +1,4 @@
-grammer Forrest;
+grammar Forrest;
 
 options {
 	k = 1; 
