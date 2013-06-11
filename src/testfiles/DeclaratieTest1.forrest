@@ -1,0 +1,5 @@
+// Correcte Declaraties
+var lex bool;
+var stijn char;
+var RoNalD int; //Uses lex = true; because a program cannot end in a declaration
+lex = true; 

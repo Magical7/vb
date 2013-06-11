@@ -45,14 +45,16 @@ tokens {
     ELSE		=	'else'		;
     COMPOUND	= 	'compound'	;
     PROGRAM		=	'program'	;
+    CONSTANT	=	'const'		;
+    ENDIF		=	'endif'		;
 }
 
 @lexer::header {
-package forrest;
+package forrest.main;
 }
 
 @header {
-package forrest;
+package forrest.main;
 }
 
 //Parser rules
@@ -63,11 +65,12 @@ forrest
     ;
     
 program_lines
-	:	((declaration SEMICOLON!)* (expr SEMICOLON!)+)*
+	:	((declaration SEMICOLON!)* (expr SEMICOLON!))*
 	;
 	
 declaration
-	:	VAR^ IDENTIFIER TYPE
+	:	VAR^ IDENTIFIER (CHAR | BOOL | INT)
+	|	CONSTANT^ IDENTIFIER BECOMES! expr
 	;
 
 expr
@@ -79,7 +82,7 @@ expr_assign
 	;
 	
 expr_if
-	:	IF^ expr_if THEN! expr_if (ELSE! expr_if)?
+	:	IF^ expr_if THEN! expr_if (ELSE! expr_if)? ENDIF
 	|	expr_or
 	;
 	
@@ -92,7 +95,7 @@ expr_and
 	;
 	
 expr_comp
-	:	expr_add (OP_COMP^ expr_add)*
+	:	expr_add ((GREATER^ | SMALLER^ | GREATEREQ^ | SMALLEREQ^ | EQUALS^ | NOTEQUALS^ ) expr_add)*
 	;
 	
 expr_add
@@ -108,31 +111,16 @@ expr_unary
 	;
 	
 expr_compound
-	:	LCURLY! program_lines RCURLY!
+	:	LCURLY program_lines RCURLY
 			->  ^(COMPOUND program_lines)	
 	|	IDENTIFIER
 	|	NUMBER
 	|	LPAREN! expr RPAREN!
-	| 	READ^ LPAREN! expr (COMMA! expr)* RPAREN!
+	| 	READ^ LPAREN! IDENTIFIER (COMMA! IDENTIFIER)* RPAREN!
 	|	PRINT^ LPAREN! expr (COMMA! expr)* RPAREN!
 	;
 	
 //LEXer rules
-
-OP_COMP
-	:	GREATER 
-	| 	SMALLER 
-	| 	GREATEREQ 
-	| 	SMALLEREQ 
-	| 	EQUALS 
-	| 	NOTEQUALS
-	;
-
-TYPE
-	:	CHAR
-	|	BOOL
-	|	INT
-	;
 
 IDENTIFIER
     :   LETTER (LETTER | DIGIT)*
