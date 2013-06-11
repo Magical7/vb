@@ -13,7 +13,8 @@ import forrest.main.Forrest;
  */
 public class TestForrest {
 	
-	Forrest forrest;
+	private boolean debug = false;
+	private Forrest forrest;
 	private static String fileLocation = "src/testfiles/";
 
 	//TestFiles
@@ -30,35 +31,46 @@ public class TestForrest {
 	}
 	
 	public void runAllTests(){
-		runParserTests();
-//		runCheckerTests();
-//		runEncoderTests();
+		int totalFailed = 0;
+		totalFailed += runParserTests();
+//		totalFailed += runCheckerTests();
+//		totalFailed += runEncoderTests();
+		System.out.println("All tests ended with " + totalFailed + " errors");
 	}
 	
 	/**
 	 * Method to run all ParserTests
 	 */
-	private void runParserTests(){
+	private int runParserTests(){
+		int failed = 0;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(baos);
 		for(String file : fileToOutputs.keySet()){
 			this.forrest.runForrest(file, ps, true, false, false, false);
-			String answer = fileToOutputs.get(file)[0];
-			String shouldbe = baos.toString();
-			System.out.println(shouldbe.length() + " " + answer.length());
-			for(int i = 0; i< shouldbe.length(); i++){
-				System.out.println(i + " " + shouldbe.charAt(i) + " " + answer.charAt(i));
-			}
+			String expected = fileToOutputs.get(file)[0];
+			String returned = baos.toString();
 			
-			
-			if(!baos.toString().equals(answer)){
-				System.out.println("Test Failed: "+ file + " : \n" + baos.toString() + "\n" + answer);
+			if(!returned.equals(expected)){
+				System.out.println("Test Failed: "+ file + " : \n" + returned + "\n" + expected);
+				failed++;
+			} else {
+				print("Test Succesful: " + file);
 			}
-			try {
-				baos.flush();
-			} catch (IOException e) {
-				System.out.println("Error in the tester: "+ e.getMessage());
-			}
+			baos.reset();
+		}
+		ps.close();
+		try {
+			baos.close();
+		} catch (IOException e) {
+			System.out.println("Somehting wrong with closing ByteArrayOutputStream");
+		}
+		System.out.println("Finished tests with " + failed + " errors");
+		return failed;
+	}
+	
+	private void print(String tekst){
+		if(debug){
+			System.out.println(tekst);
 		}
 	}
 	
@@ -67,20 +79,20 @@ public class TestForrest {
 	 */
 	private void fillFileToOutput(){
 		fileToOutputs.put(fileLocation+"DeclaratieTest1.forrest", new String[]
-				{"(PROGRAM (var lex bool) (var stijn char) (var RoNalD int) (= lex true))",
+				{"(PROGRAM (var lex bool) (var stijn char) (var RoNalD int) (= lex true))\r\n",
 				"output2",
 				"output3"
 				});
-//		fileToOutputs.put(fileLocation+"DeclaratieTest2a.forrest", new String[]
-//				{"line 2:6 missing SEMICOLON at 'var'\nline 2:10 missing IDENTIFIER at 'char'\n(PROGRAM stijn (var <missing IDENTIFIER> char) (= lex true))",
-//				"output2",
-//				"output3"
-//				});
-//		fileToOutputs.put(fileLocation+"DeclaratieTest2b.forrest", new String[]
-//				{"(PROGRAM (var lex bool) (var stijn char) (var RoNalD int) (= lex true))",
-//				"output2",
-//				"output3"
-//				});
+		fileToOutputs.put(fileLocation+"DeclaratieTest2a.forrest", new String[]
+				{"(PROGRAM stijn (var <missing IDENTIFIER> char) (= lex true))\r\n",
+				"output2",
+				"output3"
+				});
+		fileToOutputs.put(fileLocation+"DeclaratieTest2b.forrest", new String[]
+				{"ERROR: uncaught exception thrown by compiler: rule program_lines\r\n",
+				"output2",
+				"output3"
+				});
 	}
 	
 	public static void main(String[] args){

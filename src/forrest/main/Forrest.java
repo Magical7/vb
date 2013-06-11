@@ -28,9 +28,9 @@ public class Forrest {
 	 * @param useEncoder - boolean: Whether to use the encoder
 	 */
 	public void runForrest(String inputFile, PrintStream outputPS, boolean useParser, boolean useChecker, boolean useInterpreter, boolean useEncoder){
+		InputStream in = null;
+		PrintStream out = null;
 		try{
-			InputStream in = null;
-			PrintStream out = null;
 			if(inputFile == null){
 				in = new FileInputStream(ForrestOptions.inputFileLocation);
 			} else {
@@ -73,12 +73,11 @@ public class Forrest {
 				
 			}
 		} catch (ForrestFireException e){
-			System.err.print("Fire!: ForrestException thrown by compiler ");
-			System.err.println(e.getMessage());
+			out.print("Fire!: ForrestException thrown by compiler ");
+			out.println(e.getMessage());
 		} catch (Exception e) {
-	        System.err.print("ERROR: uncaught exception thrown by compiler: ");
-	        System.err.println(e.getMessage());
-	        e.printStackTrace();
+	        out.print("ERROR: uncaught exception thrown by compiler: ");
+	        out.println(e.getMessage());
 	    }
 	}
 	
