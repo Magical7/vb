@@ -168,6 +168,11 @@ public class TestForrest {
 				"output2",
 				"output3"
 				});
+		fileToOutputs.put(fileLocation+"IdentifierTest1.forrest", new String[]
+				{"(PROGRAM <mismatched token: [@22,61:61='<EOF>',<-1>,4:12], resync=var x bool;\r\nvar y1 bool;\r\nvar 1y bool;>)\r\n",
+				"output2",
+				"output3"
+				});
 	}
 	
 	/**

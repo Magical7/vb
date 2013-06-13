@@ -47,6 +47,7 @@ public class Forrest {
 			ForrestLexer lexer = new ForrestLexer(new ANTLRInputStream(in));
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 			ForrestParser parser = new ForrestParser(tokens);
+			parser.setTreeAdaptor(new ForrestTreeAdaptor());
 			
 			ForrestParser.forrest_return result = parser.forrest();
 			CommonTree tree = (CommonTree) result.getTree();
