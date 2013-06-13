@@ -14,6 +14,9 @@ import fire.ForrestFireException;
 
 public class Forrest {
 	
+	private InputStream in;
+	private PrintStream out;
+	
 	public Forrest(){
 		
 	}
@@ -27,20 +30,19 @@ public class Forrest {
 	 * @param useInterpreter - boolean: Whether to use the interpreter
 	 * @param useEncoder - boolean: Whether to use the encoder
 	 */
-	public void runForrest(String inputFile, PrintStream outputPS, boolean useParser, boolean useChecker, boolean useInterpreter, boolean useEncoder){
-		InputStream in = null;
-		PrintStream out = null;
-		try{
+	public void runForrest(String inputFile, PrintStream outputPS, 
+		boolean useParser, boolean useChecker, boolean useInterpreter, boolean useEncoder)
+		throws Exception{
 			if(inputFile == null){
-				in = new FileInputStream(ForrestOptions.inputFileLocation);
+				this.in = new FileInputStream(ForrestOptions.inputFileLocation);
 			} else {
-				in = new FileInputStream(inputFile);
+				this.in = new FileInputStream(inputFile);
 			}
 			
 			if(outputPS == null){
-				out = new PrintStream(System.out);
+				this.out = new PrintStream(System.out);
 			} else {
-				out = outputPS;
+				this.out = outputPS;
 			}
 			
 			//Parse the Forrest program
@@ -72,19 +74,19 @@ public class Forrest {
 			if(useEncoder){
 				
 			}
-		} catch (ForrestFireException e){
-			out.print("Fire!: ForrestException thrown by compiler ");
-			out.println(e.getMessage());
-		} catch (Exception e) {
-	        out.print("ERROR: uncaught exception thrown by compiler: ");
-	        out.println(e.getMessage());
-	    }
 	}
 	
 	
 	public static void main(String[] args){
 		Forrest runner = new Forrest();
-		runner.runForrest(null, null, ForrestOptions.parser, ForrestOptions.checker, ForrestOptions.interpreter, ForrestOptions.encoder);
-			
+		try{
+			runner.runForrest(null, null, ForrestOptions.parser, ForrestOptions.checker, ForrestOptions.interpreter, ForrestOptions.encoder);
+		} catch (ForrestFireException e){
+			System.out.print("Fire!: ForrestException thrown by compiler ");
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.print("ERROR: uncaught exception thrown by compiler: ");
+			System.out.println(e.getMessage());
+	    }
 	}
 }
