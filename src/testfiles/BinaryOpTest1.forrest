@@ -1,0 +1,8 @@
+// Binary operators goed toegepast
+var stijn char;
+var lex bool;
+lex = lex == lex;
+lex = lex != lex;
+lex = lex && lex || lex == lex;
+stijn = c;
+lex = stijn == c;

@@ -1,5 +1,5 @@
-// Binary operator met twee operatoren achter elkaar
+// Binary operator met verkeerd gespelde operator
 var stijn char;
 var lex bool;
 var lex2 bool;
-lex = lex && || lex2;
+lex = lex & lex2;

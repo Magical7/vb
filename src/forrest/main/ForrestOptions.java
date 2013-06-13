@@ -15,7 +15,7 @@ public class ForrestOptions {
 	
 	
 	
-	protected static final String inputFileLocation = "src/testfiles/DeclaratieTest1.forrest";
+	protected static final String inputFileLocation = "src/testfiles/BinaryOpTest1.forrest";
 	
 	
 	

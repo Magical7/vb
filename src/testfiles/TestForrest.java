@@ -128,22 +128,22 @@ public class TestForrest {
 				"output2",
 				"output3"
 				});
-		fileToOutputs.put(fileLocation+"BinaryOpTest1a.forrest", new String[]
-				{"(PROGRAM <mismatched token: [@15,94:94='<EOF>',<-1>,4:20], resync=var stijn char;\r\nvar lex bool;\r\n>)\r\n",
-				"output2",
-				"output3"
-				});
-		fileToOutputs.put(fileLocation+"BinaryOpTest1b.forrest", new String[]
-				{"(PROGRAM (var stijn char) (var lex bool) (= lex (|| stijn <unexpected: [@22,88:88=';',<38>,4:14], resync=;>)))\r\n",
+		fileToOutputs.put(fileLocation+"BinaryOpTest1.forrest", new String[]
+				{"(PROGRAM (var stijn char) (var lex bool) (= lex (== lex lex)) (= lex (!= lex lex)) (= lex (|| (&& lex lex) (== lex lex))) (= stijn c) (= lex (== stijn c)))\r\n",
 				"output2",
 				"output3"
 				});
 		fileToOutputs.put(fileLocation+"BinaryOpTest2.forrest", new String[]
-				{"(PROGRAM (var stijn char) (var lex bool) (var lex2 bool) (= lex lex))\r\n",
+				{"(PROGRAM (var stijn char) (var lex bool) (= lex (|| stijn <unexpected: [@22,88:88=';',<38>,4:14], resync=;>)))\r\n",
 				"output2",
 				"output3"
 				});
 		fileToOutputs.put(fileLocation+"BinaryOpTest3.forrest", new String[]
+				{"(PROGRAM (var stijn char) (var lex bool) (var lex2 bool) (= lex lex))\r\n",
+				"output2",
+				"output3"
+				});
+		fileToOutputs.put(fileLocation+"BinaryOpTest4.forrest", new String[]
 				{"(PROGRAM (var stijn char) (var lex bool) (var lex2 bool) (= lex (|| (&& lex <unexpected: [@30,115:116='||',<24>,5:13], resync=||>) lex2)))\r\n",
 				"output2",
 				"output3"
