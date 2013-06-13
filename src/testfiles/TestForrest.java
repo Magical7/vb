@@ -16,23 +16,34 @@ import forrest.main.Forrest;
  */
 public class TestForrest {
 	
+	//Setting Debug to true will generate more information
 	private boolean debug = false;
+	//Class used to run the grammar Forrest
 	private Forrest forrest;
+	//String used for the location of the test files
 	private static String fileLocation = "src/testfiles/";
 
 	//TestFiles
 	private HashMap<String,String[]> fileToOutputs = new HashMap<String,String[]>();
 	
-	
+	/**
+	 * Constructor for this class
+	 */
 	public TestForrest(){
 		
 	}
 	
+	/**
+	 * Method for initializing the tests
+	 */
 	public void init(){
 		this.fillFileToOutput();
 		this.forrest = new Forrest();
 	}
 	
+	/**
+	 * Method to run all tests
+	 */
 	public void runAllTests(){
 		int totalFailed = 0;
 		totalFailed += runParserTests();
@@ -83,6 +94,10 @@ public class TestForrest {
 		return failed;
 	}
 	
+	/**
+	 * Method to print output to the System.out, will only print if debug is set to true
+	 * @param tekst - String: de tekt om uit te printen
+	 */
 	private void print(String tekst){
 		if(debug){
 			System.out.println(tekst);
@@ -155,6 +170,10 @@ public class TestForrest {
 				});
 	}
 	
+	/**
+	 * Main
+	 * @param args - not used
+	 */
 	public static void main(String[] args){
 		TestForrest tester = new TestForrest();
 		tester.init();

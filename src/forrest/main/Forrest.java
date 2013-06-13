@@ -1,19 +1,17 @@
 package forrest.main;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
-import org.antlr.runtime.tree.CommonTreeNodeStream;
-
 import fire.ForrestFireException;
 
 public class Forrest {
 	
+	//Streams used for input and output
 	private InputStream in;
 	private PrintStream out;
 	
