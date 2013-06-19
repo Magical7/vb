@@ -1,4 +1,4 @@
-// $ANTLR 3.5 ../forrest/main/Forrest.g 2013-06-06 16:28:24
+// $ANTLR 3.5 Forrest.g 2013-06-19 13:02:08
 
 package forrest.main;
 
@@ -36,23 +36,25 @@ public class ForrestLexer extends Lexer {
 	public static final int LPAREN=26;
 	public static final int MINUS=27;
 	public static final int MODULO=28;
-	public static final int NOT=29;
-	public static final int NOTEQUALS=30;
-	public static final int NUMBER=31;
-	public static final int PLUS=32;
-	public static final int PRINT=33;
-	public static final int PROGRAM=34;
-	public static final int RCURLY=35;
-	public static final int READ=36;
-	public static final int RPAREN=37;
-	public static final int SEMICOLON=38;
-	public static final int SMALLER=39;
-	public static final int SMALLEREQ=40;
-	public static final int THEN=41;
-	public static final int TIMES=42;
-	public static final int UPPER=43;
-	public static final int VAR=44;
-	public static final int WS=45;
+	public static final int NEGATIVE=29;
+	public static final int NOT=30;
+	public static final int NOTEQUALS=31;
+	public static final int NUMBER=32;
+	public static final int PLUS=33;
+	public static final int POSITIVE=34;
+	public static final int PRINT=35;
+	public static final int PROGRAM=36;
+	public static final int RCURLY=37;
+	public static final int READ=38;
+	public static final int RPAREN=39;
+	public static final int SEMICOLON=40;
+	public static final int SMALLER=41;
+	public static final int SMALLEREQ=42;
+	public static final int THEN=43;
+	public static final int TIMES=44;
+	public static final int UPPER=45;
+	public static final int VAR=46;
+	public static final int WS=47;
 
 	// delegates
 	// delegators
@@ -67,15 +69,15 @@ public class ForrestLexer extends Lexer {
 	public ForrestLexer(CharStream input, RecognizerSharedState state) {
 		super(input,state);
 	}
-	@Override public String getGrammarFileName() { return "../forrest/main/Forrest.g"; }
+	@Override public String getGrammarFileName() { return "Forrest.g"; }
 
 	// $ANTLR start "BECOMES"
 	public final void mBECOMES() throws RecognitionException {
 		try {
 			int _type = BECOMES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:11:9: ( '=' )
-			// ../forrest/main/Forrest.g:11:11: '='
+			// Forrest.g:11:9: ( '=' )
+			// Forrest.g:11:11: '='
 			{
 			match('='); 
 			}
@@ -94,8 +96,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = BOOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:12:6: ( 'bool' )
-			// ../forrest/main/Forrest.g:12:8: 'bool'
+			// Forrest.g:12:6: ( 'bool' )
+			// Forrest.g:12:8: 'bool'
 			{
 			match("bool"); 
 
@@ -115,8 +117,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = CHAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:13:6: ( 'char' )
-			// ../forrest/main/Forrest.g:13:8: 'char'
+			// Forrest.g:13:6: ( 'char' )
+			// Forrest.g:13:8: 'char'
 			{
 			match("char"); 
 
@@ -136,8 +138,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = COMMA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:14:7: ( ',' )
-			// ../forrest/main/Forrest.g:14:9: ','
+			// Forrest.g:14:7: ( ',' )
+			// Forrest.g:14:9: ','
 			{
 			match(','); 
 			}
@@ -156,10 +158,10 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = COMPOUND;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:15:10: ( 'compound' )
-			// ../forrest/main/Forrest.g:15:12: 'compound'
+			// Forrest.g:15:10: ( 'KCOMPOUND' )
+			// Forrest.g:15:12: 'KCOMPOUND'
 			{
-			match("compound"); 
+			match("KCOMPOUND"); 
 
 			}
 
@@ -177,8 +179,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = CONSTANT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:16:10: ( 'const' )
-			// ../forrest/main/Forrest.g:16:12: 'const'
+			// Forrest.g:16:10: ( 'const' )
+			// Forrest.g:16:12: 'const'
 			{
 			match("const"); 
 
@@ -198,8 +200,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = DIVIDE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:17:8: ( '/' )
-			// ../forrest/main/Forrest.g:17:10: '/'
+			// Forrest.g:17:8: ( '/' )
+			// Forrest.g:17:10: '/'
 			{
 			match('/'); 
 			}
@@ -218,8 +220,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = ELSE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:18:6: ( 'else' )
-			// ../forrest/main/Forrest.g:18:8: 'else'
+			// Forrest.g:18:6: ( 'else' )
+			// Forrest.g:18:8: 'else'
 			{
 			match("else"); 
 
@@ -239,8 +241,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = ENDIF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:19:7: ( 'endif' )
-			// ../forrest/main/Forrest.g:19:9: 'endif'
+			// Forrest.g:19:7: ( 'endif' )
+			// Forrest.g:19:9: 'endif'
 			{
 			match("endif"); 
 
@@ -260,8 +262,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = EQUALS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:20:8: ( '==' )
-			// ../forrest/main/Forrest.g:20:10: '=='
+			// Forrest.g:20:8: ( '==' )
+			// Forrest.g:20:10: '=='
 			{
 			match("=="); 
 
@@ -281,8 +283,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = GREATER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:21:9: ( '>' )
-			// ../forrest/main/Forrest.g:21:11: '>'
+			// Forrest.g:21:9: ( '>' )
+			// Forrest.g:21:11: '>'
 			{
 			match('>'); 
 			}
@@ -301,8 +303,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = GREATEREQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:22:11: ( '>=' )
-			// ../forrest/main/Forrest.g:22:13: '>='
+			// Forrest.g:22:11: ( '>=' )
+			// Forrest.g:22:13: '>='
 			{
 			match(">="); 
 
@@ -322,8 +324,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = IF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:23:4: ( 'if' )
-			// ../forrest/main/Forrest.g:23:6: 'if'
+			// Forrest.g:23:4: ( 'if' )
+			// Forrest.g:23:6: 'if'
 			{
 			match("if"); 
 
@@ -343,8 +345,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = INT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:24:5: ( 'int' )
-			// ../forrest/main/Forrest.g:24:7: 'int'
+			// Forrest.g:24:5: ( 'int' )
+			// Forrest.g:24:7: 'int'
 			{
 			match("int"); 
 
@@ -364,8 +366,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = LCURLY;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:25:8: ( '{' )
-			// ../forrest/main/Forrest.g:25:10: '{'
+			// Forrest.g:25:8: ( '{' )
+			// Forrest.g:25:10: '{'
 			{
 			match('{'); 
 			}
@@ -384,8 +386,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = LOGAND;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:26:8: ( '&&' )
-			// ../forrest/main/Forrest.g:26:10: '&&'
+			// Forrest.g:26:8: ( '&&' )
+			// Forrest.g:26:10: '&&'
 			{
 			match("&&"); 
 
@@ -405,8 +407,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = LOGOR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:27:7: ( '||' )
-			// ../forrest/main/Forrest.g:27:9: '||'
+			// Forrest.g:27:7: ( '||' )
+			// Forrest.g:27:9: '||'
 			{
 			match("||"); 
 
@@ -426,8 +428,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = LPAREN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:28:8: ( '(' )
-			// ../forrest/main/Forrest.g:28:10: '('
+			// Forrest.g:28:8: ( '(' )
+			// Forrest.g:28:10: '('
 			{
 			match('('); 
 			}
@@ -446,8 +448,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = MINUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:29:7: ( '-' )
-			// ../forrest/main/Forrest.g:29:9: '-'
+			// Forrest.g:29:7: ( '-' )
+			// Forrest.g:29:9: '-'
 			{
 			match('-'); 
 			}
@@ -466,8 +468,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = MODULO;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:30:8: ( '%' )
-			// ../forrest/main/Forrest.g:30:10: '%'
+			// Forrest.g:30:8: ( '%' )
+			// Forrest.g:30:10: '%'
 			{
 			match('%'); 
 			}
@@ -481,13 +483,34 @@ public class ForrestLexer extends Lexer {
 	}
 	// $ANTLR end "MODULO"
 
+	// $ANTLR start "NEGATIVE"
+	public final void mNEGATIVE() throws RecognitionException {
+		try {
+			int _type = NEGATIVE;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// Forrest.g:31:10: ( 'KNEGATIVE' )
+			// Forrest.g:31:12: 'KNEGATIVE'
+			{
+			match("KNEGATIVE"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "NEGATIVE"
+
 	// $ANTLR start "NOT"
 	public final void mNOT() throws RecognitionException {
 		try {
 			int _type = NOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:31:5: ( '!' )
-			// ../forrest/main/Forrest.g:31:7: '!'
+			// Forrest.g:32:5: ( '!' )
+			// Forrest.g:32:7: '!'
 			{
 			match('!'); 
 			}
@@ -506,8 +529,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = NOTEQUALS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:32:11: ( '!=' )
-			// ../forrest/main/Forrest.g:32:13: '!='
+			// Forrest.g:33:11: ( '!=' )
+			// Forrest.g:33:13: '!='
 			{
 			match("!="); 
 
@@ -527,8 +550,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = PLUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:33:6: ( '+' )
-			// ../forrest/main/Forrest.g:33:8: '+'
+			// Forrest.g:34:6: ( '+' )
+			// Forrest.g:34:8: '+'
 			{
 			match('+'); 
 			}
@@ -542,13 +565,34 @@ public class ForrestLexer extends Lexer {
 	}
 	// $ANTLR end "PLUS"
 
+	// $ANTLR start "POSITIVE"
+	public final void mPOSITIVE() throws RecognitionException {
+		try {
+			int _type = POSITIVE;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// Forrest.g:35:10: ( 'KPOSITIVE' )
+			// Forrest.g:35:12: 'KPOSITIVE'
+			{
+			match("KPOSITIVE"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "POSITIVE"
+
 	// $ANTLR start "PRINT"
 	public final void mPRINT() throws RecognitionException {
 		try {
 			int _type = PRINT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:34:7: ( 'print' )
-			// ../forrest/main/Forrest.g:34:9: 'print'
+			// Forrest.g:36:7: ( 'print' )
+			// Forrest.g:36:9: 'print'
 			{
 			match("print"); 
 
@@ -568,10 +612,10 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = PROGRAM;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:35:9: ( 'program' )
-			// ../forrest/main/Forrest.g:35:11: 'program'
+			// Forrest.g:37:9: ( 'KPROGRAM' )
+			// Forrest.g:37:11: 'KPROGRAM'
 			{
-			match("program"); 
+			match("KPROGRAM"); 
 
 			}
 
@@ -589,8 +633,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = RCURLY;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:36:8: ( '}' )
-			// ../forrest/main/Forrest.g:36:10: '}'
+			// Forrest.g:38:8: ( '}' )
+			// Forrest.g:38:10: '}'
 			{
 			match('}'); 
 			}
@@ -609,8 +653,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = READ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:37:6: ( 'read' )
-			// ../forrest/main/Forrest.g:37:8: 'read'
+			// Forrest.g:39:6: ( 'read' )
+			// Forrest.g:39:8: 'read'
 			{
 			match("read"); 
 
@@ -630,8 +674,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = RPAREN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:38:8: ( ')' )
-			// ../forrest/main/Forrest.g:38:10: ')'
+			// Forrest.g:40:8: ( ')' )
+			// Forrest.g:40:10: ')'
 			{
 			match(')'); 
 			}
@@ -650,8 +694,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = SEMICOLON;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:39:11: ( ';' )
-			// ../forrest/main/Forrest.g:39:13: ';'
+			// Forrest.g:41:11: ( ';' )
+			// Forrest.g:41:13: ';'
 			{
 			match(';'); 
 			}
@@ -670,8 +714,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = SMALLER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:40:9: ( '<' )
-			// ../forrest/main/Forrest.g:40:11: '<'
+			// Forrest.g:42:9: ( '<' )
+			// Forrest.g:42:11: '<'
 			{
 			match('<'); 
 			}
@@ -690,8 +734,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = SMALLEREQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:41:11: ( '<=' )
-			// ../forrest/main/Forrest.g:41:13: '<='
+			// Forrest.g:43:11: ( '<=' )
+			// Forrest.g:43:13: '<='
 			{
 			match("<="); 
 
@@ -711,8 +755,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = THEN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:42:6: ( 'then' )
-			// ../forrest/main/Forrest.g:42:8: 'then'
+			// Forrest.g:44:6: ( 'then' )
+			// Forrest.g:44:8: 'then'
 			{
 			match("then"); 
 
@@ -732,8 +776,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = TIMES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:43:7: ( '*' )
-			// ../forrest/main/Forrest.g:43:9: '*'
+			// Forrest.g:45:7: ( '*' )
+			// Forrest.g:45:9: '*'
 			{
 			match('*'); 
 			}
@@ -752,8 +796,8 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = VAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:44:5: ( 'var' )
-			// ../forrest/main/Forrest.g:44:7: 'var'
+			// Forrest.g:46:5: ( 'var' )
+			// Forrest.g:46:7: 'var'
 			{
 			match("var"); 
 
@@ -773,12 +817,12 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = IDENTIFIER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:126:5: ( LETTER ( LETTER | DIGIT )* )
-			// ../forrest/main/Forrest.g:126:9: LETTER ( LETTER | DIGIT )*
+			// Forrest.g:140:5: ( LETTER ( LETTER | DIGIT )* )
+			// Forrest.g:140:9: LETTER ( LETTER | DIGIT )*
 			{
 			mLETTER(); 
 
-			// ../forrest/main/Forrest.g:126:16: ( LETTER | DIGIT )*
+			// Forrest.g:140:16: ( LETTER | DIGIT )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -789,7 +833,7 @@ public class ForrestLexer extends Lexer {
 
 				switch (alt1) {
 				case 1 :
-					// ../forrest/main/Forrest.g:
+					// Forrest.g:
 					{
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 						input.consume();
@@ -823,10 +867,10 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = NUMBER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:130:5: ( ( DIGIT )+ )
-			// ../forrest/main/Forrest.g:130:9: ( DIGIT )+
+			// Forrest.g:144:5: ( ( DIGIT )+ )
+			// Forrest.g:144:9: ( DIGIT )+
 			{
-			// ../forrest/main/Forrest.g:130:9: ( DIGIT )+
+			// Forrest.g:144:9: ( DIGIT )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -838,7 +882,7 @@ public class ForrestLexer extends Lexer {
 
 				switch (alt2) {
 				case 1 :
-					// ../forrest/main/Forrest.g:
+					// Forrest.g:
 					{
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 						input.consume();
@@ -875,12 +919,12 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:135:5: ( '//' ( . )* '\\n' )
-			// ../forrest/main/Forrest.g:135:9: '//' ( . )* '\\n'
+			// Forrest.g:149:5: ( '//' ( . )* '\\n' )
+			// Forrest.g:149:9: '//' ( . )* '\\n'
 			{
 			match("//"); 
 
-			// ../forrest/main/Forrest.g:135:14: ( . )*
+			// Forrest.g:149:14: ( . )*
 			loop3:
 			while (true) {
 				int alt3=2;
@@ -894,7 +938,7 @@ public class ForrestLexer extends Lexer {
 
 				switch (alt3) {
 				case 1 :
-					// ../forrest/main/Forrest.g:135:14: .
+					// Forrest.g:149:14: .
 					{
 					matchAny(); 
 					}
@@ -923,10 +967,10 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../forrest/main/Forrest.g:140:5: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
-			// ../forrest/main/Forrest.g:140:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+			// Forrest.g:154:5: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
+			// Forrest.g:154:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
 			{
-			// ../forrest/main/Forrest.g:140:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+			// Forrest.g:154:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
 			int cnt4=0;
 			loop4:
 			while (true) {
@@ -938,7 +982,7 @@ public class ForrestLexer extends Lexer {
 
 				switch (alt4) {
 				case 1 :
-					// ../forrest/main/Forrest.g:
+					// Forrest.g:
 					{
 					if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||(input.LA(1) >= '\f' && input.LA(1) <= '\r')||input.LA(1)==' ' ) {
 						input.consume();
@@ -974,8 +1018,8 @@ public class ForrestLexer extends Lexer {
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
-			// ../forrest/main/Forrest.g:144:17: ( ( '0' .. '9' ) )
-			// ../forrest/main/Forrest.g:
+			// Forrest.g:158:17: ( ( '0' .. '9' ) )
+			// Forrest.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 				input.consume();
@@ -997,8 +1041,8 @@ public class ForrestLexer extends Lexer {
 	// $ANTLR start "LOWER"
 	public final void mLOWER() throws RecognitionException {
 		try {
-			// ../forrest/main/Forrest.g:145:17: ( ( 'a' .. 'z' ) )
-			// ../forrest/main/Forrest.g:
+			// Forrest.g:159:17: ( ( 'a' .. 'z' ) )
+			// Forrest.g:
 			{
 			if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -1020,8 +1064,8 @@ public class ForrestLexer extends Lexer {
 	// $ANTLR start "UPPER"
 	public final void mUPPER() throws RecognitionException {
 		try {
-			// ../forrest/main/Forrest.g:146:17: ( ( 'A' .. 'Z' ) )
-			// ../forrest/main/Forrest.g:
+			// Forrest.g:160:17: ( ( 'A' .. 'Z' ) )
+			// Forrest.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
 				input.consume();
@@ -1043,8 +1087,8 @@ public class ForrestLexer extends Lexer {
 	// $ANTLR start "LETTER"
 	public final void mLETTER() throws RecognitionException {
 		try {
-			// ../forrest/main/Forrest.g:147:17: ( LOWER | UPPER )
-			// ../forrest/main/Forrest.g:
+			// Forrest.g:161:17: ( LOWER | UPPER )
+			// Forrest.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -1065,271 +1109,285 @@ public class ForrestLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// ../forrest/main/Forrest.g:1:8: ( BECOMES | BOOL | CHAR | COMMA | COMPOUND | CONSTANT | DIVIDE | ELSE | ENDIF | EQUALS | GREATER | GREATEREQ | IF | INT | LCURLY | LOGAND | LOGOR | LPAREN | MINUS | MODULO | NOT | NOTEQUALS | PLUS | PRINT | PROGRAM | RCURLY | READ | RPAREN | SEMICOLON | SMALLER | SMALLEREQ | THEN | TIMES | VAR | IDENTIFIER | NUMBER | COMMENT | WS )
-		int alt5=38;
+		// Forrest.g:1:8: ( BECOMES | BOOL | CHAR | COMMA | COMPOUND | CONSTANT | DIVIDE | ELSE | ENDIF | EQUALS | GREATER | GREATEREQ | IF | INT | LCURLY | LOGAND | LOGOR | LPAREN | MINUS | MODULO | NEGATIVE | NOT | NOTEQUALS | PLUS | POSITIVE | PRINT | PROGRAM | RCURLY | READ | RPAREN | SEMICOLON | SMALLER | SMALLEREQ | THEN | TIMES | VAR | IDENTIFIER | NUMBER | COMMENT | WS )
+		int alt5=40;
 		alt5 = dfa5.predict(input);
 		switch (alt5) {
 			case 1 :
-				// ../forrest/main/Forrest.g:1:10: BECOMES
+				// Forrest.g:1:10: BECOMES
 				{
 				mBECOMES(); 
 
 				}
 				break;
 			case 2 :
-				// ../forrest/main/Forrest.g:1:18: BOOL
+				// Forrest.g:1:18: BOOL
 				{
 				mBOOL(); 
 
 				}
 				break;
 			case 3 :
-				// ../forrest/main/Forrest.g:1:23: CHAR
+				// Forrest.g:1:23: CHAR
 				{
 				mCHAR(); 
 
 				}
 				break;
 			case 4 :
-				// ../forrest/main/Forrest.g:1:28: COMMA
+				// Forrest.g:1:28: COMMA
 				{
 				mCOMMA(); 
 
 				}
 				break;
 			case 5 :
-				// ../forrest/main/Forrest.g:1:34: COMPOUND
+				// Forrest.g:1:34: COMPOUND
 				{
 				mCOMPOUND(); 
 
 				}
 				break;
 			case 6 :
-				// ../forrest/main/Forrest.g:1:43: CONSTANT
+				// Forrest.g:1:43: CONSTANT
 				{
 				mCONSTANT(); 
 
 				}
 				break;
 			case 7 :
-				// ../forrest/main/Forrest.g:1:52: DIVIDE
+				// Forrest.g:1:52: DIVIDE
 				{
 				mDIVIDE(); 
 
 				}
 				break;
 			case 8 :
-				// ../forrest/main/Forrest.g:1:59: ELSE
+				// Forrest.g:1:59: ELSE
 				{
 				mELSE(); 
 
 				}
 				break;
 			case 9 :
-				// ../forrest/main/Forrest.g:1:64: ENDIF
+				// Forrest.g:1:64: ENDIF
 				{
 				mENDIF(); 
 
 				}
 				break;
 			case 10 :
-				// ../forrest/main/Forrest.g:1:70: EQUALS
+				// Forrest.g:1:70: EQUALS
 				{
 				mEQUALS(); 
 
 				}
 				break;
 			case 11 :
-				// ../forrest/main/Forrest.g:1:77: GREATER
+				// Forrest.g:1:77: GREATER
 				{
 				mGREATER(); 
 
 				}
 				break;
 			case 12 :
-				// ../forrest/main/Forrest.g:1:85: GREATEREQ
+				// Forrest.g:1:85: GREATEREQ
 				{
 				mGREATEREQ(); 
 
 				}
 				break;
 			case 13 :
-				// ../forrest/main/Forrest.g:1:95: IF
+				// Forrest.g:1:95: IF
 				{
 				mIF(); 
 
 				}
 				break;
 			case 14 :
-				// ../forrest/main/Forrest.g:1:98: INT
+				// Forrest.g:1:98: INT
 				{
 				mINT(); 
 
 				}
 				break;
 			case 15 :
-				// ../forrest/main/Forrest.g:1:102: LCURLY
+				// Forrest.g:1:102: LCURLY
 				{
 				mLCURLY(); 
 
 				}
 				break;
 			case 16 :
-				// ../forrest/main/Forrest.g:1:109: LOGAND
+				// Forrest.g:1:109: LOGAND
 				{
 				mLOGAND(); 
 
 				}
 				break;
 			case 17 :
-				// ../forrest/main/Forrest.g:1:116: LOGOR
+				// Forrest.g:1:116: LOGOR
 				{
 				mLOGOR(); 
 
 				}
 				break;
 			case 18 :
-				// ../forrest/main/Forrest.g:1:122: LPAREN
+				// Forrest.g:1:122: LPAREN
 				{
 				mLPAREN(); 
 
 				}
 				break;
 			case 19 :
-				// ../forrest/main/Forrest.g:1:129: MINUS
+				// Forrest.g:1:129: MINUS
 				{
 				mMINUS(); 
 
 				}
 				break;
 			case 20 :
-				// ../forrest/main/Forrest.g:1:135: MODULO
+				// Forrest.g:1:135: MODULO
 				{
 				mMODULO(); 
 
 				}
 				break;
 			case 21 :
-				// ../forrest/main/Forrest.g:1:142: NOT
+				// Forrest.g:1:142: NEGATIVE
+				{
+				mNEGATIVE(); 
+
+				}
+				break;
+			case 22 :
+				// Forrest.g:1:151: NOT
 				{
 				mNOT(); 
 
 				}
 				break;
-			case 22 :
-				// ../forrest/main/Forrest.g:1:146: NOTEQUALS
+			case 23 :
+				// Forrest.g:1:155: NOTEQUALS
 				{
 				mNOTEQUALS(); 
 
 				}
 				break;
-			case 23 :
-				// ../forrest/main/Forrest.g:1:156: PLUS
+			case 24 :
+				// Forrest.g:1:165: PLUS
 				{
 				mPLUS(); 
 
 				}
 				break;
-			case 24 :
-				// ../forrest/main/Forrest.g:1:161: PRINT
+			case 25 :
+				// Forrest.g:1:170: POSITIVE
+				{
+				mPOSITIVE(); 
+
+				}
+				break;
+			case 26 :
+				// Forrest.g:1:179: PRINT
 				{
 				mPRINT(); 
 
 				}
 				break;
-			case 25 :
-				// ../forrest/main/Forrest.g:1:167: PROGRAM
+			case 27 :
+				// Forrest.g:1:185: PROGRAM
 				{
 				mPROGRAM(); 
 
 				}
 				break;
-			case 26 :
-				// ../forrest/main/Forrest.g:1:175: RCURLY
+			case 28 :
+				// Forrest.g:1:193: RCURLY
 				{
 				mRCURLY(); 
 
 				}
 				break;
-			case 27 :
-				// ../forrest/main/Forrest.g:1:182: READ
+			case 29 :
+				// Forrest.g:1:200: READ
 				{
 				mREAD(); 
 
 				}
 				break;
-			case 28 :
-				// ../forrest/main/Forrest.g:1:187: RPAREN
+			case 30 :
+				// Forrest.g:1:205: RPAREN
 				{
 				mRPAREN(); 
 
 				}
 				break;
-			case 29 :
-				// ../forrest/main/Forrest.g:1:194: SEMICOLON
+			case 31 :
+				// Forrest.g:1:212: SEMICOLON
 				{
 				mSEMICOLON(); 
 
 				}
 				break;
-			case 30 :
-				// ../forrest/main/Forrest.g:1:204: SMALLER
+			case 32 :
+				// Forrest.g:1:222: SMALLER
 				{
 				mSMALLER(); 
 
 				}
 				break;
-			case 31 :
-				// ../forrest/main/Forrest.g:1:212: SMALLEREQ
+			case 33 :
+				// Forrest.g:1:230: SMALLEREQ
 				{
 				mSMALLEREQ(); 
 
 				}
 				break;
-			case 32 :
-				// ../forrest/main/Forrest.g:1:222: THEN
+			case 34 :
+				// Forrest.g:1:240: THEN
 				{
 				mTHEN(); 
 
 				}
 				break;
-			case 33 :
-				// ../forrest/main/Forrest.g:1:227: TIMES
+			case 35 :
+				// Forrest.g:1:245: TIMES
 				{
 				mTIMES(); 
 
 				}
 				break;
-			case 34 :
-				// ../forrest/main/Forrest.g:1:233: VAR
+			case 36 :
+				// Forrest.g:1:251: VAR
 				{
 				mVAR(); 
 
 				}
 				break;
-			case 35 :
-				// ../forrest/main/Forrest.g:1:237: IDENTIFIER
+			case 37 :
+				// Forrest.g:1:255: IDENTIFIER
 				{
 				mIDENTIFIER(); 
 
 				}
 				break;
-			case 36 :
-				// ../forrest/main/Forrest.g:1:248: NUMBER
+			case 38 :
+				// Forrest.g:1:266: NUMBER
 				{
 				mNUMBER(); 
 
 				}
 				break;
-			case 37 :
-				// ../forrest/main/Forrest.g:1:255: COMMENT
+			case 39 :
+				// Forrest.g:1:273: COMMENT
 				{
 				mCOMMENT(); 
 
 				}
 				break;
-			case 38 :
-				// ../forrest/main/Forrest.g:1:263: WS
+			case 40 :
+				// Forrest.g:1:281: WS
 				{
 				mWS(); 
 
@@ -1342,135 +1400,159 @@ public class ForrestLexer extends Lexer {
 
 	protected DFA5 dfa5 = new DFA5(this);
 	static final String DFA5_eotS =
-		"\1\uffff\1\36\2\32\1\uffff\1\43\1\32\1\47\1\32\6\uffff\1\53\1\uffff\1"+
-		"\32\1\uffff\1\32\2\uffff\1\57\1\32\1\uffff\1\32\5\uffff\3\32\2\uffff\2"+
-		"\32\2\uffff\1\70\1\32\2\uffff\2\32\2\uffff\10\32\1\uffff\1\105\4\32\1"+
-		"\112\1\113\1\114\2\32\1\117\1\32\1\uffff\2\32\1\123\1\124\3\uffff\1\32"+
-		"\1\126\1\uffff\1\127\1\130\1\32\2\uffff\1\32\3\uffff\2\32\1\135\1\136"+
-		"\2\uffff";
+		"\1\uffff\1\37\2\33\1\uffff\1\33\1\47\1\33\1\53\1\33\6\uffff\1\57\1\uffff"+
+		"\1\33\1\uffff\1\33\2\uffff\1\63\1\33\1\uffff\1\33\5\uffff\6\33\2\uffff"+
+		"\2\33\2\uffff\1\77\1\33\2\uffff\2\33\2\uffff\13\33\1\uffff\1\116\3\33"+
+		"\1\122\1\123\1\124\5\33\1\132\1\33\1\uffff\1\33\1\135\1\136\3\uffff\1"+
+		"\137\4\33\1\uffff\1\144\1\145\3\uffff\4\33\2\uffff\7\33\1\161\1\162\1"+
+		"\163\1\164\4\uffff";
 	static final String DFA5_eofS =
-		"\137\uffff";
+		"\165\uffff";
 	static final String DFA5_minS =
-		"\1\11\1\75\1\157\1\150\1\uffff\1\57\1\154\1\75\1\146\6\uffff\1\75\1\uffff"+
-		"\1\162\1\uffff\1\145\2\uffff\1\75\1\150\1\uffff\1\141\5\uffff\1\157\1"+
-		"\141\1\155\2\uffff\1\163\1\144\2\uffff\1\60\1\164\2\uffff\1\151\1\141"+
-		"\2\uffff\1\145\1\162\1\154\1\162\1\160\1\163\1\145\1\151\1\uffff\1\60"+
-		"\1\156\1\147\1\144\1\156\3\60\1\157\1\164\1\60\1\146\1\uffff\1\164\1\162"+
-		"\2\60\3\uffff\1\165\1\60\1\uffff\2\60\1\141\2\uffff\1\156\3\uffff\1\155"+
-		"\1\144\2\60\2\uffff";
+		"\1\11\1\75\1\157\1\150\1\uffff\1\103\1\57\1\154\1\75\1\146\6\uffff\1\75"+
+		"\1\uffff\1\162\1\uffff\1\145\2\uffff\1\75\1\150\1\uffff\1\141\5\uffff"+
+		"\1\157\1\141\1\156\1\117\1\105\1\117\2\uffff\1\163\1\144\2\uffff\1\60"+
+		"\1\164\2\uffff\1\151\1\141\2\uffff\1\145\1\162\1\154\1\162\1\163\1\115"+
+		"\1\107\1\123\1\117\1\145\1\151\1\uffff\1\60\1\156\1\144\1\156\3\60\1\164"+
+		"\1\120\1\101\1\111\1\107\1\60\1\146\1\uffff\1\164\2\60\3\uffff\1\60\1"+
+		"\117\2\124\1\122\1\uffff\2\60\3\uffff\1\125\2\111\1\101\2\uffff\1\116"+
+		"\2\126\1\115\1\104\2\105\4\60\4\uffff";
 	static final String DFA5_maxS =
-		"\1\175\1\75\2\157\1\uffff\1\57\1\156\1\75\1\156\6\uffff\1\75\1\uffff\1"+
-		"\162\1\uffff\1\145\2\uffff\1\75\1\150\1\uffff\1\141\5\uffff\1\157\1\141"+
-		"\1\156\2\uffff\1\163\1\144\2\uffff\1\172\1\164\2\uffff\1\157\1\141\2\uffff"+
-		"\1\145\1\162\1\154\1\162\1\160\1\163\1\145\1\151\1\uffff\1\172\1\156\1"+
-		"\147\1\144\1\156\3\172\1\157\1\164\1\172\1\146\1\uffff\1\164\1\162\2\172"+
-		"\3\uffff\1\165\1\172\1\uffff\2\172\1\141\2\uffff\1\156\3\uffff\1\155\1"+
-		"\144\2\172\2\uffff";
+		"\1\175\1\75\2\157\1\uffff\1\120\1\57\1\156\1\75\1\156\6\uffff\1\75\1\uffff"+
+		"\1\162\1\uffff\1\145\2\uffff\1\75\1\150\1\uffff\1\141\5\uffff\1\157\1"+
+		"\141\1\156\1\117\1\105\1\122\2\uffff\1\163\1\144\2\uffff\1\172\1\164\2"+
+		"\uffff\1\151\1\141\2\uffff\1\145\1\162\1\154\1\162\1\163\1\115\1\107\1"+
+		"\123\1\117\1\145\1\151\1\uffff\1\172\1\156\1\144\1\156\3\172\1\164\1\120"+
+		"\1\101\1\111\1\107\1\172\1\146\1\uffff\1\164\2\172\3\uffff\1\172\1\117"+
+		"\2\124\1\122\1\uffff\2\172\3\uffff\1\125\2\111\1\101\2\uffff\1\116\2\126"+
+		"\1\115\1\104\2\105\4\172\4\uffff";
 	static final String DFA5_acceptS =
-		"\4\uffff\1\4\4\uffff\1\17\1\20\1\21\1\22\1\23\1\24\1\uffff\1\27\1\uffff"+
-		"\1\32\1\uffff\1\34\1\35\2\uffff\1\41\1\uffff\1\43\1\44\1\46\1\12\1\1\3"+
-		"\uffff\1\45\1\7\2\uffff\1\14\1\13\2\uffff\1\26\1\25\2\uffff\1\37\1\36"+
-		"\10\uffff\1\15\14\uffff\1\16\4\uffff\1\42\1\2\1\3\2\uffff\1\10\3\uffff"+
-		"\1\33\1\40\1\uffff\1\6\1\11\1\30\4\uffff\1\31\1\5";
+		"\4\uffff\1\4\5\uffff\1\17\1\20\1\21\1\22\1\23\1\24\1\uffff\1\30\1\uffff"+
+		"\1\34\1\uffff\1\36\1\37\2\uffff\1\43\1\uffff\1\45\1\46\1\50\1\12\1\1\6"+
+		"\uffff\1\47\1\7\2\uffff\1\14\1\13\2\uffff\1\27\1\26\2\uffff\1\41\1\40"+
+		"\13\uffff\1\15\16\uffff\1\16\3\uffff\1\44\1\2\1\3\5\uffff\1\10\2\uffff"+
+		"\1\35\1\42\1\6\4\uffff\1\11\1\32\13\uffff\1\33\1\5\1\25\1\31";
 	static final String DFA5_specialS =
-		"\137\uffff}>";
+		"\165\uffff}>";
 	static final String[] DFA5_transitionS = {
-			"\2\34\1\uffff\2\34\22\uffff\1\34\1\17\3\uffff\1\16\1\12\1\uffff\1\14"+
-			"\1\24\1\30\1\20\1\4\1\15\1\uffff\1\5\12\33\1\uffff\1\25\1\26\1\1\1\7"+
-			"\2\uffff\32\32\6\uffff\1\32\1\2\1\3\1\32\1\6\3\32\1\10\6\32\1\21\1\32"+
-			"\1\23\1\32\1\27\1\32\1\31\4\32\1\11\1\13\1\22",
-			"\1\35",
-			"\1\37",
-			"\1\40\6\uffff\1\41",
+			"\2\35\1\uffff\2\35\22\uffff\1\35\1\20\3\uffff\1\17\1\13\1\uffff\1\15"+
+			"\1\25\1\31\1\21\1\4\1\16\1\uffff\1\6\12\34\1\uffff\1\26\1\27\1\1\1\10"+
+			"\2\uffff\12\33\1\5\17\33\6\uffff\1\33\1\2\1\3\1\33\1\7\3\33\1\11\6\33"+
+			"\1\22\1\33\1\24\1\33\1\30\1\33\1\32\4\33\1\12\1\14\1\23",
+			"\1\36",
+			"\1\40",
+			"\1\41\6\uffff\1\42",
 			"",
-			"\1\42",
-			"\1\44\1\uffff\1\45",
+			"\1\43\12\uffff\1\44\1\uffff\1\45",
 			"\1\46",
-			"\1\50\7\uffff\1\51",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
+			"\1\50\1\uffff\1\51",
 			"\1\52",
+			"\1\54\7\uffff\1\55",
 			"",
-			"\1\54",
 			"",
-			"\1\55",
+			"",
+			"",
 			"",
 			"",
 			"\1\56",
+			"",
 			"\1\60",
 			"",
 			"\1\61",
 			"",
 			"",
-			"",
-			"",
-			"",
 			"\1\62",
-			"\1\63",
-			"\1\64\1\65",
+			"\1\64",
+			"",
+			"\1\65",
+			"",
+			"",
+			"",
 			"",
 			"",
 			"\1\66",
 			"\1\67",
-			"",
-			"",
-			"\12\32\7\uffff\32\32\6\uffff\32\32",
+			"\1\70",
 			"\1\71",
-			"",
-			"",
-			"\1\72\5\uffff\1\73",
-			"\1\74",
+			"\1\72",
+			"\1\73\2\uffff\1\74",
 			"",
 			"",
 			"\1\75",
 			"\1\76",
-			"\1\77",
+			"",
+			"",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
 			"\1\100",
+			"",
+			"",
 			"\1\101",
 			"\1\102",
+			"",
+			"",
 			"\1\103",
 			"\1\104",
-			"",
-			"\12\32\7\uffff\32\32\6\uffff\32\32",
+			"\1\105",
 			"\1\106",
 			"\1\107",
 			"\1\110",
 			"\1\111",
-			"\12\32\7\uffff\32\32\6\uffff\32\32",
-			"\12\32\7\uffff\32\32\6\uffff\32\32",
-			"\12\32\7\uffff\32\32\6\uffff\32\32",
+			"\1\112",
+			"\1\113",
+			"\1\114",
 			"\1\115",
-			"\1\116",
-			"\12\32\7\uffff\32\32\6\uffff\32\32",
+			"",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
+			"\1\117",
 			"\1\120",
-			"",
 			"\1\121",
-			"\1\122",
-			"\12\32\7\uffff\32\32\6\uffff\32\32",
-			"\12\32\7\uffff\32\32\6\uffff\32\32",
-			"",
-			"",
-			"",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
 			"\1\125",
-			"\12\32\7\uffff\32\32\6\uffff\32\32",
-			"",
-			"\12\32\7\uffff\32\32\6\uffff\32\32",
-			"\12\32\7\uffff\32\32\6\uffff\32\32",
+			"\1\126",
+			"\1\127",
+			"\1\130",
 			"\1\131",
-			"",
-			"",
-			"\1\132",
-			"",
-			"",
-			"",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
 			"\1\133",
+			"",
 			"\1\134",
-			"\12\32\7\uffff\32\32\6\uffff\32\32",
-			"\12\32\7\uffff\32\32\6\uffff\32\32",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
+			"",
+			"",
+			"",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
+			"\1\140",
+			"\1\141",
+			"\1\142",
+			"\1\143",
+			"",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
+			"",
+			"",
+			"",
+			"\1\146",
+			"\1\147",
+			"\1\150",
+			"\1\151",
+			"",
+			"",
+			"\1\152",
+			"\1\153",
+			"\1\154",
+			"\1\155",
+			"\1\156",
+			"\1\157",
+			"\1\160",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
+			"\12\33\7\uffff\32\33\6\uffff\32\33",
+			"",
+			"",
 			"",
 			""
 	};
@@ -1506,7 +1588,7 @@ public class ForrestLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( BECOMES | BOOL | CHAR | COMMA | COMPOUND | CONSTANT | DIVIDE | ELSE | ENDIF | EQUALS | GREATER | GREATEREQ | IF | INT | LCURLY | LOGAND | LOGOR | LPAREN | MINUS | MODULO | NOT | NOTEQUALS | PLUS | PRINT | PROGRAM | RCURLY | READ | RPAREN | SEMICOLON | SMALLER | SMALLEREQ | THEN | TIMES | VAR | IDENTIFIER | NUMBER | COMMENT | WS );";
+			return "1:1: Tokens : ( BECOMES | BOOL | CHAR | COMMA | COMPOUND | CONSTANT | DIVIDE | ELSE | ENDIF | EQUALS | GREATER | GREATEREQ | IF | INT | LCURLY | LOGAND | LOGOR | LPAREN | MINUS | MODULO | NEGATIVE | NOT | NOTEQUALS | PLUS | POSITIVE | PRINT | PROGRAM | RCURLY | READ | RPAREN | SEMICOLON | SMALLER | SMALLEREQ | THEN | TIMES | VAR | IDENTIFIER | NUMBER | COMMENT | WS );";
 		}
 	}
 

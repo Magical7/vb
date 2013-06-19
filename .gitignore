@@ -3,4 +3,4 @@
 # Package Files #
 *.jar
 *.war
-*.ear
+*.ear.classpath

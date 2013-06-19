@@ -43,10 +43,12 @@ tokens {
     IF			=	'if'		;
     THEN		= 	'then'		;
     ELSE		=	'else'		;
-    COMPOUND	= 	'compound'	;
-    PROGRAM		=	'program'	;
+    COMPOUND	= 	'KCOMPOUND'	;
+    PROGRAM		=	'KPROGRAM'	;
     CONSTANT	=	'const'		;
     ENDIF		=	'endif'		;
+    POSITIVE	=	'KPOSITIVE'	;
+    NEGATIVE	=	'KNEGATIVE'	;
 }
 
 @lexer::header {
@@ -60,7 +62,7 @@ package forrest.main;
 //Parser rules
 
 forrest
-	:   program_lines EOF
+	:   program_lines EOF!
             ->  ^(PROGRAM program_lines)
     ;
     
@@ -107,7 +109,11 @@ expr_mult
 	;
 	
 expr_unary
-	:	(MINUS^ | PLUS^ | NOT^)? expr_compound
+	:	(NOT^)? expr_compound
+	|	PLUS expr_compound
+			-> ^(POSITIVE expr_compound)
+	|	MINUS expr_compound
+			-> ^(NEGATIVE expr_compound)
 	;
 	
 expr_compound
@@ -116,8 +122,16 @@ expr_compound
 	|	IDENTIFIER
 	|	NUMBER
 	|	LPAREN! expr RPAREN!
-	| 	READ^ LPAREN! IDENTIFIER (COMMA! IDENTIFIER)* RPAREN!
-	|	PRINT^ LPAREN! expr (COMMA! expr)* RPAREN!
+	| 	read
+	|	print
+	;
+	
+read
+	:	READ^ LPAREN! IDENTIFIER (COMMA! IDENTIFIER)* RPAREN!
+	;
+
+print
+	:	PRINT^ LPAREN! expr (COMMA! expr)* RPAREN!
 	;
 	
 //LEXer rules

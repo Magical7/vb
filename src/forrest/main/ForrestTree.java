@@ -47,7 +47,7 @@ public class ForrestTree extends CommonTree {
 	@Override
 	public String toString(){
 		String s = super.toString();
-		s += "Type: " + returnType.toString();
+		return s + "Type: " + returnType.toString();
 	}
 	
 }
