@@ -33,50 +33,50 @@ program_lines
 	;
 
 declaration
+@init {
+ForrestTree t = (ForrestTree)input.LT(1);
+}
 	:	^(VAR id=IDENTIFIER (type=CHAR | type=BOOL | type=INT))
-		{symtab.declareId($id, type);}
-	|	^(CONSTANT id=IDENTIFIER
-		{ForrestTree ex=(ForrestTree)input.LT(1);} expr)
-		{symtab.declareConst($id, ex);}
+		{symtab.declareId(t);}
+	|	^(CONSTANT id=IDENTIFIER expr)
+		{symtab.declareConst(t);}
 	;
 
 
 expr
 @init {
 ForrestTree t = (ForrestTree)input.LT(1);
-ForrestTree ex1 = null;
-ForrestTree ex2 = null;
-ForrestTree ex3 = null;
 }
 	: 	^(BECOMES id=IDENTIFIER expr)
 		{
 			symtab.setType($id);
-			ExpressionChecker.checkAssign(t, $id, ex2);
+			ExpressionChecker.checkAssign(t);
 		}
 	|	{boolean hasElse = false;}
 		^(IF expr expr (expr)? )
 		{
 			if (hasElse) {
-				ExpressionChecker.checkIfElse(t, ex1, ex2, ex3);
+				ExpressionChecker.checkIfElse(t);
 			} else {
-				ExpressionChecker.checkIf(t, ex1, ex2);
+				ExpressionChecker.checkIf(t);
 			}
 		}
 	|	^((LOGOR|LOGAND) expr expr)
-		{ExpressionChecker.checkBinaryBoolean(t, ex1, ex2);}
+		{ExpressionChecker.checkBinaryBoolean(t);}
 	|	^((GREATER | SMALLER | GREATEREQ | SMALLEREQ) expr expr)
-		{ExpressionChecker.checkComparison(t, ex1, ex2);}
+		{ExpressionChecker.checkComparison(t);}
 	|	^((EQUALS | NOTEQUALS) expr expr)
-		{ExpressionChecker.checkEquals(t, ex1, ex2);}
+		{ExpressionChecker.checkEquals(t);}
 	|	^((PLUS | MINUS | TIMES | DIVIDE | MODULO) expr expr)
-		{ExpressionChecker.checkBinaryInteger(t, ex1, ex2);}
+		{ExpressionChecker.checkBinaryInteger(t);}
 	|	^((POSITIVE | NEGATIVE) expr)
-		{ExpressionChecker.checkUnaryInteger(t, ex1);}
+		{ExpressionChecker.checkUnaryInteger(t);}
 	|	^((NOT) expr)
-		{ExpressionChecker.checkUnaryBoolean(t, ex1);}
+		{ExpressionChecker.checkUnaryBoolean(t);}
 	|   ^(COMPOUND {symtab.openScope();} program_lines) {symtab.closeScope();}
 	|	IDENTIFIER {symtab.setType(t);}
-	|	NUMBER
+	|	NUMBER {symtab.setNumber(t);}
+	|	(TRUE | FALSE) {symtab.setBoolean(t);}
 	|	read
 	|	print
 	;
@@ -84,28 +84,17 @@ ForrestTree ex3 = null;
 read
 @init {
 ForrestTree t = (ForrestTree)input.LT(1);
-List<ForrestTree> ids = new ArrayList<ForrestTree>();
 }
-	:	^(READ (id=IDENTIFIER {
-			symtab.setType($id);
-			ids.add($id);
-			}
-		)+) {ExpressionChecker.checkRead(t, ids);}
+	:	^(READ (id=IDENTIFIER)+) 
+		{ExpressionChecker.checkRead(t);}
 	;
 	
 print
 @init {
 ForrestTree t = (ForrestTree)input.LT(1);
-List<ForrestTree> exprs = new ArrayList<ForrestTree>();
 }
-	:	^(PRINT (
-			{
-				ForrestTree expression = (ForrestTree)input.LT(1);
-				symtab.setType(expression);
-				exprs.add(expression);
-			}
-			expr
-		)+) {ExpressionChecker.checkPrint(t, exprs);}
+	:	^(PRINT (expr)+) 
+		{ExpressionChecker.checkPrint(t);}
 	;
 	
 //	EOF

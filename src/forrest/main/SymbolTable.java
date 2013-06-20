@@ -41,12 +41,13 @@ public class SymbolTable<Entry extends IdEntry> {
     
     /** 
      * Declare an identifier
-     * @param id - the identifier tree node 
-     * @param type - the type associated with the id
+     * @param t - the identifier tree node 
      * @throws ForrestFireException if the identifier has been used for any 
      *	constant or if the identifier already exists in the current scope.
      */
-    protected void declareId(ForrestTree id, ForrestTree type) throws ForrestFireException {
+    protected void declareId(ForrestTree t) throws ForrestFireException {
+    	ForrestTree id = (ForrestTree) t.getChild(0);
+    	ForrestTree type = (ForrestTree) t.getChild(1);
     	if (isDeclaredConstant(id.getText())) {
     		throw new ForrestFireException(id, "is a declared constant.");
     	} else if (isDeclaredVariable(id.getText())) {
@@ -94,12 +95,13 @@ public class SymbolTable<Entry extends IdEntry> {
     
     /**
      * Declare a constant
-     * @param id - the id of the constant
-     * @param expr - the value of the constant as an expression
+     * @param t - the id of the constant
      * @throws ForrestFireException if the identifier has been used already or
      	if the constant is declared inside a nested scope
      */
-    protected void declareConst(ForrestTree id, ForrestTree expr) throws ForrestFireException {
+    protected void declareConst(ForrestTree t) throws ForrestFireException {
+    	ForrestTree id = (ForrestTree) t.getChild(0);
+    	ForrestTree expr = (ForrestTree) t.getChild(1);
     	if (this.currentLevel() != 0) {
     		throw new ForrestFireException(id, "can not be declared inside a nested scope");
     	} else if (this.hasBeenUsed(id.getText())) {
@@ -139,5 +141,23 @@ public class SymbolTable<Entry extends IdEntry> {
     	} else {
     		id.setReturnType(type);
     	}
+    }
+    
+    /**
+     * Set the type for a ForrestTree node that is an integer
+     * @param t - ForrestTree that needs its type set 
+     * @throws ForrestFireException if the id has not been declared yet
+     */
+    public void setNumber(ForrestTree t) throws ForrestFireException {
+		t.setReturnType(Type.INT);
+    }
+    
+    /**
+     * Set the type for a ForrestTree node that is a boolean
+     * @param t - ForrestTree that needs its type set 
+     * @throws ForrestFireException if the id has not been declared yet
+     */
+    public void setBoolean(ForrestTree t) throws ForrestFireException {
+		t.setReturnType(Type.BOOL);
     }
 }

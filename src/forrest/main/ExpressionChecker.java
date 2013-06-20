@@ -13,11 +13,11 @@ public class ExpressionChecker {
 	 * Check whether the types of two expressions match and sets the return type
 	 	of the parent node to that type if they do
 	 * @param t - the parent tree node
-	 * @param expr1 - one expression
-	 * @param expr2 - the other expression
 	 * @throws ForrestFireException if the expressions do not match
 	 */
-	public static void checkAssign(ForrestTree t, ForrestTree expr1, ForrestTree expr2) throws ForrestFireException {
+	public static void checkAssign(ForrestTree t) throws ForrestFireException {
+		ForrestTree expr1 = (ForrestTree) t.getChild(0);
+		ForrestTree expr2 = (ForrestTree) t.getChild(1);
 		if (expr1.getReturnType() != expr2.getReturnType()) {
 			throw new ForrestFireException(expr2, "does not match type of " + expr1.getReturnType());
 		} else {
@@ -28,12 +28,12 @@ public class ExpressionChecker {
 	/**
 	 * Check whether an if-else-statement is correct
 	 * @param t - the parent tree node
-	 * @param expr1 - the condition
-	 * @param expr2 - the then-statement
-	 * @param expr3 - the else-statement
 	 * @throws ForrestFireException if the expressions do not match
 	 */
-	public static void checkIfElse(ForrestTree t, ForrestTree expr1, ForrestTree expr2, ForrestTree expr3) throws ForrestFireException {
+	public static void checkIfElse(ForrestTree t) throws ForrestFireException {
+		ForrestTree expr1 = (ForrestTree) t.getChild(0);
+		ForrestTree expr2 = (ForrestTree) t.getChild(1);
+		ForrestTree expr3 = (ForrestTree) t.getChild(2);
 		if (expr1.getReturnType() != Type.BOOL) {
 			throw new ForrestFireException(expr1, "is not of type boolean");
 		} else {
@@ -48,11 +48,10 @@ public class ExpressionChecker {
 	/**
 	 * Check whether an if-statement is correct
 	 * @param t - the parent tree node
-	 * @param expr1 - the condition
-	 * @param expr2 - the then-statement
 	 * @throws ForrestFireException if the expressions do not match
 	 */
-	public static void checkIf(ForrestTree t, ForrestTree expr1, ForrestTree expr2) throws ForrestFireException {
+	public static void checkIf(ForrestTree t) throws ForrestFireException {
+		ForrestTree expr1 = (ForrestTree) t.getChild(0);
 		if (expr1.getReturnType() != Type.BOOL) {
 			throw new ForrestFireException(expr1, "is not of type boolean");
 		} else {
@@ -63,11 +62,11 @@ public class ExpressionChecker {
 	/**
 	 * Check whether a binary boolean operation is correct
 	 * @param t - the parent node
-	 * @param expr1 - one expression
-	 * @param expr2 - another expression
 	 * @throws ForrestFireException if the operation is not correct
 	 */
-	public static void checkBinaryBoolean(ForrestTree t, ForrestTree expr1, ForrestTree expr2) throws ForrestFireException {
+	public static void checkBinaryBoolean(ForrestTree t) throws ForrestFireException {
+		ForrestTree expr1 = (ForrestTree) t.getChild(0);
+		ForrestTree expr2 = (ForrestTree) t.getChild(1);
 		if (expr1.getReturnType() != Type.BOOL){
 			throw new ForrestFireException(expr1, "is not of type boolean");
 		} else if (expr2.getReturnType() != Type.BOOL){
@@ -80,11 +79,11 @@ public class ExpressionChecker {
 	/**
 	 * Check whether a comparison between integers is correct
 	 * @param t - the parent node
-	 * @param expr1 - one expression
-	 * @param expr2 - another expression
 	 * @throws ForrestFireException if the operation is not correct
 	 */
-	public static void checkComparison(ForrestTree t, ForrestTree expr1, ForrestTree expr2) throws ForrestFireException {
+	public static void checkComparison(ForrestTree t) throws ForrestFireException {
+		ForrestTree expr1 = (ForrestTree) t.getChild(0);
+		ForrestTree expr2 = (ForrestTree) t.getChild(1);
 		if (expr1.getReturnType() != Type.INT){
 			throw new ForrestFireException(expr1, "is not of type integer");
 		} else if (expr2.getReturnType() != Type.INT){
@@ -97,11 +96,11 @@ public class ExpressionChecker {
 	/**
 	 * Check whether a comparison between two expressions is correct
 	 * @param t - the parent node
-	 * @param expr1 - one expression
-	 * @param expr2 - another expression
 	 * @throws ForrestFireException if the operation is not correct
 	 */
-	public static void checkEquals(ForrestTree t, ForrestTree expr1, ForrestTree expr2) throws ForrestFireException {
+	public static void checkEquals(ForrestTree t) throws ForrestFireException {
+		ForrestTree expr1 = (ForrestTree) t.getChild(0);
+		ForrestTree expr2 = (ForrestTree) t.getChild(1);
 		if (expr1.getReturnType() != expr2.getReturnType()){
 			throw new ForrestFireException(expr2, "does not match the type of " + expr1.getReturnType());
 		} else {
@@ -112,11 +111,11 @@ public class ExpressionChecker {
 	/**
 	 * Check whether an operation with integers is correct
 	 * @param t - the parent node
-	 * @param expr1 - one expression
-	 * @param expr2 - another expression
 	 * @throws ForrestFireException if the operation is not correct
 	 */
-	public static void checkBinaryInteger(ForrestTree t, ForrestTree expr1, ForrestTree expr2) throws ForrestFireException {
+	public static void checkBinaryInteger(ForrestTree t) throws ForrestFireException {
+		ForrestTree expr1 = (ForrestTree) t.getChild(0);
+		ForrestTree expr2 = (ForrestTree) t.getChild(1);
 		if (expr1.getReturnType() != Type.INT){
 			throw new ForrestFireException(expr1, "is not of type integer");
 		} else if (expr2.getReturnType() != Type.INT){
@@ -129,10 +128,10 @@ public class ExpressionChecker {
 	/**
 	 * Check whether an operation with an integer is correct
 	 * @param t - the parent node
-	 * @param expr1 - original expression
 	 * @throws ForrestFireException if the operation is not correct
 	 */
-	public static void checkUnaryInteger(ForrestTree t, ForrestTree expr1) throws ForrestFireException {
+	public static void checkUnaryInteger(ForrestTree t) throws ForrestFireException {
+		ForrestTree expr1 = (ForrestTree) t.getChild(0);
 		if (expr1.getReturnType() != Type.INT){
 			throw new ForrestFireException(expr1, "is not of type integer");
 		} else {
@@ -143,10 +142,10 @@ public class ExpressionChecker {
 	/**
 	 * Check whether an operation with a boolean is correct
 	 * @param t - the parent node
-	 * @param expr1 - original expression
 	 * @throws ForrestFireException if the operation is not correct
 	 */
-	public static void checkUnaryBoolean(ForrestTree t, ForrestTree expr1) throws ForrestFireException {
+	public static void checkUnaryBoolean(ForrestTree t) throws ForrestFireException {
+		ForrestTree expr1 = (ForrestTree) t.getChild(0);
 		if (expr1.getReturnType() != Type.BOOL){
 			throw new ForrestFireException(expr1, "is not of type boolean");
 		} else {
@@ -157,9 +156,9 @@ public class ExpressionChecker {
 	/**
 	 * Check whether a read operation is correct
 	 * @param t - the parent node
-	 * @param ids - a list of identifier nodes
 	 */
-	public static void checkRead(ForrestTree t, List<ForrestTree> ids) {
+	public static void checkRead(ForrestTree t) {
+		List<ForrestTree> ids = (List<ForrestTree>) t.getChildren();
 		if (ids.size() == 1) {
 			t.setReturnType(ids.get(0).getReturnType());
 		} else {
@@ -170,10 +169,10 @@ public class ExpressionChecker {
 	/**
 	 * Check whether a print operation is correct
 	 * @param t - the parent node
-	 * @param exprs - a list of expressions
 	 * @throws ForrestFireException - if there is a problem in the arguments
 	 */
-	public static void checkPrint(ForrestTree t, List<ForrestTree> exprs) throws ForrestFireException {
+	public static void checkPrint(ForrestTree t) throws ForrestFireException {
+		List<ForrestTree> exprs = (List<ForrestTree>) t.getChildren();
 		for(int i = 0; i < exprs.size(); i++) {
 			if (exprs.get(i).getReturnType() == Type.VOID) {
 				throw new ForrestFireException(exprs.get(i), "is of type void");

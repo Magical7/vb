@@ -1,4 +1,4 @@
-// $ANTLR 3.5 ForrestChecker.g 2013-06-20 13:42:03
+// $ANTLR 3.5 ForrestChecker.g 2013-06-20 14:10:08
 
 	package forrest.main;
 	import fire.ForrestFireException;
@@ -15,11 +15,11 @@ public class ForrestChecker extends TreeParser {
 	public static final String[] tokenNames = new String[] {
 		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "BECOMES", "BOOL", "CHAR", "COMMA", 
 		"COMMENT", "COMPOUND", "CONSTANT", "DIGIT", "DIVIDE", "ELSE", "ENDIF", 
-		"EQUALS", "GREATER", "GREATEREQ", "IDENTIFIER", "IF", "INT", "LCURLY", 
-		"LETTER", "LOGAND", "LOGOR", "LOWER", "LPAREN", "MINUS", "MODULO", "NEGATIVE", 
-		"NOT", "NOTEQUALS", "NUMBER", "PLUS", "POSITIVE", "PRINT", "PROGRAM", 
-		"RCURLY", "READ", "RPAREN", "SEMICOLON", "SMALLER", "SMALLEREQ", "THEN", 
-		"TIMES", "UPPER", "VAR", "WS"
+		"EQUALS", "FALSE", "GREATER", "GREATEREQ", "IDENTIFIER", "IF", "INT", 
+		"LCURLY", "LETTER", "LOGAND", "LOGOR", "LOWER", "LPAREN", "MINUS", "MODULO", 
+		"NEGATIVE", "NOT", "NOTEQUALS", "NUMBER", "PLUS", "POSITIVE", "PRINT", 
+		"PROGRAM", "RCURLY", "READ", "RPAREN", "SEMICOLON", "SMALLER", "SMALLEREQ", 
+		"THEN", "TIMES", "TRUE", "UPPER", "VAR", "WS"
 	};
 	public static final int EOF=-1;
 	public static final int BECOMES=4;
@@ -34,38 +34,40 @@ public class ForrestChecker extends TreeParser {
 	public static final int ELSE=13;
 	public static final int ENDIF=14;
 	public static final int EQUALS=15;
-	public static final int GREATER=16;
-	public static final int GREATEREQ=17;
-	public static final int IDENTIFIER=18;
-	public static final int IF=19;
-	public static final int INT=20;
-	public static final int LCURLY=21;
-	public static final int LETTER=22;
-	public static final int LOGAND=23;
-	public static final int LOGOR=24;
-	public static final int LOWER=25;
-	public static final int LPAREN=26;
-	public static final int MINUS=27;
-	public static final int MODULO=28;
-	public static final int NEGATIVE=29;
-	public static final int NOT=30;
-	public static final int NOTEQUALS=31;
-	public static final int NUMBER=32;
-	public static final int PLUS=33;
-	public static final int POSITIVE=34;
-	public static final int PRINT=35;
-	public static final int PROGRAM=36;
-	public static final int RCURLY=37;
-	public static final int READ=38;
-	public static final int RPAREN=39;
-	public static final int SEMICOLON=40;
-	public static final int SMALLER=41;
-	public static final int SMALLEREQ=42;
-	public static final int THEN=43;
-	public static final int TIMES=44;
-	public static final int UPPER=45;
-	public static final int VAR=46;
-	public static final int WS=47;
+	public static final int FALSE=16;
+	public static final int GREATER=17;
+	public static final int GREATEREQ=18;
+	public static final int IDENTIFIER=19;
+	public static final int IF=20;
+	public static final int INT=21;
+	public static final int LCURLY=22;
+	public static final int LETTER=23;
+	public static final int LOGAND=24;
+	public static final int LOGOR=25;
+	public static final int LOWER=26;
+	public static final int LPAREN=27;
+	public static final int MINUS=28;
+	public static final int MODULO=29;
+	public static final int NEGATIVE=30;
+	public static final int NOT=31;
+	public static final int NOTEQUALS=32;
+	public static final int NUMBER=33;
+	public static final int PLUS=34;
+	public static final int POSITIVE=35;
+	public static final int PRINT=36;
+	public static final int PROGRAM=37;
+	public static final int RCURLY=38;
+	public static final int READ=39;
+	public static final int RPAREN=40;
+	public static final int SEMICOLON=41;
+	public static final int SMALLER=42;
+	public static final int SMALLEREQ=43;
+	public static final int THEN=44;
+	public static final int TIMES=45;
+	public static final int TRUE=46;
+	public static final int UPPER=47;
+	public static final int VAR=48;
+	public static final int WS=49;
 
 	// delegates
 	public TreeParser[] getDelegates() {
@@ -138,7 +140,7 @@ public class ForrestChecker extends TreeParser {
 			while (true) {
 				int alt2=2;
 				int LA2_0 = input.LA(1);
-				if ( (LA2_0==BECOMES||(LA2_0 >= COMPOUND && LA2_0 <= CONSTANT)||LA2_0==DIVIDE||(LA2_0 >= EQUALS && LA2_0 <= IF)||(LA2_0 >= LOGAND && LA2_0 <= LOGOR)||(LA2_0 >= MINUS && LA2_0 <= PRINT)||LA2_0==READ||(LA2_0 >= SMALLER && LA2_0 <= SMALLEREQ)||LA2_0==TIMES||LA2_0==VAR) ) {
+				if ( (LA2_0==BECOMES||(LA2_0 >= COMPOUND && LA2_0 <= CONSTANT)||LA2_0==DIVIDE||(LA2_0 >= EQUALS && LA2_0 <= IF)||(LA2_0 >= LOGAND && LA2_0 <= LOGOR)||(LA2_0 >= MINUS && LA2_0 <= PRINT)||LA2_0==READ||(LA2_0 >= SMALLER && LA2_0 <= SMALLEREQ)||(LA2_0 >= TIMES && LA2_0 <= TRUE)||LA2_0==VAR) ) {
 					alt2=1;
 				}
 
@@ -205,8 +207,11 @@ public class ForrestChecker extends TreeParser {
 		ForrestTree id=null;
 		ForrestTree type=null;
 
+
+		ForrestTree t = (ForrestTree)input.LT(1);
+
 		try {
-			// ForrestChecker.g:36:2: ( ^( VAR id= IDENTIFIER (type= CHAR |type= BOOL |type= INT ) ) | ^( CONSTANT id= IDENTIFIER expr ) )
+			// ForrestChecker.g:39:2: ( ^( VAR id= IDENTIFIER (type= CHAR |type= BOOL |type= INT ) ) | ^( CONSTANT id= IDENTIFIER expr ) )
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0==VAR) ) {
@@ -224,12 +229,12 @@ public class ForrestChecker extends TreeParser {
 
 			switch (alt4) {
 				case 1 :
-					// ForrestChecker.g:36:4: ^( VAR id= IDENTIFIER (type= CHAR |type= BOOL |type= INT ) )
+					// ForrestChecker.g:39:4: ^( VAR id= IDENTIFIER (type= CHAR |type= BOOL |type= INT ) )
 					{
-					match(input,VAR,FOLLOW_VAR_in_declaration99); 
+					match(input,VAR,FOLLOW_VAR_in_declaration104); 
 					match(input, Token.DOWN, null); 
-					id=(ForrestTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_declaration103); 
-					// ForrestChecker.g:36:24: (type= CHAR |type= BOOL |type= INT )
+					id=(ForrestTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_declaration108); 
+					// ForrestChecker.g:39:24: (type= CHAR |type= BOOL |type= INT )
 					int alt3=3;
 					switch ( input.LA(1) ) {
 					case CHAR:
@@ -254,21 +259,21 @@ public class ForrestChecker extends TreeParser {
 					}
 					switch (alt3) {
 						case 1 :
-							// ForrestChecker.g:36:25: type= CHAR
+							// ForrestChecker.g:39:25: type= CHAR
 							{
-							type=(ForrestTree)match(input,CHAR,FOLLOW_CHAR_in_declaration108); 
+							type=(ForrestTree)match(input,CHAR,FOLLOW_CHAR_in_declaration113); 
 							}
 							break;
 						case 2 :
-							// ForrestChecker.g:36:37: type= BOOL
+							// ForrestChecker.g:39:37: type= BOOL
 							{
-							type=(ForrestTree)match(input,BOOL,FOLLOW_BOOL_in_declaration114); 
+							type=(ForrestTree)match(input,BOOL,FOLLOW_BOOL_in_declaration119); 
 							}
 							break;
 						case 3 :
-							// ForrestChecker.g:36:49: type= INT
+							// ForrestChecker.g:39:49: type= INT
 							{
-							type=(ForrestTree)match(input,INT,FOLLOW_INT_in_declaration120); 
+							type=(ForrestTree)match(input,INT,FOLLOW_INT_in_declaration125); 
 							}
 							break;
 
@@ -276,23 +281,22 @@ public class ForrestChecker extends TreeParser {
 
 					match(input, Token.UP, null); 
 
-					symtab.declareId(id, type);
+					symtab.declareId(t);
 					}
 					break;
 				case 2 :
-					// ForrestChecker.g:38:4: ^( CONSTANT id= IDENTIFIER expr )
+					// ForrestChecker.g:41:4: ^( CONSTANT id= IDENTIFIER expr )
 					{
-					match(input,CONSTANT,FOLLOW_CONSTANT_in_declaration132); 
+					match(input,CONSTANT,FOLLOW_CONSTANT_in_declaration137); 
 					match(input, Token.DOWN, null); 
-					id=(ForrestTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_declaration136); 
-					ForrestTree ex=(ForrestTree)input.LT(1);
-					pushFollow(FOLLOW_expr_in_declaration142);
+					id=(ForrestTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_declaration141); 
+					pushFollow(FOLLOW_expr_in_declaration143);
 					expr();
 					state._fsp--;
 
 					match(input, Token.UP, null); 
 
-					symtab.declareConst(id, ex);
+					symtab.declareConst(t);
 					}
 					break;
 
@@ -312,19 +316,16 @@ public class ForrestChecker extends TreeParser {
 
 
 	// $ANTLR start "expr"
-	// ForrestChecker.g:44:1: expr : ( ^( BECOMES id= IDENTIFIER expr ) | ^( IF expr expr ( expr )? ) | ^( ( LOGOR | LOGAND ) expr expr ) | ^( ( GREATER | SMALLER | GREATEREQ | SMALLEREQ ) expr expr ) | ^( ( EQUALS | NOTEQUALS ) expr expr ) | ^( ( PLUS | MINUS | TIMES | DIVIDE | MODULO ) expr expr ) | ^( ( POSITIVE | NEGATIVE ) expr ) | ^( ( NOT ) expr ) | ^( COMPOUND program_lines ) | IDENTIFIER | NUMBER | read | print );
+	// ForrestChecker.g:46:1: expr : ( ^( BECOMES id= IDENTIFIER expr ) | ^( IF expr expr ( expr )? ) | ^( ( LOGOR | LOGAND ) expr expr ) | ^( ( GREATER | SMALLER | GREATEREQ | SMALLEREQ ) expr expr ) | ^( ( EQUALS | NOTEQUALS ) expr expr ) | ^( ( PLUS | MINUS | TIMES | DIVIDE | MODULO ) expr expr ) | ^( ( POSITIVE | NEGATIVE ) expr ) | ^( ( NOT ) expr ) | ^( COMPOUND program_lines ) | IDENTIFIER | NUMBER | ( TRUE | FALSE ) | read | print );
 	public final void expr() throws RecognitionException {
 		ForrestTree id=null;
 
 
 		ForrestTree t = (ForrestTree)input.LT(1);
-		ForrestTree ex1 = null;
-		ForrestTree ex2 = null;
-		ForrestTree ex3 = null;
 
 		try {
-			// ForrestChecker.g:51:2: ( ^( BECOMES id= IDENTIFIER expr ) | ^( IF expr expr ( expr )? ) | ^( ( LOGOR | LOGAND ) expr expr ) | ^( ( GREATER | SMALLER | GREATEREQ | SMALLEREQ ) expr expr ) | ^( ( EQUALS | NOTEQUALS ) expr expr ) | ^( ( PLUS | MINUS | TIMES | DIVIDE | MODULO ) expr expr ) | ^( ( POSITIVE | NEGATIVE ) expr ) | ^( ( NOT ) expr ) | ^( COMPOUND program_lines ) | IDENTIFIER | NUMBER | read | print )
-			int alt6=13;
+			// ForrestChecker.g:50:2: ( ^( BECOMES id= IDENTIFIER expr ) | ^( IF expr expr ( expr )? ) | ^( ( LOGOR | LOGAND ) expr expr ) | ^( ( GREATER | SMALLER | GREATEREQ | SMALLEREQ ) expr expr ) | ^( ( EQUALS | NOTEQUALS ) expr expr ) | ^( ( PLUS | MINUS | TIMES | DIVIDE | MODULO ) expr expr ) | ^( ( POSITIVE | NEGATIVE ) expr ) | ^( ( NOT ) expr ) | ^( COMPOUND program_lines ) | IDENTIFIER | NUMBER | ( TRUE | FALSE ) | read | print )
+			int alt6=14;
 			switch ( input.LA(1) ) {
 			case BECOMES:
 				{
@@ -391,14 +392,20 @@ public class ForrestChecker extends TreeParser {
 				alt6=11;
 				}
 				break;
-			case READ:
+			case FALSE:
+			case TRUE:
 				{
 				alt6=12;
 				}
 				break;
-			case PRINT:
+			case READ:
 				{
 				alt6=13;
+				}
+				break;
+			case PRINT:
+				{
+				alt6=14;
 				}
 				break;
 			default:
@@ -408,12 +415,12 @@ public class ForrestChecker extends TreeParser {
 			}
 			switch (alt6) {
 				case 1 :
-					// ForrestChecker.g:51:5: ^( BECOMES id= IDENTIFIER expr )
+					// ForrestChecker.g:50:5: ^( BECOMES id= IDENTIFIER expr )
 					{
-					match(input,BECOMES,FOLLOW_BECOMES_in_expr166); 
+					match(input,BECOMES,FOLLOW_BECOMES_in_expr167); 
 					match(input, Token.DOWN, null); 
-					id=(ForrestTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_expr170); 
-					pushFollow(FOLLOW_expr_in_expr172);
+					id=(ForrestTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_expr171); 
+					pushFollow(FOLLOW_expr_in_expr173);
 					expr();
 					state._fsp--;
 
@@ -421,35 +428,35 @@ public class ForrestChecker extends TreeParser {
 
 
 								symtab.setType(id);
-								ExpressionChecker.checkAssign(t, id, ex2);
+								ExpressionChecker.checkAssign(t);
 							
 					}
 					break;
 				case 2 :
-					// ForrestChecker.g:56:4: ^( IF expr expr ( expr )? )
+					// ForrestChecker.g:55:4: ^( IF expr expr ( expr )? )
 					{
 					boolean hasElse = false;
-					match(input,IF,FOLLOW_IF_in_expr187); 
+					match(input,IF,FOLLOW_IF_in_expr188); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_in_expr189);
+					pushFollow(FOLLOW_expr_in_expr190);
 					expr();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_in_expr191);
+					pushFollow(FOLLOW_expr_in_expr192);
 					expr();
 					state._fsp--;
 
-					// ForrestChecker.g:57:18: ( expr )?
+					// ForrestChecker.g:56:18: ( expr )?
 					int alt5=2;
 					int LA5_0 = input.LA(1);
-					if ( (LA5_0==BECOMES||LA5_0==COMPOUND||LA5_0==DIVIDE||(LA5_0 >= EQUALS && LA5_0 <= IF)||(LA5_0 >= LOGAND && LA5_0 <= LOGOR)||(LA5_0 >= MINUS && LA5_0 <= PRINT)||LA5_0==READ||(LA5_0 >= SMALLER && LA5_0 <= SMALLEREQ)||LA5_0==TIMES) ) {
+					if ( (LA5_0==BECOMES||LA5_0==COMPOUND||LA5_0==DIVIDE||(LA5_0 >= EQUALS && LA5_0 <= IF)||(LA5_0 >= LOGAND && LA5_0 <= LOGOR)||(LA5_0 >= MINUS && LA5_0 <= PRINT)||LA5_0==READ||(LA5_0 >= SMALLER && LA5_0 <= SMALLEREQ)||(LA5_0 >= TIMES && LA5_0 <= TRUE)) ) {
 						alt5=1;
 					}
 					switch (alt5) {
 						case 1 :
-							// ForrestChecker.g:57:19: expr
+							// ForrestChecker.g:56:19: expr
 							{
-							pushFollow(FOLLOW_expr_in_expr194);
+							pushFollow(FOLLOW_expr_in_expr195);
 							expr();
 							state._fsp--;
 
@@ -462,15 +469,15 @@ public class ForrestChecker extends TreeParser {
 
 
 								if (hasElse) {
-									ExpressionChecker.checkIfElse(t, ex1, ex2, ex3);
+									ExpressionChecker.checkIfElse(t);
 								} else {
-									ExpressionChecker.checkIf(t, ex1, ex2);
+									ExpressionChecker.checkIf(t);
 								}
 							
 					}
 					break;
 				case 3 :
-					// ForrestChecker.g:65:4: ^( ( LOGOR | LOGAND ) expr expr )
+					// ForrestChecker.g:64:4: ^( ( LOGOR | LOGAND ) expr expr )
 					{
 					if ( (input.LA(1) >= LOGAND && input.LA(1) <= LOGOR) ) {
 						input.consume();
@@ -481,21 +488,21 @@ public class ForrestChecker extends TreeParser {
 						throw mse;
 					}
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_in_expr214);
+					pushFollow(FOLLOW_expr_in_expr215);
 					expr();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_in_expr216);
+					pushFollow(FOLLOW_expr_in_expr217);
 					expr();
 					state._fsp--;
 
 					match(input, Token.UP, null); 
 
-					ExpressionChecker.checkBinaryBoolean(t, ex1, ex2);
+					ExpressionChecker.checkBinaryBoolean(t);
 					}
 					break;
 				case 4 :
-					// ForrestChecker.g:67:4: ^( ( GREATER | SMALLER | GREATEREQ | SMALLEREQ ) expr expr )
+					// ForrestChecker.g:66:4: ^( ( GREATER | SMALLER | GREATEREQ | SMALLEREQ ) expr expr )
 					{
 					if ( (input.LA(1) >= GREATER && input.LA(1) <= GREATEREQ)||(input.LA(1) >= SMALLER && input.LA(1) <= SMALLEREQ) ) {
 						input.consume();
@@ -506,21 +513,21 @@ public class ForrestChecker extends TreeParser {
 						throw mse;
 					}
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_in_expr243);
+					pushFollow(FOLLOW_expr_in_expr244);
 					expr();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_in_expr245);
+					pushFollow(FOLLOW_expr_in_expr246);
 					expr();
 					state._fsp--;
 
 					match(input, Token.UP, null); 
 
-					ExpressionChecker.checkComparison(t, ex1, ex2);
+					ExpressionChecker.checkComparison(t);
 					}
 					break;
 				case 5 :
-					// ForrestChecker.g:69:4: ^( ( EQUALS | NOTEQUALS ) expr expr )
+					// ForrestChecker.g:68:4: ^( ( EQUALS | NOTEQUALS ) expr expr )
 					{
 					if ( input.LA(1)==EQUALS||input.LA(1)==NOTEQUALS ) {
 						input.consume();
@@ -531,21 +538,21 @@ public class ForrestChecker extends TreeParser {
 						throw mse;
 					}
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_in_expr264);
+					pushFollow(FOLLOW_expr_in_expr265);
 					expr();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_in_expr266);
+					pushFollow(FOLLOW_expr_in_expr267);
 					expr();
 					state._fsp--;
 
 					match(input, Token.UP, null); 
 
-					ExpressionChecker.checkEquals(t, ex1, ex2);
+					ExpressionChecker.checkEquals(t);
 					}
 					break;
 				case 6 :
-					// ForrestChecker.g:71:4: ^( ( PLUS | MINUS | TIMES | DIVIDE | MODULO ) expr expr )
+					// ForrestChecker.g:70:4: ^( ( PLUS | MINUS | TIMES | DIVIDE | MODULO ) expr expr )
 					{
 					if ( input.LA(1)==DIVIDE||(input.LA(1) >= MINUS && input.LA(1) <= MODULO)||input.LA(1)==PLUS||input.LA(1)==TIMES ) {
 						input.consume();
@@ -556,21 +563,21 @@ public class ForrestChecker extends TreeParser {
 						throw mse;
 					}
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_in_expr297);
+					pushFollow(FOLLOW_expr_in_expr298);
 					expr();
 					state._fsp--;
 
-					pushFollow(FOLLOW_expr_in_expr299);
+					pushFollow(FOLLOW_expr_in_expr300);
 					expr();
 					state._fsp--;
 
 					match(input, Token.UP, null); 
 
-					ExpressionChecker.checkBinaryInteger(t, ex1, ex2);
+					ExpressionChecker.checkBinaryInteger(t);
 					}
 					break;
 				case 7 :
-					// ForrestChecker.g:73:4: ^( ( POSITIVE | NEGATIVE ) expr )
+					// ForrestChecker.g:72:4: ^( ( POSITIVE | NEGATIVE ) expr )
 					{
 					if ( input.LA(1)==NEGATIVE||input.LA(1)==POSITIVE ) {
 						input.consume();
@@ -581,42 +588,42 @@ public class ForrestChecker extends TreeParser {
 						throw mse;
 					}
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_in_expr318);
+					pushFollow(FOLLOW_expr_in_expr319);
 					expr();
 					state._fsp--;
 
 					match(input, Token.UP, null); 
 
-					ExpressionChecker.checkUnaryInteger(t, ex1);
+					ExpressionChecker.checkUnaryInteger(t);
 					}
 					break;
 				case 8 :
-					// ForrestChecker.g:75:4: ^( ( NOT ) expr )
+					// ForrestChecker.g:74:4: ^( ( NOT ) expr )
 					{
-					// ForrestChecker.g:75:6: ( NOT )
-					// ForrestChecker.g:75:7: NOT
+					// ForrestChecker.g:74:6: ( NOT )
+					// ForrestChecker.g:74:7: NOT
 					{
-					match(input,NOT,FOLLOW_NOT_in_expr330); 
+					match(input,NOT,FOLLOW_NOT_in_expr331); 
 					}
 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_in_expr333);
+					pushFollow(FOLLOW_expr_in_expr334);
 					expr();
 					state._fsp--;
 
 					match(input, Token.UP, null); 
 
-					ExpressionChecker.checkUnaryBoolean(t, ex1);
+					ExpressionChecker.checkUnaryBoolean(t);
 					}
 					break;
 				case 9 :
-					// ForrestChecker.g:77:6: ^( COMPOUND program_lines )
+					// ForrestChecker.g:76:6: ^( COMPOUND program_lines )
 					{
-					match(input,COMPOUND,FOLLOW_COMPOUND_in_expr346); 
+					match(input,COMPOUND,FOLLOW_COMPOUND_in_expr347); 
 					symtab.openScope();
 					if ( input.LA(1)==Token.DOWN ) {
 						match(input, Token.DOWN, null); 
-						pushFollow(FOLLOW_program_lines_in_expr350);
+						pushFollow(FOLLOW_program_lines_in_expr351);
 						program_lines();
 						state._fsp--;
 
@@ -627,31 +634,46 @@ public class ForrestChecker extends TreeParser {
 					}
 					break;
 				case 10 :
-					// ForrestChecker.g:78:4: IDENTIFIER
+					// ForrestChecker.g:77:4: IDENTIFIER
 					{
-					match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_expr358); 
+					match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_expr359); 
 					symtab.setType(t);
 					}
 					break;
 				case 11 :
-					// ForrestChecker.g:79:4: NUMBER
+					// ForrestChecker.g:78:4: NUMBER
 					{
-					match(input,NUMBER,FOLLOW_NUMBER_in_expr365); 
+					match(input,NUMBER,FOLLOW_NUMBER_in_expr366); 
+					symtab.setNumber(t);
 					}
 					break;
 				case 12 :
+					// ForrestChecker.g:79:4: ( TRUE | FALSE )
+					{
+					if ( input.LA(1)==FALSE||input.LA(1)==TRUE ) {
+						input.consume();
+						state.errorRecovery=false;
+					}
+					else {
+						MismatchedSetException mse = new MismatchedSetException(null,input);
+						throw mse;
+					}
+					symtab.setBoolean(t);
+					}
+					break;
+				case 13 :
 					// ForrestChecker.g:80:4: read
 					{
-					pushFollow(FOLLOW_read_in_expr370);
+					pushFollow(FOLLOW_read_in_expr386);
 					read();
 					state._fsp--;
 
 					}
 					break;
-				case 13 :
+				case 14 :
 					// ForrestChecker.g:81:4: print
 					{
-					pushFollow(FOLLOW_print_in_expr375);
+					pushFollow(FOLLOW_print_in_expr391);
 					print();
 					state._fsp--;
 
@@ -680,15 +702,14 @@ public class ForrestChecker extends TreeParser {
 
 
 		ForrestTree t = (ForrestTree)input.LT(1);
-		List<ForrestTree> ids = new ArrayList<ForrestTree>();
 
 		try {
-			// ForrestChecker.g:89:2: ( ^( READ (id= IDENTIFIER )+ ) )
-			// ForrestChecker.g:89:4: ^( READ (id= IDENTIFIER )+ )
+			// ForrestChecker.g:88:2: ( ^( READ (id= IDENTIFIER )+ ) )
+			// ForrestChecker.g:88:4: ^( READ (id= IDENTIFIER )+ )
 			{
-			match(input,READ,FOLLOW_READ_in_read393); 
+			match(input,READ,FOLLOW_READ_in_read409); 
 			match(input, Token.DOWN, null); 
-			// ForrestChecker.g:89:11: (id= IDENTIFIER )+
+			// ForrestChecker.g:88:11: (id= IDENTIFIER )+
 			int cnt7=0;
 			loop7:
 			while (true) {
@@ -700,13 +721,9 @@ public class ForrestChecker extends TreeParser {
 
 				switch (alt7) {
 				case 1 :
-					// ForrestChecker.g:89:12: id= IDENTIFIER
+					// ForrestChecker.g:88:12: id= IDENTIFIER
 					{
-					id=(ForrestTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_read398); 
-
-								symtab.setType(id);
-								ids.add(id);
-								
+					id=(ForrestTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_read414); 
 					}
 					break;
 
@@ -720,7 +737,7 @@ public class ForrestChecker extends TreeParser {
 
 			match(input, Token.UP, null); 
 
-			ExpressionChecker.checkRead(t, ids);
+			ExpressionChecker.checkRead(t);
 			}
 
 		}
@@ -738,38 +755,32 @@ public class ForrestChecker extends TreeParser {
 
 
 	// $ANTLR start "print"
-	// ForrestChecker.g:96:1: print : ^( PRINT ( expr )+ ) ;
+	// ForrestChecker.g:92:1: print : ^( PRINT ( expr )+ ) ;
 	public final void print() throws RecognitionException {
 
 		ForrestTree t = (ForrestTree)input.LT(1);
-		List<ForrestTree> exprs = new ArrayList<ForrestTree>();
 
 		try {
-			// ForrestChecker.g:101:2: ( ^( PRINT ( expr )+ ) )
-			// ForrestChecker.g:101:4: ^( PRINT ( expr )+ )
+			// ForrestChecker.g:96:2: ( ^( PRINT ( expr )+ ) )
+			// ForrestChecker.g:96:4: ^( PRINT ( expr )+ )
 			{
-			match(input,PRINT,FOLLOW_PRINT_in_print426); 
+			match(input,PRINT,FOLLOW_PRINT_in_print440); 
 			match(input, Token.DOWN, null); 
-			// ForrestChecker.g:101:12: ( expr )+
+			// ForrestChecker.g:96:12: ( expr )+
 			int cnt8=0;
 			loop8:
 			while (true) {
 				int alt8=2;
 				int LA8_0 = input.LA(1);
-				if ( (LA8_0==BECOMES||LA8_0==COMPOUND||LA8_0==DIVIDE||(LA8_0 >= EQUALS && LA8_0 <= IF)||(LA8_0 >= LOGAND && LA8_0 <= LOGOR)||(LA8_0 >= MINUS && LA8_0 <= PRINT)||LA8_0==READ||(LA8_0 >= SMALLER && LA8_0 <= SMALLEREQ)||LA8_0==TIMES) ) {
+				if ( (LA8_0==BECOMES||LA8_0==COMPOUND||LA8_0==DIVIDE||(LA8_0 >= EQUALS && LA8_0 <= IF)||(LA8_0 >= LOGAND && LA8_0 <= LOGOR)||(LA8_0 >= MINUS && LA8_0 <= PRINT)||LA8_0==READ||(LA8_0 >= SMALLER && LA8_0 <= SMALLEREQ)||(LA8_0 >= TIMES && LA8_0 <= TRUE)) ) {
 					alt8=1;
 				}
 
 				switch (alt8) {
 				case 1 :
-					// ForrestChecker.g:102:4: expr
+					// ForrestChecker.g:96:13: expr
 					{
-
-									ForrestTree expression = (ForrestTree)input.LT(1);
-									symtab.setType(expression);
-									exprs.add(expression);
-								
-					pushFollow(FOLLOW_expr_in_print438);
+					pushFollow(FOLLOW_expr_in_print443);
 					expr();
 					state._fsp--;
 
@@ -786,7 +797,7 @@ public class ForrestChecker extends TreeParser {
 
 			match(input, Token.UP, null); 
 
-			ExpressionChecker.checkPrint(t, exprs);
+			ExpressionChecker.checkPrint(t);
 			}
 
 		}
@@ -807,47 +818,48 @@ public class ForrestChecker extends TreeParser {
 
 	public static final BitSet FOLLOW_PROGRAM_in_forrest54 = new BitSet(new long[]{0x0000000000000004L});
 	public static final BitSet FOLLOW_program_lines_in_forrest58 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_declaration_in_program_lines81 = new BitSet(new long[]{0x0000564FF98F9610L});
-	public static final BitSet FOLLOW_expr_in_program_lines85 = new BitSet(new long[]{0x0000564FF98F9612L});
-	public static final BitSet FOLLOW_VAR_in_declaration99 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_declaration103 = new BitSet(new long[]{0x0000000000100060L});
-	public static final BitSet FOLLOW_CHAR_in_declaration108 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_BOOL_in_declaration114 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_INT_in_declaration120 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_CONSTANT_in_declaration132 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_declaration136 = new BitSet(new long[]{0x0000164FF98F9210L});
-	public static final BitSet FOLLOW_expr_in_declaration142 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_BECOMES_in_expr166 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_expr170 = new BitSet(new long[]{0x0000164FF98F9210L});
-	public static final BitSet FOLLOW_expr_in_expr172 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_IF_in_expr187 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr189 = new BitSet(new long[]{0x0000164FF98F9210L});
-	public static final BitSet FOLLOW_expr_in_expr191 = new BitSet(new long[]{0x0000164FF98F9218L});
-	public static final BitSet FOLLOW_expr_in_expr194 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_set_in_expr208 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr214 = new BitSet(new long[]{0x0000164FF98F9210L});
-	public static final BitSet FOLLOW_expr_in_expr216 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_set_in_expr227 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr243 = new BitSet(new long[]{0x0000164FF98F9210L});
-	public static final BitSet FOLLOW_expr_in_expr245 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_set_in_expr256 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr264 = new BitSet(new long[]{0x0000164FF98F9210L});
-	public static final BitSet FOLLOW_expr_in_expr266 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_set_in_expr277 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr297 = new BitSet(new long[]{0x0000164FF98F9210L});
-	public static final BitSet FOLLOW_expr_in_expr299 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_set_in_expr310 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr318 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_NOT_in_expr330 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr333 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_COMPOUND_in_expr346 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_program_lines_in_expr350 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_expr358 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_NUMBER_in_expr365 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_read_in_expr370 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_print_in_expr375 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_READ_in_read393 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_read398 = new BitSet(new long[]{0x0000000000040008L});
-	public static final BitSet FOLLOW_PRINT_in_print426 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_print438 = new BitSet(new long[]{0x0000164FF98F9218L});
+	public static final BitSet FOLLOW_declaration_in_program_lines81 = new BitSet(new long[]{0x00016C9FF31F9610L});
+	public static final BitSet FOLLOW_expr_in_program_lines85 = new BitSet(new long[]{0x00016C9FF31F9612L});
+	public static final BitSet FOLLOW_VAR_in_declaration104 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_declaration108 = new BitSet(new long[]{0x0000000000200060L});
+	public static final BitSet FOLLOW_CHAR_in_declaration113 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_BOOL_in_declaration119 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_INT_in_declaration125 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_CONSTANT_in_declaration137 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_declaration141 = new BitSet(new long[]{0x00006C9FF31F9210L});
+	public static final BitSet FOLLOW_expr_in_declaration143 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_BECOMES_in_expr167 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_expr171 = new BitSet(new long[]{0x00006C9FF31F9210L});
+	public static final BitSet FOLLOW_expr_in_expr173 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_IF_in_expr188 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_expr190 = new BitSet(new long[]{0x00006C9FF31F9210L});
+	public static final BitSet FOLLOW_expr_in_expr192 = new BitSet(new long[]{0x00006C9FF31F9218L});
+	public static final BitSet FOLLOW_expr_in_expr195 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_set_in_expr209 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_expr215 = new BitSet(new long[]{0x00006C9FF31F9210L});
+	public static final BitSet FOLLOW_expr_in_expr217 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_set_in_expr228 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_expr244 = new BitSet(new long[]{0x00006C9FF31F9210L});
+	public static final BitSet FOLLOW_expr_in_expr246 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_set_in_expr257 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_expr265 = new BitSet(new long[]{0x00006C9FF31F9210L});
+	public static final BitSet FOLLOW_expr_in_expr267 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_set_in_expr278 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_expr298 = new BitSet(new long[]{0x00006C9FF31F9210L});
+	public static final BitSet FOLLOW_expr_in_expr300 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_set_in_expr311 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_expr319 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_NOT_in_expr331 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_expr334 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_COMPOUND_in_expr347 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_program_lines_in_expr351 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_expr359 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_NUMBER_in_expr366 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_set_in_expr373 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_read_in_expr386 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_print_in_expr391 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_READ_in_read409 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_read414 = new BitSet(new long[]{0x0000000000080008L});
+	public static final BitSet FOLLOW_PRINT_in_print440 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_print443 = new BitSet(new long[]{0x00006C9FF31F9218L});
 }

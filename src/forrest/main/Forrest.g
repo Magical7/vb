@@ -50,6 +50,8 @@ tokens {
     ENDIF		=	'endif'		;
     POSITIVE	=	'KPOSITIVE'	;
     NEGATIVE	=	'KNEGATIVE'	;
+    TRUE		=	'true'		;
+    FALSE		=	'false'		;
 }
 
 @lexer::header {
@@ -124,6 +126,7 @@ expr_compound
 			->  ^(COMPOUND program_lines)	
 	|	IDENTIFIER
 	|	NUMBER
+	|	TRUE | FALSE
 	|	LPAREN! expr RPAREN!
 	| 	read
 	|	print
@@ -146,7 +149,6 @@ IDENTIFIER
 NUMBER
     :   DIGIT+
     ;
-
 
 COMMENT
     :   '//' .* '\n' 
