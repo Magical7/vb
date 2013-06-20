@@ -44,10 +44,11 @@ declaration
 expr
 @init {
 ForrestTree t = (ForrestTree)input.LT(1);
-ForrestTree ex1 = (ForrestTree)input.LT(2);
-ForrestTree ex2 = (ForrestTree)input.LT(3);
-ForrestTree ex3 = (ForrestTree)input.LT(4);}
-	: 	^(BECOMES id=IDENTIFIER expr) 
+ForrestTree ex1 = null;
+ForrestTree ex2 = null;
+ForrestTree ex3 = null;
+}
+	: 	^(BECOMES id=IDENTIFIER expr)
 		{
 			symtab.setType($id);
 			ExpressionChecker.checkAssign(t, $id, ex2);

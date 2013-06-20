@@ -81,7 +81,9 @@ expr
 	;
 	
 expr_assign
-	:	expr_if (BECOMES^ expr_if)*
+options {k=2;}
+	:	IDENTIFIER BECOMES^ expr_assign
+	|	expr_if
 	;
 	
 expr_if
