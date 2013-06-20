@@ -15,7 +15,7 @@ public class ForrestOptions {
 	
 	
 	
-	protected static final String inputFileLocation = "src/testfiles/Correct1.forrest";
+	protected static final String inputFileLocation = "src/testfiles/AssignmentTest1.forrest";
 	
 	
 	

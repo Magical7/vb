@@ -47,7 +47,8 @@ public class ForrestTree extends CommonTree {
 	@Override
 	public String toString(){
 		String s = super.toString();
-		return s + " Type: " + ((returnType != null) ? returnType.toString() : "_");
+		return s;
+		//return s + " Type: " + ((returnType != null) ? returnType.toString() : "_");
 	}
 	
 }

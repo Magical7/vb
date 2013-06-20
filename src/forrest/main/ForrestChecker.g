@@ -19,36 +19,6 @@ options {
 @members {
 	// Keep track of identifiers
 	private SymbolTable symtab = new SymbolTable();
-	// Maximum amount of arguments to an expression
-	private static final int MAXARGS = 3;
-	
-	/** @return the arguments to an expression */
-	private List<ForrestTree> getArguments() {
-		int i = 2;
-		int level = 0;
-		boolean getNext = true;
-		List<ForrestTree> result = new ArrayList<ForrestTree>();
-		CommonTree next = (CommonTree) input.LT(i);
-		while (result.size() < MAXARGS && next != null) {
-			if (next instanceof ForrestTree && (level == 0 || getNext)) {
-				/* next is a ForrestTree on the same level as the parent or is
-				 * the first ForrestTree one level down */
-				result.add((ForrestTree) next);
-				// Only say getNext if the current level is 0 again
-				getNext = level == 0;
-			} else if (next.getType() == Token.DOWN) {
-				level++;
-			} else if (next.getType() == Token.UP) {
-				level--;
-				// Reset getNext if parent level is reached
-				getNext = level == 0;
-			}
-			
-			i++;
-			next = (CommonTree) input.LT(i);
-		}
-		return result;
-	}
 }
 
 // Ruleset
@@ -74,10 +44,9 @@ declaration
 expr
 @init {
 ForrestTree t = (ForrestTree)input.LT(1);
-List<ForrestTree> args = this.getArguments();
-ForrestTree ex1 = args.get(0);
-ForrestTree ex2 = args.get(1);
-ForrestTree ex3 = args.get(2);
+ForrestTree ex1 = null;
+ForrestTree ex2 = null;
+ForrestTree ex3 = null;
 }
 	: 	^(BECOMES id=IDENTIFIER expr)
 		{
