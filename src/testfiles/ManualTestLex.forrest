@@ -1,15 +1,8 @@
-// File to mess about with simple tests
-var b1 bool;
-var i1 int;
-var c1 char; // Nu hebben we drie variabelen!
-var b2 bool;
-var b3 bool;
-const con1 = 9;
-b1 = b2 = true;
-b3 = !b1;
-print(b1 || b2 && b3);
-print(b1 == b2 != b3);
-{
-	var con1 int;
-	print(b1);
-};
+var d int;
+var e int;
+var f bool;
+f = 1;
+e = 5;
+if f then d=5 else d = 4 endif;
+e = d + e;
+print(e);

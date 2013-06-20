@@ -73,11 +73,15 @@ ForrestTree t = (ForrestTree)input.LT(1);
 		{ExpressionChecker.checkUnaryInteger(t);}
 	|	^((NOT) expr)
 		{ExpressionChecker.checkUnaryBoolean(t);}
-	|   ^(COMPOUND {symtab.openScope();} program_lines) {symtab.closeScope();}
+	|   ^(COMPOUND {symtab.openScope();} program_lines)
+		{
+			symtab.closeScope();
+			ExpressionChecker.setCompound(t);
+		}
 	|	IDENTIFIER {symtab.setType(t);}
-	|	NUMBER {symtab.setNumber(t);}
-	|	(TRUE | FALSE) {symtab.setBoolean(t);}
-	|	CHARACTER {symtab.setCharacter(t);}
+	|	NUMBER {ExpressionChecker.setNumber(t);}
+	|	(TRUE | FALSE) {ExpressionChecker.setBoolean(t);}
+	|	CHARACTER {ExpressionChecker.setCharacter(t);}
 	|	read
 	|	print
 	;
