@@ -1,4 +1,4 @@
-// $ANTLR 3.5 Forrest.g 2013-06-20 14:22:53
+// $ANTLR 3.5 Forrest.g 2013-06-20 14:27:17
 
 package forrest.main;
 
@@ -215,7 +215,7 @@ public class ForrestParser extends Parser {
 			while (true) {
 				int alt2=2;
 				int LA2_0 = input.LA(1);
-				if ( (LA2_0==CONSTANT||LA2_0==FALSE||(LA2_0 >= IDENTIFIER && LA2_0 <= IF)||LA2_0==LCURLY||(LA2_0 >= LPAREN && LA2_0 <= MINUS)||LA2_0==NOT||(LA2_0 >= NUMBER && LA2_0 <= PLUS)||LA2_0==PRINT||LA2_0==READ||LA2_0==SQUOTE||LA2_0==TRUE||LA2_0==VAR) ) {
+				if ( (LA2_0==CHARACTER||LA2_0==CONSTANT||LA2_0==FALSE||(LA2_0 >= IDENTIFIER && LA2_0 <= IF)||LA2_0==LCURLY||(LA2_0 >= LPAREN && LA2_0 <= MINUS)||LA2_0==NOT||(LA2_0 >= NUMBER && LA2_0 <= PLUS)||LA2_0==PRINT||LA2_0==READ||LA2_0==TRUE||LA2_0==VAR) ) {
 					alt2=1;
 				}
 
@@ -511,7 +511,7 @@ public class ForrestParser extends Parser {
 				}
 
 			}
-			else if ( (LA4_0==FALSE||LA4_0==IF||LA4_0==LCURLY||(LA4_0 >= LPAREN && LA4_0 <= MINUS)||LA4_0==NOT||(LA4_0 >= NUMBER && LA4_0 <= PLUS)||LA4_0==PRINT||LA4_0==READ||LA4_0==SQUOTE||LA4_0==TRUE) ) {
+			else if ( (LA4_0==CHARACTER||LA4_0==FALSE||LA4_0==IF||LA4_0==LCURLY||(LA4_0 >= LPAREN && LA4_0 <= MINUS)||LA4_0==NOT||(LA4_0 >= NUMBER && LA4_0 <= PLUS)||LA4_0==PRINT||LA4_0==READ||LA4_0==TRUE) ) {
 				alt4=2;
 			}
 
@@ -615,7 +615,7 @@ public class ForrestParser extends Parser {
 			if ( (LA6_0==IF) ) {
 				alt6=1;
 			}
-			else if ( (LA6_0==FALSE||LA6_0==IDENTIFIER||LA6_0==LCURLY||(LA6_0 >= LPAREN && LA6_0 <= MINUS)||LA6_0==NOT||(LA6_0 >= NUMBER && LA6_0 <= PLUS)||LA6_0==PRINT||LA6_0==READ||LA6_0==SQUOTE||LA6_0==TRUE) ) {
+			else if ( (LA6_0==CHARACTER||LA6_0==FALSE||LA6_0==IDENTIFIER||LA6_0==LCURLY||(LA6_0 >= LPAREN && LA6_0 <= MINUS)||LA6_0==NOT||(LA6_0 >= NUMBER && LA6_0 <= PLUS)||LA6_0==PRINT||LA6_0==READ||LA6_0==TRUE) ) {
 				alt6=2;
 			}
 
@@ -1367,6 +1367,7 @@ public class ForrestParser extends Parser {
 			// Forrest.g:118:2: ( ( NOT ^)? expr_compound | PLUS expr_compound -> ^( POSITIVE expr_compound ) | MINUS expr_compound -> ^( NEGATIVE expr_compound ) )
 			int alt16=3;
 			switch ( input.LA(1) ) {
+			case CHARACTER:
 			case FALSE:
 			case IDENTIFIER:
 			case LCURLY:
@@ -1375,7 +1376,6 @@ public class ForrestParser extends Parser {
 			case NUMBER:
 			case PRINT:
 			case READ:
-			case SQUOTE:
 			case TRUE:
 				{
 				alt16=1;
@@ -1537,7 +1537,7 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "expr_compound"
-	// Forrest.g:125:1: expr_compound : ( LCURLY program_lines RCURLY -> ^( COMPOUND program_lines ) | IDENTIFIER | NUMBER | TRUE | FALSE | SQUOTE ! CHARACTER SQUOTE !| LPAREN ! expr RPAREN !| read | print );
+	// Forrest.g:125:1: expr_compound : ( LCURLY program_lines RCURLY -> ^( COMPOUND program_lines ) | IDENTIFIER | NUMBER | TRUE | FALSE | CHARACTER | LPAREN ! expr RPAREN !| read | print );
 	public final ForrestParser.expr_compound_return expr_compound() throws RecognitionException {
 		ForrestParser.expr_compound_return retval = new ForrestParser.expr_compound_return();
 		retval.start = input.LT(1);
@@ -1550,15 +1550,13 @@ public class ForrestParser extends Parser {
 		Token NUMBER60=null;
 		Token TRUE61=null;
 		Token FALSE62=null;
-		Token SQUOTE63=null;
-		Token CHARACTER64=null;
-		Token SQUOTE65=null;
-		Token LPAREN66=null;
-		Token RPAREN68=null;
+		Token CHARACTER63=null;
+		Token LPAREN64=null;
+		Token RPAREN66=null;
 		ParserRuleReturnScope program_lines57 =null;
-		ParserRuleReturnScope expr67 =null;
-		ParserRuleReturnScope read69 =null;
-		ParserRuleReturnScope print70 =null;
+		ParserRuleReturnScope expr65 =null;
+		ParserRuleReturnScope read67 =null;
+		ParserRuleReturnScope print68 =null;
 
 		ForrestTree LCURLY56_tree=null;
 		ForrestTree RCURLY58_tree=null;
@@ -1566,17 +1564,15 @@ public class ForrestParser extends Parser {
 		ForrestTree NUMBER60_tree=null;
 		ForrestTree TRUE61_tree=null;
 		ForrestTree FALSE62_tree=null;
-		ForrestTree SQUOTE63_tree=null;
-		ForrestTree CHARACTER64_tree=null;
-		ForrestTree SQUOTE65_tree=null;
-		ForrestTree LPAREN66_tree=null;
-		ForrestTree RPAREN68_tree=null;
+		ForrestTree CHARACTER63_tree=null;
+		ForrestTree LPAREN64_tree=null;
+		ForrestTree RPAREN66_tree=null;
 		RewriteRuleTokenStream stream_LCURLY=new RewriteRuleTokenStream(adaptor,"token LCURLY");
 		RewriteRuleTokenStream stream_RCURLY=new RewriteRuleTokenStream(adaptor,"token RCURLY");
 		RewriteRuleSubtreeStream stream_program_lines=new RewriteRuleSubtreeStream(adaptor,"rule program_lines");
 
 		try {
-			// Forrest.g:126:2: ( LCURLY program_lines RCURLY -> ^( COMPOUND program_lines ) | IDENTIFIER | NUMBER | TRUE | FALSE | SQUOTE ! CHARACTER SQUOTE !| LPAREN ! expr RPAREN !| read | print )
+			// Forrest.g:126:2: ( LCURLY program_lines RCURLY -> ^( COMPOUND program_lines ) | IDENTIFIER | NUMBER | TRUE | FALSE | CHARACTER | LPAREN ! expr RPAREN !| read | print )
 			int alt17=9;
 			switch ( input.LA(1) ) {
 			case LCURLY:
@@ -1604,7 +1600,7 @@ public class ForrestParser extends Parser {
 				alt17=5;
 				}
 				break;
-			case SQUOTE:
+			case CHARACTER:
 				{
 				alt17=6;
 				}
@@ -1721,17 +1717,15 @@ public class ForrestParser extends Parser {
 					}
 					break;
 				case 6 :
-					// Forrest.g:131:4: SQUOTE ! CHARACTER SQUOTE !
+					// Forrest.g:131:4: CHARACTER
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					SQUOTE63=(Token)match(input,SQUOTE,FOLLOW_SQUOTE_in_expr_compound1108); 
-					CHARACTER64=(Token)match(input,CHARACTER,FOLLOW_CHARACTER_in_expr_compound1111); 
-					CHARACTER64_tree = (ForrestTree)adaptor.create(CHARACTER64);
-					adaptor.addChild(root_0, CHARACTER64_tree);
+					CHARACTER63=(Token)match(input,CHARACTER,FOLLOW_CHARACTER_in_expr_compound1108); 
+					CHARACTER63_tree = (ForrestTree)adaptor.create(CHARACTER63);
+					adaptor.addChild(root_0, CHARACTER63_tree);
 
-					SQUOTE65=(Token)match(input,SQUOTE,FOLLOW_SQUOTE_in_expr_compound1113); 
 					}
 					break;
 				case 7 :
@@ -1740,14 +1734,14 @@ public class ForrestParser extends Parser {
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					LPAREN66=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_expr_compound1119); 
-					pushFollow(FOLLOW_expr_in_expr_compound1122);
-					expr67=expr();
+					LPAREN64=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_expr_compound1113); 
+					pushFollow(FOLLOW_expr_in_expr_compound1116);
+					expr65=expr();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr67.getTree());
+					adaptor.addChild(root_0, expr65.getTree());
 
-					RPAREN68=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_expr_compound1124); 
+					RPAREN66=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_expr_compound1118); 
 					}
 					break;
 				case 8 :
@@ -1756,11 +1750,11 @@ public class ForrestParser extends Parser {
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					pushFollow(FOLLOW_read_in_expr_compound1131);
-					read69=read();
+					pushFollow(FOLLOW_read_in_expr_compound1125);
+					read67=read();
 					state._fsp--;
 
-					adaptor.addChild(root_0, read69.getTree());
+					adaptor.addChild(root_0, read67.getTree());
 
 					}
 					break;
@@ -1770,11 +1764,11 @@ public class ForrestParser extends Parser {
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					pushFollow(FOLLOW_print_in_expr_compound1136);
-					print70=print();
+					pushFollow(FOLLOW_print_in_expr_compound1130);
+					print68=print();
 					state._fsp--;
 
-					adaptor.addChild(root_0, print70.getTree());
+					adaptor.addChild(root_0, print68.getTree());
 
 					}
 					break;
@@ -1814,19 +1808,19 @@ public class ForrestParser extends Parser {
 
 		ForrestTree root_0 = null;
 
-		Token READ71=null;
-		Token LPAREN72=null;
+		Token READ69=null;
+		Token LPAREN70=null;
+		Token IDENTIFIER71=null;
+		Token COMMA72=null;
 		Token IDENTIFIER73=null;
-		Token COMMA74=null;
-		Token IDENTIFIER75=null;
-		Token RPAREN76=null;
+		Token RPAREN74=null;
 
-		ForrestTree READ71_tree=null;
-		ForrestTree LPAREN72_tree=null;
+		ForrestTree READ69_tree=null;
+		ForrestTree LPAREN70_tree=null;
+		ForrestTree IDENTIFIER71_tree=null;
+		ForrestTree COMMA72_tree=null;
 		ForrestTree IDENTIFIER73_tree=null;
-		ForrestTree COMMA74_tree=null;
-		ForrestTree IDENTIFIER75_tree=null;
-		ForrestTree RPAREN76_tree=null;
+		ForrestTree RPAREN74_tree=null;
 
 		try {
 			// Forrest.g:138:2: ( READ ^ LPAREN ! IDENTIFIER ( COMMA ! IDENTIFIER )* RPAREN !)
@@ -1835,14 +1829,14 @@ public class ForrestParser extends Parser {
 			root_0 = (ForrestTree)adaptor.nil();
 
 
-			READ71=(Token)match(input,READ,FOLLOW_READ_in_read1148); 
-			READ71_tree = (ForrestTree)adaptor.create(READ71);
-			root_0 = (ForrestTree)adaptor.becomeRoot(READ71_tree, root_0);
+			READ69=(Token)match(input,READ,FOLLOW_READ_in_read1142); 
+			READ69_tree = (ForrestTree)adaptor.create(READ69);
+			root_0 = (ForrestTree)adaptor.becomeRoot(READ69_tree, root_0);
 
-			LPAREN72=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_read1151); 
-			IDENTIFIER73=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_read1154); 
-			IDENTIFIER73_tree = (ForrestTree)adaptor.create(IDENTIFIER73);
-			adaptor.addChild(root_0, IDENTIFIER73_tree);
+			LPAREN70=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_read1145); 
+			IDENTIFIER71=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_read1148); 
+			IDENTIFIER71_tree = (ForrestTree)adaptor.create(IDENTIFIER71);
+			adaptor.addChild(root_0, IDENTIFIER71_tree);
 
 			// Forrest.g:138:29: ( COMMA ! IDENTIFIER )*
 			loop18:
@@ -1857,10 +1851,10 @@ public class ForrestParser extends Parser {
 				case 1 :
 					// Forrest.g:138:30: COMMA ! IDENTIFIER
 					{
-					COMMA74=(Token)match(input,COMMA,FOLLOW_COMMA_in_read1157); 
-					IDENTIFIER75=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_read1160); 
-					IDENTIFIER75_tree = (ForrestTree)adaptor.create(IDENTIFIER75);
-					adaptor.addChild(root_0, IDENTIFIER75_tree);
+					COMMA72=(Token)match(input,COMMA,FOLLOW_COMMA_in_read1151); 
+					IDENTIFIER73=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_read1154); 
+					IDENTIFIER73_tree = (ForrestTree)adaptor.create(IDENTIFIER73);
+					adaptor.addChild(root_0, IDENTIFIER73_tree);
 
 					}
 					break;
@@ -1870,7 +1864,7 @@ public class ForrestParser extends Parser {
 				}
 			}
 
-			RPAREN76=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_read1164); 
+			RPAREN74=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_read1158); 
 			}
 
 			retval.stop = input.LT(-1);
@@ -1907,17 +1901,17 @@ public class ForrestParser extends Parser {
 
 		ForrestTree root_0 = null;
 
-		Token PRINT77=null;
-		Token LPAREN78=null;
-		Token COMMA80=null;
-		Token RPAREN82=null;
+		Token PRINT75=null;
+		Token LPAREN76=null;
+		Token COMMA78=null;
+		Token RPAREN80=null;
+		ParserRuleReturnScope expr77 =null;
 		ParserRuleReturnScope expr79 =null;
-		ParserRuleReturnScope expr81 =null;
 
-		ForrestTree PRINT77_tree=null;
-		ForrestTree LPAREN78_tree=null;
-		ForrestTree COMMA80_tree=null;
-		ForrestTree RPAREN82_tree=null;
+		ForrestTree PRINT75_tree=null;
+		ForrestTree LPAREN76_tree=null;
+		ForrestTree COMMA78_tree=null;
+		ForrestTree RPAREN80_tree=null;
 
 		try {
 			// Forrest.g:142:2: ( PRINT ^ LPAREN ! expr ( COMMA ! expr )* RPAREN !)
@@ -1926,16 +1920,16 @@ public class ForrestParser extends Parser {
 			root_0 = (ForrestTree)adaptor.nil();
 
 
-			PRINT77=(Token)match(input,PRINT,FOLLOW_PRINT_in_print1176); 
-			PRINT77_tree = (ForrestTree)adaptor.create(PRINT77);
-			root_0 = (ForrestTree)adaptor.becomeRoot(PRINT77_tree, root_0);
+			PRINT75=(Token)match(input,PRINT,FOLLOW_PRINT_in_print1170); 
+			PRINT75_tree = (ForrestTree)adaptor.create(PRINT75);
+			root_0 = (ForrestTree)adaptor.becomeRoot(PRINT75_tree, root_0);
 
-			LPAREN78=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_print1179); 
-			pushFollow(FOLLOW_expr_in_print1182);
-			expr79=expr();
+			LPAREN76=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_print1173); 
+			pushFollow(FOLLOW_expr_in_print1176);
+			expr77=expr();
 			state._fsp--;
 
-			adaptor.addChild(root_0, expr79.getTree());
+			adaptor.addChild(root_0, expr77.getTree());
 
 			// Forrest.g:142:24: ( COMMA ! expr )*
 			loop19:
@@ -1950,12 +1944,12 @@ public class ForrestParser extends Parser {
 				case 1 :
 					// Forrest.g:142:25: COMMA ! expr
 					{
-					COMMA80=(Token)match(input,COMMA,FOLLOW_COMMA_in_print1185); 
-					pushFollow(FOLLOW_expr_in_print1188);
-					expr81=expr();
+					COMMA78=(Token)match(input,COMMA,FOLLOW_COMMA_in_print1179); 
+					pushFollow(FOLLOW_expr_in_print1182);
+					expr79=expr();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr81.getTree());
+					adaptor.addChild(root_0, expr79.getTree());
 
 					}
 					break;
@@ -1965,7 +1959,7 @@ public class ForrestParser extends Parser {
 				}
 			}
 
-			RPAREN82=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_print1192); 
+			RPAREN80=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_print1186); 
 			}
 
 			retval.stop = input.LT(-1);
@@ -1993,83 +1987,81 @@ public class ForrestParser extends Parser {
 	public static final BitSet FOLLOW_program_lines_in_forrest682 = new BitSet(new long[]{0x0000000000000000L});
 	public static final BitSet FOLLOW_EOF_in_forrest684 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_declaration_in_program_lines725 = new BitSet(new long[]{0x0000040000000000L});
-	public static final BitSet FOLLOW_SEMICOLON_in_program_lines727 = new BitSet(new long[]{0x0005212D30B20800L});
+	public static final BitSet FOLLOW_SEMICOLON_in_program_lines727 = new BitSet(new long[]{0x0005012D30B20880L});
 	public static final BitSet FOLLOW_expr_in_program_lines733 = new BitSet(new long[]{0x0000040000000000L});
-	public static final BitSet FOLLOW_SEMICOLON_in_program_lines735 = new BitSet(new long[]{0x0005212D30B20802L});
+	public static final BitSet FOLLOW_SEMICOLON_in_program_lines735 = new BitSet(new long[]{0x0005012D30B20882L});
 	public static final BitSet FOLLOW_VAR_in_declaration751 = new BitSet(new long[]{0x0000000000100000L});
 	public static final BitSet FOLLOW_IDENTIFIER_in_declaration754 = new BitSet(new long[]{0x0000000000400060L});
 	public static final BitSet FOLLOW_set_in_declaration756 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_CONSTANT_in_declaration771 = new BitSet(new long[]{0x0000000000100000L});
 	public static final BitSet FOLLOW_IDENTIFIER_in_declaration774 = new BitSet(new long[]{0x0000000000000010L});
-	public static final BitSet FOLLOW_BECOMES_in_declaration776 = new BitSet(new long[]{0x0001212D30B20000L});
+	public static final BitSet FOLLOW_BECOMES_in_declaration776 = new BitSet(new long[]{0x0001012D30B20080L});
 	public static final BitSet FOLLOW_expr_in_declaration779 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_expr_assign_in_expr791 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_IDENTIFIER_in_expr_assign810 = new BitSet(new long[]{0x0000000000000010L});
-	public static final BitSet FOLLOW_BECOMES_in_expr_assign812 = new BitSet(new long[]{0x0001212D30B20000L});
+	public static final BitSet FOLLOW_BECOMES_in_expr_assign812 = new BitSet(new long[]{0x0001012D30B20080L});
 	public static final BitSet FOLLOW_expr_assign_in_expr_assign815 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_expr_if_in_expr_assign820 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IF_in_expr_if832 = new BitSet(new long[]{0x0001212D30B20000L});
+	public static final BitSet FOLLOW_IF_in_expr_if832 = new BitSet(new long[]{0x0001012D30B20080L});
 	public static final BitSet FOLLOW_expr_if_in_expr_if835 = new BitSet(new long[]{0x0000400000000000L});
-	public static final BitSet FOLLOW_THEN_in_expr_if837 = new BitSet(new long[]{0x0001212D30B20000L});
+	public static final BitSet FOLLOW_THEN_in_expr_if837 = new BitSet(new long[]{0x0001012D30B20080L});
 	public static final BitSet FOLLOW_expr_if_in_expr_if840 = new BitSet(new long[]{0x000000000000C000L});
-	public static final BitSet FOLLOW_ELSE_in_expr_if843 = new BitSet(new long[]{0x0001212D30B20000L});
+	public static final BitSet FOLLOW_ELSE_in_expr_if843 = new BitSet(new long[]{0x0001012D30B20080L});
 	public static final BitSet FOLLOW_expr_if_in_expr_if846 = new BitSet(new long[]{0x0000000000008000L});
 	public static final BitSet FOLLOW_ENDIF_in_expr_if850 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_expr_or_in_expr_if855 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_expr_and_in_expr_or867 = new BitSet(new long[]{0x0000000004000002L});
-	public static final BitSet FOLLOW_LOGOR_in_expr_or870 = new BitSet(new long[]{0x0001212D30920000L});
+	public static final BitSet FOLLOW_LOGOR_in_expr_or870 = new BitSet(new long[]{0x0001012D30920080L});
 	public static final BitSet FOLLOW_expr_and_in_expr_or873 = new BitSet(new long[]{0x0000000004000002L});
 	public static final BitSet FOLLOW_expr_comp_in_expr_and887 = new BitSet(new long[]{0x0000000002000002L});
-	public static final BitSet FOLLOW_LOGAND_in_expr_and890 = new BitSet(new long[]{0x0001212D30920000L});
+	public static final BitSet FOLLOW_LOGAND_in_expr_and890 = new BitSet(new long[]{0x0001012D30920080L});
 	public static final BitSet FOLLOW_expr_comp_in_expr_and893 = new BitSet(new long[]{0x0000000002000002L});
 	public static final BitSet FOLLOW_expr_add_in_expr_comp907 = new BitSet(new long[]{0x00001802000D0002L});
-	public static final BitSet FOLLOW_GREATER_in_expr_comp911 = new BitSet(new long[]{0x0001212D30920000L});
-	public static final BitSet FOLLOW_SMALLER_in_expr_comp916 = new BitSet(new long[]{0x0001212D30920000L});
-	public static final BitSet FOLLOW_GREATEREQ_in_expr_comp921 = new BitSet(new long[]{0x0001212D30920000L});
-	public static final BitSet FOLLOW_SMALLEREQ_in_expr_comp926 = new BitSet(new long[]{0x0001212D30920000L});
-	public static final BitSet FOLLOW_EQUALS_in_expr_comp931 = new BitSet(new long[]{0x0001212D30920000L});
-	public static final BitSet FOLLOW_NOTEQUALS_in_expr_comp936 = new BitSet(new long[]{0x0001212D30920000L});
+	public static final BitSet FOLLOW_GREATER_in_expr_comp911 = new BitSet(new long[]{0x0001012D30920080L});
+	public static final BitSet FOLLOW_SMALLER_in_expr_comp916 = new BitSet(new long[]{0x0001012D30920080L});
+	public static final BitSet FOLLOW_GREATEREQ_in_expr_comp921 = new BitSet(new long[]{0x0001012D30920080L});
+	public static final BitSet FOLLOW_SMALLEREQ_in_expr_comp926 = new BitSet(new long[]{0x0001012D30920080L});
+	public static final BitSet FOLLOW_EQUALS_in_expr_comp931 = new BitSet(new long[]{0x0001012D30920080L});
+	public static final BitSet FOLLOW_NOTEQUALS_in_expr_comp936 = new BitSet(new long[]{0x0001012D30920080L});
 	public static final BitSet FOLLOW_expr_add_in_expr_comp941 = new BitSet(new long[]{0x00001802000D0002L});
 	public static final BitSet FOLLOW_expr_mult_in_expr_add955 = new BitSet(new long[]{0x0000000820000002L});
-	public static final BitSet FOLLOW_PLUS_in_expr_add959 = new BitSet(new long[]{0x0001212D30920000L});
-	public static final BitSet FOLLOW_MINUS_in_expr_add964 = new BitSet(new long[]{0x0001212D30920000L});
+	public static final BitSet FOLLOW_PLUS_in_expr_add959 = new BitSet(new long[]{0x0001012D30920080L});
+	public static final BitSet FOLLOW_MINUS_in_expr_add964 = new BitSet(new long[]{0x0001012D30920080L});
 	public static final BitSet FOLLOW_expr_mult_in_expr_add968 = new BitSet(new long[]{0x0000000820000002L});
 	public static final BitSet FOLLOW_expr_unary_in_expr_mult981 = new BitSet(new long[]{0x0000800040002002L});
-	public static final BitSet FOLLOW_TIMES_in_expr_mult985 = new BitSet(new long[]{0x0001212D30920000L});
-	public static final BitSet FOLLOW_DIVIDE_in_expr_mult990 = new BitSet(new long[]{0x0001212D30920000L});
-	public static final BitSet FOLLOW_MODULO_in_expr_mult995 = new BitSet(new long[]{0x0001212D30920000L});
+	public static final BitSet FOLLOW_TIMES_in_expr_mult985 = new BitSet(new long[]{0x0001012D30920080L});
+	public static final BitSet FOLLOW_DIVIDE_in_expr_mult990 = new BitSet(new long[]{0x0001012D30920080L});
+	public static final BitSet FOLLOW_MODULO_in_expr_mult995 = new BitSet(new long[]{0x0001012D30920080L});
 	public static final BitSet FOLLOW_expr_unary_in_expr_mult999 = new BitSet(new long[]{0x0000800040002002L});
-	public static final BitSet FOLLOW_NOT_in_expr_unary1014 = new BitSet(new long[]{0x0001212410920000L});
+	public static final BitSet FOLLOW_NOT_in_expr_unary1014 = new BitSet(new long[]{0x0001012410920080L});
 	public static final BitSet FOLLOW_expr_compound_in_expr_unary1019 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PLUS_in_expr_unary1024 = new BitSet(new long[]{0x0001212410920000L});
+	public static final BitSet FOLLOW_PLUS_in_expr_unary1024 = new BitSet(new long[]{0x0001012410920080L});
 	public static final BitSet FOLLOW_expr_compound_in_expr_unary1026 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_MINUS_in_expr_unary1042 = new BitSet(new long[]{0x0001212410920000L});
+	public static final BitSet FOLLOW_MINUS_in_expr_unary1042 = new BitSet(new long[]{0x0001012410920080L});
 	public static final BitSet FOLLOW_expr_compound_in_expr_unary1044 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LCURLY_in_expr_compound1067 = new BitSet(new long[]{0x000521AD30B20800L});
+	public static final BitSet FOLLOW_LCURLY_in_expr_compound1067 = new BitSet(new long[]{0x000501AD30B20880L});
 	public static final BitSet FOLLOW_program_lines_in_expr_compound1069 = new BitSet(new long[]{0x0000008000000000L});
 	public static final BitSet FOLLOW_RCURLY_in_expr_compound1071 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_IDENTIFIER_in_expr_compound1089 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_NUMBER_in_expr_compound1094 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_TRUE_in_expr_compound1099 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_FALSE_in_expr_compound1103 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_SQUOTE_in_expr_compound1108 = new BitSet(new long[]{0x0000000000000080L});
-	public static final BitSet FOLLOW_CHARACTER_in_expr_compound1111 = new BitSet(new long[]{0x0000200000000000L});
-	public static final BitSet FOLLOW_SQUOTE_in_expr_compound1113 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAREN_in_expr_compound1119 = new BitSet(new long[]{0x0001212D30B20000L});
-	public static final BitSet FOLLOW_expr_in_expr_compound1122 = new BitSet(new long[]{0x0000020000000000L});
-	public static final BitSet FOLLOW_RPAREN_in_expr_compound1124 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_read_in_expr_compound1131 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_print_in_expr_compound1136 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_READ_in_read1148 = new BitSet(new long[]{0x0000000010000000L});
-	public static final BitSet FOLLOW_LPAREN_in_read1151 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_CHARACTER_in_expr_compound1108 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAREN_in_expr_compound1113 = new BitSet(new long[]{0x0001012D30B20080L});
+	public static final BitSet FOLLOW_expr_in_expr_compound1116 = new BitSet(new long[]{0x0000020000000000L});
+	public static final BitSet FOLLOW_RPAREN_in_expr_compound1118 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_read_in_expr_compound1125 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_print_in_expr_compound1130 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_READ_in_read1142 = new BitSet(new long[]{0x0000000010000000L});
+	public static final BitSet FOLLOW_LPAREN_in_read1145 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_read1148 = new BitSet(new long[]{0x0000020000000100L});
+	public static final BitSet FOLLOW_COMMA_in_read1151 = new BitSet(new long[]{0x0000000000100000L});
 	public static final BitSet FOLLOW_IDENTIFIER_in_read1154 = new BitSet(new long[]{0x0000020000000100L});
-	public static final BitSet FOLLOW_COMMA_in_read1157 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_read1160 = new BitSet(new long[]{0x0000020000000100L});
-	public static final BitSet FOLLOW_RPAREN_in_read1164 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PRINT_in_print1176 = new BitSet(new long[]{0x0000000010000000L});
-	public static final BitSet FOLLOW_LPAREN_in_print1179 = new BitSet(new long[]{0x0001212D30B20000L});
+	public static final BitSet FOLLOW_RPAREN_in_read1158 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PRINT_in_print1170 = new BitSet(new long[]{0x0000000010000000L});
+	public static final BitSet FOLLOW_LPAREN_in_print1173 = new BitSet(new long[]{0x0001012D30B20080L});
+	public static final BitSet FOLLOW_expr_in_print1176 = new BitSet(new long[]{0x0000020000000100L});
+	public static final BitSet FOLLOW_COMMA_in_print1179 = new BitSet(new long[]{0x0001012D30B20080L});
 	public static final BitSet FOLLOW_expr_in_print1182 = new BitSet(new long[]{0x0000020000000100L});
-	public static final BitSet FOLLOW_COMMA_in_print1185 = new BitSet(new long[]{0x0001212D30B20000L});
-	public static final BitSet FOLLOW_expr_in_print1188 = new BitSet(new long[]{0x0000020000000100L});
-	public static final BitSet FOLLOW_RPAREN_in_print1192 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_RPAREN_in_print1186 = new BitSet(new long[]{0x0000000000000002L});
 }

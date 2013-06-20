@@ -1,4 +1,4 @@
-// $ANTLR 3.5 Forrest.g 2013-06-20 14:22:54
+// $ANTLR 3.5 Forrest.g 2013-06-20 14:27:18
 
 package forrest.main;
 
@@ -780,10 +780,10 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = SQUOTE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Forrest.g:45:8: ( '$' )
-			// Forrest.g:45:10: '$'
+			// Forrest.g:45:8: ( '\\'' )
+			// Forrest.g:45:10: '\\''
 			{
-			match('$'); 
+			match('\''); 
 			}
 
 			state.type = _type;
@@ -1557,10 +1557,10 @@ public class ForrestLexer extends Lexer {
 	static final String DFA5_specialS =
 		"\u0082\uffff}>";
 	static final String[] DFA5_transitionS = {
-			"\2\37\1\uffff\2\37\22\uffff\1\37\1\21\2\uffff\1\31\1\20\1\14\1\uffff"+
-			"\1\16\1\26\1\33\1\22\1\4\1\17\1\uffff\1\6\12\36\1\uffff\1\27\1\30\1\1"+
-			"\1\11\2\uffff\12\35\1\5\17\35\6\uffff\1\35\1\2\1\3\1\35\1\7\1\10\2\35"+
-			"\1\12\6\35\1\23\1\35\1\25\1\35\1\32\1\35\1\34\4\35\1\13\1\15\1\24",
+			"\2\37\1\uffff\2\37\22\uffff\1\37\1\21\3\uffff\1\20\1\14\1\31\1\16\1\26"+
+			"\1\33\1\22\1\4\1\17\1\uffff\1\6\12\36\1\uffff\1\27\1\30\1\1\1\11\2\uffff"+
+			"\12\35\1\5\17\35\6\uffff\1\35\1\2\1\3\1\35\1\7\1\10\2\35\1\12\6\35\1"+
+			"\23\1\35\1\25\1\35\1\32\1\35\1\34\4\35\1\13\1\15\1\24",
 			"\1\40",
 			"\1\42",
 			"\1\43\6\uffff\1\44",

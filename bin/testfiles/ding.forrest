@@ -1,2 +1,2 @@
 var l char;
-l = $f$;
+l = 'f';

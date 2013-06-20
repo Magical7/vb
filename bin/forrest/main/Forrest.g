@@ -14,7 +14,7 @@ tokens {
     COMMA		=	','		;
     LCURLY		=	'{'		;
     RCURLY		=	'}'		;
-    SQUOTE		=	'$' 	;
+    SQUOTE		=	'\'' 	;
 
     // operators
     BECOMES     =   '='    	;
@@ -128,7 +128,7 @@ expr_compound
 	|	IDENTIFIER
 	|	NUMBER
 	|	TRUE | FALSE
-	|	SQUOTE! CHARACTER SQUOTE!
+	|	CHARACTER
 	|	LPAREN! expr RPAREN!
 	| 	read
 	|	print
