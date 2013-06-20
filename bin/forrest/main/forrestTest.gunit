@@ -1,5 +1,72 @@
 gunit Forrest;
 
+@header{
+package forrest.main;
+}
+
+program_lines:
+<<
+var d int;
+var l int;
+print(l);
+d = d+l;
+print(d);
+>> OK
+<<
+var d int;
+var d int;
+>> FAIL
+<<
+var d int;
+var e int;
+var f bool;
+f = 1;
+e = 5;
+if f then d=5 else d = 4;
+e = d + e;
+print(e);
+>> OK
+
+declaration:
+"var d int"			OK
+"var e char"		OK
+"var l bool"		OK
+"var f boolean"		FAIL
+"var g integer"		FAIL
+"var 2 integer"		FAIL
+"const x 3"			OK
+"const l 's'"		OK
+
+expr:
+"3"								OK
+"3+5"							OK
+"3*5/6+3-4"						OK
+"x+4"							OK
+"x*y"							OK
+"if 1 then x else 7 endif"		OK
+"(3+4)*x-y"						OK
+"read(x)"						OK
+"print(y)"						OK
+"x>y<z==4!=3"					OK
+"x=y=z=5"						OK
+"if x>y then {x=3} endif"		OK
+"if x>y then 3"					FAIL
+
+read:
+"read(x)"		OK
+"read(5)"		FAIL
+"read(x,y,z)"	OK
+"read(x,5,z)"	FAIL
+
+print:
+"print(x)"				OK
+"print(5)"				OK
+"print(x=5)"			OK
+"print('x')"			OK
+"print{5}"				FAIL
+"print(5,6,7)"			OK
+"print(x,y,6,7,'x')"	OK
+
 IDENTIFIER:
-"abc123" OK
-"123abc" FAIL
+"abc123" 		OK
+"123abc" 		FAIL
