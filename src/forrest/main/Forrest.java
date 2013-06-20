@@ -7,6 +7,8 @@ import java.io.PrintStream;
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
+import org.antlr.runtime.tree.CommonTreeNodeStream;
+
 import fire.ForrestFireException;
 
 public class Forrest {
@@ -56,11 +58,11 @@ public class Forrest {
 			}
 			
 			//Check the Forrest program
-//			if(useChecker){
-//				CommonTreeNodeStream nodes = new CommonTreeNodeStream(tree);
-//				ForrestChecker checker = new ForrestChecker(nodes);
-//				checker.forrest();
-//			}
+			if(useChecker){
+				CommonTreeNodeStream nodes = new CommonTreeNodeStream(tree);
+				ForrestChecker checker = new ForrestChecker(nodes);
+				checker.forrest();
+			}
 			
 			//Interpret the Forrest program
 //			if(useInterpreter){
@@ -86,6 +88,7 @@ public class Forrest {
 		} catch (Exception e) {
 			System.out.print("ERROR: uncaught exception thrown by compiler: ");
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 	    }
 	}
 }

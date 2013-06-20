@@ -4,6 +4,7 @@ options {
 	k = 1; 
 	language=Java;
 	output=AST;
+	ASTLabelType=ForrestTree;
 }
 
 tokens {
@@ -62,7 +63,7 @@ package forrest.main;
 //Parser rules
 
 forrest
-	:   program_lines EOF!
+	:   program_lines EOF
             ->  ^(PROGRAM program_lines)
     ;
     

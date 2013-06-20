@@ -1,4 +1,4 @@
-// $ANTLR 3.5 ForrestChecker.g 2013-06-19 13:09:21
+// $ANTLR 3.5 ForrestChecker.g 2013-06-20 10:54:54
 
 	package forrest.main;
 	import fire.ForrestFireException;
@@ -315,7 +315,6 @@ public class ForrestChecker extends TreeParser {
 	// ForrestChecker.g:44:1: expr : ( ^( BECOMES id= IDENTIFIER expr ) | ^( IF expr expr ( expr )? ) | ^( ( LOGOR | LOGAND ) expr expr ) | ^( ( GREATER | SMALLER | GREATEREQ | SMALLEREQ ) expr expr ) | ^( ( EQUALS | NOTEQUALS ) expr expr ) | ^( ( PLUS | MINUS | TIMES | DIVIDE | MODULO ) expr expr ) | ^( ( POSITIVE | NEGATIVE ) expr ) | ^( ( NOT ) expr ) | ^( COMPOUND program_lines ) | IDENTIFIER | NUMBER | read | print );
 	public final void expr() throws RecognitionException {
 		ForrestTree id=null;
-
 
 		ForrestTree t = (ForrestTree)input.LT(1);
 		ForrestTree ex1 = (ForrestTree)input.LT(2);

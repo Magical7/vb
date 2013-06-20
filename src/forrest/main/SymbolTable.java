@@ -52,7 +52,7 @@ public class SymbolTable<Entry extends IdEntry> {
     	} else if (isDeclaredVariable(id.getText())) {
     		throw new ForrestFireException(id, "is already declared on the current scope.");
     	} else {
-    		declare(id.getText(), Type.valueOf(type.getText()));
+    		declare(id.getText(), Type.valueOf(type.getText().toUpperCase())); //TODO workaround for java, explain
     	}
     }
     

@@ -1,4 +1,4 @@
-// $ANTLR 3.5 Forrest.g 2013-06-19 13:02:08
+// $ANTLR 3.5 Forrest.g 2013-06-20 10:54:54
 
 package forrest.main;
 
@@ -817,12 +817,12 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = IDENTIFIER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Forrest.g:140:5: ( LETTER ( LETTER | DIGIT )* )
-			// Forrest.g:140:9: LETTER ( LETTER | DIGIT )*
+			// Forrest.g:141:5: ( LETTER ( LETTER | DIGIT )* )
+			// Forrest.g:141:9: LETTER ( LETTER | DIGIT )*
 			{
 			mLETTER(); 
 
-			// Forrest.g:140:16: ( LETTER | DIGIT )*
+			// Forrest.g:141:16: ( LETTER | DIGIT )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -867,10 +867,10 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = NUMBER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Forrest.g:144:5: ( ( DIGIT )+ )
-			// Forrest.g:144:9: ( DIGIT )+
+			// Forrest.g:145:5: ( ( DIGIT )+ )
+			// Forrest.g:145:9: ( DIGIT )+
 			{
-			// Forrest.g:144:9: ( DIGIT )+
+			// Forrest.g:145:9: ( DIGIT )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -919,12 +919,12 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Forrest.g:149:5: ( '//' ( . )* '\\n' )
-			// Forrest.g:149:9: '//' ( . )* '\\n'
+			// Forrest.g:150:5: ( '//' ( . )* '\\n' )
+			// Forrest.g:150:9: '//' ( . )* '\\n'
 			{
 			match("//"); 
 
-			// Forrest.g:149:14: ( . )*
+			// Forrest.g:150:14: ( . )*
 			loop3:
 			while (true) {
 				int alt3=2;
@@ -938,7 +938,7 @@ public class ForrestLexer extends Lexer {
 
 				switch (alt3) {
 				case 1 :
-					// Forrest.g:149:14: .
+					// Forrest.g:150:14: .
 					{
 					matchAny(); 
 					}
@@ -967,10 +967,10 @@ public class ForrestLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Forrest.g:154:5: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
-			// Forrest.g:154:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+			// Forrest.g:155:5: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
+			// Forrest.g:155:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
 			{
-			// Forrest.g:154:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+			// Forrest.g:155:9: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
 			int cnt4=0;
 			loop4:
 			while (true) {
@@ -1018,7 +1018,7 @@ public class ForrestLexer extends Lexer {
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
-			// Forrest.g:158:17: ( ( '0' .. '9' ) )
+			// Forrest.g:159:17: ( ( '0' .. '9' ) )
 			// Forrest.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -1041,7 +1041,7 @@ public class ForrestLexer extends Lexer {
 	// $ANTLR start "LOWER"
 	public final void mLOWER() throws RecognitionException {
 		try {
-			// Forrest.g:159:17: ( ( 'a' .. 'z' ) )
+			// Forrest.g:160:17: ( ( 'a' .. 'z' ) )
 			// Forrest.g:
 			{
 			if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -1064,7 +1064,7 @@ public class ForrestLexer extends Lexer {
 	// $ANTLR start "UPPER"
 	public final void mUPPER() throws RecognitionException {
 		try {
-			// Forrest.g:160:17: ( ( 'A' .. 'Z' ) )
+			// Forrest.g:161:17: ( ( 'A' .. 'Z' ) )
 			// Forrest.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
@@ -1087,7 +1087,7 @@ public class ForrestLexer extends Lexer {
 	// $ANTLR start "LETTER"
 	public final void mLETTER() throws RecognitionException {
 		try {
-			// Forrest.g:161:17: ( LOWER | UPPER )
+			// Forrest.g:162:17: ( LOWER | UPPER )
 			// Forrest.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
