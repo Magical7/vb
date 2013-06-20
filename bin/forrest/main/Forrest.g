@@ -14,6 +14,7 @@ tokens {
     COMMA		=	','		;
     LCURLY		=	'{'		;
     RCURLY		=	'}'		;
+    SQUOTE		=	'$' 	;
 
     // operators
     BECOMES     =   '='    	;
@@ -50,6 +51,8 @@ tokens {
     ENDIF		=	'endif'		;
     POSITIVE	=	'KPOSITIVE'	;
     NEGATIVE	=	'KNEGATIVE'	;
+    TRUE		=	'true'		;
+    FALSE		=	'false'		;
 }
 
 @lexer::header {
@@ -124,6 +127,8 @@ expr_compound
 			->  ^(COMPOUND program_lines)	
 	|	IDENTIFIER
 	|	NUMBER
+	|	TRUE | FALSE
+	|	SQUOTE! CHARACTER SQUOTE!
 	|	LPAREN! expr RPAREN!
 	| 	read
 	|	print
@@ -146,7 +151,10 @@ IDENTIFIER
 NUMBER
     :   DIGIT+
     ;
-
+    
+CHARACTER
+	:	SQUOTE LETTER SQUOTE   
+	;
 
 COMMENT
     :   '//' .* '\n' 

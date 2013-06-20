@@ -77,6 +77,7 @@ ForrestTree t = (ForrestTree)input.LT(1);
 	|	IDENTIFIER {symtab.setType(t);}
 	|	NUMBER {symtab.setNumber(t);}
 	|	(TRUE | FALSE) {symtab.setBoolean(t);}
+	|	CHARACTER
 	|	read
 	|	print
 	;
