@@ -1,4 +1,4 @@
-// $ANTLR 3.5 ForrestChecker.g 2013-06-20 14:27:18
+// $ANTLR 3.5 ForrestChecker.g 2013-06-20 14:31:46
 
 	package forrest.main;
 	import fire.ForrestFireException;
@@ -672,12 +672,13 @@ public class ForrestChecker extends TreeParser {
 					// ForrestChecker.g:80:4: CHARACTER
 					{
 					match(input,CHARACTER,FOLLOW_CHARACTER_in_expr386); 
+					symtab.setCharacter(t);
 					}
 					break;
 				case 14 :
 					// ForrestChecker.g:81:4: read
 					{
-					pushFollow(FOLLOW_read_in_expr391);
+					pushFollow(FOLLOW_read_in_expr393);
 					read();
 					state._fsp--;
 
@@ -686,7 +687,7 @@ public class ForrestChecker extends TreeParser {
 				case 15 :
 					// ForrestChecker.g:82:4: print
 					{
-					pushFollow(FOLLOW_print_in_expr396);
+					pushFollow(FOLLOW_print_in_expr398);
 					print();
 					state._fsp--;
 
@@ -720,7 +721,7 @@ public class ForrestChecker extends TreeParser {
 			// ForrestChecker.g:89:2: ( ^( READ (id= IDENTIFIER )+ ) )
 			// ForrestChecker.g:89:4: ^( READ (id= IDENTIFIER )+ )
 			{
-			match(input,READ,FOLLOW_READ_in_read414); 
+			match(input,READ,FOLLOW_READ_in_read416); 
 			match(input, Token.DOWN, null); 
 			// ForrestChecker.g:89:11: (id= IDENTIFIER )+
 			int cnt7=0;
@@ -736,7 +737,7 @@ public class ForrestChecker extends TreeParser {
 				case 1 :
 					// ForrestChecker.g:89:12: id= IDENTIFIER
 					{
-					id=(ForrestTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_read419); 
+					id=(ForrestTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_read421); 
 					}
 					break;
 
@@ -777,7 +778,7 @@ public class ForrestChecker extends TreeParser {
 			// ForrestChecker.g:97:2: ( ^( PRINT ( expr )+ ) )
 			// ForrestChecker.g:97:4: ^( PRINT ( expr )+ )
 			{
-			match(input,PRINT,FOLLOW_PRINT_in_print445); 
+			match(input,PRINT,FOLLOW_PRINT_in_print447); 
 			match(input, Token.DOWN, null); 
 			// ForrestChecker.g:97:12: ( expr )+
 			int cnt8=0;
@@ -793,7 +794,7 @@ public class ForrestChecker extends TreeParser {
 				case 1 :
 					// ForrestChecker.g:97:13: expr
 					{
-					pushFollow(FOLLOW_expr_in_print448);
+					pushFollow(FOLLOW_expr_in_print450);
 					expr();
 					state._fsp--;
 
@@ -870,10 +871,10 @@ public class ForrestChecker extends TreeParser {
 	public static final BitSet FOLLOW_NUMBER_in_expr366 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_set_in_expr373 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_CHARACTER_in_expr386 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_read_in_expr391 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_print_in_expr396 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_READ_in_read414 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_read419 = new BitSet(new long[]{0x0000000000100008L});
-	public static final BitSet FOLLOW_PRINT_in_print445 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_print448 = new BitSet(new long[]{0x0001993FE63F2498L});
+	public static final BitSet FOLLOW_read_in_expr393 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_print_in_expr398 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_READ_in_read416 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_read421 = new BitSet(new long[]{0x0000000000100008L});
+	public static final BitSet FOLLOW_PRINT_in_print447 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_print450 = new BitSet(new long[]{0x0001993FE63F2498L});
 }
