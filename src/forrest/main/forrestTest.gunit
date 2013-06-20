@@ -1,5 +1,9 @@
 gunit Forrest;
 
+options {
+TreeAdaptor = forrest.main.ForrestTreeAdaptor;
+}
+
 @header{
 package forrest.main;
 }
@@ -22,7 +26,7 @@ var e int;
 var f bool;
 f = 1;
 e = 5;
-if f then d=5 else d = 4;
+if f then 5 else 4 endif;
 e = d + e;
 print(e);
 >> OK
@@ -34,8 +38,8 @@ declaration:
 "var f boolean"		FAIL
 "var g integer"		FAIL
 "var 2 integer"		FAIL
-"const x 3"			OK
-"const l 's'"		OK
+"const x = 3"		OK
+"const l = 's'"		OK
 
 expr:
 "3"								OK
@@ -49,7 +53,8 @@ expr:
 "print(y)"						OK
 "x>y<z==4!=3"					OK
 "x=y=z=5"						OK
-"if x>y then {x=3} endif"		OK
+"if x>y then {x=3;} endif"		OK
+"if x>y then {x=3} endif"		FAIL
 "if x>y then 3"					FAIL
 
 read:
