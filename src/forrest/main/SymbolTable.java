@@ -160,4 +160,13 @@ public class SymbolTable<Entry extends IdEntry> {
     public void setBoolean(ForrestTree t) throws ForrestFireException {
 		t.setReturnType(Type.BOOL);
     }
+    
+    /**
+     * Set the type for a ForrestTree node that is a character
+     * @param t - ForrestTree that needs its type set 
+     * @throws ForrestFireException if the id has not been declared yet
+     */
+    public void setCharacter(ForrestTree t) throws ForrestFireException {
+		t.setReturnType(Type.CHAR);
+    }
 }
