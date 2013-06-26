@@ -53,7 +53,7 @@ ForrestTree t = (ForrestTree)input.LT(1);
 			ExpressionChecker.checkAssign(t);
 		}
 	|	{boolean hasElse = false;}
-		^(IF expr expr (expr)? )
+		^(IF expr expr ({hasElse=true;}expr)? )
 		{
 			if (hasElse) {
 				ExpressionChecker.checkIfElse(t);

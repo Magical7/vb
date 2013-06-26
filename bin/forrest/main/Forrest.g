@@ -45,12 +45,12 @@ tokens {
     IF			=	'if'		;
     THEN		= 	'then'		;
     ELSE		=	'else'		;
-    COMPOUND	= 	'KCOMPOUND'	;
-    PROGRAM		=	'KPROGRAM'	;
+    COMPOUND	= 	'7COMPOUND'	;
+    PROGRAM		=	'7PROGRAM'	;
     CONSTANT	=	'const'		;
     ENDIF		=	'endif'		;
-    POSITIVE	=	'KPOSITIVE'	;
-    NEGATIVE	=	'KNEGATIVE'	;
+    POSITIVE	=	'7POSITIVE'	;
+    NEGATIVE	=	'7NEGATIVE'	;
     TRUE		=	'true'		;
     FALSE		=	'false'		;
 }
