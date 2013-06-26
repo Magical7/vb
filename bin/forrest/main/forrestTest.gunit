@@ -30,6 +30,14 @@ if f then 5 else 4 endif;
 e = d + e;
 print(e);
 >> OK
+<<
+var d int;
+var e int;
+var f bool;
+e = 5;
+d = f + e;
+print(e);
+>> FAIL
 
 declaration:
 "var d int"			OK
