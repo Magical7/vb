@@ -190,7 +190,7 @@ public class ExpressionChecker {
      * @param t - ForrestTree that needs its type set 
      * @throws ForrestFireException if the id has not been declared yet
      */
-    public void setNumber(ForrestTree t) throws ForrestFireException {
+    public static void setNumber(ForrestTree t) throws ForrestFireException {
 		t.setReturnType(Type.INT);
     }
     
@@ -199,7 +199,7 @@ public class ExpressionChecker {
      * @param t - ForrestTree that needs its type set 
      * @throws ForrestFireException if the id has not been declared yet
      */
-    public void setBoolean(ForrestTree t) throws ForrestFireException {
+    public static void setBoolean(ForrestTree t) throws ForrestFireException {
 		t.setReturnType(Type.BOOL);
     }
     
@@ -208,7 +208,7 @@ public class ExpressionChecker {
      * @param t - ForrestTree that needs its type set 
      * @throws ForrestFireException if the id has not been declared yet
      */
-    public void setCharacter(ForrestTree t) throws ForrestFireException {
+    public static void setCharacter(ForrestTree t) throws ForrestFireException {
 		t.setReturnType(Type.CHAR);
     }
     
@@ -217,7 +217,7 @@ public class ExpressionChecker {
      * @param t - ForrestTree that needs its type set 
      * @throws ForrestFireException if the id has not been declared yet
      */
-    public void setCompound(ForrestTree t) throws ForrestFireException {
+    public static void setCompound(ForrestTree t) throws ForrestFireException {
     	ForrestTree last = (ForrestTree) t.getChild(t.getChildCount() - 1);
 		t.setReturnType(last.getReturnType());
     }
