@@ -53,8 +53,12 @@ ForrestTree t = (ForrestTree)input.LT(1);
 			ExpressionChecker.checkAssign(t);
 		}
 	|	{boolean hasElse = false;}
-		^(IF expr expr ({hasElse=true;}expr)? )
+		^(IF 
+		{symtab.openScope();} program_lines 
+		{symtab.openScope();} program_lines {symtab.closeScope();}
+		 ({symtab.openScope(); hasElse=true;}program_lines {symtab.closeScope();})? )
 		{
+			symtab.closeScope();
 			if (hasElse) {
 				ExpressionChecker.checkIfElse(t);
 			} else {

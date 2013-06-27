@@ -9,6 +9,7 @@ options {
 
 tokens {
     SEMICOLON   =   ';'     ;
+    COLON		=	':'		;
     LPAREN      =   '('     ;
     RPAREN      =   ')'     ;
     COMMA		=	','		;
@@ -90,7 +91,7 @@ options {k=2;}
 	;
 	
 expr_if
-	:	IF^ expr_if THEN! expr_if (ELSE! expr_if)? ENDIF
+	:	IF^ COLON! program_lines THEN! COLON! program_lines (ELSE! COLON! program_lines)? ENDIF
 	|	expr_or
 	;
 	

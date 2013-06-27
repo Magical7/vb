@@ -1,4 +1,4 @@
-// $ANTLR 3.5 Forrest.g 2013-06-26 09:25:37
+// $ANTLR 3.5 Forrest.g 2013-06-27 09:35:40
 
 package forrest.main;
 
@@ -15,10 +15,10 @@ import org.antlr.runtime.tree.*;
 public class ForrestParser extends Parser {
 	public static final String[] tokenNames = new String[] {
 		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "BECOMES", "BOOL", "CHAR", "CHARACTER", 
-		"COMMA", "COMMENT", "COMPOUND", "CONSTANT", "DIGIT", "DIVIDE", "ELSE", 
-		"ENDIF", "EQUALS", "FALSE", "GREATER", "GREATEREQ", "IDENTIFIER", "IF", 
-		"INT", "LCURLY", "LETTER", "LOGAND", "LOGOR", "LOWER", "LPAREN", "MINUS", 
-		"MODULO", "NEGATIVE", "NOT", "NOTEQUALS", "NUMBER", "PLUS", "POSITIVE", 
+		"COLON", "COMMA", "COMMENT", "COMPOUND", "CONSTANT", "DIGIT", "DIVIDE", 
+		"ELSE", "ENDIF", "EQUALS", "FALSE", "GREATER", "GREATEREQ", "IDENTIFIER", 
+		"IF", "INT", "LCURLY", "LETTER", "LOGAND", "LOGOR", "LOWER", "LPAREN", 
+		"MINUS", "MODULO", "NEGATIVE", "NOT", "NOTEQUALS", "NUMBER", "PLUS", "POSITIVE", 
 		"PRINT", "PROGRAM", "RCURLY", "READ", "RPAREN", "SEMICOLON", "SMALLER", 
 		"SMALLEREQ", "SQUOTE", "THEN", "TIMES", "TRUE", "UPPER", "VAR", "WS"
 	};
@@ -27,50 +27,51 @@ public class ForrestParser extends Parser {
 	public static final int BOOL=5;
 	public static final int CHAR=6;
 	public static final int CHARACTER=7;
-	public static final int COMMA=8;
-	public static final int COMMENT=9;
-	public static final int COMPOUND=10;
-	public static final int CONSTANT=11;
-	public static final int DIGIT=12;
-	public static final int DIVIDE=13;
-	public static final int ELSE=14;
-	public static final int ENDIF=15;
-	public static final int EQUALS=16;
-	public static final int FALSE=17;
-	public static final int GREATER=18;
-	public static final int GREATEREQ=19;
-	public static final int IDENTIFIER=20;
-	public static final int IF=21;
-	public static final int INT=22;
-	public static final int LCURLY=23;
-	public static final int LETTER=24;
-	public static final int LOGAND=25;
-	public static final int LOGOR=26;
-	public static final int LOWER=27;
-	public static final int LPAREN=28;
-	public static final int MINUS=29;
-	public static final int MODULO=30;
-	public static final int NEGATIVE=31;
-	public static final int NOT=32;
-	public static final int NOTEQUALS=33;
-	public static final int NUMBER=34;
-	public static final int PLUS=35;
-	public static final int POSITIVE=36;
-	public static final int PRINT=37;
-	public static final int PROGRAM=38;
-	public static final int RCURLY=39;
-	public static final int READ=40;
-	public static final int RPAREN=41;
-	public static final int SEMICOLON=42;
-	public static final int SMALLER=43;
-	public static final int SMALLEREQ=44;
-	public static final int SQUOTE=45;
-	public static final int THEN=46;
-	public static final int TIMES=47;
-	public static final int TRUE=48;
-	public static final int UPPER=49;
-	public static final int VAR=50;
-	public static final int WS=51;
+	public static final int COLON=8;
+	public static final int COMMA=9;
+	public static final int COMMENT=10;
+	public static final int COMPOUND=11;
+	public static final int CONSTANT=12;
+	public static final int DIGIT=13;
+	public static final int DIVIDE=14;
+	public static final int ELSE=15;
+	public static final int ENDIF=16;
+	public static final int EQUALS=17;
+	public static final int FALSE=18;
+	public static final int GREATER=19;
+	public static final int GREATEREQ=20;
+	public static final int IDENTIFIER=21;
+	public static final int IF=22;
+	public static final int INT=23;
+	public static final int LCURLY=24;
+	public static final int LETTER=25;
+	public static final int LOGAND=26;
+	public static final int LOGOR=27;
+	public static final int LOWER=28;
+	public static final int LPAREN=29;
+	public static final int MINUS=30;
+	public static final int MODULO=31;
+	public static final int NEGATIVE=32;
+	public static final int NOT=33;
+	public static final int NOTEQUALS=34;
+	public static final int NUMBER=35;
+	public static final int PLUS=36;
+	public static final int POSITIVE=37;
+	public static final int PRINT=38;
+	public static final int PROGRAM=39;
+	public static final int RCURLY=40;
+	public static final int READ=41;
+	public static final int RPAREN=42;
+	public static final int SEMICOLON=43;
+	public static final int SMALLER=44;
+	public static final int SMALLEREQ=45;
+	public static final int SQUOTE=46;
+	public static final int THEN=47;
+	public static final int TIMES=48;
+	public static final int TRUE=49;
+	public static final int UPPER=50;
+	public static final int VAR=51;
+	public static final int WS=52;
 
 	// delegates
 	public Parser[] getDelegates() {
@@ -107,7 +108,7 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "forrest"
-	// Forrest.g:68:1: forrest : program_lines EOF -> ^( PROGRAM program_lines ) ;
+	// Forrest.g:69:1: forrest : program_lines EOF -> ^( PROGRAM program_lines ) ;
 	public final ForrestParser.forrest_return forrest() throws RecognitionException {
 		ForrestParser.forrest_return retval = new ForrestParser.forrest_return();
 		retval.start = input.LT(1);
@@ -122,15 +123,15 @@ public class ForrestParser extends Parser {
 		RewriteRuleSubtreeStream stream_program_lines=new RewriteRuleSubtreeStream(adaptor,"rule program_lines");
 
 		try {
-			// Forrest.g:69:2: ( program_lines EOF -> ^( PROGRAM program_lines ) )
-			// Forrest.g:69:6: program_lines EOF
+			// Forrest.g:70:2: ( program_lines EOF -> ^( PROGRAM program_lines ) )
+			// Forrest.g:70:6: program_lines EOF
 			{
-			pushFollow(FOLLOW_program_lines_in_forrest682);
+			pushFollow(FOLLOW_program_lines_in_forrest696);
 			program_lines1=program_lines();
 			state._fsp--;
 
 			stream_program_lines.add(program_lines1.getTree());
-			EOF2=(Token)match(input,EOF,FOLLOW_EOF_in_forrest684);  
+			EOF2=(Token)match(input,EOF,FOLLOW_EOF_in_forrest698);  
 			stream_EOF.add(EOF2);
 
 			// AST REWRITE
@@ -144,9 +145,9 @@ public class ForrestParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (ForrestTree)adaptor.nil();
-			// 70:13: -> ^( PROGRAM program_lines )
+			// 71:13: -> ^( PROGRAM program_lines )
 			{
-				// Forrest.g:70:17: ^( PROGRAM program_lines )
+				// Forrest.g:71:17: ^( PROGRAM program_lines )
 				{
 				ForrestTree root_1 = (ForrestTree)adaptor.nil();
 				root_1 = (ForrestTree)adaptor.becomeRoot((ForrestTree)adaptor.create(PROGRAM, "PROGRAM"), root_1);
@@ -188,7 +189,7 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "program_lines"
-	// Forrest.g:73:1: program_lines : ( ( declaration SEMICOLON !)* ( expr SEMICOLON !) )* ;
+	// Forrest.g:74:1: program_lines : ( ( declaration SEMICOLON !)* ( expr SEMICOLON !) )* ;
 	public final ForrestParser.program_lines_return program_lines() throws RecognitionException {
 		ForrestParser.program_lines_return retval = new ForrestParser.program_lines_return();
 		retval.start = input.LT(1);
@@ -204,13 +205,13 @@ public class ForrestParser extends Parser {
 		ForrestTree SEMICOLON6_tree=null;
 
 		try {
-			// Forrest.g:74:2: ( ( ( declaration SEMICOLON !)* ( expr SEMICOLON !) )* )
-			// Forrest.g:74:4: ( ( declaration SEMICOLON !)* ( expr SEMICOLON !) )*
+			// Forrest.g:75:2: ( ( ( declaration SEMICOLON !)* ( expr SEMICOLON !) )* )
+			// Forrest.g:75:4: ( ( declaration SEMICOLON !)* ( expr SEMICOLON !) )*
 			{
 			root_0 = (ForrestTree)adaptor.nil();
 
 
-			// Forrest.g:74:4: ( ( declaration SEMICOLON !)* ( expr SEMICOLON !) )*
+			// Forrest.g:75:4: ( ( declaration SEMICOLON !)* ( expr SEMICOLON !) )*
 			loop2:
 			while (true) {
 				int alt2=2;
@@ -221,9 +222,9 @@ public class ForrestParser extends Parser {
 
 				switch (alt2) {
 				case 1 :
-					// Forrest.g:74:5: ( declaration SEMICOLON !)* ( expr SEMICOLON !)
+					// Forrest.g:75:5: ( declaration SEMICOLON !)* ( expr SEMICOLON !)
 					{
-					// Forrest.g:74:5: ( declaration SEMICOLON !)*
+					// Forrest.g:75:5: ( declaration SEMICOLON !)*
 					loop1:
 					while (true) {
 						int alt1=2;
@@ -234,15 +235,15 @@ public class ForrestParser extends Parser {
 
 						switch (alt1) {
 						case 1 :
-							// Forrest.g:74:6: declaration SEMICOLON !
+							// Forrest.g:75:6: declaration SEMICOLON !
 							{
-							pushFollow(FOLLOW_declaration_in_program_lines725);
+							pushFollow(FOLLOW_declaration_in_program_lines739);
 							declaration3=declaration();
 							state._fsp--;
 
 							adaptor.addChild(root_0, declaration3.getTree());
 
-							SEMICOLON4=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_program_lines727); 
+							SEMICOLON4=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_program_lines741); 
 							}
 							break;
 
@@ -251,16 +252,16 @@ public class ForrestParser extends Parser {
 						}
 					}
 
-					// Forrest.g:74:31: ( expr SEMICOLON !)
-					// Forrest.g:74:32: expr SEMICOLON !
+					// Forrest.g:75:31: ( expr SEMICOLON !)
+					// Forrest.g:75:32: expr SEMICOLON !
 					{
-					pushFollow(FOLLOW_expr_in_program_lines733);
+					pushFollow(FOLLOW_expr_in_program_lines747);
 					expr5=expr();
 					state._fsp--;
 
 					adaptor.addChild(root_0, expr5.getTree());
 
-					SEMICOLON6=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_program_lines735); 
+					SEMICOLON6=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_program_lines749); 
 					}
 
 					}
@@ -300,7 +301,7 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "declaration"
-	// Forrest.g:77:1: declaration : ( VAR ^ IDENTIFIER ( CHAR | BOOL | INT ) | CONSTANT ^ IDENTIFIER BECOMES ! expr );
+	// Forrest.g:78:1: declaration : ( VAR ^ IDENTIFIER ( CHAR | BOOL | INT ) | CONSTANT ^ IDENTIFIER BECOMES ! expr );
 	public final ForrestParser.declaration_return declaration() throws RecognitionException {
 		ForrestParser.declaration_return retval = new ForrestParser.declaration_return();
 		retval.start = input.LT(1);
@@ -323,7 +324,7 @@ public class ForrestParser extends Parser {
 		ForrestTree BECOMES12_tree=null;
 
 		try {
-			// Forrest.g:78:2: ( VAR ^ IDENTIFIER ( CHAR | BOOL | INT ) | CONSTANT ^ IDENTIFIER BECOMES ! expr )
+			// Forrest.g:79:2: ( VAR ^ IDENTIFIER ( CHAR | BOOL | INT ) | CONSTANT ^ IDENTIFIER BECOMES ! expr )
 			int alt3=2;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0==VAR) ) {
@@ -341,16 +342,16 @@ public class ForrestParser extends Parser {
 
 			switch (alt3) {
 				case 1 :
-					// Forrest.g:78:4: VAR ^ IDENTIFIER ( CHAR | BOOL | INT )
+					// Forrest.g:79:4: VAR ^ IDENTIFIER ( CHAR | BOOL | INT )
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					VAR7=(Token)match(input,VAR,FOLLOW_VAR_in_declaration751); 
+					VAR7=(Token)match(input,VAR,FOLLOW_VAR_in_declaration765); 
 					VAR7_tree = (ForrestTree)adaptor.create(VAR7);
 					root_0 = (ForrestTree)adaptor.becomeRoot(VAR7_tree, root_0);
 
-					IDENTIFIER8=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_declaration754); 
+					IDENTIFIER8=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_declaration768); 
 					IDENTIFIER8_tree = (ForrestTree)adaptor.create(IDENTIFIER8);
 					adaptor.addChild(root_0, IDENTIFIER8_tree);
 
@@ -367,21 +368,21 @@ public class ForrestParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Forrest.g:79:4: CONSTANT ^ IDENTIFIER BECOMES ! expr
+					// Forrest.g:80:4: CONSTANT ^ IDENTIFIER BECOMES ! expr
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					CONSTANT10=(Token)match(input,CONSTANT,FOLLOW_CONSTANT_in_declaration771); 
+					CONSTANT10=(Token)match(input,CONSTANT,FOLLOW_CONSTANT_in_declaration785); 
 					CONSTANT10_tree = (ForrestTree)adaptor.create(CONSTANT10);
 					root_0 = (ForrestTree)adaptor.becomeRoot(CONSTANT10_tree, root_0);
 
-					IDENTIFIER11=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_declaration774); 
+					IDENTIFIER11=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_declaration788); 
 					IDENTIFIER11_tree = (ForrestTree)adaptor.create(IDENTIFIER11);
 					adaptor.addChild(root_0, IDENTIFIER11_tree);
 
-					BECOMES12=(Token)match(input,BECOMES,FOLLOW_BECOMES_in_declaration776); 
-					pushFollow(FOLLOW_expr_in_declaration779);
+					BECOMES12=(Token)match(input,BECOMES,FOLLOW_BECOMES_in_declaration790); 
+					pushFollow(FOLLOW_expr_in_declaration793);
 					expr13=expr();
 					state._fsp--;
 
@@ -418,7 +419,7 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "expr"
-	// Forrest.g:82:1: expr : expr_assign ;
+	// Forrest.g:83:1: expr : expr_assign ;
 	public final ForrestParser.expr_return expr() throws RecognitionException {
 		ForrestParser.expr_return retval = new ForrestParser.expr_return();
 		retval.start = input.LT(1);
@@ -429,13 +430,13 @@ public class ForrestParser extends Parser {
 
 
 		try {
-			// Forrest.g:83:2: ( expr_assign )
-			// Forrest.g:83:5: expr_assign
+			// Forrest.g:84:2: ( expr_assign )
+			// Forrest.g:84:5: expr_assign
 			{
 			root_0 = (ForrestTree)adaptor.nil();
 
 
-			pushFollow(FOLLOW_expr_assign_in_expr791);
+			pushFollow(FOLLOW_expr_assign_in_expr805);
 			expr_assign14=expr_assign();
 			state._fsp--;
 
@@ -470,7 +471,7 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "expr_assign"
-	// Forrest.g:86:1: expr_assign options {k=2; } : ( IDENTIFIER BECOMES ^ expr_assign | expr_if );
+	// Forrest.g:87:1: expr_assign options {k=2; } : ( IDENTIFIER BECOMES ^ expr_assign | expr_if );
 	public final ForrestParser.expr_assign_return expr_assign() throws RecognitionException {
 		ForrestParser.expr_assign_return retval = new ForrestParser.expr_assign_return();
 		retval.start = input.LT(1);
@@ -486,7 +487,7 @@ public class ForrestParser extends Parser {
 		ForrestTree BECOMES16_tree=null;
 
 		try {
-			// Forrest.g:88:2: ( IDENTIFIER BECOMES ^ expr_assign | expr_if )
+			// Forrest.g:89:2: ( IDENTIFIER BECOMES ^ expr_assign | expr_if )
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0==IDENTIFIER) ) {
@@ -523,20 +524,20 @@ public class ForrestParser extends Parser {
 
 			switch (alt4) {
 				case 1 :
-					// Forrest.g:88:4: IDENTIFIER BECOMES ^ expr_assign
+					// Forrest.g:89:4: IDENTIFIER BECOMES ^ expr_assign
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					IDENTIFIER15=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_expr_assign810); 
+					IDENTIFIER15=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_expr_assign824); 
 					IDENTIFIER15_tree = (ForrestTree)adaptor.create(IDENTIFIER15);
 					adaptor.addChild(root_0, IDENTIFIER15_tree);
 
-					BECOMES16=(Token)match(input,BECOMES,FOLLOW_BECOMES_in_expr_assign812); 
+					BECOMES16=(Token)match(input,BECOMES,FOLLOW_BECOMES_in_expr_assign826); 
 					BECOMES16_tree = (ForrestTree)adaptor.create(BECOMES16);
 					root_0 = (ForrestTree)adaptor.becomeRoot(BECOMES16_tree, root_0);
 
-					pushFollow(FOLLOW_expr_assign_in_expr_assign815);
+					pushFollow(FOLLOW_expr_assign_in_expr_assign829);
 					expr_assign17=expr_assign();
 					state._fsp--;
 
@@ -545,12 +546,12 @@ public class ForrestParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Forrest.g:89:4: expr_if
+					// Forrest.g:90:4: expr_if
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					pushFollow(FOLLOW_expr_if_in_expr_assign820);
+					pushFollow(FOLLOW_expr_if_in_expr_assign834);
 					expr_if18=expr_if();
 					state._fsp--;
 
@@ -587,7 +588,7 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "expr_if"
-	// Forrest.g:92:1: expr_if : ( IF ^ expr_if THEN ! expr_if ( ELSE ! expr_if )? ENDIF | expr_or );
+	// Forrest.g:93:1: expr_if : ( IF ^ COLON ! program_lines THEN ! COLON ! program_lines ( ELSE ! COLON ! program_lines )? ENDIF | expr_or );
 	public final ForrestParser.expr_if_return expr_if() throws RecognitionException {
 		ForrestParser.expr_if_return retval = new ForrestParser.expr_if_return();
 		retval.start = input.LT(1);
@@ -595,21 +596,27 @@ public class ForrestParser extends Parser {
 		ForrestTree root_0 = null;
 
 		Token IF19=null;
-		Token THEN21=null;
-		Token ELSE23=null;
-		Token ENDIF25=null;
-		ParserRuleReturnScope expr_if20 =null;
-		ParserRuleReturnScope expr_if22 =null;
-		ParserRuleReturnScope expr_if24 =null;
-		ParserRuleReturnScope expr_or26 =null;
+		Token COLON20=null;
+		Token THEN22=null;
+		Token COLON23=null;
+		Token ELSE25=null;
+		Token COLON26=null;
+		Token ENDIF28=null;
+		ParserRuleReturnScope program_lines21 =null;
+		ParserRuleReturnScope program_lines24 =null;
+		ParserRuleReturnScope program_lines27 =null;
+		ParserRuleReturnScope expr_or29 =null;
 
 		ForrestTree IF19_tree=null;
-		ForrestTree THEN21_tree=null;
-		ForrestTree ELSE23_tree=null;
-		ForrestTree ENDIF25_tree=null;
+		ForrestTree COLON20_tree=null;
+		ForrestTree THEN22_tree=null;
+		ForrestTree COLON23_tree=null;
+		ForrestTree ELSE25_tree=null;
+		ForrestTree COLON26_tree=null;
+		ForrestTree ENDIF28_tree=null;
 
 		try {
-			// Forrest.g:93:2: ( IF ^ expr_if THEN ! expr_if ( ELSE ! expr_if )? ENDIF | expr_or )
+			// Forrest.g:94:2: ( IF ^ COLON ! program_lines THEN ! COLON ! program_lines ( ELSE ! COLON ! program_lines )? ENDIF | expr_or )
 			int alt6=2;
 			int LA6_0 = input.LA(1);
 			if ( (LA6_0==IF) ) {
@@ -627,29 +634,31 @@ public class ForrestParser extends Parser {
 
 			switch (alt6) {
 				case 1 :
-					// Forrest.g:93:4: IF ^ expr_if THEN ! expr_if ( ELSE ! expr_if )? ENDIF
+					// Forrest.g:94:4: IF ^ COLON ! program_lines THEN ! COLON ! program_lines ( ELSE ! COLON ! program_lines )? ENDIF
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					IF19=(Token)match(input,IF,FOLLOW_IF_in_expr_if832); 
+					IF19=(Token)match(input,IF,FOLLOW_IF_in_expr_if846); 
 					IF19_tree = (ForrestTree)adaptor.create(IF19);
 					root_0 = (ForrestTree)adaptor.becomeRoot(IF19_tree, root_0);
 
-					pushFollow(FOLLOW_expr_if_in_expr_if835);
-					expr_if20=expr_if();
+					COLON20=(Token)match(input,COLON,FOLLOW_COLON_in_expr_if849); 
+					pushFollow(FOLLOW_program_lines_in_expr_if852);
+					program_lines21=program_lines();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr_if20.getTree());
+					adaptor.addChild(root_0, program_lines21.getTree());
 
-					THEN21=(Token)match(input,THEN,FOLLOW_THEN_in_expr_if837); 
-					pushFollow(FOLLOW_expr_if_in_expr_if840);
-					expr_if22=expr_if();
+					THEN22=(Token)match(input,THEN,FOLLOW_THEN_in_expr_if854); 
+					COLON23=(Token)match(input,COLON,FOLLOW_COLON_in_expr_if857); 
+					pushFollow(FOLLOW_program_lines_in_expr_if860);
+					program_lines24=program_lines();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr_if22.getTree());
+					adaptor.addChild(root_0, program_lines24.getTree());
 
-					// Forrest.g:93:30: ( ELSE ! expr_if )?
+					// Forrest.g:94:56: ( ELSE ! COLON ! program_lines )?
 					int alt5=2;
 					int LA5_0 = input.LA(1);
 					if ( (LA5_0==ELSE) ) {
@@ -657,37 +666,38 @@ public class ForrestParser extends Parser {
 					}
 					switch (alt5) {
 						case 1 :
-							// Forrest.g:93:31: ELSE ! expr_if
+							// Forrest.g:94:57: ELSE ! COLON ! program_lines
 							{
-							ELSE23=(Token)match(input,ELSE,FOLLOW_ELSE_in_expr_if843); 
-							pushFollow(FOLLOW_expr_if_in_expr_if846);
-							expr_if24=expr_if();
+							ELSE25=(Token)match(input,ELSE,FOLLOW_ELSE_in_expr_if863); 
+							COLON26=(Token)match(input,COLON,FOLLOW_COLON_in_expr_if866); 
+							pushFollow(FOLLOW_program_lines_in_expr_if869);
+							program_lines27=program_lines();
 							state._fsp--;
 
-							adaptor.addChild(root_0, expr_if24.getTree());
+							adaptor.addChild(root_0, program_lines27.getTree());
 
 							}
 							break;
 
 					}
 
-					ENDIF25=(Token)match(input,ENDIF,FOLLOW_ENDIF_in_expr_if850); 
-					ENDIF25_tree = (ForrestTree)adaptor.create(ENDIF25);
-					adaptor.addChild(root_0, ENDIF25_tree);
+					ENDIF28=(Token)match(input,ENDIF,FOLLOW_ENDIF_in_expr_if873); 
+					ENDIF28_tree = (ForrestTree)adaptor.create(ENDIF28);
+					adaptor.addChild(root_0, ENDIF28_tree);
 
 					}
 					break;
 				case 2 :
-					// Forrest.g:94:4: expr_or
+					// Forrest.g:95:4: expr_or
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					pushFollow(FOLLOW_expr_or_in_expr_if855);
-					expr_or26=expr_or();
+					pushFollow(FOLLOW_expr_or_in_expr_if878);
+					expr_or29=expr_or();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr_or26.getTree());
+					adaptor.addChild(root_0, expr_or29.getTree());
 
 					}
 					break;
@@ -720,33 +730,33 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "expr_or"
-	// Forrest.g:97:1: expr_or : expr_and ( LOGOR ^ expr_and )* ;
+	// Forrest.g:98:1: expr_or : expr_and ( LOGOR ^ expr_and )* ;
 	public final ForrestParser.expr_or_return expr_or() throws RecognitionException {
 		ForrestParser.expr_or_return retval = new ForrestParser.expr_or_return();
 		retval.start = input.LT(1);
 
 		ForrestTree root_0 = null;
 
-		Token LOGOR28=null;
-		ParserRuleReturnScope expr_and27 =null;
-		ParserRuleReturnScope expr_and29 =null;
+		Token LOGOR31=null;
+		ParserRuleReturnScope expr_and30 =null;
+		ParserRuleReturnScope expr_and32 =null;
 
-		ForrestTree LOGOR28_tree=null;
+		ForrestTree LOGOR31_tree=null;
 
 		try {
-			// Forrest.g:98:2: ( expr_and ( LOGOR ^ expr_and )* )
-			// Forrest.g:98:4: expr_and ( LOGOR ^ expr_and )*
+			// Forrest.g:99:2: ( expr_and ( LOGOR ^ expr_and )* )
+			// Forrest.g:99:4: expr_and ( LOGOR ^ expr_and )*
 			{
 			root_0 = (ForrestTree)adaptor.nil();
 
 
-			pushFollow(FOLLOW_expr_and_in_expr_or867);
-			expr_and27=expr_and();
+			pushFollow(FOLLOW_expr_and_in_expr_or890);
+			expr_and30=expr_and();
 			state._fsp--;
 
-			adaptor.addChild(root_0, expr_and27.getTree());
+			adaptor.addChild(root_0, expr_and30.getTree());
 
-			// Forrest.g:98:13: ( LOGOR ^ expr_and )*
+			// Forrest.g:99:13: ( LOGOR ^ expr_and )*
 			loop7:
 			while (true) {
 				int alt7=2;
@@ -757,17 +767,17 @@ public class ForrestParser extends Parser {
 
 				switch (alt7) {
 				case 1 :
-					// Forrest.g:98:14: LOGOR ^ expr_and
+					// Forrest.g:99:14: LOGOR ^ expr_and
 					{
-					LOGOR28=(Token)match(input,LOGOR,FOLLOW_LOGOR_in_expr_or870); 
-					LOGOR28_tree = (ForrestTree)adaptor.create(LOGOR28);
-					root_0 = (ForrestTree)adaptor.becomeRoot(LOGOR28_tree, root_0);
+					LOGOR31=(Token)match(input,LOGOR,FOLLOW_LOGOR_in_expr_or893); 
+					LOGOR31_tree = (ForrestTree)adaptor.create(LOGOR31);
+					root_0 = (ForrestTree)adaptor.becomeRoot(LOGOR31_tree, root_0);
 
-					pushFollow(FOLLOW_expr_and_in_expr_or873);
-					expr_and29=expr_and();
+					pushFollow(FOLLOW_expr_and_in_expr_or896);
+					expr_and32=expr_and();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr_and29.getTree());
+					adaptor.addChild(root_0, expr_and32.getTree());
 
 					}
 					break;
@@ -806,33 +816,33 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "expr_and"
-	// Forrest.g:101:1: expr_and : expr_comp ( LOGAND ^ expr_comp )* ;
+	// Forrest.g:102:1: expr_and : expr_comp ( LOGAND ^ expr_comp )* ;
 	public final ForrestParser.expr_and_return expr_and() throws RecognitionException {
 		ForrestParser.expr_and_return retval = new ForrestParser.expr_and_return();
 		retval.start = input.LT(1);
 
 		ForrestTree root_0 = null;
 
-		Token LOGAND31=null;
-		ParserRuleReturnScope expr_comp30 =null;
-		ParserRuleReturnScope expr_comp32 =null;
+		Token LOGAND34=null;
+		ParserRuleReturnScope expr_comp33 =null;
+		ParserRuleReturnScope expr_comp35 =null;
 
-		ForrestTree LOGAND31_tree=null;
+		ForrestTree LOGAND34_tree=null;
 
 		try {
-			// Forrest.g:102:2: ( expr_comp ( LOGAND ^ expr_comp )* )
-			// Forrest.g:102:4: expr_comp ( LOGAND ^ expr_comp )*
+			// Forrest.g:103:2: ( expr_comp ( LOGAND ^ expr_comp )* )
+			// Forrest.g:103:4: expr_comp ( LOGAND ^ expr_comp )*
 			{
 			root_0 = (ForrestTree)adaptor.nil();
 
 
-			pushFollow(FOLLOW_expr_comp_in_expr_and887);
-			expr_comp30=expr_comp();
+			pushFollow(FOLLOW_expr_comp_in_expr_and910);
+			expr_comp33=expr_comp();
 			state._fsp--;
 
-			adaptor.addChild(root_0, expr_comp30.getTree());
+			adaptor.addChild(root_0, expr_comp33.getTree());
 
-			// Forrest.g:102:14: ( LOGAND ^ expr_comp )*
+			// Forrest.g:103:14: ( LOGAND ^ expr_comp )*
 			loop8:
 			while (true) {
 				int alt8=2;
@@ -843,17 +853,17 @@ public class ForrestParser extends Parser {
 
 				switch (alt8) {
 				case 1 :
-					// Forrest.g:102:15: LOGAND ^ expr_comp
+					// Forrest.g:103:15: LOGAND ^ expr_comp
 					{
-					LOGAND31=(Token)match(input,LOGAND,FOLLOW_LOGAND_in_expr_and890); 
-					LOGAND31_tree = (ForrestTree)adaptor.create(LOGAND31);
-					root_0 = (ForrestTree)adaptor.becomeRoot(LOGAND31_tree, root_0);
+					LOGAND34=(Token)match(input,LOGAND,FOLLOW_LOGAND_in_expr_and913); 
+					LOGAND34_tree = (ForrestTree)adaptor.create(LOGAND34);
+					root_0 = (ForrestTree)adaptor.becomeRoot(LOGAND34_tree, root_0);
 
-					pushFollow(FOLLOW_expr_comp_in_expr_and893);
-					expr_comp32=expr_comp();
+					pushFollow(FOLLOW_expr_comp_in_expr_and916);
+					expr_comp35=expr_comp();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr_comp32.getTree());
+					adaptor.addChild(root_0, expr_comp35.getTree());
 
 					}
 					break;
@@ -892,43 +902,43 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "expr_comp"
-	// Forrest.g:105:1: expr_comp : expr_add ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_add )* ;
+	// Forrest.g:106:1: expr_comp : expr_add ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_add )* ;
 	public final ForrestParser.expr_comp_return expr_comp() throws RecognitionException {
 		ForrestParser.expr_comp_return retval = new ForrestParser.expr_comp_return();
 		retval.start = input.LT(1);
 
 		ForrestTree root_0 = null;
 
-		Token GREATER34=null;
-		Token SMALLER35=null;
-		Token GREATEREQ36=null;
-		Token SMALLEREQ37=null;
-		Token EQUALS38=null;
-		Token NOTEQUALS39=null;
-		ParserRuleReturnScope expr_add33 =null;
-		ParserRuleReturnScope expr_add40 =null;
+		Token GREATER37=null;
+		Token SMALLER38=null;
+		Token GREATEREQ39=null;
+		Token SMALLEREQ40=null;
+		Token EQUALS41=null;
+		Token NOTEQUALS42=null;
+		ParserRuleReturnScope expr_add36 =null;
+		ParserRuleReturnScope expr_add43 =null;
 
-		ForrestTree GREATER34_tree=null;
-		ForrestTree SMALLER35_tree=null;
-		ForrestTree GREATEREQ36_tree=null;
-		ForrestTree SMALLEREQ37_tree=null;
-		ForrestTree EQUALS38_tree=null;
-		ForrestTree NOTEQUALS39_tree=null;
+		ForrestTree GREATER37_tree=null;
+		ForrestTree SMALLER38_tree=null;
+		ForrestTree GREATEREQ39_tree=null;
+		ForrestTree SMALLEREQ40_tree=null;
+		ForrestTree EQUALS41_tree=null;
+		ForrestTree NOTEQUALS42_tree=null;
 
 		try {
-			// Forrest.g:106:2: ( expr_add ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_add )* )
-			// Forrest.g:106:4: expr_add ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_add )*
+			// Forrest.g:107:2: ( expr_add ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_add )* )
+			// Forrest.g:107:4: expr_add ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_add )*
 			{
 			root_0 = (ForrestTree)adaptor.nil();
 
 
-			pushFollow(FOLLOW_expr_add_in_expr_comp907);
-			expr_add33=expr_add();
+			pushFollow(FOLLOW_expr_add_in_expr_comp930);
+			expr_add36=expr_add();
 			state._fsp--;
 
-			adaptor.addChild(root_0, expr_add33.getTree());
+			adaptor.addChild(root_0, expr_add36.getTree());
 
-			// Forrest.g:106:13: ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_add )*
+			// Forrest.g:107:13: ( ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_add )*
 			loop10:
 			while (true) {
 				int alt10=2;
@@ -939,9 +949,9 @@ public class ForrestParser extends Parser {
 
 				switch (alt10) {
 				case 1 :
-					// Forrest.g:106:14: ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_add
+					// Forrest.g:107:14: ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^) expr_add
 					{
-					// Forrest.g:106:14: ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^)
+					// Forrest.g:107:14: ( GREATER ^| SMALLER ^| GREATEREQ ^| SMALLEREQ ^| EQUALS ^| NOTEQUALS ^)
 					int alt9=6;
 					switch ( input.LA(1) ) {
 					case GREATER:
@@ -981,67 +991,67 @@ public class ForrestParser extends Parser {
 					}
 					switch (alt9) {
 						case 1 :
-							// Forrest.g:106:15: GREATER ^
+							// Forrest.g:107:15: GREATER ^
 							{
-							GREATER34=(Token)match(input,GREATER,FOLLOW_GREATER_in_expr_comp911); 
-							GREATER34_tree = (ForrestTree)adaptor.create(GREATER34);
-							root_0 = (ForrestTree)adaptor.becomeRoot(GREATER34_tree, root_0);
+							GREATER37=(Token)match(input,GREATER,FOLLOW_GREATER_in_expr_comp934); 
+							GREATER37_tree = (ForrestTree)adaptor.create(GREATER37);
+							root_0 = (ForrestTree)adaptor.becomeRoot(GREATER37_tree, root_0);
 
 							}
 							break;
 						case 2 :
-							// Forrest.g:106:26: SMALLER ^
+							// Forrest.g:107:26: SMALLER ^
 							{
-							SMALLER35=(Token)match(input,SMALLER,FOLLOW_SMALLER_in_expr_comp916); 
-							SMALLER35_tree = (ForrestTree)adaptor.create(SMALLER35);
-							root_0 = (ForrestTree)adaptor.becomeRoot(SMALLER35_tree, root_0);
+							SMALLER38=(Token)match(input,SMALLER,FOLLOW_SMALLER_in_expr_comp939); 
+							SMALLER38_tree = (ForrestTree)adaptor.create(SMALLER38);
+							root_0 = (ForrestTree)adaptor.becomeRoot(SMALLER38_tree, root_0);
 
 							}
 							break;
 						case 3 :
-							// Forrest.g:106:37: GREATEREQ ^
+							// Forrest.g:107:37: GREATEREQ ^
 							{
-							GREATEREQ36=(Token)match(input,GREATEREQ,FOLLOW_GREATEREQ_in_expr_comp921); 
-							GREATEREQ36_tree = (ForrestTree)adaptor.create(GREATEREQ36);
-							root_0 = (ForrestTree)adaptor.becomeRoot(GREATEREQ36_tree, root_0);
+							GREATEREQ39=(Token)match(input,GREATEREQ,FOLLOW_GREATEREQ_in_expr_comp944); 
+							GREATEREQ39_tree = (ForrestTree)adaptor.create(GREATEREQ39);
+							root_0 = (ForrestTree)adaptor.becomeRoot(GREATEREQ39_tree, root_0);
 
 							}
 							break;
 						case 4 :
-							// Forrest.g:106:50: SMALLEREQ ^
+							// Forrest.g:107:50: SMALLEREQ ^
 							{
-							SMALLEREQ37=(Token)match(input,SMALLEREQ,FOLLOW_SMALLEREQ_in_expr_comp926); 
-							SMALLEREQ37_tree = (ForrestTree)adaptor.create(SMALLEREQ37);
-							root_0 = (ForrestTree)adaptor.becomeRoot(SMALLEREQ37_tree, root_0);
+							SMALLEREQ40=(Token)match(input,SMALLEREQ,FOLLOW_SMALLEREQ_in_expr_comp949); 
+							SMALLEREQ40_tree = (ForrestTree)adaptor.create(SMALLEREQ40);
+							root_0 = (ForrestTree)adaptor.becomeRoot(SMALLEREQ40_tree, root_0);
 
 							}
 							break;
 						case 5 :
-							// Forrest.g:106:63: EQUALS ^
+							// Forrest.g:107:63: EQUALS ^
 							{
-							EQUALS38=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_expr_comp931); 
-							EQUALS38_tree = (ForrestTree)adaptor.create(EQUALS38);
-							root_0 = (ForrestTree)adaptor.becomeRoot(EQUALS38_tree, root_0);
+							EQUALS41=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_expr_comp954); 
+							EQUALS41_tree = (ForrestTree)adaptor.create(EQUALS41);
+							root_0 = (ForrestTree)adaptor.becomeRoot(EQUALS41_tree, root_0);
 
 							}
 							break;
 						case 6 :
-							// Forrest.g:106:73: NOTEQUALS ^
+							// Forrest.g:107:73: NOTEQUALS ^
 							{
-							NOTEQUALS39=(Token)match(input,NOTEQUALS,FOLLOW_NOTEQUALS_in_expr_comp936); 
-							NOTEQUALS39_tree = (ForrestTree)adaptor.create(NOTEQUALS39);
-							root_0 = (ForrestTree)adaptor.becomeRoot(NOTEQUALS39_tree, root_0);
+							NOTEQUALS42=(Token)match(input,NOTEQUALS,FOLLOW_NOTEQUALS_in_expr_comp959); 
+							NOTEQUALS42_tree = (ForrestTree)adaptor.create(NOTEQUALS42);
+							root_0 = (ForrestTree)adaptor.becomeRoot(NOTEQUALS42_tree, root_0);
 
 							}
 							break;
 
 					}
 
-					pushFollow(FOLLOW_expr_add_in_expr_comp941);
-					expr_add40=expr_add();
+					pushFollow(FOLLOW_expr_add_in_expr_comp964);
+					expr_add43=expr_add();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr_add40.getTree());
+					adaptor.addChild(root_0, expr_add43.getTree());
 
 					}
 					break;
@@ -1080,35 +1090,35 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "expr_add"
-	// Forrest.g:109:1: expr_add : expr_mult ( ( PLUS ^| MINUS ^) expr_mult )* ;
+	// Forrest.g:110:1: expr_add : expr_mult ( ( PLUS ^| MINUS ^) expr_mult )* ;
 	public final ForrestParser.expr_add_return expr_add() throws RecognitionException {
 		ForrestParser.expr_add_return retval = new ForrestParser.expr_add_return();
 		retval.start = input.LT(1);
 
 		ForrestTree root_0 = null;
 
-		Token PLUS42=null;
-		Token MINUS43=null;
-		ParserRuleReturnScope expr_mult41 =null;
+		Token PLUS45=null;
+		Token MINUS46=null;
 		ParserRuleReturnScope expr_mult44 =null;
+		ParserRuleReturnScope expr_mult47 =null;
 
-		ForrestTree PLUS42_tree=null;
-		ForrestTree MINUS43_tree=null;
+		ForrestTree PLUS45_tree=null;
+		ForrestTree MINUS46_tree=null;
 
 		try {
-			// Forrest.g:110:2: ( expr_mult ( ( PLUS ^| MINUS ^) expr_mult )* )
-			// Forrest.g:110:4: expr_mult ( ( PLUS ^| MINUS ^) expr_mult )*
+			// Forrest.g:111:2: ( expr_mult ( ( PLUS ^| MINUS ^) expr_mult )* )
+			// Forrest.g:111:4: expr_mult ( ( PLUS ^| MINUS ^) expr_mult )*
 			{
 			root_0 = (ForrestTree)adaptor.nil();
 
 
-			pushFollow(FOLLOW_expr_mult_in_expr_add955);
-			expr_mult41=expr_mult();
+			pushFollow(FOLLOW_expr_mult_in_expr_add978);
+			expr_mult44=expr_mult();
 			state._fsp--;
 
-			adaptor.addChild(root_0, expr_mult41.getTree());
+			adaptor.addChild(root_0, expr_mult44.getTree());
 
-			// Forrest.g:110:14: ( ( PLUS ^| MINUS ^) expr_mult )*
+			// Forrest.g:111:14: ( ( PLUS ^| MINUS ^) expr_mult )*
 			loop12:
 			while (true) {
 				int alt12=2;
@@ -1119,9 +1129,9 @@ public class ForrestParser extends Parser {
 
 				switch (alt12) {
 				case 1 :
-					// Forrest.g:110:15: ( PLUS ^| MINUS ^) expr_mult
+					// Forrest.g:111:15: ( PLUS ^| MINUS ^) expr_mult
 					{
-					// Forrest.g:110:15: ( PLUS ^| MINUS ^)
+					// Forrest.g:111:15: ( PLUS ^| MINUS ^)
 					int alt11=2;
 					int LA11_0 = input.LA(1);
 					if ( (LA11_0==PLUS) ) {
@@ -1139,31 +1149,31 @@ public class ForrestParser extends Parser {
 
 					switch (alt11) {
 						case 1 :
-							// Forrest.g:110:16: PLUS ^
+							// Forrest.g:111:16: PLUS ^
 							{
-							PLUS42=(Token)match(input,PLUS,FOLLOW_PLUS_in_expr_add959); 
-							PLUS42_tree = (ForrestTree)adaptor.create(PLUS42);
-							root_0 = (ForrestTree)adaptor.becomeRoot(PLUS42_tree, root_0);
+							PLUS45=(Token)match(input,PLUS,FOLLOW_PLUS_in_expr_add982); 
+							PLUS45_tree = (ForrestTree)adaptor.create(PLUS45);
+							root_0 = (ForrestTree)adaptor.becomeRoot(PLUS45_tree, root_0);
 
 							}
 							break;
 						case 2 :
-							// Forrest.g:110:24: MINUS ^
+							// Forrest.g:111:24: MINUS ^
 							{
-							MINUS43=(Token)match(input,MINUS,FOLLOW_MINUS_in_expr_add964); 
-							MINUS43_tree = (ForrestTree)adaptor.create(MINUS43);
-							root_0 = (ForrestTree)adaptor.becomeRoot(MINUS43_tree, root_0);
+							MINUS46=(Token)match(input,MINUS,FOLLOW_MINUS_in_expr_add987); 
+							MINUS46_tree = (ForrestTree)adaptor.create(MINUS46);
+							root_0 = (ForrestTree)adaptor.becomeRoot(MINUS46_tree, root_0);
 
 							}
 							break;
 
 					}
 
-					pushFollow(FOLLOW_expr_mult_in_expr_add968);
-					expr_mult44=expr_mult();
+					pushFollow(FOLLOW_expr_mult_in_expr_add991);
+					expr_mult47=expr_mult();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr_mult44.getTree());
+					adaptor.addChild(root_0, expr_mult47.getTree());
 
 					}
 					break;
@@ -1202,37 +1212,37 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "expr_mult"
-	// Forrest.g:113:1: expr_mult : expr_unary ( ( TIMES ^| DIVIDE ^| MODULO ^) expr_unary )* ;
+	// Forrest.g:114:1: expr_mult : expr_unary ( ( TIMES ^| DIVIDE ^| MODULO ^) expr_unary )* ;
 	public final ForrestParser.expr_mult_return expr_mult() throws RecognitionException {
 		ForrestParser.expr_mult_return retval = new ForrestParser.expr_mult_return();
 		retval.start = input.LT(1);
 
 		ForrestTree root_0 = null;
 
-		Token TIMES46=null;
-		Token DIVIDE47=null;
-		Token MODULO48=null;
-		ParserRuleReturnScope expr_unary45 =null;
-		ParserRuleReturnScope expr_unary49 =null;
+		Token TIMES49=null;
+		Token DIVIDE50=null;
+		Token MODULO51=null;
+		ParserRuleReturnScope expr_unary48 =null;
+		ParserRuleReturnScope expr_unary52 =null;
 
-		ForrestTree TIMES46_tree=null;
-		ForrestTree DIVIDE47_tree=null;
-		ForrestTree MODULO48_tree=null;
+		ForrestTree TIMES49_tree=null;
+		ForrestTree DIVIDE50_tree=null;
+		ForrestTree MODULO51_tree=null;
 
 		try {
-			// Forrest.g:114:2: ( expr_unary ( ( TIMES ^| DIVIDE ^| MODULO ^) expr_unary )* )
-			// Forrest.g:114:4: expr_unary ( ( TIMES ^| DIVIDE ^| MODULO ^) expr_unary )*
+			// Forrest.g:115:2: ( expr_unary ( ( TIMES ^| DIVIDE ^| MODULO ^) expr_unary )* )
+			// Forrest.g:115:4: expr_unary ( ( TIMES ^| DIVIDE ^| MODULO ^) expr_unary )*
 			{
 			root_0 = (ForrestTree)adaptor.nil();
 
 
-			pushFollow(FOLLOW_expr_unary_in_expr_mult981);
-			expr_unary45=expr_unary();
+			pushFollow(FOLLOW_expr_unary_in_expr_mult1004);
+			expr_unary48=expr_unary();
 			state._fsp--;
 
-			adaptor.addChild(root_0, expr_unary45.getTree());
+			adaptor.addChild(root_0, expr_unary48.getTree());
 
-			// Forrest.g:114:15: ( ( TIMES ^| DIVIDE ^| MODULO ^) expr_unary )*
+			// Forrest.g:115:15: ( ( TIMES ^| DIVIDE ^| MODULO ^) expr_unary )*
 			loop14:
 			while (true) {
 				int alt14=2;
@@ -1243,9 +1253,9 @@ public class ForrestParser extends Parser {
 
 				switch (alt14) {
 				case 1 :
-					// Forrest.g:114:16: ( TIMES ^| DIVIDE ^| MODULO ^) expr_unary
+					// Forrest.g:115:16: ( TIMES ^| DIVIDE ^| MODULO ^) expr_unary
 					{
-					// Forrest.g:114:16: ( TIMES ^| DIVIDE ^| MODULO ^)
+					// Forrest.g:115:16: ( TIMES ^| DIVIDE ^| MODULO ^)
 					int alt13=3;
 					switch ( input.LA(1) ) {
 					case TIMES:
@@ -1270,40 +1280,40 @@ public class ForrestParser extends Parser {
 					}
 					switch (alt13) {
 						case 1 :
-							// Forrest.g:114:17: TIMES ^
+							// Forrest.g:115:17: TIMES ^
 							{
-							TIMES46=(Token)match(input,TIMES,FOLLOW_TIMES_in_expr_mult985); 
-							TIMES46_tree = (ForrestTree)adaptor.create(TIMES46);
-							root_0 = (ForrestTree)adaptor.becomeRoot(TIMES46_tree, root_0);
+							TIMES49=(Token)match(input,TIMES,FOLLOW_TIMES_in_expr_mult1008); 
+							TIMES49_tree = (ForrestTree)adaptor.create(TIMES49);
+							root_0 = (ForrestTree)adaptor.becomeRoot(TIMES49_tree, root_0);
 
 							}
 							break;
 						case 2 :
-							// Forrest.g:114:26: DIVIDE ^
+							// Forrest.g:115:26: DIVIDE ^
 							{
-							DIVIDE47=(Token)match(input,DIVIDE,FOLLOW_DIVIDE_in_expr_mult990); 
-							DIVIDE47_tree = (ForrestTree)adaptor.create(DIVIDE47);
-							root_0 = (ForrestTree)adaptor.becomeRoot(DIVIDE47_tree, root_0);
+							DIVIDE50=(Token)match(input,DIVIDE,FOLLOW_DIVIDE_in_expr_mult1013); 
+							DIVIDE50_tree = (ForrestTree)adaptor.create(DIVIDE50);
+							root_0 = (ForrestTree)adaptor.becomeRoot(DIVIDE50_tree, root_0);
 
 							}
 							break;
 						case 3 :
-							// Forrest.g:114:36: MODULO ^
+							// Forrest.g:115:36: MODULO ^
 							{
-							MODULO48=(Token)match(input,MODULO,FOLLOW_MODULO_in_expr_mult995); 
-							MODULO48_tree = (ForrestTree)adaptor.create(MODULO48);
-							root_0 = (ForrestTree)adaptor.becomeRoot(MODULO48_tree, root_0);
+							MODULO51=(Token)match(input,MODULO,FOLLOW_MODULO_in_expr_mult1018); 
+							MODULO51_tree = (ForrestTree)adaptor.create(MODULO51);
+							root_0 = (ForrestTree)adaptor.becomeRoot(MODULO51_tree, root_0);
 
 							}
 							break;
 
 					}
 
-					pushFollow(FOLLOW_expr_unary_in_expr_mult999);
-					expr_unary49=expr_unary();
+					pushFollow(FOLLOW_expr_unary_in_expr_mult1022);
+					expr_unary52=expr_unary();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr_unary49.getTree());
+					adaptor.addChild(root_0, expr_unary52.getTree());
 
 					}
 					break;
@@ -1342,29 +1352,29 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "expr_unary"
-	// Forrest.g:117:1: expr_unary : ( ( NOT ^)? expr_compound | PLUS expr_compound -> ^( POSITIVE expr_compound ) | MINUS expr_compound -> ^( NEGATIVE expr_compound ) );
+	// Forrest.g:118:1: expr_unary : ( ( NOT ^)? expr_compound | PLUS expr_compound -> ^( POSITIVE expr_compound ) | MINUS expr_compound -> ^( NEGATIVE expr_compound ) );
 	public final ForrestParser.expr_unary_return expr_unary() throws RecognitionException {
 		ForrestParser.expr_unary_return retval = new ForrestParser.expr_unary_return();
 		retval.start = input.LT(1);
 
 		ForrestTree root_0 = null;
 
-		Token NOT50=null;
-		Token PLUS52=null;
-		Token MINUS54=null;
-		ParserRuleReturnScope expr_compound51 =null;
-		ParserRuleReturnScope expr_compound53 =null;
-		ParserRuleReturnScope expr_compound55 =null;
+		Token NOT53=null;
+		Token PLUS55=null;
+		Token MINUS57=null;
+		ParserRuleReturnScope expr_compound54 =null;
+		ParserRuleReturnScope expr_compound56 =null;
+		ParserRuleReturnScope expr_compound58 =null;
 
-		ForrestTree NOT50_tree=null;
-		ForrestTree PLUS52_tree=null;
-		ForrestTree MINUS54_tree=null;
+		ForrestTree NOT53_tree=null;
+		ForrestTree PLUS55_tree=null;
+		ForrestTree MINUS57_tree=null;
 		RewriteRuleTokenStream stream_PLUS=new RewriteRuleTokenStream(adaptor,"token PLUS");
 		RewriteRuleTokenStream stream_MINUS=new RewriteRuleTokenStream(adaptor,"token MINUS");
 		RewriteRuleSubtreeStream stream_expr_compound=new RewriteRuleSubtreeStream(adaptor,"rule expr_compound");
 
 		try {
-			// Forrest.g:118:2: ( ( NOT ^)? expr_compound | PLUS expr_compound -> ^( POSITIVE expr_compound ) | MINUS expr_compound -> ^( NEGATIVE expr_compound ) )
+			// Forrest.g:119:2: ( ( NOT ^)? expr_compound | PLUS expr_compound -> ^( POSITIVE expr_compound ) | MINUS expr_compound -> ^( NEGATIVE expr_compound ) )
 			int alt16=3;
 			switch ( input.LA(1) ) {
 			case CHARACTER:
@@ -1398,12 +1408,12 @@ public class ForrestParser extends Parser {
 			}
 			switch (alt16) {
 				case 1 :
-					// Forrest.g:118:4: ( NOT ^)? expr_compound
+					// Forrest.g:119:4: ( NOT ^)? expr_compound
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					// Forrest.g:118:4: ( NOT ^)?
+					// Forrest.g:119:4: ( NOT ^)?
 					int alt15=2;
 					int LA15_0 = input.LA(1);
 					if ( (LA15_0==NOT) ) {
@@ -1411,36 +1421,36 @@ public class ForrestParser extends Parser {
 					}
 					switch (alt15) {
 						case 1 :
-							// Forrest.g:118:5: NOT ^
+							// Forrest.g:119:5: NOT ^
 							{
-							NOT50=(Token)match(input,NOT,FOLLOW_NOT_in_expr_unary1014); 
-							NOT50_tree = (ForrestTree)adaptor.create(NOT50);
-							root_0 = (ForrestTree)adaptor.becomeRoot(NOT50_tree, root_0);
+							NOT53=(Token)match(input,NOT,FOLLOW_NOT_in_expr_unary1037); 
+							NOT53_tree = (ForrestTree)adaptor.create(NOT53);
+							root_0 = (ForrestTree)adaptor.becomeRoot(NOT53_tree, root_0);
 
 							}
 							break;
 
 					}
 
-					pushFollow(FOLLOW_expr_compound_in_expr_unary1019);
-					expr_compound51=expr_compound();
+					pushFollow(FOLLOW_expr_compound_in_expr_unary1042);
+					expr_compound54=expr_compound();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr_compound51.getTree());
+					adaptor.addChild(root_0, expr_compound54.getTree());
 
 					}
 					break;
 				case 2 :
-					// Forrest.g:119:4: PLUS expr_compound
+					// Forrest.g:120:4: PLUS expr_compound
 					{
-					PLUS52=(Token)match(input,PLUS,FOLLOW_PLUS_in_expr_unary1024);  
-					stream_PLUS.add(PLUS52);
+					PLUS55=(Token)match(input,PLUS,FOLLOW_PLUS_in_expr_unary1047);  
+					stream_PLUS.add(PLUS55);
 
-					pushFollow(FOLLOW_expr_compound_in_expr_unary1026);
-					expr_compound53=expr_compound();
+					pushFollow(FOLLOW_expr_compound_in_expr_unary1049);
+					expr_compound56=expr_compound();
 					state._fsp--;
 
-					stream_expr_compound.add(expr_compound53.getTree());
+					stream_expr_compound.add(expr_compound56.getTree());
 					// AST REWRITE
 					// elements: expr_compound
 					// token labels: 
@@ -1452,9 +1462,9 @@ public class ForrestParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (ForrestTree)adaptor.nil();
-					// 120:4: -> ^( POSITIVE expr_compound )
+					// 121:4: -> ^( POSITIVE expr_compound )
 					{
-						// Forrest.g:120:7: ^( POSITIVE expr_compound )
+						// Forrest.g:121:7: ^( POSITIVE expr_compound )
 						{
 						ForrestTree root_1 = (ForrestTree)adaptor.nil();
 						root_1 = (ForrestTree)adaptor.becomeRoot((ForrestTree)adaptor.create(POSITIVE, "POSITIVE"), root_1);
@@ -1470,16 +1480,16 @@ public class ForrestParser extends Parser {
 					}
 					break;
 				case 3 :
-					// Forrest.g:121:4: MINUS expr_compound
+					// Forrest.g:122:4: MINUS expr_compound
 					{
-					MINUS54=(Token)match(input,MINUS,FOLLOW_MINUS_in_expr_unary1042);  
-					stream_MINUS.add(MINUS54);
+					MINUS57=(Token)match(input,MINUS,FOLLOW_MINUS_in_expr_unary1065);  
+					stream_MINUS.add(MINUS57);
 
-					pushFollow(FOLLOW_expr_compound_in_expr_unary1044);
-					expr_compound55=expr_compound();
+					pushFollow(FOLLOW_expr_compound_in_expr_unary1067);
+					expr_compound58=expr_compound();
 					state._fsp--;
 
-					stream_expr_compound.add(expr_compound55.getTree());
+					stream_expr_compound.add(expr_compound58.getTree());
 					// AST REWRITE
 					// elements: expr_compound
 					// token labels: 
@@ -1491,9 +1501,9 @@ public class ForrestParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (ForrestTree)adaptor.nil();
-					// 122:4: -> ^( NEGATIVE expr_compound )
+					// 123:4: -> ^( NEGATIVE expr_compound )
 					{
-						// Forrest.g:122:7: ^( NEGATIVE expr_compound )
+						// Forrest.g:123:7: ^( NEGATIVE expr_compound )
 						{
 						ForrestTree root_1 = (ForrestTree)adaptor.nil();
 						root_1 = (ForrestTree)adaptor.becomeRoot((ForrestTree)adaptor.create(NEGATIVE, "NEGATIVE"), root_1);
@@ -1537,42 +1547,42 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "expr_compound"
-	// Forrest.g:125:1: expr_compound : ( LCURLY program_lines RCURLY -> ^( COMPOUND program_lines ) | IDENTIFIER | NUMBER | TRUE | FALSE | CHARACTER | LPAREN ! expr RPAREN !| read | print );
+	// Forrest.g:126:1: expr_compound : ( LCURLY program_lines RCURLY -> ^( COMPOUND program_lines ) | IDENTIFIER | NUMBER | TRUE | FALSE | CHARACTER | LPAREN ! expr RPAREN !| read | print );
 	public final ForrestParser.expr_compound_return expr_compound() throws RecognitionException {
 		ForrestParser.expr_compound_return retval = new ForrestParser.expr_compound_return();
 		retval.start = input.LT(1);
 
 		ForrestTree root_0 = null;
 
-		Token LCURLY56=null;
-		Token RCURLY58=null;
-		Token IDENTIFIER59=null;
-		Token NUMBER60=null;
-		Token TRUE61=null;
-		Token FALSE62=null;
-		Token CHARACTER63=null;
-		Token LPAREN64=null;
-		Token RPAREN66=null;
-		ParserRuleReturnScope program_lines57 =null;
-		ParserRuleReturnScope expr65 =null;
-		ParserRuleReturnScope read67 =null;
-		ParserRuleReturnScope print68 =null;
+		Token LCURLY59=null;
+		Token RCURLY61=null;
+		Token IDENTIFIER62=null;
+		Token NUMBER63=null;
+		Token TRUE64=null;
+		Token FALSE65=null;
+		Token CHARACTER66=null;
+		Token LPAREN67=null;
+		Token RPAREN69=null;
+		ParserRuleReturnScope program_lines60 =null;
+		ParserRuleReturnScope expr68 =null;
+		ParserRuleReturnScope read70 =null;
+		ParserRuleReturnScope print71 =null;
 
-		ForrestTree LCURLY56_tree=null;
-		ForrestTree RCURLY58_tree=null;
-		ForrestTree IDENTIFIER59_tree=null;
-		ForrestTree NUMBER60_tree=null;
-		ForrestTree TRUE61_tree=null;
-		ForrestTree FALSE62_tree=null;
-		ForrestTree CHARACTER63_tree=null;
-		ForrestTree LPAREN64_tree=null;
-		ForrestTree RPAREN66_tree=null;
+		ForrestTree LCURLY59_tree=null;
+		ForrestTree RCURLY61_tree=null;
+		ForrestTree IDENTIFIER62_tree=null;
+		ForrestTree NUMBER63_tree=null;
+		ForrestTree TRUE64_tree=null;
+		ForrestTree FALSE65_tree=null;
+		ForrestTree CHARACTER66_tree=null;
+		ForrestTree LPAREN67_tree=null;
+		ForrestTree RPAREN69_tree=null;
 		RewriteRuleTokenStream stream_LCURLY=new RewriteRuleTokenStream(adaptor,"token LCURLY");
 		RewriteRuleTokenStream stream_RCURLY=new RewriteRuleTokenStream(adaptor,"token RCURLY");
 		RewriteRuleSubtreeStream stream_program_lines=new RewriteRuleSubtreeStream(adaptor,"rule program_lines");
 
 		try {
-			// Forrest.g:126:2: ( LCURLY program_lines RCURLY -> ^( COMPOUND program_lines ) | IDENTIFIER | NUMBER | TRUE | FALSE | CHARACTER | LPAREN ! expr RPAREN !| read | print )
+			// Forrest.g:127:2: ( LCURLY program_lines RCURLY -> ^( COMPOUND program_lines ) | IDENTIFIER | NUMBER | TRUE | FALSE | CHARACTER | LPAREN ! expr RPAREN !| read | print )
 			int alt17=9;
 			switch ( input.LA(1) ) {
 			case LCURLY:
@@ -1627,18 +1637,18 @@ public class ForrestParser extends Parser {
 			}
 			switch (alt17) {
 				case 1 :
-					// Forrest.g:126:4: LCURLY program_lines RCURLY
+					// Forrest.g:127:4: LCURLY program_lines RCURLY
 					{
-					LCURLY56=(Token)match(input,LCURLY,FOLLOW_LCURLY_in_expr_compound1067);  
-					stream_LCURLY.add(LCURLY56);
+					LCURLY59=(Token)match(input,LCURLY,FOLLOW_LCURLY_in_expr_compound1090);  
+					stream_LCURLY.add(LCURLY59);
 
-					pushFollow(FOLLOW_program_lines_in_expr_compound1069);
-					program_lines57=program_lines();
+					pushFollow(FOLLOW_program_lines_in_expr_compound1092);
+					program_lines60=program_lines();
 					state._fsp--;
 
-					stream_program_lines.add(program_lines57.getTree());
-					RCURLY58=(Token)match(input,RCURLY,FOLLOW_RCURLY_in_expr_compound1071);  
-					stream_RCURLY.add(RCURLY58);
+					stream_program_lines.add(program_lines60.getTree());
+					RCURLY61=(Token)match(input,RCURLY,FOLLOW_RCURLY_in_expr_compound1094);  
+					stream_RCURLY.add(RCURLY61);
 
 					// AST REWRITE
 					// elements: program_lines
@@ -1651,9 +1661,9 @@ public class ForrestParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (ForrestTree)adaptor.nil();
-					// 127:4: -> ^( COMPOUND program_lines )
+					// 128:4: -> ^( COMPOUND program_lines )
 					{
-						// Forrest.g:127:8: ^( COMPOUND program_lines )
+						// Forrest.g:128:8: ^( COMPOUND program_lines )
 						{
 						ForrestTree root_1 = (ForrestTree)adaptor.nil();
 						root_1 = (ForrestTree)adaptor.becomeRoot((ForrestTree)adaptor.create(COMPOUND, "COMPOUND"), root_1);
@@ -1669,106 +1679,106 @@ public class ForrestParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Forrest.g:128:4: IDENTIFIER
+					// Forrest.g:129:4: IDENTIFIER
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					IDENTIFIER59=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_expr_compound1089); 
-					IDENTIFIER59_tree = (ForrestTree)adaptor.create(IDENTIFIER59);
-					adaptor.addChild(root_0, IDENTIFIER59_tree);
+					IDENTIFIER62=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_expr_compound1112); 
+					IDENTIFIER62_tree = (ForrestTree)adaptor.create(IDENTIFIER62);
+					adaptor.addChild(root_0, IDENTIFIER62_tree);
 
 					}
 					break;
 				case 3 :
-					// Forrest.g:129:4: NUMBER
+					// Forrest.g:130:4: NUMBER
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					NUMBER60=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_expr_compound1094); 
-					NUMBER60_tree = (ForrestTree)adaptor.create(NUMBER60);
-					adaptor.addChild(root_0, NUMBER60_tree);
+					NUMBER63=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_expr_compound1117); 
+					NUMBER63_tree = (ForrestTree)adaptor.create(NUMBER63);
+					adaptor.addChild(root_0, NUMBER63_tree);
 
 					}
 					break;
 				case 4 :
-					// Forrest.g:130:4: TRUE
+					// Forrest.g:131:4: TRUE
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					TRUE61=(Token)match(input,TRUE,FOLLOW_TRUE_in_expr_compound1099); 
-					TRUE61_tree = (ForrestTree)adaptor.create(TRUE61);
-					adaptor.addChild(root_0, TRUE61_tree);
+					TRUE64=(Token)match(input,TRUE,FOLLOW_TRUE_in_expr_compound1122); 
+					TRUE64_tree = (ForrestTree)adaptor.create(TRUE64);
+					adaptor.addChild(root_0, TRUE64_tree);
 
 					}
 					break;
 				case 5 :
-					// Forrest.g:130:11: FALSE
+					// Forrest.g:131:11: FALSE
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					FALSE62=(Token)match(input,FALSE,FOLLOW_FALSE_in_expr_compound1103); 
-					FALSE62_tree = (ForrestTree)adaptor.create(FALSE62);
-					adaptor.addChild(root_0, FALSE62_tree);
+					FALSE65=(Token)match(input,FALSE,FOLLOW_FALSE_in_expr_compound1126); 
+					FALSE65_tree = (ForrestTree)adaptor.create(FALSE65);
+					adaptor.addChild(root_0, FALSE65_tree);
 
 					}
 					break;
 				case 6 :
-					// Forrest.g:131:4: CHARACTER
+					// Forrest.g:132:4: CHARACTER
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					CHARACTER63=(Token)match(input,CHARACTER,FOLLOW_CHARACTER_in_expr_compound1108); 
-					CHARACTER63_tree = (ForrestTree)adaptor.create(CHARACTER63);
-					adaptor.addChild(root_0, CHARACTER63_tree);
+					CHARACTER66=(Token)match(input,CHARACTER,FOLLOW_CHARACTER_in_expr_compound1131); 
+					CHARACTER66_tree = (ForrestTree)adaptor.create(CHARACTER66);
+					adaptor.addChild(root_0, CHARACTER66_tree);
 
 					}
 					break;
 				case 7 :
-					// Forrest.g:132:4: LPAREN ! expr RPAREN !
+					// Forrest.g:133:4: LPAREN ! expr RPAREN !
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					LPAREN64=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_expr_compound1113); 
-					pushFollow(FOLLOW_expr_in_expr_compound1116);
-					expr65=expr();
+					LPAREN67=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_expr_compound1136); 
+					pushFollow(FOLLOW_expr_in_expr_compound1139);
+					expr68=expr();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr65.getTree());
+					adaptor.addChild(root_0, expr68.getTree());
 
-					RPAREN66=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_expr_compound1118); 
+					RPAREN69=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_expr_compound1141); 
 					}
 					break;
 				case 8 :
-					// Forrest.g:133:5: read
+					// Forrest.g:134:5: read
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					pushFollow(FOLLOW_read_in_expr_compound1125);
-					read67=read();
+					pushFollow(FOLLOW_read_in_expr_compound1148);
+					read70=read();
 					state._fsp--;
 
-					adaptor.addChild(root_0, read67.getTree());
+					adaptor.addChild(root_0, read70.getTree());
 
 					}
 					break;
 				case 9 :
-					// Forrest.g:134:4: print
+					// Forrest.g:135:4: print
 					{
 					root_0 = (ForrestTree)adaptor.nil();
 
 
-					pushFollow(FOLLOW_print_in_expr_compound1130);
-					print68=print();
+					pushFollow(FOLLOW_print_in_expr_compound1153);
+					print71=print();
 					state._fsp--;
 
-					adaptor.addChild(root_0, print68.getTree());
+					adaptor.addChild(root_0, print71.getTree());
 
 					}
 					break;
@@ -1801,44 +1811,44 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "read"
-	// Forrest.g:137:1: read : READ ^ LPAREN ! IDENTIFIER ( COMMA ! IDENTIFIER )* RPAREN !;
+	// Forrest.g:138:1: read : READ ^ LPAREN ! IDENTIFIER ( COMMA ! IDENTIFIER )* RPAREN !;
 	public final ForrestParser.read_return read() throws RecognitionException {
 		ForrestParser.read_return retval = new ForrestParser.read_return();
 		retval.start = input.LT(1);
 
 		ForrestTree root_0 = null;
 
-		Token READ69=null;
-		Token LPAREN70=null;
-		Token IDENTIFIER71=null;
-		Token COMMA72=null;
-		Token IDENTIFIER73=null;
-		Token RPAREN74=null;
+		Token READ72=null;
+		Token LPAREN73=null;
+		Token IDENTIFIER74=null;
+		Token COMMA75=null;
+		Token IDENTIFIER76=null;
+		Token RPAREN77=null;
 
-		ForrestTree READ69_tree=null;
-		ForrestTree LPAREN70_tree=null;
-		ForrestTree IDENTIFIER71_tree=null;
-		ForrestTree COMMA72_tree=null;
-		ForrestTree IDENTIFIER73_tree=null;
-		ForrestTree RPAREN74_tree=null;
+		ForrestTree READ72_tree=null;
+		ForrestTree LPAREN73_tree=null;
+		ForrestTree IDENTIFIER74_tree=null;
+		ForrestTree COMMA75_tree=null;
+		ForrestTree IDENTIFIER76_tree=null;
+		ForrestTree RPAREN77_tree=null;
 
 		try {
-			// Forrest.g:138:2: ( READ ^ LPAREN ! IDENTIFIER ( COMMA ! IDENTIFIER )* RPAREN !)
-			// Forrest.g:138:4: READ ^ LPAREN ! IDENTIFIER ( COMMA ! IDENTIFIER )* RPAREN !
+			// Forrest.g:139:2: ( READ ^ LPAREN ! IDENTIFIER ( COMMA ! IDENTIFIER )* RPAREN !)
+			// Forrest.g:139:4: READ ^ LPAREN ! IDENTIFIER ( COMMA ! IDENTIFIER )* RPAREN !
 			{
 			root_0 = (ForrestTree)adaptor.nil();
 
 
-			READ69=(Token)match(input,READ,FOLLOW_READ_in_read1142); 
-			READ69_tree = (ForrestTree)adaptor.create(READ69);
-			root_0 = (ForrestTree)adaptor.becomeRoot(READ69_tree, root_0);
+			READ72=(Token)match(input,READ,FOLLOW_READ_in_read1165); 
+			READ72_tree = (ForrestTree)adaptor.create(READ72);
+			root_0 = (ForrestTree)adaptor.becomeRoot(READ72_tree, root_0);
 
-			LPAREN70=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_read1145); 
-			IDENTIFIER71=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_read1148); 
-			IDENTIFIER71_tree = (ForrestTree)adaptor.create(IDENTIFIER71);
-			adaptor.addChild(root_0, IDENTIFIER71_tree);
+			LPAREN73=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_read1168); 
+			IDENTIFIER74=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_read1171); 
+			IDENTIFIER74_tree = (ForrestTree)adaptor.create(IDENTIFIER74);
+			adaptor.addChild(root_0, IDENTIFIER74_tree);
 
-			// Forrest.g:138:29: ( COMMA ! IDENTIFIER )*
+			// Forrest.g:139:29: ( COMMA ! IDENTIFIER )*
 			loop18:
 			while (true) {
 				int alt18=2;
@@ -1849,12 +1859,12 @@ public class ForrestParser extends Parser {
 
 				switch (alt18) {
 				case 1 :
-					// Forrest.g:138:30: COMMA ! IDENTIFIER
+					// Forrest.g:139:30: COMMA ! IDENTIFIER
 					{
-					COMMA72=(Token)match(input,COMMA,FOLLOW_COMMA_in_read1151); 
-					IDENTIFIER73=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_read1154); 
-					IDENTIFIER73_tree = (ForrestTree)adaptor.create(IDENTIFIER73);
-					adaptor.addChild(root_0, IDENTIFIER73_tree);
+					COMMA75=(Token)match(input,COMMA,FOLLOW_COMMA_in_read1174); 
+					IDENTIFIER76=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_read1177); 
+					IDENTIFIER76_tree = (ForrestTree)adaptor.create(IDENTIFIER76);
+					adaptor.addChild(root_0, IDENTIFIER76_tree);
 
 					}
 					break;
@@ -1864,7 +1874,7 @@ public class ForrestParser extends Parser {
 				}
 			}
 
-			RPAREN74=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_read1158); 
+			RPAREN77=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_read1181); 
 			}
 
 			retval.stop = input.LT(-1);
@@ -1894,44 +1904,44 @@ public class ForrestParser extends Parser {
 
 
 	// $ANTLR start "print"
-	// Forrest.g:141:1: print : PRINT ^ LPAREN ! expr ( COMMA ! expr )* RPAREN !;
+	// Forrest.g:142:1: print : PRINT ^ LPAREN ! expr ( COMMA ! expr )* RPAREN !;
 	public final ForrestParser.print_return print() throws RecognitionException {
 		ForrestParser.print_return retval = new ForrestParser.print_return();
 		retval.start = input.LT(1);
 
 		ForrestTree root_0 = null;
 
-		Token PRINT75=null;
-		Token LPAREN76=null;
-		Token COMMA78=null;
-		Token RPAREN80=null;
-		ParserRuleReturnScope expr77 =null;
-		ParserRuleReturnScope expr79 =null;
+		Token PRINT78=null;
+		Token LPAREN79=null;
+		Token COMMA81=null;
+		Token RPAREN83=null;
+		ParserRuleReturnScope expr80 =null;
+		ParserRuleReturnScope expr82 =null;
 
-		ForrestTree PRINT75_tree=null;
-		ForrestTree LPAREN76_tree=null;
-		ForrestTree COMMA78_tree=null;
-		ForrestTree RPAREN80_tree=null;
+		ForrestTree PRINT78_tree=null;
+		ForrestTree LPAREN79_tree=null;
+		ForrestTree COMMA81_tree=null;
+		ForrestTree RPAREN83_tree=null;
 
 		try {
-			// Forrest.g:142:2: ( PRINT ^ LPAREN ! expr ( COMMA ! expr )* RPAREN !)
-			// Forrest.g:142:4: PRINT ^ LPAREN ! expr ( COMMA ! expr )* RPAREN !
+			// Forrest.g:143:2: ( PRINT ^ LPAREN ! expr ( COMMA ! expr )* RPAREN !)
+			// Forrest.g:143:4: PRINT ^ LPAREN ! expr ( COMMA ! expr )* RPAREN !
 			{
 			root_0 = (ForrestTree)adaptor.nil();
 
 
-			PRINT75=(Token)match(input,PRINT,FOLLOW_PRINT_in_print1170); 
-			PRINT75_tree = (ForrestTree)adaptor.create(PRINT75);
-			root_0 = (ForrestTree)adaptor.becomeRoot(PRINT75_tree, root_0);
+			PRINT78=(Token)match(input,PRINT,FOLLOW_PRINT_in_print1193); 
+			PRINT78_tree = (ForrestTree)adaptor.create(PRINT78);
+			root_0 = (ForrestTree)adaptor.becomeRoot(PRINT78_tree, root_0);
 
-			LPAREN76=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_print1173); 
-			pushFollow(FOLLOW_expr_in_print1176);
-			expr77=expr();
+			LPAREN79=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_print1196); 
+			pushFollow(FOLLOW_expr_in_print1199);
+			expr80=expr();
 			state._fsp--;
 
-			adaptor.addChild(root_0, expr77.getTree());
+			adaptor.addChild(root_0, expr80.getTree());
 
-			// Forrest.g:142:24: ( COMMA ! expr )*
+			// Forrest.g:143:24: ( COMMA ! expr )*
 			loop19:
 			while (true) {
 				int alt19=2;
@@ -1942,14 +1952,14 @@ public class ForrestParser extends Parser {
 
 				switch (alt19) {
 				case 1 :
-					// Forrest.g:142:25: COMMA ! expr
+					// Forrest.g:143:25: COMMA ! expr
 					{
-					COMMA78=(Token)match(input,COMMA,FOLLOW_COMMA_in_print1179); 
-					pushFollow(FOLLOW_expr_in_print1182);
-					expr79=expr();
+					COMMA81=(Token)match(input,COMMA,FOLLOW_COMMA_in_print1202); 
+					pushFollow(FOLLOW_expr_in_print1205);
+					expr82=expr();
 					state._fsp--;
 
-					adaptor.addChild(root_0, expr79.getTree());
+					adaptor.addChild(root_0, expr82.getTree());
 
 					}
 					break;
@@ -1959,7 +1969,7 @@ public class ForrestParser extends Parser {
 				}
 			}
 
-			RPAREN80=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_print1186); 
+			RPAREN83=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_print1209); 
 			}
 
 			retval.stop = input.LT(-1);
@@ -1984,84 +1994,87 @@ public class ForrestParser extends Parser {
 
 
 
-	public static final BitSet FOLLOW_program_lines_in_forrest682 = new BitSet(new long[]{0x0000000000000000L});
-	public static final BitSet FOLLOW_EOF_in_forrest684 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_declaration_in_program_lines725 = new BitSet(new long[]{0x0000040000000000L});
-	public static final BitSet FOLLOW_SEMICOLON_in_program_lines727 = new BitSet(new long[]{0x0005012D30B20880L});
-	public static final BitSet FOLLOW_expr_in_program_lines733 = new BitSet(new long[]{0x0000040000000000L});
-	public static final BitSet FOLLOW_SEMICOLON_in_program_lines735 = new BitSet(new long[]{0x0005012D30B20882L});
-	public static final BitSet FOLLOW_VAR_in_declaration751 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_declaration754 = new BitSet(new long[]{0x0000000000400060L});
-	public static final BitSet FOLLOW_set_in_declaration756 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CONSTANT_in_declaration771 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_declaration774 = new BitSet(new long[]{0x0000000000000010L});
-	public static final BitSet FOLLOW_BECOMES_in_declaration776 = new BitSet(new long[]{0x0001012D30B20080L});
-	public static final BitSet FOLLOW_expr_in_declaration779 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_assign_in_expr791 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_expr_assign810 = new BitSet(new long[]{0x0000000000000010L});
-	public static final BitSet FOLLOW_BECOMES_in_expr_assign812 = new BitSet(new long[]{0x0001012D30B20080L});
-	public static final BitSet FOLLOW_expr_assign_in_expr_assign815 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_if_in_expr_assign820 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IF_in_expr_if832 = new BitSet(new long[]{0x0001012D30B20080L});
-	public static final BitSet FOLLOW_expr_if_in_expr_if835 = new BitSet(new long[]{0x0000400000000000L});
-	public static final BitSet FOLLOW_THEN_in_expr_if837 = new BitSet(new long[]{0x0001012D30B20080L});
-	public static final BitSet FOLLOW_expr_if_in_expr_if840 = new BitSet(new long[]{0x000000000000C000L});
-	public static final BitSet FOLLOW_ELSE_in_expr_if843 = new BitSet(new long[]{0x0001012D30B20080L});
-	public static final BitSet FOLLOW_expr_if_in_expr_if846 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_ENDIF_in_expr_if850 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_or_in_expr_if855 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_and_in_expr_or867 = new BitSet(new long[]{0x0000000004000002L});
-	public static final BitSet FOLLOW_LOGOR_in_expr_or870 = new BitSet(new long[]{0x0001012D30920080L});
-	public static final BitSet FOLLOW_expr_and_in_expr_or873 = new BitSet(new long[]{0x0000000004000002L});
-	public static final BitSet FOLLOW_expr_comp_in_expr_and887 = new BitSet(new long[]{0x0000000002000002L});
-	public static final BitSet FOLLOW_LOGAND_in_expr_and890 = new BitSet(new long[]{0x0001012D30920080L});
-	public static final BitSet FOLLOW_expr_comp_in_expr_and893 = new BitSet(new long[]{0x0000000002000002L});
-	public static final BitSet FOLLOW_expr_add_in_expr_comp907 = new BitSet(new long[]{0x00001802000D0002L});
-	public static final BitSet FOLLOW_GREATER_in_expr_comp911 = new BitSet(new long[]{0x0001012D30920080L});
-	public static final BitSet FOLLOW_SMALLER_in_expr_comp916 = new BitSet(new long[]{0x0001012D30920080L});
-	public static final BitSet FOLLOW_GREATEREQ_in_expr_comp921 = new BitSet(new long[]{0x0001012D30920080L});
-	public static final BitSet FOLLOW_SMALLEREQ_in_expr_comp926 = new BitSet(new long[]{0x0001012D30920080L});
-	public static final BitSet FOLLOW_EQUALS_in_expr_comp931 = new BitSet(new long[]{0x0001012D30920080L});
-	public static final BitSet FOLLOW_NOTEQUALS_in_expr_comp936 = new BitSet(new long[]{0x0001012D30920080L});
-	public static final BitSet FOLLOW_expr_add_in_expr_comp941 = new BitSet(new long[]{0x00001802000D0002L});
-	public static final BitSet FOLLOW_expr_mult_in_expr_add955 = new BitSet(new long[]{0x0000000820000002L});
-	public static final BitSet FOLLOW_PLUS_in_expr_add959 = new BitSet(new long[]{0x0001012D30920080L});
-	public static final BitSet FOLLOW_MINUS_in_expr_add964 = new BitSet(new long[]{0x0001012D30920080L});
-	public static final BitSet FOLLOW_expr_mult_in_expr_add968 = new BitSet(new long[]{0x0000000820000002L});
-	public static final BitSet FOLLOW_expr_unary_in_expr_mult981 = new BitSet(new long[]{0x0000800040002002L});
-	public static final BitSet FOLLOW_TIMES_in_expr_mult985 = new BitSet(new long[]{0x0001012D30920080L});
-	public static final BitSet FOLLOW_DIVIDE_in_expr_mult990 = new BitSet(new long[]{0x0001012D30920080L});
-	public static final BitSet FOLLOW_MODULO_in_expr_mult995 = new BitSet(new long[]{0x0001012D30920080L});
-	public static final BitSet FOLLOW_expr_unary_in_expr_mult999 = new BitSet(new long[]{0x0000800040002002L});
-	public static final BitSet FOLLOW_NOT_in_expr_unary1014 = new BitSet(new long[]{0x0001012410920080L});
-	public static final BitSet FOLLOW_expr_compound_in_expr_unary1019 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PLUS_in_expr_unary1024 = new BitSet(new long[]{0x0001012410920080L});
-	public static final BitSet FOLLOW_expr_compound_in_expr_unary1026 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_MINUS_in_expr_unary1042 = new BitSet(new long[]{0x0001012410920080L});
-	public static final BitSet FOLLOW_expr_compound_in_expr_unary1044 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LCURLY_in_expr_compound1067 = new BitSet(new long[]{0x000501AD30B20880L});
-	public static final BitSet FOLLOW_program_lines_in_expr_compound1069 = new BitSet(new long[]{0x0000008000000000L});
-	public static final BitSet FOLLOW_RCURLY_in_expr_compound1071 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_expr_compound1089 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_NUMBER_in_expr_compound1094 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TRUE_in_expr_compound1099 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FALSE_in_expr_compound1103 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CHARACTER_in_expr_compound1108 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAREN_in_expr_compound1113 = new BitSet(new long[]{0x0001012D30B20080L});
-	public static final BitSet FOLLOW_expr_in_expr_compound1116 = new BitSet(new long[]{0x0000020000000000L});
-	public static final BitSet FOLLOW_RPAREN_in_expr_compound1118 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_read_in_expr_compound1125 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_print_in_expr_compound1130 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_READ_in_read1142 = new BitSet(new long[]{0x0000000010000000L});
-	public static final BitSet FOLLOW_LPAREN_in_read1145 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_read1148 = new BitSet(new long[]{0x0000020000000100L});
-	public static final BitSet FOLLOW_COMMA_in_read1151 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_read1154 = new BitSet(new long[]{0x0000020000000100L});
-	public static final BitSet FOLLOW_RPAREN_in_read1158 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PRINT_in_print1170 = new BitSet(new long[]{0x0000000010000000L});
-	public static final BitSet FOLLOW_LPAREN_in_print1173 = new BitSet(new long[]{0x0001012D30B20080L});
-	public static final BitSet FOLLOW_expr_in_print1176 = new BitSet(new long[]{0x0000020000000100L});
-	public static final BitSet FOLLOW_COMMA_in_print1179 = new BitSet(new long[]{0x0001012D30B20080L});
-	public static final BitSet FOLLOW_expr_in_print1182 = new BitSet(new long[]{0x0000020000000100L});
-	public static final BitSet FOLLOW_RPAREN_in_print1186 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_program_lines_in_forrest696 = new BitSet(new long[]{0x0000000000000000L});
+	public static final BitSet FOLLOW_EOF_in_forrest698 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_declaration_in_program_lines739 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_SEMICOLON_in_program_lines741 = new BitSet(new long[]{0x000A025A61641080L});
+	public static final BitSet FOLLOW_expr_in_program_lines747 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_SEMICOLON_in_program_lines749 = new BitSet(new long[]{0x000A025A61641082L});
+	public static final BitSet FOLLOW_VAR_in_declaration765 = new BitSet(new long[]{0x0000000000200000L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_declaration768 = new BitSet(new long[]{0x0000000000800060L});
+	public static final BitSet FOLLOW_set_in_declaration770 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CONSTANT_in_declaration785 = new BitSet(new long[]{0x0000000000200000L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_declaration788 = new BitSet(new long[]{0x0000000000000010L});
+	public static final BitSet FOLLOW_BECOMES_in_declaration790 = new BitSet(new long[]{0x0002025A61640080L});
+	public static final BitSet FOLLOW_expr_in_declaration793 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_assign_in_expr805 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_expr_assign824 = new BitSet(new long[]{0x0000000000000010L});
+	public static final BitSet FOLLOW_BECOMES_in_expr_assign826 = new BitSet(new long[]{0x0002025A61640080L});
+	public static final BitSet FOLLOW_expr_assign_in_expr_assign829 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_if_in_expr_assign834 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IF_in_expr_if846 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_COLON_in_expr_if849 = new BitSet(new long[]{0x000A825A61641080L});
+	public static final BitSet FOLLOW_program_lines_in_expr_if852 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_THEN_in_expr_if854 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_COLON_in_expr_if857 = new BitSet(new long[]{0x000A025A61659080L});
+	public static final BitSet FOLLOW_program_lines_in_expr_if860 = new BitSet(new long[]{0x0000000000018000L});
+	public static final BitSet FOLLOW_ELSE_in_expr_if863 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_COLON_in_expr_if866 = new BitSet(new long[]{0x000A025A61651080L});
+	public static final BitSet FOLLOW_program_lines_in_expr_if869 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_ENDIF_in_expr_if873 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_or_in_expr_if878 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_and_in_expr_or890 = new BitSet(new long[]{0x0000000008000002L});
+	public static final BitSet FOLLOW_LOGOR_in_expr_or893 = new BitSet(new long[]{0x0002025A61240080L});
+	public static final BitSet FOLLOW_expr_and_in_expr_or896 = new BitSet(new long[]{0x0000000008000002L});
+	public static final BitSet FOLLOW_expr_comp_in_expr_and910 = new BitSet(new long[]{0x0000000004000002L});
+	public static final BitSet FOLLOW_LOGAND_in_expr_and913 = new BitSet(new long[]{0x0002025A61240080L});
+	public static final BitSet FOLLOW_expr_comp_in_expr_and916 = new BitSet(new long[]{0x0000000004000002L});
+	public static final BitSet FOLLOW_expr_add_in_expr_comp930 = new BitSet(new long[]{0x00003004001A0002L});
+	public static final BitSet FOLLOW_GREATER_in_expr_comp934 = new BitSet(new long[]{0x0002025A61240080L});
+	public static final BitSet FOLLOW_SMALLER_in_expr_comp939 = new BitSet(new long[]{0x0002025A61240080L});
+	public static final BitSet FOLLOW_GREATEREQ_in_expr_comp944 = new BitSet(new long[]{0x0002025A61240080L});
+	public static final BitSet FOLLOW_SMALLEREQ_in_expr_comp949 = new BitSet(new long[]{0x0002025A61240080L});
+	public static final BitSet FOLLOW_EQUALS_in_expr_comp954 = new BitSet(new long[]{0x0002025A61240080L});
+	public static final BitSet FOLLOW_NOTEQUALS_in_expr_comp959 = new BitSet(new long[]{0x0002025A61240080L});
+	public static final BitSet FOLLOW_expr_add_in_expr_comp964 = new BitSet(new long[]{0x00003004001A0002L});
+	public static final BitSet FOLLOW_expr_mult_in_expr_add978 = new BitSet(new long[]{0x0000001040000002L});
+	public static final BitSet FOLLOW_PLUS_in_expr_add982 = new BitSet(new long[]{0x0002025A61240080L});
+	public static final BitSet FOLLOW_MINUS_in_expr_add987 = new BitSet(new long[]{0x0002025A61240080L});
+	public static final BitSet FOLLOW_expr_mult_in_expr_add991 = new BitSet(new long[]{0x0000001040000002L});
+	public static final BitSet FOLLOW_expr_unary_in_expr_mult1004 = new BitSet(new long[]{0x0001000080004002L});
+	public static final BitSet FOLLOW_TIMES_in_expr_mult1008 = new BitSet(new long[]{0x0002025A61240080L});
+	public static final BitSet FOLLOW_DIVIDE_in_expr_mult1013 = new BitSet(new long[]{0x0002025A61240080L});
+	public static final BitSet FOLLOW_MODULO_in_expr_mult1018 = new BitSet(new long[]{0x0002025A61240080L});
+	public static final BitSet FOLLOW_expr_unary_in_expr_mult1022 = new BitSet(new long[]{0x0001000080004002L});
+	public static final BitSet FOLLOW_NOT_in_expr_unary1037 = new BitSet(new long[]{0x0002024821240080L});
+	public static final BitSet FOLLOW_expr_compound_in_expr_unary1042 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PLUS_in_expr_unary1047 = new BitSet(new long[]{0x0002024821240080L});
+	public static final BitSet FOLLOW_expr_compound_in_expr_unary1049 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_MINUS_in_expr_unary1065 = new BitSet(new long[]{0x0002024821240080L});
+	public static final BitSet FOLLOW_expr_compound_in_expr_unary1067 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LCURLY_in_expr_compound1090 = new BitSet(new long[]{0x000A035A61641080L});
+	public static final BitSet FOLLOW_program_lines_in_expr_compound1092 = new BitSet(new long[]{0x0000010000000000L});
+	public static final BitSet FOLLOW_RCURLY_in_expr_compound1094 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_expr_compound1112 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_NUMBER_in_expr_compound1117 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_TRUE_in_expr_compound1122 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FALSE_in_expr_compound1126 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CHARACTER_in_expr_compound1131 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAREN_in_expr_compound1136 = new BitSet(new long[]{0x0002025A61640080L});
+	public static final BitSet FOLLOW_expr_in_expr_compound1139 = new BitSet(new long[]{0x0000040000000000L});
+	public static final BitSet FOLLOW_RPAREN_in_expr_compound1141 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_read_in_expr_compound1148 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_print_in_expr_compound1153 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_READ_in_read1165 = new BitSet(new long[]{0x0000000020000000L});
+	public static final BitSet FOLLOW_LPAREN_in_read1168 = new BitSet(new long[]{0x0000000000200000L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_read1171 = new BitSet(new long[]{0x0000040000000200L});
+	public static final BitSet FOLLOW_COMMA_in_read1174 = new BitSet(new long[]{0x0000000000200000L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_read1177 = new BitSet(new long[]{0x0000040000000200L});
+	public static final BitSet FOLLOW_RPAREN_in_read1181 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PRINT_in_print1193 = new BitSet(new long[]{0x0000000020000000L});
+	public static final BitSet FOLLOW_LPAREN_in_print1196 = new BitSet(new long[]{0x0002025A61640080L});
+	public static final BitSet FOLLOW_expr_in_print1199 = new BitSet(new long[]{0x0000040000000200L});
+	public static final BitSet FOLLOW_COMMA_in_print1202 = new BitSet(new long[]{0x0002025A61640080L});
+	public static final BitSet FOLLOW_expr_in_print1205 = new BitSet(new long[]{0x0000040000000200L});
+	public static final BitSet FOLLOW_RPAREN_in_print1209 = new BitSet(new long[]{0x0000000000000002L});
 }
