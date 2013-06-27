@@ -76,13 +76,21 @@ public class IdStore {
      */
     public StoreItem getItem(String id)  {
     	StoreItem storeItem = null;
-    	for (int i = 0; storeItem == null && i >= 0; i--) {
+    	for (int i = currentLevel(); storeItem == null && i >= 0; i--) {
     		Map<String, StoreItem> scopeSet = liveIdSet.get(i);
     		if (scopeSet.containsKey(id)) {
     			storeItem = scopeSet.get(id);
     		}
     	}
     	return storeItem;
+    }
+    
+    /**
+     * Set the type for a ForrestTree node that is an identifier
+     * @param id - ForrestTree that needs its type set 
+     */
+    public int getAddress(String id)  {
+    	return this.getItem(id).getAddress();
     }
     
     /**

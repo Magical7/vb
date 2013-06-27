@@ -13,8 +13,6 @@ options {
 @rulecatch {
 	catch (RecognitionException e) {
 		throw e;
-	} catch (IOException e) {
-		throw e;
 	}
 }
 
@@ -39,11 +37,14 @@ fw.startProgram();
 			fw.writeProgram();
 		}
 	;
-	
+
 program_lines
-	:	((declaration)* expr)* 
+@init {
+fw.openScope();
+}
+	:	((declaration)* expr {fw.writeLine();})* 
 	{
-		fw.writeProgramLines();
+		fw.closeScope();
 	}
 	;
 	
@@ -69,38 +70,52 @@ ForrestTree t = (ForrestTree)input.LT(1);
 		{
 			fw.writeBecomes(t);
 		}
-	|	{boolean hasElse = false;}
-		^(IF expr expr ({hasElse=true;}expr)? )
+	|	{
+			boolean hasElse = false;
+			int lIf = fw.getFreeIf();
+		}
+		^(EXPR_IF if_comp 
+		{fw.writeIf(lIf);} 
+		then_comp (
 		{
-			if (hasElse) {
-				fw.writeIfElse();
+			hasElse = true;
+			fw.writeElse(lIf);
+		} 
+		else_comp)? )
+		{
+			if (!hasElse) {
+				fw.writeIfFalse(lIf);
 			} else {
-				fw.writeIf();
+				fw.writeIfFinally(lIf);
 			}
 		}
-	|	^((LOGOR|LOGAND) expr expr)
-		{ExpressionChecker.checkBinaryBoolean(t);}
-	|	^((GREATER | SMALLER | GREATEREQ | SMALLEREQ) expr expr)
-		{ExpressionChecker.checkComparison(t);}
-	|	^((EQUALS | NOTEQUALS) expr expr)
-		{ExpressionChecker.checkEquals(t);}
-	|	^((PLUS | MINUS | TIMES | DIVIDE | MODULO) expr expr)
-		{ExpressionChecker.checkBinaryInteger(t);}
-	|	^((POSITIVE | NEGATIVE) expr)
-		{ExpressionChecker.checkUnaryInteger(t);}
-	|	^((NOT) expr)
-		{ExpressionChecker.checkUnaryBoolean(t);}
-	|   ^(COMPOUND {symtab.openScope();} program_lines)
+	|	^((LOGOR | LOGAND | GREATER | SMALLER | GREATEREQ | SMALLEREQ | EQUALS
+			| NOTEQUALS | PLUS | MINUS | TIMES | DIVIDE | MODULO) expr expr)
+		{fw.writeBinaryOp(t);}
+	|	^((POSITIVE | NEGATIVE | NOT) expr)
+		{fw.writeUnaryOp(t);}
+	|   ^(COMPOUND program_lines)
+	|	IDENTIFIER
 		{
-			symtab.closeScope();
-			ExpressionChecker.setCompound(t);
+			fw.writeIdentifier(t);
 		}
-	|	IDENTIFIER {symtab.setType(t);}
-	|	NUMBER {ExpressionChecker.setNumber(t);}
-	|	(TRUE | FALSE) {ExpressionChecker.setBoolean(t);}
-	|	CHARACTER {ExpressionChecker.setCharacter(t);}
+	|	NUMBER {fw.writeNumber(t);}
+	|	(TRUE | FALSE) {fw.writeBoolean(t);}
+	|	CHARACTER {fw.writeCharacter(t);}
 	|	read
 	|	print
+	;
+
+if_comp
+	:	^(IF program_lines)
+	;
+
+then_comp
+	:	^(THEN program_lines)
+	;
+
+else_comp
+	:	^(ELSE program_lines)
 	;
 	
 read
@@ -108,7 +123,7 @@ read
 ForrestTree t = (ForrestTree)input.LT(1);
 }
 	:	^(READ (id=IDENTIFIER)+) 
-		{ExpressionChecker.checkRead(t);}
+		{fw.writeRead(t);}
 	;
 	
 print
@@ -116,7 +131,7 @@ print
 ForrestTree t = (ForrestTree)input.LT(1);
 }
 	:	^(PRINT (expr)+) 
-		{ExpressionChecker.checkPrint(t);}
+		{fw.writePrint(t);}
 	;
 	
 //	EOF	

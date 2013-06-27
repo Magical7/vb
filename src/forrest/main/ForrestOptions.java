@@ -6,7 +6,7 @@ public class ForrestOptions {
 	protected static final boolean parser = true;
 	protected static final boolean checker = true;
 	protected static final boolean interpreter = false;
-	protected static final boolean encoder = false;
+	protected static final boolean encoder = true;
 	
 	protected static final boolean showParser = true;
 	protected static final boolean showChecker = true;
@@ -16,6 +16,7 @@ public class ForrestOptions {
 	
 	
 	protected static final String inputFileLocation = "src/testfiles/ManualTestLex.forrest";
+	protected static final String outputEncoderFile = "src/TAM/obj.tasm";
 	
 	
 	

@@ -1,8 +1,3 @@
 var d int;
-var e int;
-var f bool;
-f = true;
-e = 5;
-if: var a int; f; then: d=5; f= false; a=10; endif;
-e = d + e;
-print(e);
+read(d);
+print(d);

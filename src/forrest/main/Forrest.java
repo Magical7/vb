@@ -73,7 +73,9 @@ public class Forrest {
 			
 			//Generate code for the Forrest Program
 			if(useEncoder){
-				
+				CommonTreeNodeStream nodes = new CommonTreeNodeStream(tree);
+				ForrestEncoder encoder = new ForrestEncoder(nodes);
+				encoder.forrest();
 			}
 	}
 	
