@@ -37,7 +37,6 @@ public class ForrestWriter {
 	public void print() {
 		try {
 			for(String s: instructions){
-				System.out.println(s);
 				fileWriter.append(s + "\n");
 			}
 			fileWriter.flush();
@@ -83,7 +82,7 @@ public class ForrestWriter {
 	
 	public void closeScope() {
 		instructions.remove(instructions.size()-1);
-		instructions.add("POP(1) " + store.getCurrentScopeSize());
+		instructions.add("POP(1) " + (store.getCurrentScopeSize() - 1));
 		store.closeScope();
 	}
 	
@@ -106,8 +105,8 @@ public class ForrestWriter {
 	}
 	
 	public void writeBecomes(ForrestTree t){
-		instructions.add("STORE(1) " + store.getAddress(t.getText()));
-		instructions.add("LOAD(1) " + store.getAddress(t.getText()));
+		instructions.add("STORE(1) " + store.getAddress(t.getText()) + "[SB]");
+		instructions.add("LOAD(1) " + store.getAddress(t.getText()) + "[SB]");
 	}
 	
 	public void writeIf(int label){
@@ -198,7 +197,7 @@ public class ForrestWriter {
 	}
 	
 	public void writeIdentifier(ForrestTree t){
-		instructions.add("LOAD(1) " + store.getAddress(t.getText()));
+		instructions.add("LOAD(1) " + store.getAddress(t.getText()) + "[SB]");
 	}
 	
 	public void writeNumber(ForrestTree t){
@@ -223,8 +222,8 @@ public class ForrestWriter {
 			ForrestTree tree = (ForrestTree) child;
 			StoreItem item = store.getItem(tree.getText());
 			Type type = item.getType();
-			int address = item.getAddress();
-			instructions.add("LOADA " + address);
+			int address = store.getAddress(tree.getText());
+			instructions.add("LOADA " + address + "[SB]");
 			switch(type) {
 			case INT:
 				printString("Input int: ");
@@ -240,7 +239,7 @@ public class ForrestWriter {
 				break;
 			}
 		}
-		instructions.add("LOAD " + store.getAddress(t.getChild(0).getText()));
+		instructions.add("LOAD(1) " + store.getAddress(t.getChild(0).getText()) + "[SB]");
 	}
 	
 	public void writePrint(ForrestTree t) {
@@ -268,7 +267,8 @@ public class ForrestWriter {
 			if (c == '\n') {
 				instructions.add("CALL puteol");
 			} else {
-				instructions.add("CALL " + c);
+				instructions.add("LOADL " + (int) c);
+				instructions.add("CALL put");
 			}
 		}
 	}

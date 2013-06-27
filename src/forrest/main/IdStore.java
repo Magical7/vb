@@ -90,7 +90,13 @@ public class IdStore {
      * @param id - ForrestTree that needs its type set 
      */
     public int getAddress(String id)  {
-    	return this.getItem(id).getAddress();
+    	int addrMod = 0;
+    	for (HashMap<String, StoreItem> scope: liveIdSet) {
+    		if (scope != currentScope()) {
+    			addrMod += scope.size();
+    		}
+    	}
+    	return this.getItem(id).getAddress() + addrMod;
     }
     
     /**
