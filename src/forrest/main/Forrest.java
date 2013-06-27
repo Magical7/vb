@@ -9,6 +9,9 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.CommonTreeNodeStream;
 
+import TAM.Assembler;
+import TAM.Interpreter;
+
 import fire.ForrestFireException;
 
 public class Forrest {
@@ -31,7 +34,7 @@ public class Forrest {
 	 * @param useEncoder - boolean: Whether to use the encoder
 	 */
 	public void runForrest(String inputFile, PrintStream outputPS, 
-		boolean useParser, boolean useChecker, boolean useInterpreter, boolean useEncoder)
+		boolean useParser, boolean useChecker, boolean useInterpreter, boolean useEncoder, boolean useTam, boolean runProgram)
 		throws Exception{
 			if(inputFile == null){
 				this.in = new FileInputStream(ForrestOptions.inputFileLocation);
@@ -77,13 +80,22 @@ public class Forrest {
 				ForrestEncoder encoder = new ForrestEncoder(nodes);
 				encoder.forrest();
 			}
+			
+			
+			if(useTam){
+				Assembler.main(ForrestOptions.assemblerArguments);
+			}
+			
+			if(runProgram){
+				Interpreter.main(ForrestOptions.interpreterArguments);
+			}
 	}
 	
 	
 	public static void main(String[] args){
 		Forrest runner = new Forrest();
 		try{
-			runner.runForrest(null, null, ForrestOptions.parser, ForrestOptions.checker, ForrestOptions.interpreter, ForrestOptions.encoder);
+			runner.runForrest(null, null, ForrestOptions.parser, ForrestOptions.checker, ForrestOptions.interpreter, ForrestOptions.encoder, ForrestOptions.useTam, ForrestOptions.runProgram);
 		} catch (ForrestFireException e){
 			System.out.print("Fire!: ForrestException thrown by compiler ");
 			System.out.println(e.getMessage());

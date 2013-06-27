@@ -7,6 +7,8 @@ public class ForrestOptions {
 	protected static final boolean checker = true;
 	protected static final boolean interpreter = false;
 	protected static final boolean encoder = true;
+	protected static boolean useTam = true;
+	protected static boolean runProgram = true;
 	
 	protected static final boolean showParser = true;
 	protected static final boolean showChecker = true;
@@ -15,8 +17,13 @@ public class ForrestOptions {
 	
 	
 	
-	protected static final String inputFileLocation = "src/testfiles/ManualTestLex.forrest";
-	protected static final String outputEncoderFile = "src/TAM/obj.tasm";
+	protected static final String inputFileLocation = "src/testfiles/ManualTestLex.forrest";	
+	protected static final String tasmFileLocation = "src/TAM/program.tasm";
+	protected static final String tamFileLocation = "src/TAM/program.tam";
+	
+	protected static final String[] assemblerArguments = {tasmFileLocation, tamFileLocation};
+	protected static final String[] interpreterArguments = {tamFileLocation};
+	
 	
 	
 	

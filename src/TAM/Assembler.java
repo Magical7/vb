@@ -90,7 +90,6 @@ public class Assembler {
         assemble(in, out);
         in.close();
         out.close();
-        System.exit(0);
     }
 
     public static void assemble(InputStream in, OutputStream out) throws IOException {
