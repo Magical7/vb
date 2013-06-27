@@ -53,17 +53,17 @@ ForrestTree t = (ForrestTree)input.LT(1);
 			ExpressionChecker.checkAssign(t);
 		}
 	|	{boolean hasElse = false;}
-		^(IF 
-		{symtab.openScope();} program_lines 
-		{symtab.openScope();} program_lines {symtab.closeScope();}
-		 ({symtab.openScope(); hasElse=true;}program_lines {symtab.closeScope();})? )
+		^(EXPR_IF 
+		{symtab.openScope();} if_comp
+		{symtab.openScope();} then_comp {symtab.closeScope();}
+		 ({symtab.openScope(); hasElse=true;} else_comp {symtab.closeScope();})? )
 		{
-			symtab.closeScope();
 			if (hasElse) {
 				ExpressionChecker.checkIfElse(t);
 			} else {
 				ExpressionChecker.checkIf(t);
 			}
+			symtab.closeScope();
 		}
 	|	^((LOGOR|LOGAND) expr expr)
 		{ExpressionChecker.checkBinaryBoolean(t);}
@@ -89,7 +89,31 @@ ForrestTree t = (ForrestTree)input.LT(1);
 	|	read
 	|	print
 	;
-	
+
+if_comp
+@init {
+ForrestTree t = (ForrestTree)input.LT(1);
+}
+	:	^(IF program_lines)
+		{ExpressionChecker.setCompound(t);}
+	;
+
+then_comp
+@init {
+ForrestTree t = (ForrestTree)input.LT(1);
+}
+	:	^(THEN program_lines)
+		{ExpressionChecker.setCompound(t);}
+	;
+
+else_comp
+@init {
+ForrestTree t = (ForrestTree)input.LT(1);
+}
+	:	^(ELSE program_lines)
+		{ExpressionChecker.setCompound(t);}
+	;
+
 read
 @init {
 ForrestTree t = (ForrestTree)input.LT(1);

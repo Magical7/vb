@@ -1,8 +1,3 @@
-var d int;
-var e int;
-var f bool;
-f = 1;
-e = 5;
-if: f then: d=5 else: d = 4 endif;
-e = d + e;
-print(e);
+var l int;
+var g bool;
+g = l+l;

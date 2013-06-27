@@ -46,6 +46,7 @@ tokens {
     IF			=	'if'		;
     THEN		= 	'then'		;
     ELSE		=	'else'		;
+    EXPR_IF		=	'7EXPRIF'	;
     COMPOUND	= 	'7COMPOUND'	;
     PROGRAM		=	'7PROGRAM'	;
     CONSTANT	=	'const'		;
@@ -91,8 +92,21 @@ options {k=2;}
 	;
 	
 expr_if
-	:	IF^ COLON! program_lines THEN! COLON! program_lines (ELSE! COLON! program_lines)? ENDIF
+	:	if_comp then_comp else_comp? ENDIF
+			->	^(EXPR_IF if_comp then_comp else_comp?)
 	|	expr_or
+	;
+
+if_comp
+	:	IF^ COLON! program_lines
+	;
+
+then_comp
+	:	THEN^ COLON! program_lines
+	;
+
+else_comp
+	:	ELSE^ COLON! program_lines
 	;
 	
 expr_or

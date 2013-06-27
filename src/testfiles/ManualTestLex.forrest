@@ -1,8 +1,8 @@
 var d int;
 var e int;
 var f bool;
-f = 1;
+f = true;
 e = 5;
-if: f then: d=5 else: d = 4 endif;
+if: var a int; f; then: d=5; f= false; a=10; endif;
 e = d + e;
 print(e);

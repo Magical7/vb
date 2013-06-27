@@ -130,7 +130,7 @@ public class SymbolTable<Entry extends IdEntry> {
      */
     public void setType(ForrestTree id) throws ForrestFireException {
     	Type type = null;
-    	for (int i = 0; type == null && i >= 0; i--) {
+    	for (int i = currentLevel(); type == null && i >= 0; i--) {
     		Map<String, IdEntry> scopeSet = liveIdSet.get(i);
     		if (scopeSet.containsKey(id.getText())) {
     			type = scopeSet.get(id.getText()).getType();
