@@ -158,6 +158,7 @@ public class ExpressionChecker {
 	 * @param t - the parent node
 	 */
 	public static void checkRead(ForrestTree t) {
+		@SuppressWarnings("unchecked")
 		List<ForrestTree> ids = (List<ForrestTree>) t.getChildren();
 		if (ids.size() == 1) {
 			t.setReturnType(ids.get(0).getReturnType());
@@ -172,6 +173,7 @@ public class ExpressionChecker {
 	 * @throws ForrestFireException - if there is a problem in the arguments
 	 */
 	public static void checkPrint(ForrestTree t) throws ForrestFireException {
+		@SuppressWarnings("unchecked")
 		List<ForrestTree> exprs = (List<ForrestTree>) t.getChildren();
 		for(int i = 0; i < exprs.size(); i++) {
 			if (exprs.get(i).getReturnType() == Type.VOID) {
@@ -188,7 +190,6 @@ public class ExpressionChecker {
     /**
      * Set the type for a ForrestTree node that is an integer
      * @param t - ForrestTree that needs its type set 
-     * @throws ForrestFireException if the id has not been declared yet
      */
     public static void setNumber(ForrestTree t) throws ForrestFireException {
 		t.setReturnType(Type.INT);
@@ -197,7 +198,6 @@ public class ExpressionChecker {
     /**
      * Set the type for a ForrestTree node that is a boolean
      * @param t - ForrestTree that needs its type set 
-     * @throws ForrestFireException if the id has not been declared yet
      */
     public static void setBoolean(ForrestTree t) throws ForrestFireException {
 		t.setReturnType(Type.BOOL);
@@ -206,7 +206,6 @@ public class ExpressionChecker {
     /**
      * Set the type for a ForrestTree node that is a character
      * @param t - ForrestTree that needs its type set 
-     * @throws ForrestFireException if the id has not been declared yet
      */
     public static void setCharacter(ForrestTree t) throws ForrestFireException {
 		t.setReturnType(Type.CHAR);
@@ -215,7 +214,6 @@ public class ExpressionChecker {
     /**
      * Set the type for a ForrestTree node that is a compound
      * @param t - ForrestTree that needs its type set 
-     * @throws ForrestFireException if the id has not been declared yet
      */
     public static void setCompound(ForrestTree t) throws ForrestFireException {
     	ForrestTree last = (ForrestTree) t.getChild(t.getChildCount() - 1);

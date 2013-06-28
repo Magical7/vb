@@ -35,6 +35,7 @@ fw.startProgram();
 	:	^(PROGRAM program_lines)
 		{
 			fw.writeProgram();
+			fw.print();
 		}
 	;
 

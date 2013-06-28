@@ -16,12 +16,17 @@ public class ForrestFireException extends RecognitionException {
 		this.message = message;
 	}
 	
+	/**
+	 * Create an exception
+	 * @param tree the tree causing the exception
+	 * @param message message to add to the exception
+	 */
 	public ForrestFireException(Tree tree, String message) {
 		super();
 		this.message = tree.getText() + 
 				"(" + tree.getLine() + 
 				":" + tree.getCharPositionInLine() + 
-				")" + message;
+				") " + message;
 	}
 	
 	@Override

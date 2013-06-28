@@ -32,11 +32,12 @@ public class ForrestTree extends CommonTree {
 		return new ForrestTree(this);
 	}
 	
-	/** Getters and setters */
+	/** Set the return type of this node */
 	public void setReturnType(Type type){
 		this.returnType = type;
 	}
 	
+	/** @return the return type of this node */
 	public Type getReturnType(){
 		return this.returnType;
 	}

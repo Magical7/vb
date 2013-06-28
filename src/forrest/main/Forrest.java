@@ -91,7 +91,10 @@ public class Forrest {
 			}
 	}
 	
-	
+	/**
+	 * Run the program
+	 * @param args unused
+	 */
 	public static void main(String[] args){
 		Forrest runner = new Forrest();
 		try{
