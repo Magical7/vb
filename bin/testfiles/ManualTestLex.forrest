@@ -1,0 +1,3 @@
+var d int;
+read(d);
+print(d);
