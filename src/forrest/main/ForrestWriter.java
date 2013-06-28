@@ -19,7 +19,7 @@ public class ForrestWriter {
 	private int nIf = 0;
 	
 	public ForrestWriter(){
-		this.setFile(ForrestOptions.outputEncoderFile);
+		this.setFile(ForrestOptions.tasmFileLocation);
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public class ForrestWriter {
 	
 	public void closeScope() {
 		instructions.remove(instructions.size()-1);
-		instructions.add("POP(1) " + (store.getCurrentScopeSize() - 1));
+		instructions.add("POP(1) " + ((store.getCurrentScopeSize() - 1) > 0 ? (store.getCurrentScopeSize() - 1) : 0));
 		store.closeScope();
 	}
 	
@@ -105,8 +105,8 @@ public class ForrestWriter {
 	}
 	
 	public void writeBecomes(ForrestTree t){
-		instructions.add("STORE(1) " + store.getAddress(t.getText()) + "[SB]");
-		instructions.add("LOAD(1) " + store.getAddress(t.getText()) + "[SB]");
+		instructions.add("STORE(1) " + store.getAddress(t.getChild(0).getText()) + "[SB]");
+		instructions.add("LOAD(1) " + store.getAddress(t.getChild(0).getText()) + "[SB]");
 	}
 	
 	public void writeIf(int label){
@@ -201,7 +201,7 @@ public class ForrestWriter {
 	}
 	
 	public void writeNumber(ForrestTree t){
-		instructions.add("LOADL " + store.getAddress(t.getText()));
+		instructions.add("LOADL " + t.getText());
 	}
 	
 	public void writeBoolean(ForrestTree t){

@@ -1,3 +1,0 @@
-// Verkeerde Declaraties, volgorde is onjuist
-char stijn var; //Uses lex = true; because a program cannot end in a declaration
-lex = true;

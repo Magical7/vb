@@ -1,4 +1,0 @@
-// Binary operator met maar één argument
-var stijn char;
-var lex bool;
-lex = stijn ||;

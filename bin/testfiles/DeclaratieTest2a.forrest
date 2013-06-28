@@ -1,3 +1,0 @@
-// Verkeerde Declaraties, volgorde is onjuist
-stijn var char; //Uses lex = true; because a program cannot end in a declaration
-lex = true;

@@ -1,3 +1,0 @@
-var l int;
-var g bool;
-g = l+l;

@@ -1,3 +1,7 @@
 var d int;
-read(d);
+var a bool;
+a = true;
+d = 3;
+if: a; then: d = 4; else: d=5; endif;
+print(d);
 print(d);
