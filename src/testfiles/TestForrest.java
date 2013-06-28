@@ -63,7 +63,7 @@ public class TestForrest {
 			String expected = fileToOutputs.get(file)[0];
 			String returned = null;
 			try{
-				this.forrest.runForrest(file, ps, true, false, false, false);
+				this.forrest.runForrest(file, ps, true, false, false, false, false, false);
 				returned = baos.toString();
 			} catch(ForrestFireException e){
 				returned = e.getMessage();

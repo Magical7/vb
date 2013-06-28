@@ -37,7 +37,7 @@ public class ForrestWriter {
 	public void print() {
 		try {
 			for(String s: instructions){
-				fileWriter.append(s + "\n");
+				fileWriter.write(s + "\n");
 			}
 			fileWriter.flush();
 			fileWriter.close();
@@ -260,6 +260,7 @@ public class ForrestWriter {
 			}
 		}
 		instructions.add("POP(0) " + (t.getChildCount() - 1));
+		instructions.add("CALL puteol");
 	}
 	
 	public void printString(String output) {

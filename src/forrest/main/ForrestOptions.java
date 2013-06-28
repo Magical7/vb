@@ -7,8 +7,8 @@ public class ForrestOptions {
 	protected static final boolean checker = true;
 	protected static final boolean interpreter = false;
 	protected static final boolean encoder = true;
-	protected static boolean useTam = true;
-	protected static boolean runProgram = true;
+	protected static boolean useTam = false;
+	protected static boolean runProgram = false;
 	
 	protected static final boolean showParser = true;
 	protected static final boolean showChecker = true;
