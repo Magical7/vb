@@ -17,9 +17,9 @@ public class ForrestOptions {
 	protected static boolean runProgram = true;
 	
 	/** Show the output of the parser */
-	protected static final boolean showParser = true;
+	protected static final boolean showParser = false;
 	/** Show the output of the checker */
-	protected static final boolean showChecker = true;
+	protected static final boolean showChecker = false;
 	
 	
 	/** Forrest file to read from */

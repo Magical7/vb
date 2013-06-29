@@ -58,7 +58,7 @@ public class Forrest {
 			
 			ForrestParser.forrest_return result = parser.forrest();
 			CommonTree tree = (CommonTree) result.getTree();
-			if(useParser){
+			if(useParser && ForrestOptions.showParser){
 				out.println(tree.toStringTree());
 			}
 			

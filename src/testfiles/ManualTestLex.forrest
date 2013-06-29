@@ -1,7 +1,11 @@
-var d int;
-var a bool;
-a = true;
-d = 3;
-while: var b int; b = 2; a; do: print(d); print(b); d = d + b; a = d != 11; endwhile;
-d / 0;
-print(d);
+var a int;
+print(a);
+{
+	var b int;
+	print(b);
+	b = 3;
+};
+{
+	var c int;
+	print(c);
+};

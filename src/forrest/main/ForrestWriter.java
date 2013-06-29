@@ -252,6 +252,7 @@ public class ForrestWriter {
 		
 		// Check divide by zero
 		if (call.equals("div") || call.equals("mod")) {
+			instructions.add("LOAD(1) -1[ST]");
 			instructions.add("JUMPIF(0) ERRORZERODIV [CB]");
 		}
 		
