@@ -23,7 +23,7 @@ public class ForrestOptions {
 	
 	
 	/** Forrest file to read from */
-	protected static final String inputFileLocation = "src/testfiles/ManualTestLex.forrest";
+	protected static final String inputFileLocation = "src/testfiles/BlackBoxTest4.forrest";
 	/** TAM file to output to and read from */
 	protected static final String tasmFileLocation = "src/TAM/program.tasm";
 	/** TAM assembler file to output to and read from */

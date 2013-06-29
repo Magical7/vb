@@ -1,0 +1,3 @@
+//Test where a type is not the same as the declared variable
+var a char;
+a = true;

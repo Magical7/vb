@@ -1,4 +1,4 @@
-// $ANTLR 3.5 Forrest.g 2013-06-29 11:21:08
+// $ANTLR 3.5 Forrest.g 2013-06-29 13:26:48
 
 package forrest.main;
 
@@ -646,7 +646,7 @@ public class ForrestParser extends Parser {
 					stream_ENDWHILE.add(ENDWHILE21);
 
 					// AST REWRITE
-					// elements: while_comp, do_comp
+					// elements: do_comp, while_comp
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -913,7 +913,7 @@ public class ForrestParser extends Parser {
 					stream_ENDIF.add(ENDIF32);
 
 					// AST REWRITE
-					// elements: then_comp, if_comp, else_comp
+					// elements: else_comp, if_comp, then_comp
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 

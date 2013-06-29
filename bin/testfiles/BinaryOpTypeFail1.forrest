@@ -1,0 +1,5 @@
+//Test where the types for operator are not correct
+var a int;
+var b bool;
+var c char;
+b = c == a;

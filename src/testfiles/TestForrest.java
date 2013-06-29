@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.HashMap;
 
+import org.antlr.gunit.Interp;
+
 import antlr.RecognitionException;
 
 import fire.ForrestFireException;
@@ -23,8 +25,10 @@ public class TestForrest {
 	//String used for the location of the test files
 	private static String fileLocation = "src/testfiles/";
 
-	//TestFiles
-	private HashMap<String,String[]> fileToOutputs = new HashMap<String,String[]>();
+	//TestFiles	
+	private HashMap<String,String> parserTests = new HashMap<String,String>();
+	private HashMap<String,String> checkerTests = new HashMap<String,String>();
+	private HashMap<String,String> encoderTests = new HashMap<String,String>();
 	
 	/**
 	 * Constructor for this class
@@ -37,7 +41,6 @@ public class TestForrest {
 	 * Method for initializing the tests
 	 */
 	public void init(){
-		this.fillFileToOutput();
 		this.forrest = new Forrest();
 	}
 	
@@ -46,21 +49,38 @@ public class TestForrest {
 	 */
 	public void runAllTests(){
 		int totalFailed = 0;
+//		runGunitTests();
 		totalFailed += runParserTests();
-//		totalFailed += runCheckerTests();
-//		totalFailed += runEncoderTests();
+		totalFailed += runCheckerTests();
+		totalFailed += runEncoderTests();
 		System.out.println("All tests ended with " + totalFailed + " errors");
+	}
+	
+	/**
+	 * Method that runs the Gunit Tests as specified by the file forrestTest.gunit.
+	 */
+	private void runGunitTests(){
+		try{
+			Interp.main(new String[]{"-p", "src/forrest/main src/forrest/main/forrestTest.gunit"});
+		}catch(org.antlr.runtime.RecognitionException e){
+			System.out.println("Error in running Gunit test: " + e.getMessage());
+		}catch(IOException e){
+			System.out.println("Could not find the Gunit file; " + e.getMessage());
+		}catch(ClassNotFoundException e){
+			System.out.println("Error in running Gunit: " + e.getMessage());
+		}
 	}
 	
 	/**
 	 * Method to run all ParserTests
 	 */
 	private int runParserTests(){
+		fillParserOutput();
 		int failed = 0;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(baos);
-		for(String file : fileToOutputs.keySet()){
-			String expected = fileToOutputs.get(file)[0];
+		for(String file : parserTests.keySet()){
+			String expected = parserTests.get(file);
 			String returned = null;
 			try{
 				this.forrest.runForrest(file, ps, true, false, false, false, false, false);
@@ -88,7 +108,93 @@ public class TestForrest {
 		try {
 			baos.close();
 		} catch (IOException e) {
-			System.out.println("Somehting wrong with closing ByteArrayOutputStream");
+			System.out.println("Something wrong with closing ByteArrayOutputStream");
+		}
+		System.out.println("Finished tests with " + failed + " errors");
+		return failed;
+	}
+	
+	/**
+	 * Method to run all CheckerTests
+	 */
+	private int runCheckerTests(){
+		fillCheckerOutput();
+		int failed = 0;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream ps = new PrintStream(baos);
+		for(String file : checkerTests.keySet()){
+			String expected = checkerTests.get(file);
+			String returned = null;
+			try{
+				this.forrest.runForrest(file, ps, true, true, false, false, false, false);
+				returned = baos.toString();
+			} catch(ForrestFireException e){
+				returned = e.getMessage();
+				
+			} catch(RecognitionException e){
+				returned = e.getMessage();
+			
+			} catch(Exception e){
+				returned = e.getMessage();
+//				System.exit(0);
+			}
+			
+			if(!returned.equals(expected)){
+				System.out.println("Test Failed: "+ file + " : \n" + returned + "\n" + expected);
+				failed++;
+			} else {
+				print("Test Succesful: " + file);
+			}
+			baos.reset();
+		}
+		ps.close();
+		try {
+			baos.close();
+		} catch (IOException e) {
+			System.out.println("Something wrong with closing ByteArrayOutputStream");
+		}
+		System.out.println("Finished tests with " + failed + " errors");
+		return failed;
+	}
+	
+	/**
+	 * Method to run all EncoderTests
+	 */
+	private int runEncoderTests(){
+		fillEncoderOutput();
+		int failed = 0;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream ps = new PrintStream(baos);
+		for(String file : encoderTests.keySet()){
+			String expected = encoderTests.get(file);
+			String returned = null;
+			try{
+				this.forrest.runForrest(file, ps, true, true, false, true, false, false);
+				returned = baos.toString();
+			} catch(ForrestFireException e){
+				returned = e.getMessage();
+				
+			} catch(RecognitionException e){
+				returned = e.getMessage();
+			
+			} catch(Exception e){
+				returned = e.getMessage();
+//				System.exit(0);
+			}
+			
+			if(!returned.equals(expected)){
+				System.out.println("Test Failed: "+ file + " : \n" + returned + "\n" + expected);
+				failed++;
+			} else {
+				print("Test Succesful: " + file);
+			}
+			baos.reset();
+		}
+		ps.close();
+		try {
+			baos.close();
+		} catch (IOException e) {
+			System.out.println("Something wrong with closing ByteArrayOutputStream");
 		}
 		System.out.println("Finished tests with " + failed + " errors");
 		return failed;
@@ -105,78 +211,100 @@ public class TestForrest {
 	}
 	
 	/**
-	 * Method to make all tests
+	 * Method to make all parser tests
 	 */
-	private void fillFileToOutput(){
-		fileToOutputs.put(fileLocation+"DeclaratieTest1.forrest", new String[]
-				{"(PROGRAM (var lex bool) (var stijn char) (var RoNalD int) (= lex true))\r\n",
-				"output2",
-				"output3"
-				});
-		fileToOutputs.put(fileLocation+"DeclaratieTest2a.forrest", new String[]
-				{"(PROGRAM stijn (var <missing IDENTIFIER> char) (= lex true))\r\n",
-				"output2",
-				"output3"
-				});
-		fileToOutputs.put(fileLocation+"DeclaratieTest2b.forrest", new String[]
-				{"rule program_lines",
-				"output2",
-				"output3"
-				});
-		fileToOutputs.put(fileLocation+"DeclaratieTest3.forrest", new String[]
-				{"(PROGRAM <error: var stijn boolean> <error: var stijn character> <error: var stijn integer> (= lex true))\r\n",
-				"output2",
-				"output3"
-				});
-		fileToOutputs.put(fileLocation+"BinaryOpTest1.forrest", new String[]
-				{"(PROGRAM (var stijn char) (var lex bool) (= lex (== lex lex)) (= lex (!= lex lex)) (= lex (|| (&& lex lex) (== lex lex))) (= stijn c) (= lex (== stijn c)))\r\n",
-				"output2",
-				"output3"
-				});
-		fileToOutputs.put(fileLocation+"BinaryOpTest2.forrest", new String[]
-				{"(PROGRAM (var stijn char) (var lex bool) (= lex (|| stijn <unexpected: [@22,88:88=';',<38>,4:14], resync=;>)))\r\n",
-				"output2",
-				"output3"
-				});
-		fileToOutputs.put(fileLocation+"BinaryOpTest3.forrest", new String[]
-				{"(PROGRAM (var stijn char) (var lex bool) (var lex2 bool) (= lex lex))\r\n",
-				"output2",
-				"output3"
-				});
-		fileToOutputs.put(fileLocation+"BinaryOpTest4.forrest", new String[]
-				{"(PROGRAM (var stijn char) (var lex bool) (var lex2 bool) (= lex (|| (&& lex <unexpected: [@30,115:116='||',<24>,5:13], resync=||>) lex2)))\r\n",
-				"output2",
-				"output3"
-				});
-		fileToOutputs.put(fileLocation+"CommentTest1.forrest", new String[]
-				{"(PROGRAM <mismatched token: [@15,94:94='<EOF>',<-1>,4:20], resync=var stijn char;\r\nvar lex bool;\r\n>)\r\n",
-				"output2",
-				"output3"
-				});
-		fileToOutputs.put(fileLocation+"CommentTest2.forrest", new String[]
-				{"(PROGRAM (var stijn char) (= lex true))\r\n",
-				"output2",
-				"output3"
-				});
-		fileToOutputs.put(fileLocation+"Correct1.forrest", new String[]
-				{"(PROGRAM (var b1 bool) (var i1 int) (var c1 char) (var b2 bool) (var b3 bool) (= (= b1 b2) true) (= b3 (! b1)) (print (|| b1 (&& b2 b3))) (print (!= (== b1 b2) b3)))\r\n",
-				"output2",
-				"output3"
-				});
-		fileToOutputs.put(fileLocation+"UnaryOpTest1.forrest", new String[]
-				{"(PROGRAM (var stijn char) (var lex bool) (var lex2 bool) (= lex lex) (! lex2))\r\n",
-				"output2",
-				"output3"
-				});
-		fileToOutputs.put(fileLocation+"IdentifierTest1.forrest", new String[]
-				{"(PROGRAM <mismatched token: [@22,61:61='<EOF>',<-1>,4:12], resync=var x bool;\r\nvar y1 bool;\r\nvar 1y bool;>)\r\n",
-				"output2",
-				"output3"
-				});
+	private void fillParserOutput(){
+		parserTests.put(fileLocation+"DeclaratieTest1.forrest", 
+				"(PROGRAM (var lex bool) (var stijn char) (var RoNalD int) (= lex true))\r\n");
+		parserTests.put(fileLocation+"DeclaratieTest2a.forrest", 
+				"org.antlr.runtime.tree.CommonErrorNode cannot be cast to forrest.main.ForrestTree");
+		parserTests.put(fileLocation+"DeclaratieTest2b.forrest",
+				"rule program_lines");
+		parserTests.put(fileLocation+"DeclaratieTest3.forrest",
+				"org.antlr.runtime.tree.CommonErrorNode cannot be cast to forrest.main.ForrestTree");
+		parserTests.put(fileLocation+"BinaryOpTest1.forrest", 
+				"(PROGRAM (var stijn char) (var lex bool) (= lex (== lex lex)) (= lex (!= lex lex)) (= lex (|| (&& lex lex) (== lex lex))) (= stijn 'c') (= lex (== stijn 'c')))\r\n");
+		parserTests.put(fileLocation+"BinaryOpTest2.forrest", 
+				"org.antlr.runtime.tree.CommonErrorNode cannot be cast to forrest.main.ForrestTree");
+		parserTests.put(fileLocation+"BinaryOpTest3.forrest", 
+				"org.antlr.runtime.tree.CommonErrorNode cannot be cast to forrest.main.ForrestTree");
+		parserTests.put(fileLocation+"BinaryOpTest4.forrest", 
+				"org.antlr.runtime.tree.CommonErrorNode cannot be cast to forrest.main.ForrestTree");
+		parserTests.put(fileLocation+"CommentTest1.forrest", 
+				"org.antlr.runtime.tree.CommonErrorNode cannot be cast to forrest.main.ForrestTree");
+		parserTests.put(fileLocation+"CommentTest2.forrest", 
+				"(PROGRAM (var stijn char) (= lex true))\r\n");
+		parserTests.put(fileLocation+"Correct1.forrest", 
+				"(PROGRAM (var b1 bool) (var i1 int) (var c1 char) (var b2 bool) (var b3 bool) (= b1 (= b2 true)) (= b3 (! b1)) (print (|| b1 (&& b2 b3))) (print (!= (== b1 b2) b3)))\r\n");
+		parserTests.put(fileLocation+"UnaryOpTest1.forrest", 
+				"org.antlr.runtime.tree.CommonErrorNode cannot be cast to forrest.main.ForrestTree");
+		parserTests.put(fileLocation+"IdentifierTest1.forrest", 
+				"org.antlr.runtime.tree.CommonErrorNode cannot be cast to forrest.main.ForrestTree");
+				
 	}
 	
 	/**
-	 * Main
+	 * Method to make all Checker tests
+	 */
+	private void fillCheckerOutput(){
+		checkerTests.put(fileLocation+"CorrectTypingTests.forrest", 
+				"(PROGRAM (var a bool) (var b int) (var c char) (= a true) (= b 2) (= c 'd') (= a (|| a false)) (= a (&& true a)) (= a (! a)) (= a (! true)) (= a (< b 3)) (= a (<= b b)) (= a (> 4 3)) (= a (>= 3 b)) (= a (> (* 3 4) 2)) (= b (NEGATIVE b)) (= b (POSITIVE b)) (= a (> (% 10 2) 3)) (= a (== c 'd')) (= a (!= 'd' 'a')) (= a (|| (|| (&& (&& (< b 3) (> 4 5)) (>= 4 b)) (!= 'c' 'd')) a)))\r\n");
+		checkerTests.put(fileLocation+"NotDeclaredTest1.forrest",
+				"d(4:0) has not been declared");
+		checkerTests.put(fileLocation+"TypeNotCorrectlyDeclaredTest1.forrest",
+				"1(6:4) does not match type of BOOL");
+		checkerTests.put(fileLocation+"TypeNotCorrectlyDeclaredTest2.forrest", 
+				"'b'(3:4) does not match type of INT");
+		checkerTests.put(fileLocation+"TypeNotCorrectlyDeclaredTest3.forrest", 
+				"true(3:4) does not match type of CHAR");
+		checkerTests.put(fileLocation+"CorrectScopingTest.forrest", 
+				"(PROGRAM (var a int) (var b bool) (var c char) (= a 5) (= b true) (= c 'd') (= b (COMPOUND (var d bool) (var b int) (= b a) (= d (== b a)) (|| d true))) (= b true) (EXPR_IF (if (var l int) (|| b (== l 1))) (then (= l 3)) (else (= l 4))))\r\n");
+		checkerTests.put(fileLocation+"WrongScopingTest1.forrest", 
+				"c(7:0) has not been declared");
+		checkerTests.put(fileLocation+"WrongScopingTest2.forrest", 
+				"'c'(8:4) does not match type of BOOL");
+		checkerTests.put(fileLocation+"BinaryOpTypeFail1.forrest", 
+				"a(5:9) does not match the type of CHAR");
+		checkerTests.put(fileLocation+"BinaryOpTypeFail2.forrest", 
+				"a(3:5) is not of type boolean");
+		checkerTests.put(fileLocation+"BinaryOpTypeFail3.forrest", 
+				"c(4:4) is not of type integer");
+		checkerTests.put(fileLocation+"BinaryOpTypeFail4.forrest", 
+				"+(4:6) does not match type of CHAR");
+	}
+	
+	/**
+	 * Method to make all Checker tests
+	 */
+	private void fillEncoderOutput(){
+//		encoderTests.put(fileLocation+"DeclarationEncoding.forrest", 
+//				"PUSH 1\r\nPUSH 1\r\nLOAD(1) 1[SB]\r\nLOAD(1) -1[ST]\r\nCALL putint\r\nPOP(0) 0\r\nCALL puteol\r\nPOP(1) 0\r\nPOP(0) 1\r\nHALT\r\nERRORZERODIV: LOADL 1\r\nSTORE(1) 0[SB]\r\nJUMP ERROR\r\nERRORINPUT: LOADL 2\r\nSTORE(1) 0[SB]\r\nJUMP ERROR\r\nERROR: LOAD(1) 0[SB]\r\nCALL putint\r\nHALT");				
+//		encoderTests.put(fileLocation+"NotDeclaredTest1.forrest",
+//				"d(4:0) has not been declared");
+//		encoderTests.put(fileLocation+"TypeNotCorrectlyDeclaredTest1.forrest",
+//				"1(6:4) does not match type of BOOL");
+//		encoderTests.put(fileLocation+"TypeNotCorrectlyDeclaredTest2.forrest", 
+//				"'b'(3:4) does not match type of INT");
+//		encoderTests.put(fileLocation+"TypeNotCorrectlyDeclaredTest3.forrest", 
+//				"true(3:4) does not match type of CHAR");
+//		encoderTests.put(fileLocation+"CorrectScopingTest.forrest", 
+//				"(PROGRAM (var a int) (var b bool) (var c char) (= a 5) (= b true) (= c 'd') (= b (COMPOUND (var d bool) (var b int) (= b a) (= d (== b a)) (|| d true))) (= b true) (EXPR_IF (if (var l int) (|| b (== l 1))) (then (= l 3)) (else (= l 4))))\r\n");
+//		encoderTests.put(fileLocation+"WrongScopingTest1.forrest", 
+//				"c(7:0) has not been declared");
+//		encoderTests.put(fileLocation+"WrongScopingTest2.forrest", 
+//				"'c'(8:4) does not match type of BOOL");
+//		encoderTests.put(fileLocation+"BinaryOpTypeFail1.forrest", 
+//				"a(5:9) does not match the type of CHAR");
+//		encoderTests.put(fileLocation+"BinaryOpTypeFail2.forrest", 
+//				"a(3:5) is not of type boolean");
+//		encoderTests.put(fileLocation+"BinaryOpTypeFail3.forrest", 
+//				"c(4:4) is not of type integer");
+//		encoderTests.put(fileLocation+"BinaryOpTypeFail4.forrest", 
+//				"+(4:6) does not match type of CHAR");
+	}
+	
+	/**
+	 * Main. Runs the tester and all tests.
 	 * @param args - not used
 	 */
 	public static void main(String[] args){

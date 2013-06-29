@@ -1,0 +1,6 @@
+//Program to check runtime error when dividing by 0
+var input int;
+while: true; do:
+	read(input);
+	print(10 / input);
+endwhile;
