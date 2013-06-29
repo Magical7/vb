@@ -2,10 +2,10 @@ package forrest.main;
 
 public class StoreItem {
 	
-	// values to store the type and address of a variable and constant
+	// values to store the type, level and address of a variable and constant
 	private Type type;
 	private int address;
-	private int level;
+	private int level; //TODO: level is currently not used
 	
 	public StoreItem(Type type, int address, int scopeLevel){
 		this.type = type;

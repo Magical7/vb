@@ -32,6 +32,8 @@ public class Forrest {
 	 * @param useChecker - boolean: Whether to use the checker
 	 * @param useInterpreter - boolean: Whether to use the interpreter
 	 * @param useEncoder - boolean: Whether to use the encoder
+	 * @param useTam - boolean: Whether to use the TAM assembler
+	 * @param runProgram - boolean: Whether to run the assembled program
 	 */
 	public void runForrest(String inputFile, PrintStream outputPS, 
 		boolean useParser, boolean useChecker, boolean useInterpreter, boolean useEncoder, boolean useTam, boolean runProgram)
@@ -81,11 +83,12 @@ public class Forrest {
 				encoder.forrest();
 			}
 			
-			
+			//Use the Tam assembler if needed
 			if(useTam){
 				Assembler.main(ForrestOptions.assemblerArguments);
 			}
 			
+			//Run the program if needed
 			if(runProgram){
 				Interpreter.main(ForrestOptions.interpreterArguments);
 			}
