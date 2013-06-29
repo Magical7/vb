@@ -47,6 +47,10 @@ tokens {
     THEN		= 	'then'		;
     ELSE		=	'else'		;
     EXPR_IF		=	'7EXPRIF'	;
+    WHILE		=	'while'		;
+    DO			=	'do'		;
+    EXPR_WHILE	=	'7EXPRWHILE';
+    ENDWHILE	=	'endwhile'	;
     COMPOUND	= 	'7COMPOUND'	;
     PROGRAM		=	'7PROGRAM'	;
     CONSTANT	=	'const'		;
@@ -88,7 +92,21 @@ expr
 expr_assign
 options {k=2;}
 	:	IDENTIFIER BECOMES^ expr_assign
+	|	expr_while
+	;
+	
+expr_while
+	:	while_comp do_comp ENDWHILE
+			->	^(EXPR_WHILE while_comp do_comp)
 	|	expr_if
+	;
+	
+while_comp
+	:	WHILE^ COLON! program_lines
+	;
+
+do_comp
+	:	DO^ COLON! program_lines
 	;
 	
 expr_if

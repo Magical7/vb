@@ -18,6 +18,8 @@ public class ForrestWriter {
 	
 	/** Amount of if-statements encountered */
 	private int nIf = 0;
+	/** Amount of while-statements encountered */
+	private int nWhile = 0;
 	
 	/** Constructor. Sets the output file */
 	public ForrestWriter(){
@@ -66,6 +68,12 @@ public class ForrestWriter {
 		return nIf;
 	}
 	
+	/** @return a previously unused number for the while labels */
+	public int getFreeWhile() {
+		nWhile++;
+		return nWhile;
+	}
+	
 	/** Setup extra variables for program running. Reserves 1 place on the stack */
 	public void startProgram(){
 		instructions.add("PUSH 1");
@@ -83,13 +91,14 @@ public class ForrestWriter {
 		// Divide by zero error
 		instructions.add("ERRORZERODIV: LOADL 1");
 		instructions.add("STORE(1) " + store.getAddress("7ERROR") + "[SB]"); 
-		instructions.add("JUMP ERROR");
+		instructions.add("JUMP ERROR[CB]");
 		// Incorrect user input
 		instructions.add("ERRORINPUT: LOADL 2");
 		instructions.add("STORE(1) " + store.getAddress("7ERROR") + "[SB]"); 
-		instructions.add("JUMP ERROR");
+		instructions.add("JUMP ERROR[CB]");
 		// Error label: output the error code
 		instructions.add("ERROR: LOAD(1) " + store.getAddress("7ERROR") + "[SB]");
+		this.printString("Error: ");
 		instructions.add("CALL putint");
 		instructions.add("HALT");
 	}
@@ -104,9 +113,13 @@ public class ForrestWriter {
 	 * scope from the stack.
 	 */
 	public void closeScope() {
-		instructions.remove(instructions.size()-1);
 		instructions.add("POP(1) " + ((store.getCurrentScopeSize() - 1) > 0 ? (store.getCurrentScopeSize() - 1) : 0));
 		store.closeScope();
+	}
+	
+	/** Write the end of a program line: leave the last value on the stack */
+	public void writeProgramLines() {
+		instructions.remove(instructions.size()-1);
 	}
 	
 	/** Upon a semi-colon, remove the last value from the stack */
@@ -136,24 +149,58 @@ public class ForrestWriter {
 		instructions.add("LOAD(1) " + store.getAddress(t.getChild(0).getText()) + "[SB]");
 	}
 	
-	/** If part of if statement */
-	public void writeIf(int label){
+	/** Opening to a while-loop */
+	public void writeWhileStart(int label) {
+		this.openScope();
+		instructions.add("LWHILESTART" + label + ":");
+	}
+	
+	/** Possible break from the while-loop */
+	public void writeWhileCheck(int label) {
+		instructions.add("JUMPIF(0) LWHILEFINALLY" + label + "[CB]");
+		this.openScope();
+	}
+	
+	/** End of while-loop */
+	public void writeWhileFinally(int label) {
+		instructions.add("JUMP LWHILESTART" + label + "[CB]");
+		this.closeScope();
+		this.closeScope();
+		instructions.add("LWHILEFINALLY" + label + ":");
+	}
+	
+	/** Opening of an if statement */
+	public void writeIfStart() {
+		this.openScope();
+	}
+	
+	/** Check of if statement */
+	public void writeIfCheck(int label){
 		instructions.add("JUMPIF(0) LIFFALSE" + label + "[CB]");
+		this.openScope();
+	}
+	
+	/** Code after completing then part of the then statement */
+	public void writeIfAfterThen() {
+		this.closeScope();
+		this.openScope();
 	}
 	
 	/** Else part of if statement */
-	public void writeElse(int label){
+	public void writeIfBeforeElse(int label){
 		instructions.add("JUMP LIFFINALLY" + label + "[CB]");
 		instructions.add("LIFFALSE" + label + ":");
 	}
 	
 	/** Extra code after the complete if statement */
 	public void writeIfFinally(int label){
+		this.closeScope();
 		instructions.add("LIFFINALLY" + label + ":");
 	}
 	
-	/** Code to jump to if the if-statement returns false */
+	/** Code to jump to if the if-statement returns false and no else exists */
 	public void writeIfFalse(int label){
+		this.closeScope();
 		instructions.add("LIFFALSE" + label + ":");
 	}
 	
@@ -205,7 +252,7 @@ public class ForrestWriter {
 		
 		// Check divide by zero
 		if (call.equals("div") || call.equals("mod")) {
-			instructions.add("JUMPIF(0) ERRORZERODIV");
+			instructions.add("JUMPIF(0) ERRORZERODIV [CB]");
 		}
 		
 		if (call.equals("ne") || call.equals("eq")) {

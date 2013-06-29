@@ -52,6 +52,13 @@ ForrestTree t = (ForrestTree)input.LT(1);
 			symtab.setType($id);
 			ExpressionChecker.checkAssign(t);
 		}
+	|	^(EXPR_WHILE 
+		{symtab.openScope();} while_comp
+		{symtab.openScope();} do_comp {symtab.closeScope();})
+		{
+			ExpressionChecker.checkWhile(t);
+			symtab.closeScope();
+		}
 	|	{boolean hasElse = false;}
 		^(EXPR_IF 
 		{symtab.openScope();} if_comp
@@ -88,6 +95,22 @@ ForrestTree t = (ForrestTree)input.LT(1);
 	|	CHARACTER {ExpressionChecker.setCharacter(t);}
 	|	read
 	|	print
+	;
+
+while_comp
+@init {
+ForrestTree t = (ForrestTree)input.LT(1);
+}
+	:	^(WHILE program_lines)
+		{ExpressionChecker.setCompound(t);}
+	;
+
+do_comp
+@init {
+ForrestTree t = (ForrestTree)input.LT(1);
+}
+	:	^(DO program_lines)
+		{ExpressionChecker.setCompound(t);}
 	;
 
 if_comp

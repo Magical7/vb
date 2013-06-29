@@ -40,13 +40,8 @@ fw.startProgram();
 	;
 
 program_lines
-@init {
-fw.openScope();
-}
 	:	((declaration)* expr {fw.writeLine();})* 
-	{
-		fw.closeScope();
-	}
+		{ fw.writeProgramLines(); }
 	;
 	
 declaration
@@ -72,15 +67,34 @@ ForrestTree t = (ForrestTree)input.LT(1);
 			fw.writeBecomes(t);
 		}
 	|	{
+			int lWhile = fw.getFreeWhile();
+			fw.writeWhileStart(lWhile);
+		}
+		^(EXPR_WHILE while_comp 
+		{
+			fw.writeWhileCheck(lWhile);
+		} 
+		do_comp)
+		{
+			fw.writeWhileFinally(lWhile);
+		}
+	|	{
 			boolean hasElse = false;
 			int lIf = fw.getFreeIf();
+			fw.writeIfStart();
 		}
 		^(EXPR_IF if_comp 
-		{fw.writeIf(lIf);} 
-		then_comp (
+		{
+			fw.writeIfCheck(lIf);
+		}
+		then_comp 
+		{
+			fw.writeIfAfterThen();
+		}
+		(
 		{
 			hasElse = true;
-			fw.writeElse(lIf);
+			fw.writeIfBeforeElse(lIf);
 		} 
 		else_comp)? )
 		{
@@ -105,6 +119,14 @@ ForrestTree t = (ForrestTree)input.LT(1);
 	|	CHARACTER {fw.writeCharacter(t);}
 	|	read
 	|	print
+	;
+
+while_comp
+	:	^(WHILE program_lines)
+	;
+
+do_comp
+	:	^(DO program_lines)
 	;
 
 if_comp

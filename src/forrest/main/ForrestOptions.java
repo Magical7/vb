@@ -12,9 +12,9 @@ public class ForrestOptions {
 	/** Run the encoder */
 	protected static final boolean encoder = true;
 	/** Use TAM to convert the output to assembly */
-	protected static boolean useTam = false;
+	protected static boolean useTam = true;
 	/** Use the TAM interpreter to run the program */
-	protected static boolean runProgram = false;
+	protected static boolean runProgram = true;
 	
 	/** Show the output of the parser */
 	protected static final boolean showParser = true;

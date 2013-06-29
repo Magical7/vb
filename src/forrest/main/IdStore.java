@@ -96,7 +96,7 @@ public class IdStore {
     		HashMap<String, StoreItem> scope = liveIdSet.get(i);
 			addrMod += scope.size();
     	}
-    	return this.getItem(id).getAddress() + addrMod;
+    	return item.getAddress() + addrMod;
     }
     
     /**

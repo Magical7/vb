@@ -26,6 +26,20 @@ public class ExpressionChecker {
 	}
 	
 	/**
+	 * Checks a while-statement
+	 * @param t - the parent tree node
+	 * @throws ForrestFireException if the first child does not return a bool
+	 */
+	public static void checkWhile(ForrestTree t) throws ForrestFireException {
+		ForrestTree expr1 = (ForrestTree) t.getChild(0);
+		if (expr1.getReturnType() != Type.BOOL) {
+			throw new ForrestFireException(expr1, "is not of type boolean");
+		} else {
+			t.setReturnType(Type.VOID);
+		}
+	}
+	
+	/**
 	 * Check whether an if-else-statement is correct
 	 * @param t - the parent tree node
 	 * @throws ForrestFireException if the expressions do not match
