@@ -1,0 +1,9 @@
+line 2:6 no viable alternative at input 'var'
+ERROR: uncaught exception thrown by compiler: org.antlr.runtime.tree.CommonErrorNode cannot be cast to forrest.main.ForrestTree
+java.lang.ClassCastException: org.antlr.runtime.tree.CommonErrorNode cannot be cast to forrest.main.ForrestTree
+	at forrest.main.ForrestParser.expr_assign(ForrestParser.java:579)
+	at forrest.main.ForrestParser.expr(ForrestParser.java:446)
+	at forrest.main.ForrestParser.program_lines(ForrestParser.java:265)
+	at forrest.main.ForrestParser.forrest(ForrestParser.java:136)
+	at forrest.main.Forrest.runForrest(Forrest.java:59)
+	at forrest.main.Forrest.main(Forrest.java:104)

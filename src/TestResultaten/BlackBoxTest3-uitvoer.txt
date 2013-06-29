@@ -1,0 +1,8 @@
+********** TAM Interpreter (Java Version 2.0) **********
+Input int: 5
+2
+Input int: 3
+3
+Input int: 0
+Error: 1
+Program has halted normally.

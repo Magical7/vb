@@ -1,0 +1,15 @@
+//Simple example program that calculates all prime numbers under the given number
+var i int;
+read(i);
+while: i > 0; do:
+	var j int;
+	var found bool;
+	found = false;
+	j = i - 1;
+	while: j > 1; do:
+		if: i%j == 0; then: j = 0; found = true; endif;
+		j = j-1;
+	endwhile;
+	if: !found; then: print(i); endif;
+	i = i - 1;
+endwhile;
