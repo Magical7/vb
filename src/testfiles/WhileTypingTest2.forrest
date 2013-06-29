@@ -1,5 +1,0 @@
-// Wrong type in the while statement
-var a int;
-while: 2; do:
-	a = 7;
-endwhile;

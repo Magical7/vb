@@ -1,5 +1,3 @@
 //Verkeerde declaraties, types zijn fout
-var stijn boolean;
-var stijn character;
-var stijn integer; //Uses lex = true; because a program cannot end in a declaration
+var stijn boolean; //Uses lex = true; because a program cannot end in a declaration
 lex = true;

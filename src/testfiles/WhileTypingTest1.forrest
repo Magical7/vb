@@ -1,7 +1,5 @@
-// Correct while loop
+// Wrong type in the while statement
 var a int;
-while: true; do:
-	var a bool;
-	a = true;
+while: 2; do:
+	a = 7;
 endwhile;
-a = 6;

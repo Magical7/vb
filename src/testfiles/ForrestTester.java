@@ -13,10 +13,10 @@ import fire.ForrestFireException;
 import forrest.main.Forrest;
 
 /**
- * Class used for running all tests
+ * Class used for running all tests.
  *
  */
-public class TestForrest {
+public class ForrestTester {
 	
 	//Setting Debug to true will generate more information
 	private boolean debug = false;
@@ -34,7 +34,7 @@ public class TestForrest {
 	/**
 	 * Constructor for this class
 	 */
-	public TestForrest(){
+	public ForrestTester(){
 		
 	}
 	
@@ -46,7 +46,7 @@ public class TestForrest {
 	}
 	
 	/**
-	 * Method to run all tests
+	 * Method to run all tests and give the amount of wrong tests
 	 */
 	public void runAllTests(){
 		System.out.println("------------------------------------------------------");
@@ -80,6 +80,8 @@ public class TestForrest {
 	
 	/**
 	 * Method to run all ParserTests
+	 * This method runs the parser on every file within parserTests and 
+	 * compares the output given by the parser with the expected output.
 	 */
 	private int runParserTests(){
 		System.out.println("------------------------------------------------------");
@@ -87,12 +89,14 @@ public class TestForrest {
 		System.out.println("------------------------------------------------------");
 		fillParserOutput();
 		int failed = 0;
+		//ByteArrayOutputStream used for getting the output of the parser
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(baos);
 		for(String file : parserTests.keySet()){
 			String expected = parserTests.get(file);
 			String returned = null;
 			try{
+				//Run the parser
 				this.forrest.runForrest(file, ps, true, false, false, false, false, false,true);
 				returned = baos.toString();
 			} catch(ForrestFireException e){
@@ -103,10 +107,9 @@ public class TestForrest {
 			
 			} catch(Exception e){
 				returned = e.getMessage();
-//				System.exit(0);
 			}
-			
-			if(!returned.equals(expected)){
+			//Compare the result with the expected value
+			if(!expected.equals(returned)){
 				System.out.println("Test Failed: "+ file + " : \n" + returned + "\n" + expected);
 				failed++;
 			} else {
@@ -128,6 +131,8 @@ public class TestForrest {
 	
 	/**
 	 * Method to run all CheckerTests
+	 * This method runs the parser and checker on every file within checkerTests and 
+	 * compares the output given by the parser and checker with the expected output.
 	 */
 	private int runCheckerTests(){
 		System.out.println("------------------------------------------------------");
@@ -135,12 +140,14 @@ public class TestForrest {
 		System.out.println("------------------------------------------------------");
 		fillCheckerOutput();
 		int failed = 0;
+		//ByteArrayOutputStream used for getting the output of the parser and checker
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(baos);
 		for(String file : checkerTests.keySet()){
 			String expected = checkerTests.get(file);
 			String returned = null;
 			try{
+				//Run the parser and checker
 				this.forrest.runForrest(file, ps, true, true, false, false, false, false, true);
 				returned = baos.toString();
 			} catch(ForrestFireException e){
@@ -151,8 +158,8 @@ public class TestForrest {
 			
 			} catch(Exception e){
 				returned = e.getMessage();
-//				System.exit(0);
 			}
+			//Compare the result with the expected value
 			if(!expected.equals(returned)){
 				System.out.println("Test Failed: "+ file + " : \n" + returned + "\n" + expected);
 				failed++;
@@ -184,7 +191,7 @@ public class TestForrest {
 	}
 	
 	/**
-	 * Method to make all parser tests
+	 * Method to make all parser tests. The key is the file that should be parsed, the value is the expected result
 	 */
 	private void fillParserOutput(){
 		parserTests.put(fileLocation+"DeclaratieTest1.forrest", 
@@ -218,7 +225,7 @@ public class TestForrest {
 	}
 	
 	/**
-	 * Method to make all Checker tests
+	 * Method to make all Checker tests. The key is the file that should be parsed and checked, the value is the expected result
 	 */
 	private void fillCheckerOutput(){
 		checkerTests.put(fileLocation+"CorrectTypingTests.forrest", 
@@ -245,9 +252,9 @@ public class TestForrest {
 				"c(4:4) is not of type integer");
 		checkerTests.put(fileLocation+"BinaryOpTypeFail4.forrest", 
 				"+(4:6) does not match type of CHAR");
-		checkerTests.put(fileLocation+"WhileTypingTest1.forrest", 
+		checkerTests.put(fileLocation+"WhileScopingTest1.forrest", 
 				"(PROGRAM (var a int) (EXPR_WHILE (while true) (do (var a bool) (= a true))) (= a 6))\r\n");
-		checkerTests.put(fileLocation+"WhileTypingTest2.forrest", 
+		checkerTests.put(fileLocation+"WhileTypingTest1.forrest", 
 				"while(3:0) is not of type boolean");
 	}
 	
@@ -256,7 +263,7 @@ public class TestForrest {
 	 * @param args - not used
 	 */
 	public static void main(String[] args){
-		TestForrest tester = new TestForrest();
+		ForrestTester tester = new ForrestTester();
 		tester.init();
 		tester.runAllTests();
 		
