@@ -92,11 +92,9 @@ public class IdStore {
     public int getAddress(String id)  {
     	StoreItem item = this.getItem(id);
     	int addrMod = 0;
-    	for (int i = 0; i < liveIdSet.size(); i++) {
-    		if (i != item.getScopeLevel()) {
-        		HashMap<String, StoreItem> scope = liveIdSet.get(i);
-    			addrMod += scope.size();
-    		}
+    	for (int i = 0; i < item.getScopeLevel(); i++) {
+    		HashMap<String, StoreItem> scope = liveIdSet.get(i);
+			addrMod += scope.size();
     	}
     	return this.getItem(id).getAddress() + addrMod;
     }

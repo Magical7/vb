@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ForrestWriter {
 	
@@ -81,6 +80,14 @@ public class ForrestWriter {
 		// Clean up the stack
 		instructions.add("POP(0) " + store.getCurrentScopeSize());
 		instructions.add("HALT");
+		// Divide by zero error
+		instructions.add("ERRORZERODIV: LOADL 1");
+		instructions.add("STORE(1) " + store.getAddress("7ERROR") + "[SB]"); 
+		instructions.add("JUMP ERROR");
+		// Incorrect user input
+		instructions.add("ERRORINPUT: LOADL 2");
+		instructions.add("STORE(1) " + store.getAddress("7ERROR") + "[SB]"); 
+		instructions.add("JUMP ERROR");
 		// Error label: output the error code
 		instructions.add("ERROR: LOAD(1) " + store.getAddress("7ERROR") + "[SB]");
 		instructions.add("CALL putint");
@@ -196,6 +203,11 @@ public class ForrestWriter {
 			break;
 		}
 		
+		// Check divide by zero
+		if (call.equals("div") || call.equals("mod")) {
+			instructions.add("JUMPIF(0) ERRORZERODIV");
+		}
+		
 		if (call.equals("ne") || call.equals("eq")) {
 			instructions.add("LOADL 1");
 		}
@@ -309,5 +321,19 @@ public class ForrestWriter {
 				instructions.add("CALL put");
 			}
 		}
+	}
+	
+	/** Checks whether a boolean input is correct */
+	public void printBooleanCheck() {
+		instructions.add("LOAD(1) -1[ST]");
+		instructions.add("LOADL 0");
+		instructions.add("LOADL 1");
+		instructions.add("CALL eq");
+		instructions.add("LOAD(1) -2[ST]");
+		instructions.add("LOADL 1");
+		instructions.add("LOADL 1");
+		instructions.add("CALL eq");
+		instructions.add("CALL or");
+		instructions.add("JUMPIF(0) ERRORINPUT");
 	}
 }
