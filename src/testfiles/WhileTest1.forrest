@@ -1,0 +1,6 @@
+// Correct use of the while loop
+while: true; do:
+	var l int;
+	read(l);
+	print(l);
+endwhile;

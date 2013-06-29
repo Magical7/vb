@@ -1,0 +1,7 @@
+// Correct while loop
+var a int;
+while: true; do:
+	var a bool;
+	a = true;
+endwhile;
+a = 6;

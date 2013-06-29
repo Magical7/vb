@@ -36,7 +36,7 @@ public class Forrest {
 	 * @param runProgram - boolean: Whether to run the assembled program
 	 */
 	public void runForrest(String inputFile, PrintStream outputPS, 
-		boolean useParser, boolean useChecker, boolean useInterpreter, boolean useEncoder, boolean useTam, boolean runProgram)
+		boolean useParser, boolean useChecker, boolean useInterpreter, boolean useEncoder, boolean useTam, boolean runProgram, boolean showAST)
 		throws Exception{
 			if(inputFile == null){
 				this.in = new FileInputStream(ForrestOptions.inputFileLocation);
@@ -58,7 +58,7 @@ public class Forrest {
 			
 			ForrestParser.forrest_return result = parser.forrest();
 			CommonTree tree = (CommonTree) result.getTree();
-			if(useParser && ForrestOptions.showParser){
+			if(useParser && showAST){
 				out.println(tree.toStringTree());
 			}
 			
@@ -101,7 +101,7 @@ public class Forrest {
 	public static void main(String[] args){
 		Forrest runner = new Forrest();
 		try{
-			runner.runForrest(null, null, ForrestOptions.parser, ForrestOptions.checker, ForrestOptions.interpreter, ForrestOptions.encoder, ForrestOptions.useTam, ForrestOptions.runProgram);
+			runner.runForrest(null, null, ForrestOptions.parser, ForrestOptions.checker, ForrestOptions.interpreter, ForrestOptions.encoder, ForrestOptions.useTam, ForrestOptions.runProgram, ForrestOptions.showParser);
 		} catch (ForrestFireException e){
 			System.out.print("Fire!: ForrestException thrown by compiler ");
 			System.out.println(e.getMessage());

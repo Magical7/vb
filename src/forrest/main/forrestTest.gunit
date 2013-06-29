@@ -83,6 +83,11 @@ expr:
 "a--b"								OK
 "-a+b > 5 && true"					OK
 "a a a"								FAIL
+"while: true; do: print(2); endwhile;" OK
+<<while: true;
+	do:
+endwhile;
+>> OK
 
 read:
 "read(x)"		OK

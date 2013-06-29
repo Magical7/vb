@@ -25,10 +25,11 @@ public class TestForrest {
 	//String used for the location of the test files
 	private static String fileLocation = "src/testfiles/";
 
-	//TestFiles	
+	//TestFiles
+	//Testfile for the parser
 	private HashMap<String,String> parserTests = new HashMap<String,String>();
+	//Testfile for the checker
 	private HashMap<String,String> checkerTests = new HashMap<String,String>();
-	private HashMap<String,String> encoderTests = new HashMap<String,String>();
 	
 	/**
 	 * Constructor for this class
@@ -48,12 +49,18 @@ public class TestForrest {
 	 * Method to run all tests
 	 */
 	public void runAllTests(){
+		System.out.println("------------------------------------------------------");
+		System.out.println("------------------------------------------------------");
+		System.out.println("Running all tests");
+		System.out.println("------------------------------------------------------");
 		int totalFailed = 0;
 //		runGunitTests();
 		totalFailed += runParserTests();
 		totalFailed += runCheckerTests();
-		totalFailed += runEncoderTests();
+		System.out.println("------------------------------------------------------");
 		System.out.println("All tests ended with " + totalFailed + " errors");
+		System.out.println("------------------------------------------------------");
+		System.out.println("------------------------------------------------------");
 	}
 	
 	/**
@@ -75,6 +82,9 @@ public class TestForrest {
 	 * Method to run all ParserTests
 	 */
 	private int runParserTests(){
+		System.out.println("------------------------------------------------------");
+		System.out.println("Testing the Parser (Don\'t mind the red lines)");
+		System.out.println("------------------------------------------------------");
 		fillParserOutput();
 		int failed = 0;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -83,7 +93,7 @@ public class TestForrest {
 			String expected = parserTests.get(file);
 			String returned = null;
 			try{
-				this.forrest.runForrest(file, ps, true, false, false, false, false, false);
+				this.forrest.runForrest(file, ps, true, false, false, false, false, false,true);
 				returned = baos.toString();
 			} catch(ForrestFireException e){
 				returned = e.getMessage();
@@ -110,7 +120,9 @@ public class TestForrest {
 		} catch (IOException e) {
 			System.out.println("Something wrong with closing ByteArrayOutputStream");
 		}
-		System.out.println("Finished tests with " + failed + " errors");
+		System.out.println("------------------------------------------------------");
+		System.out.println("Finished Parser tests with " + failed + " errors");
+		System.out.println("------------------------------------------------------");
 		return failed;
 	}
 	
@@ -118,6 +130,9 @@ public class TestForrest {
 	 * Method to run all CheckerTests
 	 */
 	private int runCheckerTests(){
+		System.out.println("------------------------------------------------------");
+		System.out.println("Testing the checker");
+		System.out.println("------------------------------------------------------");
 		fillCheckerOutput();
 		int failed = 0;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -126,7 +141,7 @@ public class TestForrest {
 			String expected = checkerTests.get(file);
 			String returned = null;
 			try{
-				this.forrest.runForrest(file, ps, true, true, false, false, false, false);
+				this.forrest.runForrest(file, ps, true, true, false, false, false, false, true);
 				returned = baos.toString();
 			} catch(ForrestFireException e){
 				returned = e.getMessage();
@@ -138,8 +153,7 @@ public class TestForrest {
 				returned = e.getMessage();
 //				System.exit(0);
 			}
-			
-			if(!returned.equals(expected)){
+			if(!expected.equals(returned)){
 				System.out.println("Test Failed: "+ file + " : \n" + returned + "\n" + expected);
 				failed++;
 			} else {
@@ -153,56 +167,15 @@ public class TestForrest {
 		} catch (IOException e) {
 			System.out.println("Something wrong with closing ByteArrayOutputStream");
 		}
-		System.out.println("Finished tests with " + failed + " errors");
-		return failed;
-	}
-	
-	/**
-	 * Method to run all EncoderTests
-	 */
-	private int runEncoderTests(){
-		fillEncoderOutput();
-		int failed = 0;
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		PrintStream ps = new PrintStream(baos);
-		for(String file : encoderTests.keySet()){
-			String expected = encoderTests.get(file);
-			String returned = null;
-			try{
-				this.forrest.runForrest(file, ps, true, true, false, true, false, false);
-				returned = baos.toString();
-			} catch(ForrestFireException e){
-				returned = e.getMessage();
-				
-			} catch(RecognitionException e){
-				returned = e.getMessage();
-			
-			} catch(Exception e){
-				returned = e.getMessage();
-//				System.exit(0);
-			}
-			
-			if(!returned.equals(expected)){
-				System.out.println("Test Failed: "+ file + " : \n" + returned + "\n" + expected);
-				failed++;
-			} else {
-				print("Test Succesful: " + file);
-			}
-			baos.reset();
-		}
-		ps.close();
-		try {
-			baos.close();
-		} catch (IOException e) {
-			System.out.println("Something wrong with closing ByteArrayOutputStream");
-		}
-		System.out.println("Finished tests with " + failed + " errors");
+		System.out.println("------------------------------------------------------");
+		System.out.println("Finished Checker tests with " + failed + " errors");
+		System.out.println("------------------------------------------------------");
 		return failed;
 	}
 	
 	/**
 	 * Method to print output to the System.out, will only print if debug is set to true
-	 * @param tekst - String: de tekt om uit te printen
+	 * @param tekst - String: the text to print
 	 */
 	private void print(String tekst){
 		if(debug){
@@ -240,7 +213,8 @@ public class TestForrest {
 				"org.antlr.runtime.tree.CommonErrorNode cannot be cast to forrest.main.ForrestTree");
 		parserTests.put(fileLocation+"IdentifierTest1.forrest", 
 				"org.antlr.runtime.tree.CommonErrorNode cannot be cast to forrest.main.ForrestTree");
-				
+		parserTests.put(fileLocation+"WhileTest1.forrest", 
+				"(PROGRAM (EXPR_WHILE (while true) (do (var l int) (read l) (print l))))\r\n");
 	}
 	
 	/**
@@ -271,36 +245,10 @@ public class TestForrest {
 				"c(4:4) is not of type integer");
 		checkerTests.put(fileLocation+"BinaryOpTypeFail4.forrest", 
 				"+(4:6) does not match type of CHAR");
-	}
-	
-	/**
-	 * Method to make all Checker tests
-	 */
-	private void fillEncoderOutput(){
-//		encoderTests.put(fileLocation+"DeclarationEncoding.forrest", 
-//				"PUSH 1\r\nPUSH 1\r\nLOAD(1) 1[SB]\r\nLOAD(1) -1[ST]\r\nCALL putint\r\nPOP(0) 0\r\nCALL puteol\r\nPOP(1) 0\r\nPOP(0) 1\r\nHALT\r\nERRORZERODIV: LOADL 1\r\nSTORE(1) 0[SB]\r\nJUMP ERROR\r\nERRORINPUT: LOADL 2\r\nSTORE(1) 0[SB]\r\nJUMP ERROR\r\nERROR: LOAD(1) 0[SB]\r\nCALL putint\r\nHALT");				
-//		encoderTests.put(fileLocation+"NotDeclaredTest1.forrest",
-//				"d(4:0) has not been declared");
-//		encoderTests.put(fileLocation+"TypeNotCorrectlyDeclaredTest1.forrest",
-//				"1(6:4) does not match type of BOOL");
-//		encoderTests.put(fileLocation+"TypeNotCorrectlyDeclaredTest2.forrest", 
-//				"'b'(3:4) does not match type of INT");
-//		encoderTests.put(fileLocation+"TypeNotCorrectlyDeclaredTest3.forrest", 
-//				"true(3:4) does not match type of CHAR");
-//		encoderTests.put(fileLocation+"CorrectScopingTest.forrest", 
-//				"(PROGRAM (var a int) (var b bool) (var c char) (= a 5) (= b true) (= c 'd') (= b (COMPOUND (var d bool) (var b int) (= b a) (= d (== b a)) (|| d true))) (= b true) (EXPR_IF (if (var l int) (|| b (== l 1))) (then (= l 3)) (else (= l 4))))\r\n");
-//		encoderTests.put(fileLocation+"WrongScopingTest1.forrest", 
-//				"c(7:0) has not been declared");
-//		encoderTests.put(fileLocation+"WrongScopingTest2.forrest", 
-//				"'c'(8:4) does not match type of BOOL");
-//		encoderTests.put(fileLocation+"BinaryOpTypeFail1.forrest", 
-//				"a(5:9) does not match the type of CHAR");
-//		encoderTests.put(fileLocation+"BinaryOpTypeFail2.forrest", 
-//				"a(3:5) is not of type boolean");
-//		encoderTests.put(fileLocation+"BinaryOpTypeFail3.forrest", 
-//				"c(4:4) is not of type integer");
-//		encoderTests.put(fileLocation+"BinaryOpTypeFail4.forrest", 
-//				"+(4:6) does not match type of CHAR");
+		checkerTests.put(fileLocation+"WhileTypingTest1.forrest", 
+				"(PROGRAM (var a int) (EXPR_WHILE (while true) (do (var a bool) (= a true))) (= a 6))\r\n");
+		checkerTests.put(fileLocation+"WhileTypingTest2.forrest", 
+				"while(3:0) is not of type boolean");
 	}
 	
 	/**
