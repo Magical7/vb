@@ -92,10 +92,6 @@ public class ForrestWriter {
 		instructions.add("ERRORZERODIV: LOADL 1");
 		instructions.add("STORE(1) " + store.getAddress("7ERROR") + "[SB]"); 
 		instructions.add("JUMP ERROR[CB]");
-		// Incorrect user input
-		instructions.add("ERRORINPUT: LOADL 2");
-		instructions.add("STORE(1) " + store.getAddress("7ERROR") + "[SB]"); 
-		instructions.add("JUMP ERROR[CB]");
 		// Error label: output the error code
 		instructions.add("ERROR: LOAD(1) " + store.getAddress("7ERROR") + "[SB]");
 		this.printString("Error: ");
@@ -137,7 +133,6 @@ public class ForrestWriter {
 	
 	/** Declare a constant */
 	public void writeDeclarationConstant(ForrestTree t) {
-		instructions.add("PUSH 1");
 		String id = t.getChild(0).getText();
 		Type type = ((ForrestTree)t.getChild(1)).getReturnType();
 		putStore(id, type);
@@ -327,6 +322,9 @@ public class ForrestWriter {
 			case BOOL:
 				printString("Input bool (0/1): ");
 				instructions.add("CALL getint");
+				instructions.add("LOAD(1) " + address + "[SB]");
+				this.printConformBool();
+				instructions.add("STORE(1) " + address + "[SB]");
 				break;
 			default:
 				break;
@@ -354,8 +352,8 @@ public class ForrestWriter {
 			default:
 				break;
 			}
+			instructions.add("POP(0) " + (t.getChildCount() - 1));
 		}
-		instructions.add("POP(0) " + (t.getChildCount() - 1));
 		instructions.add("CALL puteol");
 	}
 	
@@ -371,17 +369,10 @@ public class ForrestWriter {
 		}
 	}
 	
-	/** Checks whether a boolean input is correct */
-	public void printBooleanCheck() {
-		instructions.add("LOAD(1) -1[ST]");
+	/** Set a boolean to true or false */
+	public void printConformBool() {
 		instructions.add("LOADL 0");
 		instructions.add("LOADL 1");
-		instructions.add("CALL eq");
-		instructions.add("LOAD(1) -2[ST]");
-		instructions.add("LOADL 1");
-		instructions.add("LOADL 1");
-		instructions.add("CALL eq");
-		instructions.add("CALL or");
-		instructions.add("JUMPIF(0) ERRORINPUT");
+		instructions.add("CALL ne");
 	}
 }
