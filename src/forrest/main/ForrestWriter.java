@@ -76,9 +76,7 @@ public class ForrestWriter {
 	
 	/** Setup extra variables for program running. Reserves 1 place on the stack */
 	public void startProgram(){
-		instructions.add("PUSH 1");
     	store.openScope();
-    	store.declare("7ERROR", Type.INT);
 	}
 
 	/**
@@ -89,13 +87,12 @@ public class ForrestWriter {
 		instructions.add("POP(0) " + store.getCurrentScopeSize());
 		instructions.add("HALT");
 		// Divide by zero error
-		instructions.add("ERRORZERODIV: LOADL 1");
-		instructions.add("STORE(1) " + store.getAddress("7ERROR") + "[SB]"); 
-		instructions.add("JUMP ERROR[CB]");
-		// Error label: output the error code
-		instructions.add("ERROR: LOAD(1) " + store.getAddress("7ERROR") + "[SB]");
-		this.printString("Error: ");
-		instructions.add("CALL putint");
+		instructions.add("ERRORZERODIV:");
+		this.printString("Divide by 0");
+		instructions.add("HALT");
+		// Unknown error
+		instructions.add("ERROR:");
+		this.printString("Unknown error");
 		instructions.add("HALT");
 	}
 	
@@ -158,10 +155,10 @@ public class ForrestWriter {
 	
 	/** End of while-loop */
 	public void writeWhileFinally(int label) {
+		this.closeScope();
 		instructions.add("JUMP LWHILESTART" + label + "[CB]");
-		this.closeScope();
-		this.closeScope();
 		instructions.add("LWHILEFINALLY" + label + ":");
+		this.closeScope();
 	}
 	
 	/** Opening of an if statement */
@@ -178,25 +175,25 @@ public class ForrestWriter {
 	/** Code after completing then part of the then statement */
 	public void writeIfAfterThen() {
 		this.closeScope();
-		this.openScope();
 	}
 	
 	/** Else part of if statement */
 	public void writeIfBeforeElse(int label){
 		instructions.add("JUMP LIFFINALLY" + label + "[CB]");
 		instructions.add("LIFFALSE" + label + ":");
+		this.openScope();
 	}
 	
 	/** Extra code after the complete if statement */
 	public void writeIfFinally(int label){
-		this.closeScope();
 		instructions.add("LIFFINALLY" + label + ":");
+		this.closeScope();
 	}
 	
 	/** Code to jump to if the if-statement returns false and no else exists */
 	public void writeIfFalse(int label){
-		this.closeScope();
 		instructions.add("LIFFALSE" + label + ":");
+		this.closeScope();
 	}
 	
 	/** Code to execute a binary operation */
