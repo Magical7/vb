@@ -1,0 +1,4 @@
+//Program to check runtime error when dividing by 0
+var input int;
+read(input);
+print(10 / input);

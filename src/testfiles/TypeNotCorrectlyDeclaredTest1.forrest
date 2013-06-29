@@ -1,0 +1,6 @@
+//Test where a type is not the same as the declared variable
+var a int;
+var b bool;
+a = 1;
+b = true;
+b = 1;

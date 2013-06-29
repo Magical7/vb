@@ -1,0 +1,26 @@
+//Test testing the typing rules, these are all correct
+var a bool;
+var b int;
+var c char;
+a = true;
+b = 2;
+c = 'd';
+//boolean types
+a = a || false; 
+a = true && a;
+a = !a;
+a = !true;
+//integer types
+a = b < 3;
+a = b <= b;
+a = 4 > 3;
+a = 3 >= b;
+a = 3*4 > 2;
+b = -b;
+b = +b;
+a = 10%2 > 3;
+//char types
+a = c == 'd';
+a = 'd' != 'a';
+//Chained expressions
+a = b < 3 && 4 > 5 && 4 >= b || 'c'!='d' || a;
