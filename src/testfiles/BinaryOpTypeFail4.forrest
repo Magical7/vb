@@ -1,4 +1,0 @@
-//Test where the types for operator are not correct
-var a int;
-var c char;
-c = a + 5;

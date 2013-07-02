@@ -1,7 +1,0 @@
-//Test where a variable is used outside its scope
-var a int;
-var b bool;
-b = { var c char;
-	b;
-};
-c = 'c';

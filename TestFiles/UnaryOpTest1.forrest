@@ -1,0 +1,5 @@
+// Unary operator met twee argumenten
+var stijn char;
+var lex bool;
+var lex2 bool;
+lex = lex ! lex2;

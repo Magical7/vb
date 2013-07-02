@@ -1,4 +1,0 @@
-//A test where a variable has not been declared, the first 2 lines should cause no problem
-var b int;
-b = 4;
-d = 3;

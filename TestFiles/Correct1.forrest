@@ -1,0 +1,10 @@
+// Dit zou geen fouten mogen opleveren
+var b1 bool;
+var i1 int;
+var c1 char; // Nu hebben we drie variabelen!
+var b2 bool;
+var b3 bool;
+b1 = b2 = true;
+b3 = !b1;
+print(b1 || b2 && b3);
+print(b1 == b2 != b3);

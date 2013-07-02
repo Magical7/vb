@@ -1,3 +1,0 @@
-//Test where the types for operator are not correct
-var a char;
-a = !a;

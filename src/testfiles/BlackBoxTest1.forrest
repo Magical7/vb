@@ -1,6 +1,0 @@
-//Test to check a normal (correct) program whether it works. Asks two input number, and prints the sum.
-var input int;
-var input2 int;
-read(input);
-read(input2);
-print(input + input2);
