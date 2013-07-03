@@ -1,11 +1,11 @@
 gunit Forrest;
 
 options {
-TreeAdaptor = forrest.main.ForrestTreeAdaptor;
+TreeAdaptor = forrest.ForrestTreeAdaptor;
 }
 
 @header{
-package forrest.main;
+package forrest;
 }
 
 program_lines:

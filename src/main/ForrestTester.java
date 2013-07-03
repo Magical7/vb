@@ -23,7 +23,7 @@ public class ForrestTester {
 	//Class used to run the grammar Forrest
 	private Forrest forrest;
 	//String used for the location of the test files
-	private static String fileLocation = "testfiles/";
+	private static String fileLocation = "../TestFiles/";
 
 	//TestFiles
 	//Testfile for the parser

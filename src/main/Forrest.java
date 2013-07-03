@@ -37,7 +37,7 @@ public class Forrest {
 	/**
 	 * Method to run the ANTLR program on a forrest program
 	 * @param inputFile - String: The forrest program to compile (null means the standard inputfile from forrestOptions.inputFileLocation)
-	 * @param outputPS - PrintStream: The targetFile (null means the stand System.out)
+	 * @param outputPS - PrintStream: The targetFile (null means the standard System.out)
 	 * @param options - ForrestOptions: The options for running this Forrest
 	 */
 	public void runForrest(String inputFile, PrintStream outputPS, 
