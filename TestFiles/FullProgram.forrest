@@ -15,13 +15,13 @@ ivar =
 		ivar2 = print(ivar2) + 1;
 	} + 1;
 var bvar bool;
+const bconst = true;
 bvar = 
 	{
 		var bvar bool;
 		read(bvar);
 		print(bvar);
 		bvar = 12 / 5 * 5 + 12 % 5 == 12 && 6 >= 6;
-		const bconst = true;
 		print(!false && bvar == bconst || true != false);
 	} && true;
 var cvar char;
@@ -32,7 +32,7 @@ cvar =
 		var cvar2 char;
 		read(cvar1);
 		cvar2 = 'z';
-		print('a', cvar1 = cconst && (cvar2 != 'b' || !true));
+		print('a', cvar1 == cconst && (cvar2 != 'b' || !true));
 		'b';
 	};
 print(ivar, bvar, cvar);
