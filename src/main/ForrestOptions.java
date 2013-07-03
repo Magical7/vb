@@ -30,7 +30,7 @@ public class ForrestOptions {
 		this.tamFileLocation = "../program/TAM/" + tamFileLocation + ".tam";
 		this.assemblerArguments[0] = this.tasmFileLocation;
 		this.assemblerArguments[1] = this.tamFileLocation;
-		this.interpreterArguments[0] = this.tasmFileLocation;
+		this.interpreterArguments[0] = this.tamFileLocation;
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class ForrestOptions {
 	protected boolean showAst = false;
 	
 	/** Forrest file to read from */
-	protected String inputFileLocation = "../TestFiles/FullProgram.forrest";
+	protected String inputFileLocation = "../TestFiles/BlackBoxTest4.forrest";
 	/** TAM file to output to and read from */
 	protected String tasmFileLocation = "../program/TAM/program.tasm";
 	/** TAM assembler file to output to and read from */
