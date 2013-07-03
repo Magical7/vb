@@ -113,8 +113,9 @@ public class ForrestWriter {
 	 * scope from the stack.
 	 */
 	public void closeScope() {
-		instructions.add("POP(1) " + ((store.getCurrentScopeSize() - 1) > 0 ? (store.getCurrentScopeSize() - 1) : 0));
-		st -= (store.getCurrentScopeSize() - 1);
+		int popSize = store.getCurrentScopeSize();
+		instructions.add("POP(1) " + popSize);
+		st -= popSize;
 		store.closeScope();
 	}
 	
@@ -188,6 +189,8 @@ public class ForrestWriter {
 	/** Code after completing then part of the then statement */
 	public void writeIfAfterThen() {
 		this.closeScope();
+		// Then doesn't leave anything on the stack; the whole if-statement does
+		st -= 1;
 	}
 	
 	/** Else part of if statement */
@@ -195,18 +198,21 @@ public class ForrestWriter {
 		instructions.add("JUMP LIFFINALLY" + label + "[CB]");
 		instructions.add("LIFFALSE" + label + ":");
 		this.openScope();
+		// Else doesn't leave anything on the stack; the whole if-statement does
+		st -= 1;
 	}
 	
 	/** Extra code after the complete if statement */
 	public void writeIfFinally(int label){
 		instructions.add("LIFFINALLY" + label + ":");
 		this.closeScope();
+		st += 1;
 	}
 	
 	/** Code to jump to if the if-statement returns false and no else exists */
 	public void writeIfFalse(int label){
 		instructions.add("LIFFALSE" + label + ":");
-		this.closeScope();
+		st += 1;
 	}
 	
 	/** Code to execute a binary operation */
@@ -313,7 +319,7 @@ public class ForrestWriter {
 	
 	/** Load a character */
 	public void writeCharacter(ForrestTree t){
-		instructions.add("LOADL " + Character.getNumericValue(t.getText().charAt(0)));
+		instructions.add("LOADL " + (int) t.getText().charAt(1));
 		st += 1;
 	}
 	
@@ -332,6 +338,7 @@ public class ForrestWriter {
 				break;
 			case CHAR:
 				printString("Input char: ");
+				instructions.add("CALL geteol");
 				instructions.add("CALL get");
 				break;
 			case BOOL:
@@ -368,10 +375,10 @@ public class ForrestWriter {
 			default:
 				break;
 			}
-			instructions.add("POP(0) " + (t.getChildCount() - 1));
-			st -=(t.getChildCount() - 1);
 			instructions.add("CALL puteol");
 		}
+		instructions.add("POP(0) " + (t.getChildCount() - 1));
+		st -= (t.getChildCount() - 1);
 	}
 	
 	/** Print a string */

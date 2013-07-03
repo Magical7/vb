@@ -107,7 +107,9 @@ ForrestTree t = (ForrestTree)input.LT(1);
 		{fw.writeBinaryOp(t);}
 	|	^((POSITIVE | NEGATIVE | NOT) expr)
 		{fw.writeUnaryOp(t);}
-	|   ^(COMPOUND program_lines)
+	|   { fw.openScope(); }
+		^(COMPOUND program_lines)
+		{ fw.closeScope(); }
 	|	IDENTIFIER
 		{
 			fw.writeIdentifier(t);
