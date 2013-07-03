@@ -37,43 +37,20 @@ public class IdStore {
         return liveIdSet.peek();
     }
     
-    /** 
-     * Declare an identifier
-     * @param t - the identifier tree node 
-     * @throws ForrestFireException if the identifier has been used for any 
-     *	constant or if the identifier already exists in the current scope.
-     */
-    public void declareId(ForrestTree t) throws ForrestFireException {
-    	ForrestTree id = (ForrestTree) t.getChild(0);
-    	ForrestTree type = (ForrestTree) t.getChild(1);
-		declare(id.getText(), Type.valueOf(type.getText().toUpperCase())); //TODO workaround for java, explain
-    }
-    
     /**
      * Declares the identifier for the current scope
      * @param id - the identifier to declare
+     * @param type - the type of the id
+     * @param address - the absolute address of the id
      */
-    public void declare(String id, Type type) {
-    	StoreItem entry = new StoreItem(type, getCurrentScopeSize(), currentLevel());
+    public void declare(String id, Type type, int address) {
+    	StoreItem entry = new StoreItem(type, address, currentLevel());
 		this.currentScope().put(id, entry);
     }
     
-    
     /**
-     * Declare a constant
-     * @param t - the id of the constant
-     * @throws ForrestFireException if the identifier has been used already or
-     	if the constant is declared inside a nested scope
-     */
-    public void declareConst(ForrestTree t) throws ForrestFireException {
-    	ForrestTree id = (ForrestTree) t.getChild(0);
-    	ForrestTree expr = (ForrestTree) t.getChild(1);
-		declare(id.getText(), expr.getReturnType());
-    }
-    
-    /**
-     * Set the type for a ForrestTree node that is an identifier
-     * @param id - ForrestTree that needs its type set 
+     * Retrieve an item
+     * @param id - id of the requested item 
      */
     public StoreItem getItem(String id)  {
     	StoreItem storeItem = null;
@@ -87,17 +64,11 @@ public class IdStore {
     }
     
     /**
-     * Set the type for a ForrestTree node that is an identifier
-     * @param id - ForrestTree that needs its type set 
+     * @param id - id of the requested item
+     * @return the absolute address of the given identifier
      */
     public int getAddress(String id)  {
-    	StoreItem item = this.getItem(id);
-    	int addrMod = 0;
-    	for (int i = 0; i < item.getScopeLevel(); i++) {
-    		HashMap<String, StoreItem> scope = liveIdSet.get(i);
-			addrMod += scope.size();
-    	}
-    	return item.getAddress() + addrMod;
+    	return this.getItem(id).getAddress();
     }
     
     /**

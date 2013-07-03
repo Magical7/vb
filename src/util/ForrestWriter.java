@@ -25,6 +25,8 @@ public class ForrestWriter {
 	private int nIf = 0;
 	/** Amount of while-statements encountered */
 	private int nWhile = 0;
+	/** Stack top */
+	private int st = 0;
 	
 	/** Constructor. Sets the output file */
 	public ForrestWriter(){
@@ -61,9 +63,10 @@ public class ForrestWriter {
 	 * Place an identifier in the store
 	 * @param id the id
 	 * @param type the type of the variable/constant
+	 * @param address the address relative to SB
 	 */
-	public void putStore(String id, Type type){
-		store.declare(id, type);
+	public void putStore(String id, Type type, int address){
+		store.declare(id, type, address);
 	}
 	
 	/** @return a previously unused number for the if labels */
@@ -111,32 +114,36 @@ public class ForrestWriter {
 	 */
 	public void closeScope() {
 		instructions.add("POP(1) " + ((store.getCurrentScopeSize() - 1) > 0 ? (store.getCurrentScopeSize() - 1) : 0));
+		st -= (store.getCurrentScopeSize() - 1);
 		store.closeScope();
 	}
 	
 	/** Write the end of a program line: leave the last value on the stack */
 	public void writeProgramLines() {
 		instructions.remove(instructions.size()-1);
+		st += 1;
 	}
 	
 	/** Upon a semi-colon, remove the last value from the stack */
 	public void writeLine() {
 		instructions.add("POP(0) 1"); 
+		st -= 1;
 	}
 	
 	/** Declare a variable */
 	public void writeDeclarationVar(ForrestTree t) {
 		instructions.add("PUSH 1");
+		st += 1;
 		String id = t.getChild(0).getText();
 		Type type = Type.valueOf(t.getChild(1).getText().toUpperCase());
-		putStore(id, type);
+		putStore(id, type, st - 1);
 	}
 	
 	/** Declare a constant */
 	public void writeDeclarationConstant(ForrestTree t) {
 		String id = t.getChild(0).getText();
 		Type type = ((ForrestTree)t.getChild(1)).getReturnType();
-		putStore(id, type);
+		putStore(id, type, st - 1);
 	}
 	
 	/** Assignment */
@@ -154,6 +161,7 @@ public class ForrestWriter {
 	/** Possible break from the while-loop */
 	public void writeWhileCheck(int label) {
 		instructions.add("JUMPIF(0) LWHILEFINALLY" + label + "[CB]");
+		st -= 1;
 		this.openScope();
 	}
 	
@@ -173,6 +181,7 @@ public class ForrestWriter {
 	/** Check of if statement */
 	public void writeIfCheck(int label){
 		instructions.add("JUMPIF(0) LIFFALSE" + label + "[CB]");
+		st -= 1;
 		this.openScope();
 	}
 	
@@ -257,6 +266,7 @@ public class ForrestWriter {
 		}
 		
 		instructions.add("CALL " + call);
+		st -= 1;
 	}
 	
 	/** Code to execute a unary operation */
@@ -281,11 +291,13 @@ public class ForrestWriter {
 	/** Load a variable/constant */
 	public void writeIdentifier(ForrestTree t){
 		instructions.add("LOAD(1) " + store.getAddress(t.getText()) + "[SB]");
+		st += 1;
 	}
 	
 	/** Load a number */
 	public void writeNumber(ForrestTree t){
 		instructions.add("LOADL " + t.getText());
+		st += 1;
 	}
 	
 	/** Load a boolean */
@@ -296,11 +308,13 @@ public class ForrestWriter {
 		}
 		
 		instructions.add("LOADL " + value);
+		st += 1;
 	}
 	
 	/** Load a character */
 	public void writeCharacter(ForrestTree t){
 		instructions.add("LOADL " + Character.getNumericValue(t.getText().charAt(0)));
+		st += 1;
 	}
 	
 	/** Ask the user for input for a series of variables */
@@ -332,6 +346,7 @@ public class ForrestWriter {
 			}
 		}
 		instructions.add("LOAD(1) " + store.getAddress(t.getChild(0).getText()) + "[SB]");
+		st += 1;
 	}
 	
 	/** Print a series of expressions */
@@ -354,6 +369,7 @@ public class ForrestWriter {
 				break;
 			}
 			instructions.add("POP(0) " + (t.getChildCount() - 1));
+			st -=(t.getChildCount() - 1);
 			instructions.add("CALL puteol");
 		}
 	}

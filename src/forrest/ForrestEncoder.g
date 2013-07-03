@@ -18,9 +18,6 @@ options {
 }
 
 @members {
-	// Keep track of identifiers
-	private SymbolTable symtab = new SymbolTable();
-	
 	private ForrestWriter fw = new ForrestWriter();
 	public void setFile(String fileLocation){
 		fw.setFile(fileLocation);
