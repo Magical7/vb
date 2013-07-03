@@ -267,10 +267,10 @@ public class ForrestWriter {
 		case "!":
 			call = "not";
 			break;
-		case "+":
+		case "POSITIVE":
 			call = "id";
 			break;
-		case "-":
+		case "NEGATIVE":
 			call = "neg";
 			break;
 		}
@@ -354,8 +354,8 @@ public class ForrestWriter {
 				break;
 			}
 			instructions.add("POP(0) " + (t.getChildCount() - 1));
+			instructions.add("CALL puteol");
 		}
-		instructions.add("CALL puteol");
 	}
 	
 	/** Print a string */

@@ -92,13 +92,12 @@ expr
 expr_assign
 options {k=2;}
 	:	IDENTIFIER BECOMES^ expr_assign
-	|	expr_while
+	|	expr_or
 	;
 	
 expr_while
 	:	while_comp do_comp ENDWHILE
 			->	^(EXPR_WHILE while_comp do_comp)
-	|	expr_if
 	;
 	
 while_comp
@@ -112,7 +111,6 @@ do_comp
 expr_if
 	:	if_comp then_comp else_comp? ENDIF
 			->	^(EXPR_IF if_comp then_comp else_comp?)
-	|	expr_or
 	;
 
 if_comp
@@ -165,6 +163,8 @@ expr_compound
 	|	LPAREN! expr RPAREN!
 	| 	read
 	|	print
+	|	expr_if
+	|	expr_while
 	;
 	
 read

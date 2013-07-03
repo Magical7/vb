@@ -142,7 +142,7 @@ read
 @init {
 ForrestTree t = (ForrestTree)input.LT(1);
 }
-	:	^(READ (id=IDENTIFIER)+) 
+	:	^(READ (id=expr)+) 
 		{ExpressionChecker.checkRead(t);}
 	;
 	

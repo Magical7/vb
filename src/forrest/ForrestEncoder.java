@@ -1,4 +1,4 @@
-// $ANTLR 3.5 ForrestEncoder.g 2013-07-02 21:03:28
+// $ANTLR 3.5 ForrestEncoder.g 2013-07-03 07:22:20
 
 	package forrest;
 	import fire.ForrestFireException;

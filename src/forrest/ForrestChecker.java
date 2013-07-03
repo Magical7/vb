@@ -1,4 +1,4 @@
-// $ANTLR 3.5 ForrestChecker.g 2013-07-02 21:03:23
+// $ANTLR 3.5 ForrestChecker.g 2013-07-03 07:22:16
 
 	package forrest;
 	import fire.ForrestFireException;
@@ -941,34 +941,35 @@ public class ForrestChecker extends TreeParser {
 
 
 	// $ANTLR start "read"
-	// ForrestChecker.g:141:1: read : ^( READ (id= IDENTIFIER )+ ) ;
+	// ForrestChecker.g:141:1: read : ^( READ (id= expr )+ ) ;
 	public final void read() throws RecognitionException {
-		ForrestTree id=null;
-
 
 		ForrestTree t = (ForrestTree)input.LT(1);
 
 		try {
-			// ForrestChecker.g:145:2: ( ^( READ (id= IDENTIFIER )+ ) )
-			// ForrestChecker.g:145:4: ^( READ (id= IDENTIFIER )+ )
+			// ForrestChecker.g:145:2: ( ^( READ (id= expr )+ ) )
+			// ForrestChecker.g:145:4: ^( READ (id= expr )+ )
 			{
 			match(input,READ,FOLLOW_READ_in_read581); 
 			match(input, Token.DOWN, null); 
-			// ForrestChecker.g:145:11: (id= IDENTIFIER )+
+			// ForrestChecker.g:145:11: (id= expr )+
 			int cnt7=0;
 			loop7:
 			while (true) {
 				int alt7=2;
 				int LA7_0 = input.LA(1);
-				if ( (LA7_0==IDENTIFIER) ) {
+				if ( (LA7_0==BECOMES||LA7_0==CHARACTER||LA7_0==COMPOUND||LA7_0==DIVIDE||(LA7_0 >= EQUALS && LA7_0 <= IDENTIFIER)||(LA7_0 >= LOGAND && LA7_0 <= LOGOR)||(LA7_0 >= MINUS && LA7_0 <= PRINT)||LA7_0==READ||(LA7_0 >= SMALLER && LA7_0 <= SMALLEREQ)||(LA7_0 >= TIMES && LA7_0 <= TRUE)) ) {
 					alt7=1;
 				}
 
 				switch (alt7) {
 				case 1 :
-					// ForrestChecker.g:145:12: id= IDENTIFIER
+					// ForrestChecker.g:145:12: id= expr
 					{
-					id=(ForrestTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_read586); 
+					pushFollow(FOLLOW_expr_in_read586);
+					expr();
+					state._fsp--;
+
 					}
 					break;
 
@@ -1118,7 +1119,7 @@ public class ForrestChecker extends TreeParser {
 	public static final BitSet FOLLOW_ELSE_in_else_comp557 = new BitSet(new long[]{0x0000000000000004L});
 	public static final BitSet FOLLOW_program_lines_in_else_comp559 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_READ_in_read581 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_read586 = new BitSet(new long[]{0x0000000002000008L});
+	public static final BitSet FOLLOW_expr_in_read586 = new BitSet(new long[]{0x003327FCC3F84898L});
 	public static final BitSet FOLLOW_PRINT_in_print612 = new BitSet(new long[]{0x0000000000000004L});
 	public static final BitSet FOLLOW_expr_in_print615 = new BitSet(new long[]{0x003327FCC3F84898L});
 }
