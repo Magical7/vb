@@ -1,0 +1,2 @@
+-cp forrest/antlr-3.5-complete.jar
+-d ../bin
