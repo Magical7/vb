@@ -18,9 +18,6 @@ options {
 }
 
 @members {
-	// Keep track of identifiers
-	private SymbolTable symtab = new SymbolTable();
-	
 	private ForrestWriter fw = new ForrestWriter();
 	public void setFile(String fileLocation){
 		fw.setFile(fileLocation);
@@ -110,7 +107,9 @@ ForrestTree t = (ForrestTree)input.LT(1);
 		{fw.writeBinaryOp(t);}
 	|	^((POSITIVE | NEGATIVE | NOT) expr)
 		{fw.writeUnaryOp(t);}
-	|   ^(COMPOUND program_lines)
+	|   { fw.openScope(); }
+		^(COMPOUND program_lines)
+		{ fw.closeScope(); }
 	|	IDENTIFIER
 		{
 			fw.writeIdentifier(t);

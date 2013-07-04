@@ -9,6 +9,9 @@ import org.antlr.runtime.tree.CommonTreeAdaptor;
  */
 public class ForrestTreeAdaptor extends CommonTreeAdaptor {
 	
+	/**
+	 * Overriden method used by antlr to generate ForrestNodes when building the tree
+	 */
 	@Override
 	public Object create(Token t){
 		return new ForrestTree(t);

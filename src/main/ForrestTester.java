@@ -18,17 +18,17 @@ import fire.ForrestFireException;
  */
 public class ForrestTester {
 	
-	//Setting Debug to true will generate more information
+	/** Setting Debug to true will generate more information */
 	private boolean debug = false;
-	//Class used to run the grammar Forrest
+	/** Class used to run the grammar Forrest */
 	private Forrest forrest;
-	//String used for the location of the test files
+	/** String used for the location of the test files */
 	private static String fileLocation = "../TestFiles/";
 
 	//TestFiles
-	//Testfile for the parser
+	/** Testfile and expected outputs for the parser */
 	private HashMap<String,String> parserTests = new HashMap<String,String>();
-	//Testfile for the checker
+	/** Testfile and expected outputs for the checker */
 	private HashMap<String,String> checkerTests = new HashMap<String,String>();
 	
 	/**
@@ -54,7 +54,7 @@ public class ForrestTester {
 		System.out.println("Running all tests");
 		System.out.println("------------------------------------------------------");
 		int totalFailed = 0;
-//		runGunitTests();
+//		runGunitTests(); 
 		totalFailed += runParserTests();
 		totalFailed += runCheckerTests();
 		System.out.println("------------------------------------------------------");
@@ -65,6 +65,7 @@ public class ForrestTester {
 	
 	/**
 	 * Method that runs the Gunit Tests as specified by the file forrestTest.gunit.
+	 * Not used, somehow doesn't run the Interp.main and blocks. Can be run independently (See the Readme)
 	 */
 	private void runGunitTests(){
 		try{

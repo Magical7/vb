@@ -29,6 +29,9 @@ public class ForrestTree extends CommonTree {
 		super(t);
 	}
 
+	/**
+	 * Method must be overriden, otherwise antlr will still use CommonTree
+	 */
 	@Override
 	public ForrestTree dupNode(){
 		return new ForrestTree(this);

@@ -24,12 +24,23 @@ import forrest.ForrestParser;
 
 public class Forrest {
 	
-	//Streams used for input and output
+	/**
+	 * Inputstream used for reading the .forrest files
+	 */
 	private InputStream in;
+	/**
+	 * OutputSTream used for giving messages to the user
+	 */
 	private PrintStream out;
 	
+	/**
+	 * Locally saved ForrestOptions specifying the options used by this forrest Program
+	 */
 	private ForrestOptions options;
 	
+	/**
+	 * Default constructor
+	 */
 	public Forrest(){
 		
 	}
